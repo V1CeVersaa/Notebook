@@ -47,9 +47,6 @@
 - [x] [Priciples of Compilers: Basic Blocks and Traces](./Compilers/7%20block.md)
 - [x] [Priciples of Compilers: Instruction Selection](./Compilers/8%20instruction.md)
 
-### Computer Networks 
-
-!!! Info "有缘再见"
 
 ### Web
 

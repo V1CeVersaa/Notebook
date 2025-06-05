@@ -2,7 +2,7 @@
 
 ## 1.3 强化学习要素
 
-除了智能体/Agent 和环境之外，强化学习系统有四个元素：策略/Policy、收益信号/Reward Signal、价值函数/Value Function，以及一个可选的对环境建立的模型/Model of the environment。
+除了智能体/Agent 和环境之外，强化学习系统有四个元素：**策略/Policy**、**收益信号/Reward Signal**、**价值函数/Value Function**，以及一个可选的**对环境建立的模型/Model of the environment**。
 
 策略定义了智能体在特定时间的行为方式。大致来说，策略是智能体感知的环境状态到动作的映射。因为策略本身就足以决定行为，因此策略是强化学习的核心。在一般情况下，策略可能是环境所在状态和智能体采取的动作的随机函数。
 

@@ -4,7 +4,7 @@
 
     RISC-V 系统学习一遍就足够了，再多看多少本书都没啥意思了，而 COAD 和 CS61B 都属于没啥意思的这种，详细的可以指路：
 
-    - [我写的一点点整理](../RISC-V/RISC-V.md)
+    - [我写的一点点整理](../HDL%20&%20ISA/RISC-V/RISC-V.md)
     - [DDCA 里边有关 RISC-V 的一些内容](../DDCA/Chapter6.md)
     - [xg 的整理](https://note.tonycrane.cc/cs/pl/riscv/)
 

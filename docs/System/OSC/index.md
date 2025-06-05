@@ -11,3 +11,5 @@
 - [ ] [Memory Management: Virtual Memory](./topic6.md)
 - [ ] [Storage Management: Mass-Storage Structure](./topic7.md)
 - [ ] [Storage Management: IO Systems](./topic8.md)
+- [ ] [Storage Management: File System](./topic9.md)
+- [ ] [Miscellaneous](./misc.md)

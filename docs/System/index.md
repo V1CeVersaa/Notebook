@@ -6,16 +6,19 @@
 
 ## Table of Contents
 
-- [ ] [CSAPP：深入理解计算机系统](CSAPP/CSAPP.md) < 咕咕咕 >
-- [ ] [COAD：计算机组成与设计](COAD/COAD.md) < 咕咕咕 >
-- [ ] [DDCA：数字设计与计算机体系结构](DDCA/DDCA.md) < 咕咕咕 >
-- [ ] [OSC：操作系统概念](OSC/OSC.md) < Learning >
-    - 对应计算机系统 II 和计算机系统 III 的操作系统部分知识
-- [ ] [OSTEP：操作系统导论](OSTEP/OSTEP.md) < 随缘更 >
-    - 对应计算机系统 II 和计算机系统 III 的操作系统部分知识，内容组织与重点和 OSC 不太一致
-- [x] [ZJU System II: Pipelined Processor](./ZJU%20SYS/SysII-Processor.md)
-- [ ] [ZJU System III: Quantitative Analysis](./ZJU%20SYS/SysIII-Quantitative.md)
-- [ ] [ZJU System III: Instruction Level Parallelism](./ZJU%20SYS/SysIII-ILP.md)
-- [ ] [ZJU System III: Memory Hierarchy](./ZJU%20SYS/SysIII-Memory.md)
-- [ ] [HDL: Verilog](./HDL/Verilog.md)
-- [ ] [ISA: RISC-V](./RISC-V/RISC-V.md)
+- [ ] [计算机体系结构：量化分析方法（Computer Architecture: A Quantitative Approach）](CAQA/index.md)
+    - 对应计算机系统 III 的体系结构部分知识，也是体系结构课程的教材
+- [ ] [操作系统概念（Operating System Concepts）](OSC/index.md)
+    - 对应计算机系统 II 和计算机系统 III 的所有操作系统知识，也是操作系统课程的教材
+- [ ] [操作系统导论（Operating Systems: Three Easy Pieces）](OSTEP/index.md)
+    - 对应计算机系统 II 和计算机系统 III 的操作系统部分知识，内容组织与重点和操作系统概念这本书不太一致
+- [ ] [计算机网络：自顶向下方法（Computer Networking: A Top-Down Approach）](CN/index.md)
+    - 自己打算补充一点和计算机网络相关的知识，**暂且搁置**，**有空再学**
+- [ ] 决定不再看的书：
+    - [ ] [数字设计与计算机体系结构（Digital Design and Computer Architecture）](DDCA/index.md)
+    - [ ] [计算机组成与设计（Computer Organization and Design）](COAD/index.md)
+    - [ ] [深入理解计算机系统（Computer Systems: A Programmer's Perspective）](CSAPP/index.md)
+        - 很好的入门书，大部分知识我已经在计算机系统贯通课上学过了，以后也不再读了
+- [ ] [HDL: Verilog](./HDL%20&%20ISA/Verilog.md)
+- [ ] [HDL: Chisel](./HDL%20&%20ISA/Chisel.md)
+- [ ] [ISA: RISC-V](./HDL%20&%20ISA/RISC-V/RISC-V.md)

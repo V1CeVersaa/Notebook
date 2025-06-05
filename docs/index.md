@@ -23,8 +23,8 @@ Hi！欢迎来到我的笔记本，我会在这里更新我的 **课程笔记** 
 ## 学不完了
 
 - [ ] 猜猜我为啥学它: [Typst Learning Record](./Varia/Typst.md)
-- [ ] 某种古老又强大的命令语言：[Shell](./Computer%20Science/Programming%20Basis/Shell.md)
-- [ ] 看起来更像CS人: [GNU Make & CMake](./Computer%20Science/Programming%20Basis/GNU%20Make.md)
+- [ ] 某种古老又强大的命令语言：[Shell](./Computer%20Science/Programming%20Utils/Shell.md)
+- [ ] 看起来更像CS人: [GNU Make & CMake](./Computer%20Science/Programming%20Utils/GNU%20Make.md)
 - [ ] 打会 CTF：[CTF: Cryptography](./Computer%20Science/CTF/Crypto/index.md)
 
 ## 打个勾先

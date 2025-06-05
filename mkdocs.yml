@@ -139,75 +139,74 @@ nav:
                       - ECC: Computer Science/CTF/Crypto/ECC.md
     - System:
           - System/index.md
-          - General Introduction:
-                - CSAPP-A Tour of Computer Systems: System/CSAPP/Chapter1.md
-                - The Datacenter as a Computer: System/TDAAC/TDAAC.md
-          - Digital Logic:
-                - CSAPP-Supplement: System/CSAPP/Supplement.md
-          - Presenting and Manipulating Information:
-                - CSAPP-Presenting and Manipulating Information: System/CSAPP/Chapter2.md
-          - Machine-Level Representation of Programs:
-                - CSAPP-Machine-Level Representation of Programs: System/CSAPP/Chapter3.md
-                - CSAPP-Optimizing Program Performance: System/CSAPP/Chapter5.md
-                - RISC-V Assembly:
-                      - System/RISC-V/RISC-V.md
-                      - Unprivileged ISA: System/RISC-V/RISC-V-upr.md
-                      - Privileged ISA: System/RISC-V/RISC-V-pr.md
-                - x86 Assembly:
-                      - System/x86 Assembly/x86.md
-          - Processor Architecture:
-                - ZJU SYS II-Processor: System/ZJU SYS/SysII-Processor.md
-                - CSAPP-Processor Architecture: System/CSAPP/Chapter4.md
-                - ZJU SYS III-Quantitative Analysis: System/ZJU SYS/SysIII-Quantitative.md
-                - ZJU SYS III-Instruction Level Parallelism: System/ZJU SYS/SysIII-ILP.md
-          - Memory Hierarchy:
-                - CSAPP-The Memory Hierarchy: System/CSAPP/Chapter6.md
-                - ZJU SYS III-Memory Hierarchy: System/ZJU SYS/SysIII-Memory.md
-                - OSC-Main Memory: System/OSC/topic5.md
-                - OSC-Virtual Memory: System/OSC/topic6.md
-                - OSC-Mass-Storage Structure: System/OSC/topic7.md
-                - OSC-I/O Systems: System/OSC/topic8.md
-                - OSC-File System: System/OSC/topic9.md
+          - Computer Organization & Architecture:
+                - System/CAQA/index.md
+                - ZJU SYS II-Processor: System/CAQA/SysII-Processor.md
+                - ZJU SYS III-Quantitative Analysis: System/CAQA/0 Quantitative.md
+                - ZJU SYS III-Memory Hierarchy: System/CAQA/1 Cache.md
+                - ZJU SYS III-Instruction Level Parallelism: System/CAQA/2 ILP.md
+          - Operating System:
+                - System/OSC/index.md
+                - OS Structure: System/OSC/topic0.md
+                - Process & Thread: System/OSC/topic1.md
+                - Scheduling: System/OSC/topic2.md
+                - Synchronization: System/OSC/topic3.md
+                - Deadlock: System/OSC/topic4.md
+                - Main Memory: System/OSC/topic5.md
+                - Virtual Memory: System/OSC/topic6.md
+                - Mass-Storage Structure: System/OSC/topic7.md
+                - I/O Systems: System/OSC/topic8.md
+                - File System: System/OSC/topic9.md
+                - Misc: System/OSC/misc.md
+          - Computer Networks:
+                - System/CN/index.md
+          - Database Systems:
+                - System/DB/index.md
+          - OSTEP:
+                - System/OSTEP/index.md
+                - OSTEP-CPU Virtualization: System/OSTEP/topic1.md
                 - OSTEP-Memory Virtualization: System/OSTEP/topic2.md
-          - Running Programs on a System:
-                - OSC-OS Structure: System/OSC/topic0.md
+                - OSTEP-Concurrency: System/OSTEP/topic3.md
+          - CSAPP:
+                - System/CSAPP/index.md
+                - CSAPP-A Tour of Computer Systems: System/CSAPP/Chapter1.md
+                - CSAPP-Presenting and Manipulating Information: System/CSAPP/Chapter2.md
+                - CSAPP-Machine-Level Representation of Programs: System/CSAPP/Chapter3.md
+                - CSAPP-Processor Architecture: System/CSAPP/Chapter4.md
+                - CSAPP-Optimizing Program Performance: System/CSAPP/Chapter5.md
+                - CSAPP-The Memory Hierarchy: System/CSAPP/Chapter6.md
                 - CSAPP-Linking: System/CSAPP/Chapter7.md
                 - CSAPP-Exceptional Control Flow: System/CSAPP/Chapter8.md
                 - CSAPP-Virtual Memory: System/CSAPP/Chapter9.md
-          - Process Management & Synchronization:
-                - OSC-Process & Thread: System/OSC/topic1.md
-                - OSC-Scheduling: System/OSC/topic2.md
-                - OSTEP-CPU Virtualization: System/OSTEP/topic1.md
-                - OSC-Synchronization: System/OSC/topic3.md
-                - OSC-Deadlock: System/OSC/topic4.md
-                - OSTEP-Concurrency: System/OSTEP/topic3.md
-          - Interacting and Communicating with a System:
                 - CSAPP-System-Level IO: System/CSAPP/Chapter10.md
                 - CSAPP-Network Programming: System/CSAPP/Chapter11.md
                 - CSAPP-Concurrent Programming: System/CSAPP/Chapter12.md
-          - Digital Design & Computer Architecture:
-                - DDCA-Combinational Logic: System/DDCA/Chapter2.md
-                - DDCA-Sequential Logic: System/DDCA/Chapter3.md
-                - DDCA-Hardware Description Language: System/DDCA/Chapter4.md
-                - DDCA-Digital Building Blocks: System/DDCA/Chapter5.md
-                - DDCA-Architecture: System/DDCA/Chapter6.md
-                - DDCA-Microarchitecture: System/DDCA/Chapter7.md
-                - DDCA-Memory Systems: System/DDCA/Chapter8.md
-          - Computer Organization & Design:
-                - COAD-Computer Abstractions and Technology: System/COAD/Chapter1.md
-                - COAD-Arithmetic for Computers: System/COAD/Chapter2.md
-                - COAD-Instructions Language of the Computer: System/COAD/Chapter3.md
-                - COAD-The Processor: System/COAD/Chapter4.md
-                - COAD-Large and Fast Exploiting Memory Hierarchy: System/COAD/Chapter5.md
-          - Hardware Description Language:
-                - Verilog: System/HDL/Verilog.md
-                - Chisel: System/HDL/Chisel.md
+                - CSAPP-Supplement: System/CSAPP/Supplement.md
+          - HDL & ISA:
+                - Verilog: System/HDL & ISA/Verilog.md
+                - Chisel: System/HDL & ISA/Chisel.md
+                - RISC-V:
+                      - System/HDL & ISA/RISC-V/RISC-V.md
+                      - Unprivileged ISA: System/HDL & ISA/RISC-V/RISC-V-upr.md
+                      - Privileged ISA: System/HDL & ISA/RISC-V/RISC-V-pr.md 
           - Booklist:
-                - CSAPP: System/CSAPP/CSAPP.md
-                - COAD: System/COAD/COAD.md
-                - DDCA: System/DDCA/DDCA.md
-                - OSC: System/OSC/OSC.md
-                - OSTEP: System/OSTEP/OSTEP.md
+                - The Datacenter as a Computer: System/TDAAC/index.md
+                - Computer Organization & Design:
+                    - System/COAD/index.md
+                    - COAD-Computer Abstractions and Technology: System/COAD/Chapter1.md
+                    - COAD-Arithmetic for Computers: System/COAD/Chapter2.md
+                    - COAD-Instructions Language of the Computer: System/COAD/Chapter3.md
+                    - COAD-The Processor: System/COAD/Chapter4.md
+                    - COAD-Large and Fast Exploiting Memory Hierarchy: System/COAD/Chapter5.md
+                - Digital Design & Computer Architecture:
+                    - System/DDCA/index.md
+                    - DDCA-Combinational Logic: System/DDCA/Chapter2.md
+                    - DDCA-Sequential Logic: System/DDCA/Chapter3.md
+                    - DDCA-Hardware Description Language: System/DDCA/Chapter4.md
+                    - DDCA-Digital Building Blocks: System/DDCA/Chapter5.md
+                    - DDCA-Architecture: System/DDCA/Chapter6.md
+                    - DDCA-Microarchitecture: System/DDCA/Chapter7.md
+                    - DDCA-Memory Systems: System/DDCA/Chapter8.md
     - AI:
           - AI/index.md          
           - 机器学习框架:
@@ -268,25 +267,36 @@ nav:
                 - AI/Reinforcement Learning/index.md
                 - Introduction to Reinforcement Learning:
                     - AI/Reinforcement Learning/RL Basis/index.md
+                    - Book Chapter 1: AI/Reinforcement Learning/RL Basis/Book/Chapter 1.md
+                    - Book Chapter 2: AI/Reinforcement Learning/RL Basis/Book/Chapter 2.md
+                    - Book Chapter 3: AI/Reinforcement Learning/RL Basis/Book/Chapter 3.md
+                    - Book Chapter 4: AI/Reinforcement Learning/RL Basis/Book/Chapter 4.md
+                    - Book Chapter 5: AI/Reinforcement Learning/RL Basis/Book/Chapter 5.md
+                    - Book Chapter 6: AI/Reinforcement Learning/RL Basis/Book/Chapter 6.md
+                    - Book Chapter 7: AI/Reinforcement Learning/RL Basis/Book/Chapter 7.md
                 - Deep Reinforcement Learning:
                     - AI/Reinforcement Learning/RL Deep/index.md
                 - Theory of Reinforcement Learning:
                     - AI/Reinforcement Learning/RL Theory/index.md
+          - Deep Learning:
+                - AI/Deep Learning/index.md
+                - Understanding Deep Learning:
+                    - AI/Deep Learning/Understanding Deep Learning/index.md
+                - Deep Learning for CV:
+                    - AI/Deep Learning/Computer Vision/index.md
+                    - Part 1：线性分类器与简单神经网络: AI/Deep Learning/Computer Vision/part 1.md
+                    - Part 2：卷积神经网络: AI/Deep Learning/Computer Vision/part 2.md
+                    - Part 3：深度学习 I: AI/Deep Learning/Computer Vision/part 3.md
+                    - Part 4：深度学习 II: AI/Deep Learning/Computer Vision/part 4.md
+                    - Part 5：深度学习 III: AI/Deep Learning/Computer Vision/part 5.md
+                - Deep Learning for NLP:
+                    - AI/Deep Learning/Natural Language Processing/index.md
           - Online Learning: 
                 - AI/Online Learning/index.md
                 - "Topic 1: Online Learning and OCO": AI/Online Learning/Lecture 1.md
                 - "Topic 2: Multi-Armed Bandits": AI/Online Learning/Lecture 2.md
           - Casual Inference:
                 - AI/Causal Inference/index.md
-          - Deep Learning for NLP:
-                - AI/Natural Language Processing/index.md
-          - Deep Learning for CV:
-                - AI/Computer Vision/index.md
-                - Part 1：线性分类器与简单神经网络: AI/Computer Vision/part 1.md
-                - Part 2：卷积神经网络: AI/Computer Vision/part 2.md
-                - Part 3：深度学习 I: AI/Computer Vision/part 3.md
-                - Part 4：深度学习 II: AI/Computer Vision/part 4.md
-                - Part 5：深度学习 III: AI/Computer Vision/part 5.md
     - Math:
           - Basic Courses: Math/index.md
           - Abstract Algebra:
