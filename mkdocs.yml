@@ -8,12 +8,12 @@ extra:
     social:
         - icon: fontawesome/brands/github
           link: https://github.com/V1CeVersaa
-    # analytics:
-        # provider: vercel
+    analytics:
+        provider: vercel
 
 theme:
     name: material
-    # custom_dir: overrides
+    custom_dir: overrides
     language: 'zh'
     icon:
         logo: material/notebook-outline
@@ -141,10 +141,10 @@ nav:
           - System/index.md
           - Computer Organization & Architecture:
                 - System/CAQA/index.md
-                - ZJU SYS II-Processor: System/CAQA/SysII-Processor.md
-                - ZJU SYS III-Quantitative Analysis: System/CAQA/0 Quantitative.md
-                - ZJU SYS III-Memory Hierarchy: System/CAQA/1 Cache.md
-                - ZJU SYS III-Instruction Level Parallelism: System/CAQA/2 ILP.md
+                - ZJU SYS II-Processor: System/CAQA/0 Processor.md
+                - ZJU SYS III-Quantitative Analysis: System/CAQA/1 Quantitative.md
+                - ZJU SYS III-Memory Hierarchy: System/CAQA/2 Cache.md
+                - ZJU SYS III-Instruction Level Parallelism: System/CAQA/3 ILP.md
           - Operating System:
                 - System/OSC/index.md
                 - OS Structure: System/OSC/topic0.md
