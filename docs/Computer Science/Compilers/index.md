@@ -21,7 +21,7 @@
 
 ## Introduction
 
-<img class="center-picture" src="./assets/0-1.png" width=550 />
+<img class="center-picture" src="./assets/0 index/0-1.png" width=550 />
 
 - 词法分析/Lexical Analysis：输入源程序，输出单词符号序列，将源文件分解为一个个独立的单词符号；
 - 语法分析/Syntax Analysis：分析程序的短语结构，输入单词符号，输出规约；

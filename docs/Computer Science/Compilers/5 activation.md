@@ -33,7 +33,7 @@ let rec f (x: int): int =
 
 下面是一个经典的栈帧布局模型：
 
-<img class="center-picture" src="../assets/5-1.png" width=550 />
+<img class="center-picture" src="./assets/5 activation/5-1.png" width=550 />
 
 当一个函数 `f` 调用一个函数 `g` 的时候，我们称 `f` 为调用者/Caller，`g` 为被调用者/Callee。在一些 ISA 以及对应的调用管理的时候，当调用函数 `g` 的时候，栈指针指向传入的第一个参数，同时在进入函数 `g` 的时候，我们简单地将栈指针减去一个栈帧的大小，从而分配一个新栈帧。将旧的桢指针保存到内存中，设置新的桢指针为栈指针，使得桢指针指向当前栈帧的基地址。当函数退出的时候，我们设置栈指针为桢指针，恢复栈指针，同时从保存的位置恢复桢指针。
 
@@ -89,7 +89,7 @@ f(): # @f()
 - Caller-Saved Registers：Caller 函数负责保存，在函数调用之后，还需要使用的寄存器的值，Caller mast save and restore them；
 - Callee-Saved Registers：Callee 函数负责保存和恢复，Callee 需要使用的寄存其的原始值。
 
-<img class="center-picture" src="../assets/5-2.png" width=550 />
+<img class="center-picture" src="./assets/5 activation/5-2.png" width=550 />
 
 比如 `%rdi` 在传参之前，必须将 `%rdi` 的值保存到栈上，在函数返回之后，恢复 `%rdi` 的值。
 
@@ -168,9 +168,9 @@ int f(int x) {
 
 在实现中，每一个函数都被标注了其静态嵌套深度，当一个深度为 n 的函数访问一个深度为 m 的变量，需要按照静态链连续向上查找 m-n 次，才能在对应的活动记录内找到该变量。
 
-<img class="center-picture" src="../assets/5-3.png" width=550 />
+<img class="center-picture" src="./assets/5 activation/5-3.png" width=550 />
 
-<img class="center-picture" src="../assets/5-4.png" width=550 />
+<img class="center-picture" src="./assets/5 activation/5-4.png" width=550 />
 
 Static Link 的优点在于 Overhead 很小，但是缺点在于需要 $O(n)$ 的额外时间来查找变量。
 
@@ -178,9 +178,9 @@ Static Link 的优点在于 Overhead 很小，但是缺点在于需要 $O(n)$ �
 
 简单来说，我们外呼一个全局数组，其经常被命名为 `display`，其每一项（第 `i` 项）包含一个指向嵌套深度为 `i` 的最新进入进程的活动记录的指针。这个全局数组就是所谓的嵌套层次显示表/Display。当进入一个函数或者退出一个函数的时候更新 Display，可以直接访问任何嵌套深度为 `i` 的变量。
 
-<img class="center-picture" src="../assets/5-5.png" width=550 />
+<img class="center-picture" src="./assets/5 activation/5-5.png" width=550 />
 
-<img class="center-picture" src="../assets/5-6.png" width=550 />
+<img class="center-picture" src="./assets/5 activation/5-6.png" width=550 />
 
 优点在于变量访问效率很高，对于任何语义等级的临时变量，只需要 $O(1)$ 的时间，代码生成速度也是很高的，不需要多重间接寻址。但是上下文切换开销很大，切换过程也很复杂。另一方面，显然 Display 是一个全局资源，因此需要额外处理并发。
 
@@ -191,11 +191,11 @@ Static Link 的优点在于 Overhead 很小，但是缺点在于需要 $O(n)$ �
 - 对每一个函数，鉴定出其使用的所有非局部变量；
 - 将那些非局部变量作为额外的参数添加到这个函数的参数列表中，修改所有对 `f` 的调用，将这些非局部变量的当前值作为实参传递给 `f`；
 
-<img class="center-picture" src="../assets/5-7.png" width=550 />
+<img class="center-picture" src="./assets/5 activation/5-7.png" width=550 />
 
 这样一来，程序就没有嵌套函数了，所有的函数都处在一个水平了，我们也不需要静态链或者 Display 了。其优点在于简化了运行时环境，不需要维持复杂的栈帧、静态链和 Display，也让数据流变得更加显式，为分析和优化提供了可能。缺点在于需要传递更多的参数，引起 Overhead，对于高阶函数也不一定适用。
 
-<img class="center-picture" src="../assets/5-8.png" width=550 />
+<img class="center-picture" src="./assets/5 activation/5-8.png" width=550 />
 
 !!! Danger "注意课上的活动记录第二个 PPT 的附录例子非常好，考试之前一定复习一下"
 
@@ -203,6 +203,6 @@ Static Link 的优点在于 Overhead 很小，但是缺点在于需要 $O(n)$ �
 
 一图流，没有过多好说的。需要注意 Frame Pointer 为特定的寄存器，其值为栈上的内存地址，宏观视角是一个 Stack Link，具体是某一个函数的 Frame Point。
 
-<img class="center-picture" src="../assets/5-9.png" width=550 />
+<img class="center-picture" src="./assets/5 activation/5-9.png" width=550 />
 
 然而这样的栈帧很难支持高阶函数，对于高阶函数，当函数返回之后仍然保持局部变量是必要的，然是我们目前假设的是局部变量不会在函数返回之后再使用。

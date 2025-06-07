@@ -22,13 +22,13 @@
 
 树类型/Tree Pattern 指的是可以匹配一个 IR Tree 的一部分的模板，每一个树类型都对应着一个机器指令。一个树类型也叫做一个 Tile。指令选择的目标是使用一个不互相覆盖的树类型集合覆盖掉 IR Tree，这样就可以将 IR Tree 转换为汇编代码序列了。可以把 Tiling 想象成铺地板的过程，每一个 Tree Pattern 就是各种大小不一的地砖，指令选择就类似于使用地砖铺满屋子。理论来讲，只要我们的 Tree Pattern 足够小且丰富，比如可以覆盖掉单一节点，我们就很有机会将程序对应的 IR Tree 完全覆盖掉。
 
-<img class="center-picture" src="../assets_8/8-1.png" width=600 />
+<img class="center-picture" src="./assets/8 instruction/8-1.png" width=600 />
 
-<img class="center-picture" src="../assets_8/8-2.png" width=600 />
+<img class="center-picture" src="./assets/8 instruction/8-2.png" width=600 />
 
 下面就是指令选择的一个例子：
 
-<img class="center-picture" src="../assets_8/8-3.png" width=600 />
+<img class="center-picture" src="./assets/8 instruction/8-3.png" width=600 />
 
 注意到第 1、3、7 部分并不对应着任何机器指令，其只不过是虚拟寄存器/临时值。
 
@@ -47,11 +47,11 @@
 
 Maximum Munch 采用一个基本假设：更大的 tiles 就是更优的。所谓最大的 tile 就是节点数目最多的 tile，对于两个节点数目相同的 tile，我们随便选择一个当更大的。
 
-<img class="center-picture" src="../assets_8/8-4.png" width=550 />
+<img class="center-picture" src="./assets/8 instruction/8-4.png" width=550 />
 
 主要思想是从顶部开始，使用最大的 tile 覆盖当前节点，然后递归的对剩下的子树应用该算法，对于两个一样大的 tile，随便选一个或者选择 cost 更小的那个。最后使用 Postorder 的顺序遍历树，子节点的顺序依赖于具体节点的要求。按照顺序发射指令序列，并且使用相同的寄存器链接 tile 边界（当两个 tile 之间需要传递数据的时候）。
 
-<img class="center-picture" src="../assets_8/8-5.png" width=550 />
+<img class="center-picture" src="./assets/8 instruction/8-5.png" width=550 />
 
 ### 2.2 Dynamic Programming
 
@@ -64,17 +64,17 @@ Maximum Munch 采用一个基本假设：更大的 tiles 就是更优的。所�
 
 比如对于 `MEM(BINOP(PLUS, CONST(1), CONST(2)))`，计算 `CONST(1)` 和 `CONST(2)` 的代价与 tile 都是显然的，使用 `ADDI` 指令，代价为 1。接下来 `+` 节点的最优 tile 显然是使用 `ADDI` 指令，然后 `MEM` 节点显然是使用带常数的 `LOAD` 指令：
 
-<img class="center-picture" src="../assets_8/8-6.png" width=550 />
+<img class="center-picture" src="./assets/8 instruction/8-6.png" width=550 />
 
-<img class="center-picture" src="../assets_8/8-7.png" width=550 />
+<img class="center-picture" src="./assets/8 instruction/8-7.png" width=550 />
 
 一旦根节点的代价被确定之后，整棵树的代价也就确定了，因而指令序列也就确定了，我们开始发射指令。我们将其处理成递归函数，所以实际上是从底开始发射的。因为根节点只有一个子节点 `CONST 1`，所以发射 `CONST 1`，然后发射完了再发射根节点的指令。
 
-<img class="center-picture" src="../assets_8/8-8.png" width=550 />
+<img class="center-picture" src="./assets/8 instruction/8-8.png" width=550 />
 
 两个算法的效率如下，这意味着两个算法其实都是线性复杂度的：
 
-<img class="center-picture" src="../assets_8/8-9.png" width=550 />
+<img class="center-picture" src="./assets/8 instruction/8-9.png" width=550 />
 
 ### 3.3 树文法/Tree Grammar
 
@@ -89,7 +89,7 @@ Maximum Munch 采用一个基本假设：更大的 tiles 就是更优的。所�
 
 树文法可能是有歧义的/Ambiguous。
 
-<img class="center-picture" src="../assets_8/8-10.png" width=550 />
+<img class="center-picture" src="./assets/8 instruction/8-10.png" width=550 />
 
 指令选择的工具现在还很多，比如 Twig、BURG 和 LLVM TableGen。
 
@@ -97,7 +97,7 @@ Maximum Munch 采用一个基本假设：更大的 tiles 就是更优的。所�
 
 差别简单列表如下：
 
-<img class="center-picture" src="../assets_8/8-11.png" width=600 />
+<img class="center-picture" src="./assets/8 instruction/8-11.png" width=600 />
 
 对于 RISC 来讲，全局最优和局部最优的覆盖一般没啥区别，因为 RISC 指令一般代价相近，都很小，但是对于 CISC 来讲，全局最优和局部最优差别就很大了，因为有的复杂指令可能组合了多个操作。因此，对于 RISC 来讲，简单的覆盖算法就已经足够了。
 
@@ -111,4 +111,4 @@ CISC 还引入了一些问题：
 
 还有一个问题就不赘述了：
 
-<img class="center-picture" src="../assets_8/8-12.png" width=600 />
+<img class="center-picture" src="./assets/8 instruction/8-12.png" width=600 />

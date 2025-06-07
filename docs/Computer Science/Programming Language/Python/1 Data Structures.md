@@ -70,7 +70,7 @@ Python 对象基本都需要一个可用的字符串表示方法，这在调试�
 
 下面这张图展示了 Python 的基本容器类型的接口，图中所有的都是抽象基类：
 
-<img class="center-picture" src="../assets/1-1.png" alt="Python 基本容器类型接口" width=600 />
+<img class="center-picture" src="./assets/1-1.png" alt="Python 基本容器类型接口" width=600 />
 
 顶部三个抽象基类都只有一个特殊方法，每一个容器类型都需要实现如下事项：
 
@@ -203,4 +203,4 @@ Python 提供了几种构建简单类的方式，这些类只是字段的容器�
 
 简单来说，三种数据类构造器的共同点和差异如下：
 
-<img class="center-picture" src="../assets/5-1.png" alt="数据类构造器共同点和差异" width=600 />
+<img class="center-picture" src="./assets/5-1.png" alt="数据类构造器共同点和差异" width=600 />

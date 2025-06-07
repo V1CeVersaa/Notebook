@@ -18,11 +18,11 @@
 
 ???- Info "语法分析小结"
 
-    <img class="center-picture" src="../assets/2-20.png" width=550 />
+    <img class="center-picture" src="./assets/2 parser/2-20.png" width=550 />
 
-    <img class="center-picture" src="../assets/2-21.png" width=550 />
+    <img class="center-picture" src="./assets/2 parser/2-21.png" width=550 />
 
-    <img class="center-picture" src="../assets/2-22.png" width=550 />
+    <img class="center-picture" src="./assets/2 parser/2-22.png" width=550 />
 
 ## 1. 上下文无关文法
 
@@ -75,7 +75,7 @@
 
 下面可以对给定的串构造一个 Parse Tree：
 
-<img class="center-picture" src="../assets/2-1.png" width=550 />
+<img class="center-picture" src="./assets/2 parser/2-1.png" width=550 />
 
 对于一般的上下文无关文法，parse 其一般需要 $O(n^3)$ 的时间复杂度（Universal Parsing）。但是对某些上下文无关的语言，只需要 $O(n)$ 的时间复杂度:
 
@@ -130,7 +130,7 @@ F &\rightarrow (E) \mid id
 
 - 如果选择了不合适的产生式，那么可能需要回溯，过程如上述。
 
-<img class="center-picture" src="../assets/2-2.png" width=550 />
+<img class="center-picture" src="./assets/2 parser/2-2.png" width=550 />
 
 问题在于复杂的回溯的代价太高，分析过程类似于 NFA，因此我们希望构建一个类似于 DFA 的分析方法。这样就产生了接受 LL(k) 文法的预测分析法/Predictive Parsing。其中 LL(k) 表示从左到右分析，最左推导，向前看 k 个 Token 来确定产生式。并且我们需要确定**文法加上什么限制可以保证没有回溯**。
 
@@ -175,11 +175,11 @@ Follow 集：
 
 ???- info "PPT 上的例子"
 
-    <img class="center-picture" src="../assets/2-7.png" width=550 />
+    <img class="center-picture" src="./assets/2 parser/2-7.png" width=550 />
     
 三个集合事实上可以同时计算（虎书 Alg 3.13）：
 
-<img class="center-picture" src="../assets/2-3.png" width=550 />
+<img class="center-picture" src="./assets/2 parser/2-3.png" width=550 />
 
 ### 4.2 LL(1) 文法
 
@@ -219,9 +219,9 @@ LL(1) 文法：该文法的任意两个产生式 $A \rightarrow \alpha \mid \bet
 
 直接看对于这个文法的实现就可以：
 
-<img class="center-picture" src="../assets/2-4.png" width=550 />
+<img class="center-picture" src="./assets/2 parser/2-4.png" width=550 />
 
-<img class="center-picture" src="../assets/2-5.png" width=550 />
+<img class="center-picture" src="./assets/2 parser/2-5.png" width=550 />
 
 形式化算法形如（这个是另一个文法的算法了，并且这个文法有左递归，因此不是 LL(1) 文法）：
 
@@ -263,7 +263,7 @@ LL(1) 文法有三个重要的性质：无二义、无左公因子、无左递�
 
 上述方法解决的是消除直接左递归的方法，对于两步或者多步推导产生的左递归，可以参考龙书中介绍的方法：
 
-<img class="center-picture" src="../assets/2-6.png" width=550 />
+<img class="center-picture" src="./assets/2 parser/2-6.png" width=550 />
 
 ### 4.8 错误恢复
 
@@ -315,7 +315,7 @@ Shift-Reduce 的想法是：将输入串分割成两个子串 $\alpha \mid \beta
 
 例子如下：
 
-<img class="center-picture" src="../assets/2-8.png" width=550 />\
+<img class="center-picture" src="./assets/2 parser/2-8.png" width=550 />\
 
 LR 分析有两个关键组件：
 
@@ -356,13 +356,13 @@ LR 分析器基于状态来构造自动机进行 RHS 的识别。相对于一般
 
 因此可以构造出这样的 NFA：
 
-<img class="center-picture" src="../assets/2-9.png" width=550 />
+<img class="center-picture" src="./assets/2 parser/2-9.png" width=550 />
 
 ### 6.2 LR(0) Parsing DFA
 
 LR(0) 分析的核心是构造一个特殊的 DFA，这个 DFA 的每一个状态是一组 LR(0) 项（我们称为项集），通过之前构造的 NFA 可以构造出这个 DFA。
 
-<img class="center-picture" src="../assets/2-10.png" width=550 />
+<img class="center-picture" src="./assets/2 parser/2-10.png" width=550 />
 
 但是对于 LR 分析家族，我们一般是直接构造 DFA。构造过程依赖于 Closure 函数和 Goto 函数以及收敛条件：
 
@@ -382,13 +382,13 @@ LR(0) 分析的核心是构造一个特殊的 DFA，这个 DFA 的每一个状�
 
 完整算法如下：
 
-<img class="center-picture" src="../assets/2-11.png" width=550 />
+<img class="center-picture" src="./assets/2 parser/2-11.png" width=550 />
 
 ### 6.3 构造 LR(0) 分析表
 
 和 LL(1) 的预测分析表一样，LR(0) 分析表指导我们对于每一个状态和输入的符号，该执行什么操作。假设我们已经有了 LR(0) Parsing DFA，那么我们可以构造出 LR(0) 分析表。
 
-<img class="center-picture" src="../assets/2-12.png" width=550 />
+<img class="center-picture" src="./assets/2 parser/2-12.png" width=550 />
 
 注意这里的 GOTO 表项的参数为非终结符，这是因为我们在进行了一次 Reduce 操作之后，会将生成式左侧的非终结符压入栈顶，并且 Reduce 操作相当于又生成了一个非终结符作为所谓的 Token，需要告诉 Parser 在吃入这个 Token 之后会转移到哪个状态。
 
@@ -408,21 +408,21 @@ LR 分析主要围绕着状态栈的变化。实际操作：
 
 例子如下：
 
-<img class="center-picture" src="../assets/2-13.png" width=550 />
+<img class="center-picture" src="./assets/2 parser/2-13.png" width=550 />
 
-<img class="center-picture" src="../assets/2-14.png" width=550 />
+<img class="center-picture" src="./assets/2 parser/2-14.png" width=550 />
 
 ## 7. SLR(1) 分析
 
 LR(0) 的问题在于没有 Lookahead，因为 LR(0) 的所有 Reduce 操作实际上是和状态绑定的而没有和 (状态，输入) 对绑定，因此我们在读取当前符号之前，就可以知道应该 Reduce 还是 Shift 了。并且表中也可能出现冲突：
 
-<img class="center-picture" src="../assets/2-15.png" width=550 />
+<img class="center-picture" src="./assets/2 parser/2-15.png" width=550 />
 
 可以看出这个表中出现了出现了 Shift 和 Reduce 的冲突，由于 LR(0) 分析器不会查看下一个输入符号，因此我们需要更多的上下文来作出更加正确的决定。
 
 SLR 分析为了解决冲突，在每次规约都加上了限制：要求每次规约时的下一个输入符号 $t \in \operatorname*{Follow}(E)$，其中 $E$ 是规约的产生式左侧的非终结符。因此对应的分析表发生了简化：
 
-<img class="center-picture" src="../assets/2-16.png" width=550 />
+<img class="center-picture" src="./assets/2 parser/2-16.png" width=550 />
 
 可以看出 SLR 分析和 LR(0) 的主要区别在于构造分析表时的规约动作：SLR 分析表中的条目只有当其下一个输入终结符为 $\operatorname*{Follow}(E)$ 时，才进行规约。
 
@@ -476,11 +476,11 @@ LR(1) 分析的局限非常直接：Parsing Table 太大了，可能包含过多
 - 按照原先的入边出边方法链接新状态，同时需要修改 GOTO 表以反映合并。
 - 直到所有的状态的核心都不同。
 
-<img class="center-picture" src="../assets/2-17.png" width=550 />
+<img class="center-picture" src="./assets/2 parser/2-17.png" width=550 />
 
-<img class="center-picture" src="../assets/2-18.png" width=550 />
+<img class="center-picture" src="./assets/2 parser/2-18.png" width=550 />
 
-<img class="center-picture" src="../assets/2-19.png" width=550 />
+<img class="center-picture" src="./assets/2 parser/2-19.png" width=550 />
 
 注意到：LALR(1) 还是会出现冲突：比如合并的状态为 $\{[X \rightarrow \alpha \cdot, a], [Y \rightarrow \beta \cdot, b]\}$ 和 $\{[X \rightarrow \alpha \cdot, b], [Y \rightarrow \beta \cdot, a]\}$，则合并之后的状态为 $\{[X \rightarrow \alpha \cdot, a, b], [Y \rightarrow \beta \cdot, a, b]\}$，则会出现冲突。
 

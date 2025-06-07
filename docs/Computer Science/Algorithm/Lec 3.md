@@ -82,7 +82,7 @@ class Solution {
 ### Minimax Strategy & Alpha-Beta Pruning
 
 
-<img class="center-picture" src="../assets/alpha-purning.png" alt="drawing" width="400" />
+<img class="center-picture" src="./assets/alpha-purning.png" alt="drawing" width="400" />
 
 <!-- ![alt text](./Lec3-imgs/5-alpha-purning.png) -->
 
@@ -146,7 +146,7 @@ Form I 完全可以从直观理解：
 
 ### Matrix Chain Multiplication
 
-<img class="center-picture" src="../assets/matrix-mul.png" alt="drawing" width="500" />
+<img class="center-picture" src="./assets/matrix-mul.png" alt="drawing" width="500" />
 
 假设我们计算 $n\times n$ 个矩阵的乘法 $\mathbf{M}_1\cdots \mathbf{M}_n$​，其中 $\mathbf{M}_i$​ 是一个规模为 $r_{i-1}\times r_i$​ 的矩阵。令计算矩阵乘法 $\mathbf{M}_i\cdots \mathbf{M}_j$​ 的最优成本为 $m_{ij}$​，那么我们可以得到以下递推关系式：
 
@@ -211,7 +211,7 @@ $$
 
 !!! Example "讲义上的例子"
 
-    <img class="center-picture" src="../assets/Greedy-1.png" alt="drawing" width="500" />
+    <img class="center-picture" src="./assets/Greedy-1.png" alt="drawing" width="500" />
 
     我们可以直接断言 (a) 的解一定不是最优解，因为我们新开一个教室的条件是现存的所有教室内的活动都和这个活动冲突，可以看见在 (a) 内最多只有三个活动一起执行，所以一定有一种安排不需要第四个教室，而 (b) 正好就是这种安排。
 
