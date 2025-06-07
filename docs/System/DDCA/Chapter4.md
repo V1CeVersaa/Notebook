@@ -1,1 +1,1 @@
-# Chapter 4 Hardware Description Languages
+# Chapter 4: Hardware Description Languages

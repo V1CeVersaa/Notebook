@@ -8,7 +8,7 @@
 
 <div class="result" markdown>
 
-![alt text](./../images/img-OSC/Process-1.png){ align=right width=35% }
+![alt text](assets/topic1/Process-1.png){ align=right width=35% }
 
 - Code or Text：文本段，存放可执行代码，最开始存放在硬盘内的可执行文件里；
 - Data Section：数据段，存放全局变量（比如 `.bss` 段和 `.data` 段）；
@@ -54,7 +54,7 @@
 - 等待/Waiting：进程正在等待某个事件发生；
 - 终止/Terminated：进程已经执行完毕。
 
-<img class="center-picture" src="../../images/img-OSC/Process-2.png" alt="drawing" width="500" />
+<img class="center-picture" src="assets/topic1/Process-2.png" alt="drawing" width="500" />
 
 ### 2. 进程的创建
 
@@ -134,7 +134,7 @@ if (pid) {
 
 这个程序会输出 12。在 `fprintf` 返回之前的内存布局是这样的：
 
-<img class="center-picture" src="../../images/img-OSC/Process-3.png" alt="drawing" width="550" />
+<img class="center-picture" src="assets/topic1/Process-3.png" alt="drawing" width="550" />
 
 
 ### 3. 进程的终止
@@ -203,7 +203,7 @@ int main() {
 
 大多数操作系统同时实现两种模型。两者相比较，消息传递对于交换较少量的数据很有用，也很容易实现，因为无需处理同步问题；分布式系统也更容易实现消息传递。共享内存有可能快于消息传递，额外支出也小，这是因为消息传递的实现经常依赖于**系统调用**（需要内核空间的支持），因此需要更多时间以便内核介入，而共享内存中，所有访问都可以看作常规内存访问。
 
-<img class="center-picture" src="../../images/img-OSC/Process-4.png" alt="drawing" width="500" />
+<img class="center-picture" src="assets/topic1/Process-4.png" alt="drawing" width="500" />
 
 ### 1. 共享内存系统的 IPC
 
@@ -299,7 +299,7 @@ UNIX 系统上，管道通过函数 `pipe(int fd[])` 函数创建，通过文件
 
 与命名管道对比，普通管道也被称为匿名管道/Anonymous Pipe。
 
-<img class="center-picture" src="../../images/img-OSC/Process-5.png" alt="drawing" width="500" />
+<img class="center-picture" src="assets/topic1/Process-5.png" alt="drawing" width="500" />
 
 **命名管道**：是双向的管道，父子关系在通讯的进程中并不是必须的，通信进程完毕后，管道依旧存在。但是要求通信进程需要在一个机器上，否则就需要使用 Socket。
 

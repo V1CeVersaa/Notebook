@@ -4,16 +4,18 @@ repo_name: V1CeVersaa/notebook
 repo_url: https://github.com/V1CeVersaa/V1CeVersaa.github.io
 copyright: Copyright &copy; 2024 till now V1CeVersa
 
+use_directory_urls: false
+
 extra:
     social:
         - icon: fontawesome/brands/github
           link: https://github.com/V1CeVersaa
-    analytics:
-        provider: vercel
+    # analytics:
+        # provider: vercel
 
 theme:
     name: material
-    custom_dir: overrides
+    # custom_dir: overrides
     language: 'zh'
     icon:
         logo: material/notebook-outline
@@ -145,6 +147,8 @@ nav:
                 - ZJU SYS III-Quantitative Analysis: System/CAQA/1 Quantitative.md
                 - ZJU SYS III-Memory Hierarchy: System/CAQA/2 Cache.md
                 - ZJU SYS III-Instruction Level Parallelism: System/CAQA/3 ILP.md
+                - ZJU SYS III-Data Level Parallelism: System/CAQA/4 DLP.md
+                - ZJU SYS III-Thread Level Parallelism: System/CAQA/5 TLP.md
           - Operating System:
                 - System/OSC/index.md
                 - OS Structure: System/OSC/topic0.md

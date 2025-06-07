@@ -1,1 +1,1 @@
-# Sequential Logic Design
+# Chapter 3: Sequential Logic Design

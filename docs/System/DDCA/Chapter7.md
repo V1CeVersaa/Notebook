@@ -1,4 +1,4 @@
-# Chapter 7 Microarchitecture
+# Chapter 7: Microarchitecture
 
 ## 7.1 Introduction
 

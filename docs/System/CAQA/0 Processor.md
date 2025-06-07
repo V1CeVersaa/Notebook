@@ -35,7 +35,7 @@
 - **静态流水线/Static Pipeline**：在相同时间内，多功能流水线的每个阶段只能按照相同功能的连接模式工作。
 - **动态流水线/Dynamic Pipeline**：在相同时间内，多功能流水线的每个阶段可以以不同方式连接，并同时执行多种功能。
 
-![alt text](img-SysII/Processor-0-0.png)
+<img class="center-picture" src="./assets/0 processor/Processor-0-0.png" alt="drawing" width="500" />
 
 按流水线层面分类：
 
@@ -88,7 +88,7 @@
 ???- Info "Example"
     对一个 $m$ 级的流水线，执行 $n$ 条指令，流水线的时钟周期为 $\Delta t_0$，那么可以计算下面内容：
 
-    ![alt text](img-SysII/Processor-0-1.png)
+    <img class="center-picture" src="./assets/0 processor/Processor-0-1.png" alt="drawing" width="500" />
 
     - 运行时间：$T = (m + n - 1) \times \Delta t_0$；
     - 吞吐量：$\mathit{TP} = \dfrac{n}{T} = \dfrac{n}{(m + n - 1) \times \Delta t_0}$；
@@ -102,8 +102,8 @@
 - Repetition：考虑并行，一看图就懂。
 
 ???- Info "Graphs"
-    ![alt text](img-SysII/Processor-0-2.png)
-    ![alt text](img-SysII/Processor-0-3.png)
+    <img class="center-picture" src="./assets/0 processor/Processor-0-2.png" alt="drawing" width="500" />
+    <img class="center-picture" src="./assets/0 processor/Processor-0-3.png" alt="drawing" width="500" />
 
 
 
@@ -119,7 +119,7 @@
 
 对于一段连续的指令序列，如果整个流水线只有一个内存的话，在某个周期内，我们需要同时读数据和读指令，这样就会出现结构冒险。
 
-<!-- ![alt text](img-SysII/Processor-1.png) -->
+<!-- <img class="center-picture" src="./assets/0 processor/Processor-1.png" alt="drawing" width="500" /> -->
 
 对于冯诺伊曼架构的计算机，如果只有一个主存，那么很有可能两个指令的 IF 段和 MEM 段会出现冲突。解决方法也很简单：
 
@@ -132,23 +132,23 @@
  
 数据冒险来自于：流水线的指令需要访问同一数据，后面指令需要的数据可能被前面的指令修改或加载。
 
-![alt text](img-SysII/Processor-2.png)
+<img class="center-picture" src="./assets/0 processor/Processor-2.png" alt="drawing" width="500" />
 
 对于上面的例子，首先我们还是可以通过 Stall 来解决数据冒险，直到 ID 在 WB 后（也就是等到数据可用），但是对于五级流水线，我们需要 Stall 三个周期，这样会大幅度降低流水线的效率，接近单周期处理器，所以我们需要更好的解决方案。
 
 前递/Forwarding 是更好的解决方案：
 
-![alt text](img-SysII/Processor-3.png)
+<img class="center-picture" src="./assets/0 processor/Processor-3.png" alt="drawing" width="500" />
 
 如果我们在 ID 段访问的数据在 EX 段被修改，那么我们就直接从 EX 的结果中取出数据，而不是从寄存器文件中取数据，这样就可以避免**一部分的**数据冒险。
 
 但是前递并不能解决所有的数据冒险，比如下面的 load-use 的例子：
 
-![alt text](img-SysII/Processor-4.png)
+<img class="center-picture" src="./assets/0 processor/Processor-4.png" alt="drawing" width="500" />
 
 我们要前递至少需要再隔一个周期，从 MEM 阶段的数据前递到 EX 阶段，这样就需要在中间 stall 一个周期，这样就不能完全解决数据冒险。虽然可以解决，但是还是需要多避免 stall 的出现，就需要在软件编译的时候进行一些优化，调整指令的顺序，比如将 `add` 和 `load` 的顺序调换，这样就可以避免数据冒险。
 
-![alt text](img-SysII/Processor-5.png)
+<img class="center-picture" src="./assets/0 processor/Processor-5.png" alt="drawing" width="500" />
 
 常瑞老师在课上提到过三种数据相关：写后读相关（write-after-read）、写后写相关（write-after-write）和读后写相关（read-after-write）。对我们实现的五级流水线来说，由于不涉及乱序执行，所以只有写后读相关会产生数据冒险。
 
@@ -157,14 +157,14 @@
 简单来说，如果指令流里边出现一个 `beq`，后边的指令可能会出现跳转而不是顺序执行，这就出现控制冒险。解决方法有三种：
 
 - Stall：等待分支的结果，在 ID 阶段加入判断模块，提前计算好分支结果、分支的地址并更新 PC，这样只需要一次 Stall 就可以在下一个周期取得正确的指令
-    ![alt text](img-SysII/Processor-6.png)
+    <img class="center-picture" src="./assets/0 processor/Processor-6.png" alt="drawing" width="500" />
 
 - 分支预测：
     - 简单版本：一直预测不跳转，不采用分支。如果预测错误，就需要清空流水线，重新开始。
     - 复杂版本：根据情况进行预测，比如一个循环最后的分支语句总是预测发生跳转。
     - 动态预测：根据历史记录进行预测。
 - 延迟预测/Delayed Decision：将 branch 前的无关指令移动到 branch 之后的 bubble 处（分支延迟槽）执行，减少为了等待而插入的无意义 bubble 代码。
-    ![alt text](img-SysII/Processor-7.png)
+    <img class="center-picture" src="./assets/0 processor/Processor-7.png" alt="drawing" width="500" />
 
 ## 数据通路设计
 
@@ -181,11 +181,11 @@
 
 最经典的是写后读冒险，若前一条指令写回的寄存器正好是下一条指令需要读的寄存器，若是例如 `add`-`sub` 类型的，写回的值正好是上条指令在 EX 阶段计算出来的结果，我们使用前递单元就可以解决，将 EX 计算的结果直接传递给下一条指令，不过需要在 EX 阶段添加多路选择器来选择 ALU 来源。
 
-![alt text](img-SysII/Processor-8.png)
+<img class="center-picture" src="./assets/0 processor/Processor-8.png" alt="drawing" width="500" />
 
 这种 use-use 类型冒险不仅仅在于连续两个指令之间，也可能隔一个指令出现，下面一个图中，蓝色的线表示正常的数据流，红色的线表示前递的数据流。
 
-![alt text](img-SysII/Processor-9.png)
+<img class="center-picture" src="./assets/0 processor/Processor-9.png" alt="drawing" width="500" />
 
 可以看见，第一个 `sub` 指令和第三个 `or` 指令间出现了数据冲突，而检测数据冒险的方式是：
 
@@ -198,9 +198,9 @@
     - `MEM/WB.Rd != 0`；
     - `MEM/WB.Rd == ID/EX.Rs1` 或 `ID/EX.Rs2`。
 
-<!-- ![alt text](img-SysII/Processor-10.png) -->
+<!-- ![alt text](./assets/0 processor/Processor-10.png) -->
 
-<!-- ![alt text](img-SysII/Processor-11.png) -->
+<!-- ![alt text](./assets/0 processor/Processor-11.png) -->
 
 但是这样的判断不适合连续的数据冒险，比如下面的双重冒险/Double Hazard：
 
@@ -235,11 +235,11 @@ Stall 的方式也很直接，在检测到冒险的时钟周期内：
 - `ID/EX.MemRead == 1`（`ID/EX.MemWrite == 0`）：前一条指令需要从 Data Memory 读取数据；
 - `ID/EX.Rd == IF/ID.Rs1` 或 `IF/ID.Rs2`：前一条指令写入的寄存器与后一条指令某一操作数相同。
 
-![alt text](img-SysII/Processor-12.png)
+<img class="center-picture" src="./assets/0 processor/Processor-12.png" alt="drawing" width="500" />
 
 Stall 一个周期之后就正常接收到 MEM Hazard 数据冒险，直接按照 MEM Hazard 进行前递，硬件实现和前面类似，通过 Hazard Detection Unit 来检测 load-use 冒险，接收它需要的值，输出 PCWrite、IF/IDWrite 控制信号（新增）以及一个控制信号用来选择 ID/EX 阶段寄存器的控制信号部分来自控制单元还是置零。
 
-![alt text](img-SysII/Processor-13.png)
+<img class="center-picture" src="./assets/0 processor/Processor-13.png" alt="drawing" width="500" />
 
 硬件设计和前面的思路相同，在 Hazard Detection Unit 新增新的信号，就可以处理更复杂的数据冒险。总结一下：
 
@@ -254,7 +254,7 @@ Stall 一个周期之后就正常接收到 MEM Hazard 数据冒险，直接按�
  
 除了线性连接以外，非线性流水线还有反馈循环，这就存在着调度问题。由于在流水线中存在环，我们需要**预约表/Reservation Table** 来唯一指定流水线的执行顺序：
 
-<img class="center-picture" src="../img-SysII/Processor-17.png" alt="drawing" width="500" />
+<img class="center-picture" src="./assets/0 processor/Processor-17.png" alt="drawing" width="500" />
 
 在进行调度之前，我们需要知道两个量：
 

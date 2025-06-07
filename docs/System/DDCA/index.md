@@ -8,9 +8,9 @@
 
 ## Table of Contents
 
-- [ ] [Chapter 2: Combinational Logic](./Chapter2.md)
-- [ ] [Chapter 3: Sequential Logic](./Chapter3.md)
-- [ ] [Chapter 4: Hardware Description Language](./Chapter4.md)
+- [ ] [Chapter 2: Combinational Logic Design](./Chapter2.md)
+- [ ] [Chapter 3: Sequential Logic Design](./Chapter3.md)
+- [ ] [Chapter 4: Hardware Description Languages](./Chapter4.md)
 - [ ] [Chapter 5: Digital Building Blocks](./Chapter5.md)
 - [ ] [Chapter 6: Architecture](./Chapter6.md)
 - [ ] [Chapter 7: Microarchitecture](./Chapter7.md)

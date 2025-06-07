@@ -1,8 +1,4 @@
----
-counter: True
----
-
-# Chapter 6 Architecture
+# Chapter 6: Architecture
 
 !!! Warning 
     本章节中的术语均由本人翻译，笔者尽力保证翻译的准确性，同时将原文术语保留，可能会出现一些不准确的地方，欢迎指正。
@@ -64,7 +60,7 @@ addi x2, x2, 0x987   # x2 = 0xFEEDA987
 在 RISC-V 中，指令只能对寄存器进行操作，所以在内存中的数据需要先加载到寄存器中，然后再进行操作。RISC-V 使用字节寻址，下面是一个典型的内存模型：
 
 <div style="text-align: center; margin-top: 15px;">
-    <img src="/System/images/img-DDCA/6-2-1.png" width="75%" style="margin: 0 auto;">
+    <img src="assets/Chapter6/6-2-1.png" width="75%" style="margin: 0 auto;">
 </div>
 
 左侧默认是**最高有效字节/MSB**，右侧是**最低有效字节/LSB**，若对端序有了解的话，可以发现这个内存模型实际上是用的是小端序，即最低有效字节在最低的地址。字地址为 `0x00000004` 的字表示的数据是 `0xF2F1AC07`。
@@ -92,7 +88,7 @@ addi x2, x2, 0x987   # x2 = 0xFEEDA987
 由于 RV32I 只有 32 位地址，所以 RV32I 的内存地址空间只有 4GB，字地址只能是 4 的倍数，范围从 `0x0` 到 `0xFFFFFFFC`。我们的内存映射将地址空间分成下面五个部分或者称为**端/Segment**：**文本段/Text**，**全局数据段/Global Data Segment**，**动态数据段/Dynamic Data Segments** 以及**异常处理程序/Exception Handlers** 与操**作系统/Operating System** 的段。下面是一个典型的内存映射：
 
 <div style="text-align: center; margin-top: 15px;">
-    <img src="/System/images/img-DDCA/6-5-1.png" width="45%" style="margin: 0 auto;">
+    <img src="assets/Chapter6/6-5-1.png" width="45%" style="margin: 0 auto;">
 </div>
 
 但是 RISC-V 并不定义特定的内存映射，尽管异常处理程序要么在低地址要么在高地址，但是用户还可以自定义文本段、内存映射 IO、栈与全局数据的地方，这就提供了很大的灵活性，尤其对于一些小型系统来说特别重要。
@@ -176,7 +172,7 @@ str2:
 右侧是上面的实例代码对应的内存分配模型。首先将 `main` 标签定义为全局标签，这样就令 `main` 函数可以从这个文件外部被操作系统或引导加载程序调用。`#!asm .equ N, 5` 会将 `N` 的值定义为 `5`，在汇编指令翻译成机器代码之前，汇编器会将所有的标签 `N` 替换成 `5`。`.align 2`汇编指令将后续的数据或代码对齐在 `2 ^ 2 = 4` 字节的边界上，`.balign 4`（按照 4 字节对齐）的效果是一样的。这些汇编指令有助于保持数据和指令的对齐。例如，如果在分配 `B` 之前删除 `.align 2`（即在`B: .word 0x32A` 之前），`B` 就会直接在 `str1` 变量之后被分配，占据字节 `0x2157 – 0x215A`（而不是 `0x2158 – 0x215B`）。该汇编器在数据段和 BSS 段之间包括了 16 字节的未分配内存，如右图中的灰色框所示。还是应该一直记得该部分内存使用的仍然是小端序，这完全可以从 `str1` 的内存布局看出来。<br>
 其余的一些内容看看代码就会了。
 
-![Image title](/System/images/img-DDCA/6-5-2.png){ align=right width=300 }
+![Image title](assets/Chapter6/6-5-2.png){ align=right width=300 }
 
 </div>
 
