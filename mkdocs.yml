@@ -115,6 +115,9 @@ nav:
                 - Topic 8：指令选择: Computer Science/Compilers/8 instruction.md
                 - Topic 9：活跃变量分析: Computer Science/Compilers/9 liveness.md
                 - Topic 10：寄存器分配: Computer Science/Compilers/10 register.md
+                - Topic 11：垃圾回收: Computer Science/Compilers/11 garbage.md
+                - Topic 12：面向对象语言: Computer Science/Compilers/12 oop.md
+                - Topic 13：循环优化: Computer Science/Compilers/13 loop.md
           - Quantum Computing:
                 - Computer Science/Quantum Computing/index.md
                 - Quantum Basis: Computer Science/Quantum Computing/basis.md

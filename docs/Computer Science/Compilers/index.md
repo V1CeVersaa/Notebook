@@ -16,8 +16,11 @@
 - [x] [Topic 6：中间表示生成](./6%20IR.md)
 - [x] [Topic 7：基本块与 Traces](./7%20block.md)
 - [x] [Topic 8：指令选择](./8%20instruction.md)
-- [ ] [Topic 9：活跃变量分析](./9%20liveness.md)
-- [ ] [Topic 10：寄存器分配](./10%20register.md)
+- [x] [Topic 9：活跃变量分析](./9%20liveness.md)
+- [x] [Topic 10：寄存器分配](./10%20register.md)
+- [ ] [Topic 11：垃圾回收](./11%20garbage.md)
+- [ ] [Topic 12：面向对象语言](./12%20oop.md) （在虎书上是 Chapter 13）
+- [ ] [Topic 13：循环优化](./13%20loop.md) （在虎书上是 Chapter 14）
 
 ## Introduction
 
