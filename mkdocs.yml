@@ -10,12 +10,12 @@ extra:
     social:
         - icon: fontawesome/brands/github
           link: https://github.com/V1CeVersaa
-    analytics:
-        provider: vercel
+    # analytics:
+    #     provider: vercel
 
 theme:
     name: material
-    custom_dir: overrides
+    # custom_dir: overrides
     language: 'zh'
     icon:
         logo: material/notebook-outline

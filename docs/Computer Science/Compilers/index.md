@@ -18,7 +18,7 @@
 - [x] [Topic 8：指令选择](./8%20instruction.md)
 - [x] [Topic 9：活跃变量分析](./9%20liveness.md)
 - [x] [Topic 10：寄存器分配](./10%20register.md)
-- [ ] [Topic 11：垃圾回收](./11%20garbage.md)
+- [x] [Topic 11：垃圾回收](./11%20garbage.md)
 - [ ] [Topic 12：面向对象语言](./12%20oop.md) （在虎书上是 Chapter 13）
 - [ ] [Topic 13：循环优化](./13%20loop.md) （在虎书上是 Chapter 14）
 
@@ -38,4 +38,4 @@
 - 控制流分析/Control Flow Analysis：分析指令的顺序并建立控制流图，此图表示程序执行时可能流经的所有控制流；
 - 数据流分析/Data Flow Analysis：收集程序变量的数据流信息，例如活跃分析（liveness analysis）计算每一个变量的需使用其值的地点（即它的活跃点）；
 - 寄存器分配/Register Allocation：为程序中的每一个变量和临时数据选择一个寄存器，不在同一时间活跃的两个变量可以共享同一个寄存器；
-- 代码流出/Code Emission：用机器寄存器替代每一条机器指令中出现的临时变量名。 -->
+- 代码发射/Code Emission：用机器寄存器替代每一条机器指令中出现的临时变量名。 -->
