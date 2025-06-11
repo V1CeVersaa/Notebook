@@ -4,7 +4,9 @@
 
     这是我在修读浙江大学《编译原理》课程时记录的课程笔记。授课老师为 [姚培森](https://rainoftime.github.io/) 教授，课程教材为虎书/*Modern Compiler Implementation in C*。
 
-    上得很爽！但是备考很刺激。准备明年修姚老师的《编程语言原理》了。
+    上得很爽！但是备考很刺激。**有一些确定不考的就留在考试后或者有空再补了**。
+    
+    准备明年修姚老师的《编程语言原理》了。
 
 ## Table of Contents
 
@@ -19,8 +21,8 @@
 - [x] [Topic 9：活跃变量分析](./9%20liveness.md)
 - [x] [Topic 10：寄存器分配](./10%20register.md)
 - [x] [Topic 11：垃圾回收](./11%20garbage.md)
-- [ ] [Topic 12：面向对象语言](./12%20oop.md) （在虎书上是 Chapter 13）
-- [ ] [Topic 13：循环优化](./13%20loop.md) （在虎书上是 Chapter 14）
+- [x] [Topic 12：面向对象语言](./12%20oop.md) （在虎书上是 Chapter 13）
+- [x] [Topic 13：循环优化](./13%20loop.md) （在虎书上是 Chapter 14）
 
 ## Introduction
 

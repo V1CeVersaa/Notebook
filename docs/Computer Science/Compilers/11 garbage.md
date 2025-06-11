@@ -6,7 +6,7 @@
     - [x] [2. Mark-and-Sweep](#2-mark-and-sweep)
     - [x] [3. 引用计数/Reference Counting](#3-reference-counting)
     - [x] [4. 拷贝式收集/Copying Collection](#4-copying-collection)
-    - [x] [5. 编译器接口/Interface to the Compiler](#5-interface-to-the-compiler)
+    - [x] [5. 编译器接口/Interface to the Compiler](#5-interface-to-the-compiler) 「很遗憾，不考了」
 
 ## 1. 概述
 

@@ -2,6 +2,7 @@
 
 ## Table of Contents
 
+- [ ] [Programming Utils: Git](./Git.md)
 - [ ] [Programming Utils: tmux](./tmux.md)  
 - [ ] [Programming Utils: Linux](./Linux.md)
 - [ ] [Programming Utils: Shell](./Shell.md)
