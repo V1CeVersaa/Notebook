@@ -4,7 +4,7 @@
 
 Flynn 分类法：按照指令流和数据流，分为四种类型：SISD/单指令流单数据流，SIMD/单指令流多数据流，MISD/多指令流单数据流，MIMD/多指令流多数据流。
 
-<img class="center-picture" src="./assets/1 quantitative/1.png" alt="drawing" width="550" />
+<img class="center-picture" src="./assets/1 quantitative/1.webp" alt="drawing" width="550" />
 
 需要注意以下几点：
 

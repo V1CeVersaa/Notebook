@@ -4,17 +4,17 @@
 
 ??? Info "高僧预测"
 
-    <img class="center-picture" src="assets/3 ILP/review-1.png" alt="drawing" width="550" />
+    <img class="center-picture" src="assets/3 ILP/review-1.webp" alt="drawing" width="550" />
 
-    <img class="center-picture" src="assets/3 ILP/review-2.png" alt="drawing" width="550" />
+    <img class="center-picture" src="assets/3 ILP/review-2.webp" alt="drawing" width="550" />
 
-    <img class="center-picture" src="assets/3 ILP/review-3.png" alt="drawing" width="550" />
+    <img class="center-picture" src="assets/3 ILP/review-3.webp" alt="drawing" width="550" />
 
-    <img class="center-picture" src="assets/3 ILP/review-4.png" alt="drawing" width="550" />
+    <img class="center-picture" src="assets/3 ILP/review-4.webp" alt="drawing" width="550" />
 
-    <img class="center-picture" src="assets/3 ILP/review-5.png" alt="drawing" width="550" />
+    <img class="center-picture" src="assets/3 ILP/review-5.webp" alt="drawing" width="550" />
 
-    <img class="center-picture" src="assets/3 ILP/review-6.png" alt="drawing" width="550" />
+    <img class="center-picture" src="assets/3 ILP/review-6.webp" alt="drawing" width="550" />
 
 
 ## 1. 指令级并行：概念与挑战
@@ -64,7 +64,7 @@
 - 发射/Issue/IS：指令译码，检查结构冒险（顺序发射）；
 - 读取操作数/Read Operands/RO：一直等到没有数据冒险之后，读取操作数。
 
-<img class="center-picture" src="assets/3 ILP/3-1.png" alt="dynamic scheduling" width="550" />
+<img class="center-picture" src="assets/3 ILP/3-1.webp" alt="dynamic scheduling" width="550" />
 
 我们区分一个指令**开始执行**和**完成执行**的时刻：在这两个时刻之间，指令处于执行过程之中。我们的流水线允许同时执行多条指令，这是利用动态调度优势的前提。但是同时执行多条指令也意味着我们需要**有多个功能单元**或者流水化功能单元，两者兼有也可以，但是我们一般假设具有多个功能单元。
 
@@ -87,7 +87,7 @@ FADD.D F6, F8, F2
 
     我们认为第二个 Load 指令只完成了执行，并未完成写回操作，由于 Add 部件只有一个，因此最后一条 Add 指令不能被发射。因为第一条 Mul 指令需要使用 F2 寄存器，而 F2 寄存器被第二个 Load 指令占用，因此第一条 Mul 指令需要等待，无法读取操作数，后面的指令也同理。
 
-    <img class="center-picture" src="assets/3 ILP/3-2.png" alt="instruction table" width="550" />
+    <img class="center-picture" src="assets/3 ILP/3-2.webp" alt="instruction table" width="550" />
 
 === "功能单元状态表 & 寄存器状态表"
 
@@ -103,43 +103,43 @@ FADD.D F6, F8, F2
 
     下面的寄存器状态表记录了**每一个寄存器将会被哪一个部件修改**。
 
-    <img class="center-picture" src="assets/3 ILP/3-3.png" alt="functional unit table" width="550" />
+    <img class="center-picture" src="assets/3 ILP/3-3.webp" alt="functional unit table" width="550" />
 
 === "处理器结构"
 
     注意这张图右侧的四个阶段实际上并不是在描述流水线，而是指明了指令的执行阶段。
 
-    <img class="center-picture" src="assets/3 ILP/3-4.png" alt="processor structure" width="550" />
+    <img class="center-picture" src="assets/3 ILP/3-4.webp" alt="processor structure" width="550" />
 
 当 `FMUL.D` 指令准备好写回结果的时候，三个表长这样：
 
 === "指令状态表"
 
-    <img class="center-picture" src="assets/3 ILP/3-5.png" alt="instruction table" width="550" />
+    <img class="center-picture" src="assets/3 ILP/3-5.webp" alt="instruction table" width="550" />
 
 === "功能单元状态表 & 寄存器状态表"
 
-    <img class="center-picture" src="assets/3 ILP/3-6.png" alt="functional unit table" width="550" />
+    <img class="center-picture" src="assets/3 ILP/3-6.webp" alt="functional unit table" width="550" />
 
 当 `FDIV.D` 指令准备好写回结果的时候，三个表长这样：
 
 === "指令状态表"
 
-    <img class="center-picture" src="assets/3 ILP/3-7.png" alt="instruction table" width="550" />
+    <img class="center-picture" src="assets/3 ILP/3-7.webp" alt="instruction table" width="550" />
 
 === "功能单元状态表 & 寄存器状态表"
 
-    <img class="center-picture" src="assets/3 ILP/3-8.png" alt="functional unit table" width="550" />
+    <img class="center-picture" src="assets/3 ILP/3-8.webp" alt="functional unit table" width="550" />
 
 ???- "例题"
 
     === "题目"
 
-        <img class="center-picture" src="assets/3 ILP/3-9.png" alt="example" width="550" />
+        <img class="center-picture" src="assets/3 ILP/3-9.webp" alt="example" width="550" />
 
     === "答案"
 
-        <img class="center-picture" src="assets/3 ILP/3-10.png" alt="example" width="550" />
+        <img class="center-picture" src="assets/3 ILP/3-10.webp" alt="example" width="550" />
 
 Scoreboard 算法的问题之一在于没有积极的处理反依赖和输出依赖，只是使用停顿来解决这两种依赖，而 Tomasulo 算法会积极使用寄存器重命名进一步处理依赖。
 
@@ -150,7 +150,7 @@ Tomasulo 算法的基本思想如下：
 - 通过跟踪每条指令的**操作数何时可用**，以消除 RAW 冒险；
 - 通过**硬件实现寄存器重命名**，消除 WAW 和 WAR 冒险；、
 
-<img class="center-picture" src="assets/3 ILP/3-11.png" alt="tumasulo-cpu-fig" width="550" />
+<img class="center-picture" src="assets/3 ILP/3-11.webp" alt="tumasulo-cpu-fig" width="550" />
 
 算法的核心是两个硬件部件：
 
@@ -176,19 +176,19 @@ Tomasulo 算法分为三步走：
 
 === "Step 1"
 
-    <img class="center-picture" src="assets/3 ILP/3-12.png" alt="step 1" width="550" />
+    <img class="center-picture" src="assets/3 ILP/3-12.webp" alt="step 1" width="550" />
 
 === "Step 2"
 
-    <img class="center-picture" src="assets/3 ILP/3-13.png" alt="step 2" width="550" />
+    <img class="center-picture" src="assets/3 ILP/3-13.webp" alt="step 2" width="550" />
 
 === "Step 3"
 
-    <img class="center-picture" src="assets/3 ILP/3-14.png" alt="step 3" width="550" />
+    <img class="center-picture" src="assets/3 ILP/3-14.webp" alt="step 3" width="550" />
 
 === "Step 4"
 
-    <img class="center-picture" src="assets/3 ILP/3-15.png" alt="step 4" width="550" />
+    <img class="center-picture" src="assets/3 ILP/3-15.webp" alt="step 4" width="550" />
 
 Tomasulo 算法维护三张表：
 
@@ -215,13 +215,13 @@ FADD.D F6, F8, F2
 
     只有第一条 Load 指令完成，且已经将结果写到 CDB 时的状态：
 
-    <img class="center-picture" src="assets/3 ILP/3-16.png" alt="case 1" width="550" />
+    <img class="center-picture" src="assets/3 ILP/3-16.webp" alt="case 1" width="550" />
 
 === "Case 2"
 
     `FMUL.D` 指令已经准备好写回结果的状态：
 
-    <img class="center-picture" src="assets/3 ILP/3-17.png" alt="case 2" width="550" />
+    <img class="center-picture" src="assets/3 ILP/3-17.webp" alt="case 2" width="550" />
 
 Tomasulo 算法尽管很有效，但是仍然有这一些问题：
 

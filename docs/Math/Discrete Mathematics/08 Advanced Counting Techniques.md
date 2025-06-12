@@ -46,7 +46,7 @@ Generating functions can be used to solve a wide variety of counting problems, s
 - Count the number of permutations.
 
 ??? info "Using generating functions to solve recurrence relations"
-    ![Using generating functions to solve recurrence relations](./images/08-01.png)
+    ![Using generating functions to solve recurrence relations](./images/08-01.webp)
 
 ## 8.5 Inclusion-Exclusion
 

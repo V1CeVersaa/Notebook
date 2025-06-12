@@ -74,7 +74,7 @@ do {
 
 但是 `test_and_set()` 并不能确保有限等待，下面就是一个例子：
 
-<img class="center-picture" src="assets/topic3/Synchronization-3.png" alt="drawing" width="550" />
+<img class="center-picture" src="assets/topic3/Synchronization-3.webp" alt="drawing" width="550" />
 
 谁也不知道 T2 会等到哪里去（这取决于调度），我们可以这样修改代码，这里共用的数据结构是 `#!C bool waiting[n]` 和 `#!C int lock`：
 
@@ -101,7 +101,7 @@ do {
 我们首先将 `waiting[i]` 置为 `true`，然后检查 `lock`，如果 `waiting[i]` 被释放**或者** `lock` 为 `false`，那么就进入临界区，同时上锁（第 3 行）。在退出临界区的时候，我们向下检查后面的线程，寻找下一个正在等待的线程（第 8 到 10 行），若是没有找到（`j == i`），那么就释放锁，这是因为没有线程在等待（第 11 行和第 12 行）；否则，就将 `waiting[j]` 置为 `false`，释放该线程，继续循环，让其进入临界区（第 14 行）。
 
 ???- Info "Illustration of Bounded Waiting for Test-and-Set Lock"
-    <img class="center-picture" src="assets/topic3/Synchronization-4.png" alt="illustration" width="550" />
+    <img class="center-picture" src="assets/topic3/Synchronization-4.webp" alt="illustration" width="550" />
 
 `compare_and_swap()` 也是以原子的方式对两个字进行操作，但是是使用基于交换两个字的内容的机制：
 
@@ -350,7 +350,7 @@ do {
 
 使用信号量的系统也有可能遇见死锁：两个或多个线程各自在无穷等待别的正在等待的进程持有的资源/产生的事件。下面是一个简单的例子：
 
-<img class="center-picture" src="assets/topic3/Synchronization-5.png" alt="deadlock" width="550" />
+<img class="center-picture" src="assets/topic3/Synchronization-5.webp" alt="deadlock" width="550" />
 
 `P1` 持有 `S` 等待 `Q`，`P2` 持有 `Q` 等待 `S`。
 
@@ -461,7 +461,7 @@ do {
 
 哲学家们围坐在一个圆桌旁边，他们只干两件事情，一件事是思考，另一件事就是干饭。但是哲学家们都互不干扰。每两个哲学家中间有一根筷子，哲学家们偶尔会拿起筷子吃饭，一次拿一根筷子，只有同时两根亏阿兹在手上才能吃饭，吃完了之后会将两根筷子逐一放下。
 
-<img class="center-picture" src="assets/topic3/Synchronization-6.png" alt="dining philosophers" width="550" />
+<img class="center-picture" src="assets/topic3/Synchronization-6.webp" alt="dining philosophers" width="550" />
 
 哲学家吃饭问题是一个经典的多资源同步问题。一个朴素的解法是：
 

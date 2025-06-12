@@ -18,7 +18,7 @@
 
 所谓垃圾/Garbage，就是分配了但是不再使用的堆内存。下面就产生了一块垃圾：
 
-<img class="center-picture" src="assets/11 garbage/11-1.png" alt="Garbage" width="550" />
+<img class="center-picture" src="assets/11 garbage/11-1.webp" alt="Garbage" width="550" />
 
 垃圾回收/Garbage Collection 会自动释放不再被程序使用的垃圾，这一般是运行时系统的一部分，第一次在 LISP 中被实现。其分为两个阶段：
 
@@ -52,13 +52,13 @@
 
 对于这个图，图中的 `·` 即为变量或是 record 中的字段。如有出边，则代表它是个指针，指向一个 record。
 
-<img class="center-picture" src="assets/11 garbage/11-2.png" alt="Directed Graph" width="550" />
+<img class="center-picture" src="assets/11 garbage/11-2.webp" alt="Directed Graph" width="550" />
 
 附加数据结构：空闲链表/Free List：内存管理器需要追踪哪些部分的内存是空闲的，以便快速分配。
 
-<img class="center-picture" src="assets/11 garbage/11-3.png" alt="Free List" width="550" />
+<img class="center-picture" src="assets/11 garbage/11-3.webp" alt="Free List" width="550" />
 
-<img class="center-picture" src="assets/11 garbage/11-4.png" alt="Free List" width="550" />
+<img class="center-picture" src="assets/11 garbage/11-4.webp" alt="Free List" width="550" />
 
 ## 2. Mark-and-Sweep
 
@@ -69,7 +69,7 @@
 - Mark：从根节点出发，搜索并且标记可以到达的所有节点，一般使用深度优先搜索/DFS；
 - Sweep：使用线性扫描的方法扫描堆，将所有没有标记的节点放到空闲链表中，最后将所有标记的节点解除标记。
 
-<img class="center-picture" src="assets/11 garbage/11-5.png" alt="Mark-and-Sweep" width="550" />
+<img class="center-picture" src="assets/11 garbage/11-5.webp" alt="Mark-and-Sweep" width="550" />
 
 在垃圾回收之后，程序继续执行，当程序需要分配一个新的 record 的时候，都会从空闲链表中分配一个块，如果空闲链表中没有合适的块，则需要再次进行垃圾回收。
 
@@ -84,18 +84,18 @@
 
 话说回来，算法的问题不仅仅在于开销，由于深度优先搜索是迭代的，极端条件下容易递归过深爆栈，$N$ 个元素的列表就需要 $N$ 个栈空间。解决方法是手动模拟一个栈，初始的时候压入所有的根节点，每次弹出栈顶节点 $T$，标记 $T$，把 $T$ 指向的所有节点压入栈中，重复执行直到栈空，这样对于 $N$ 个元素的列表就至多需要 $N$ 个记录/字的空间了，也同时将递归转化成了迭代。
 
-<img class="center-picture" src="assets/11 garbage/11-6.png" alt="Explicit Stack" width="550" />
+<img class="center-picture" src="assets/11 garbage/11-6.webp" alt="Explicit Stack" width="550" />
 
 解决方法是使用一个对指针的黑魔法，也叫做指针反转/Pointer Reversal/Deutsch-Schorr-Waite Algorithm，想法是通过修改图的连接将 DFS 的栈存在图上，这就不需要栈了，具体方法如下：
 
 - 当在搜索的时候，如果遇见一个新的 record，标记这个 record，将这个 record 的一个指针指回其在 DFS 中的父节点，这就相当于将这个 record 压入栈中；
 - 当一路搜索结束的时候，如果我们不能走得更深了，就掉头，随着往回走的连接走，同时恢复指针，这就相当于弹出栈顶元素；
 
-<img class="center-picture" src="assets/11 garbage/11-7.png" alt="Pointer Reversal" width="450" />
+<img class="center-picture" src="assets/11 garbage/11-7.webp" alt="Pointer Reversal" width="450" />
 
 具体算法如下，其中 $x$ 是当前节点，$t$ 是回溯的时候需要恢复的父节点，$y$ 是存储子节点和字段值的临时变量，$done$ 代表现在处理完了多少个字段：
 
-<img class="center-picture" src="assets/11 garbage/11-8.png" alt="Pointer Reversal" width="550" />
+<img class="center-picture" src="assets/11 garbage/11-8.webp" alt="Pointer Reversal" width="550" />
 
 注意对于非指针字段，只需要单纯递增 $done$ 即可，具体算法的使用可以参见作业题。
 
@@ -132,7 +132,7 @@
 
 缺点也很明显，也有很曹丹的问题：首先就是循环引用的问题：下面这张图中，如果解引用 A，那么就会留下 C 和 C 引用的块，这两个块循环引用，引用计数无法到 0，因此无法回收，导致内存泄漏。
 
-<img class="center-picture" src="assets/11 garbage/11-9.png" alt="Reference Counting" width="550" />
+<img class="center-picture" src="assets/11 garbage/11-9.webp" alt="Reference Counting" width="550" />
 
 另外一个缺点就是增加/减少 RC 值是非常频繁的，带来非常昂贵的开销，并且也需要在目标代码中加入大量指令。
 
@@ -147,7 +147,7 @@
 
 基本算法为所有空间从 From-Space 开始向上分配，直到 `next == limit`，也就是当 From-Space 满了的时候，将**可达对象**复制到 To-Space，交换两个空间的角色。
 
-<img class="center-picture" src="assets/11 garbage/11-10.png" alt="Copying Collection" width="550" />
+<img class="center-picture" src="assets/11 garbage/11-10.webp" alt="Copying Collection" width="550" />
 
 拷贝式收集的优点在于：
 
@@ -168,19 +168,19 @@
 - 复制但未扫描的区域：仅仅复制了对象，但是还没有扫描对象的指针，因此需要将这些对象加入工作队列；
 - 未使用的区域：这个区域是空闲的，可以用来存放新的对象。
 
-<img class="center-picture" src="assets/11 garbage/11-11.png" alt="Copying Collection" width="550" />
+<img class="center-picture" src="assets/11 garbage/11-11.webp" alt="Copying Collection" width="550" />
 
 当区分复制且扫描了的区域和复制但未扫描的区域的指针 `scan` 和 `next` 重合的时候，就意味着所有可达对象都已经被复制且扫描了，算法结束。于是 Cheney 算法被分为两个部分：算法本体和指针转发/Pointer Forwarding：
 
-<img class="center-picture" src="assets/11 garbage/11-12.png" alt="Copying Collection" width="550" /
+<img class="center-picture" src="assets/11 garbage/11-12.webp" alt="Copying Collection" width="550" /
 
 主算法的逻辑：
 
-<img class="center-picture" src="assets/11 garbage/11-13.png" alt="Copying Collection" width="550" />
+<img class="center-picture" src="assets/11 garbage/11-13.webp" alt="Copying Collection" width="550" />
 
 指针转发的目的在于将每一个对象在 To-Space 中分配新的位置，保证所有的指针都准确的引用新的拷贝。为了使得避免重复拷贝一个对象，我们使用一个 trick：在复制对象之后，将对象的第一个字段改写为指向新副本的指针，这样在后续遇到同一对象引用时，直接返回该指针。一是为了判断是否已经复制过，二是为了获取新副本的地址。且使用 `scan` 指针和 `next` 指针之间的区域作为工作队列，于是指针转发算法的逻辑如下：
 
-<img class="center-picture" src="assets/11 garbage/11-14.png" alt="Copying Collection" width="550" />
+<img class="center-picture" src="assets/11 garbage/11-14.webp" alt="Copying Collection" width="550" />
 
 PPT 有更加丰富的讲解，这里就不再赘述了。
 
@@ -188,7 +188,7 @@ PPT 有更加丰富的讲解，这里就不再赘述了。
 
 众所周知，程序的局部性非常重要，但是广度优先拷贝的局部性很差，因为在 To-Space 中的对象是按照同一深度复制，因此相邻地址的对象可能不相关，对应父子关系的对象往往分散在大跨度内存。而深度优先拷贝往往会有更加好的局部性，但是需要额外的栈空间或者指针反转/Pointer Reversal 等复杂算法。于是可以修改指针转发算法，提出一种混合拷贝算法：
 
-<img class="center-picture" src="assets/11 garbage/11-15.png" alt="Copying Collection" width="550" />
+<img class="center-picture" src="assets/11 garbage/11-15.webp" alt="Copying Collection" width="550" />
 
 方法是当拷贝一个对象的时候，尽量立刻拷贝他的一个孩子，并且持续进行深度优先拷贝，直到遇到一个已经拷贝过的对象，或者没有孩子了。最终这个算法会变成深度优先拷贝，但是确实利用了一部分局部性。
 
@@ -212,13 +212,13 @@ PPT 有更加丰富的讲解，这里就不再赘述了。
 
 一般的分配流程如下：
 
-<img class="center-picture" src="assets/11 garbage/11-16.png" alt="Copying Collection" width="550" />
+<img class="center-picture" src="assets/11 garbage/11-16.webp" alt="Copying Collection" width="550" />
 
 需要注意的是，上图中的 A 和 B 都不属于分配开销，因为 A 是编译器的工作，B 是用户的工作/运行时库的工作。
 
 这有很大的优化空间：首先，第一条和第六条就可以通过内联展开的方式，将调用函数和从函数返回优化掉，注意到 A 实际上对应的是寄存器优化中对 `MOVE` 指令的优化，可以直接和第三条合并掉，第四条也可以去掉，因为我们有 B 了，况且联想 C 中的 `malloc` 也没有清零。只剩下第二条和第五条不可以优化了，但是这两条可以在不同的分配器中共享，可以隐性优化。更加极限的操作依赖于将 `next` 和 `limit` 保存在寄存器中，完成一次检查和推进仅需 3 条机器指令，每次分配的总开销降低到大约 4 条指令。
 
-<img class="center-picture" src="assets/11 garbage/11-17.png" alt="Copying Collection" width="550" />
+<img class="center-picture" src="assets/11 garbage/11-17.webp" alt="Copying Collection" width="550" />
 
 ### 5.2 描述数据布局
 
@@ -234,13 +234,13 @@ PPT 有更加丰富的讲解，这里就不再赘述了。
 
 GC 需要从根节点开始追踪可达对象，这就需要辨别所有在寄存器、栈帧中的局部变量、临时变量、全局变量中的所有指针，并且指出他们到底是在栈上还是在寄存器中：
 
-<img class="center-picture" src="assets/11 garbage/11-18.png" alt="Identifying Roots" width="550" />
+<img class="center-picture" src="assets/11 garbage/11-18.webp" alt="Identifying Roots" width="550" />
 
 Tiger 的解决方法是在编译期生成一个 Pointer Map，指示哪个变量是一个指针，将这个 Map 传递给 GC，GC 使用这些指针进行遍历。因为每一条指令都有可能使得活跃临时变量集合发生改变，因此这个指针映像在程序的每一点都是不同的，因此需要但不必须在每一个点都生成 Map。这显然不切实际也不必须，因为并非每一条指令都创建新的 record。为了减少 Map 的数目，我们只在特殊的程序点生成 Map，比如在分配 record 之前、在函数调用之前（可能间接调用分配）。
 
 GC 需要从最顶部的栈帧（调用链的终点）向下扫描栈帧，每处理完了一个栈帧，就可以通过返回地址索引到下一个栈帧的 Pointer Map，识别出栈帧中的指针。需要特殊处理 callee-saved 寄存器：考虑调用链 $f \rightarrow g \rightarrow h$，$g$ 在调用 $h$ 前，对于这些 callee-saved 寄存器，必须在 pointer map 中额外记录哪些是 $g$ 自己使用的，哪些是从 $f$ 继承来的。
 
-<img class="center-picture" src="assets/11 garbage/11-19.png" alt="Identifying Roots" width="550" />
+<img class="center-picture" src="assets/11 garbage/11-19.webp" alt="Identifying Roots" width="550" />
 
 ### 5.4 导出指针
 
@@ -254,10 +254,10 @@ move t3, M[t2]
 
 显然这个 `t1` 就是一个导出指针，且其从基指针 `a` 导出，指针映像必须指示出导出指针，并且指出导出这个指针的基指针。导出指针也需要在 GC 中被处理，比如在拷贝式收集中，当基指针移动到新的地点的时候，导出指针也需要被移动到新的地点：
 
-<img class="center-picture" src="assets/11 garbage/11-20.png" alt="Derived Pointers" width="550" />
+<img class="center-picture" src="assets/11 garbage/11-20.webp" alt="Derived Pointers" width="550" />
 
 再考虑循环不变指针：
 
-<img class="center-picture" src="assets/11 garbage/11-21.png" alt="Derived Pointers" width="550" />
+<img class="center-picture" src="assets/11 garbage/11-21.webp" alt="Derived Pointers" width="550" />
 
 这里 `t1` 经过循环优化，变成了循环不变的导出指针，循环内部通过 `M[t1 + i]` 进行访问，但是如果后续没有任何代码使用基指针 `a`，那么 `a` 就被判定为死亡，但是对于 GC 来讲，基指针必须保持活跃，GC 需要直到基指针的新地址来正确更新导出指针。解决方法是添加新的规则，导出指针隐式保持基指针活跃，于是 `a` 就不会被判定为死亡，至少基指针的活跃区间要覆盖掉导出指针的活跃区间。

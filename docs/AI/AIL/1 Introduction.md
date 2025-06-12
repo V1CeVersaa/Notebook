@@ -72,11 +72,11 @@
 
 知识的表示涉及两个世界：符号世界和被表示的世界（如现实世界）。有了用特定符号语言描述的公式或结构，可以用它们来表示现实世界的哪些东西呢？这取决于我们对公式或结构中的元素做何解释。
 
-<img class="center-picture" src="../assets/1-1.png" width=650 />
+<img class="center-picture" src="./assets/1-1.webp" width=650 />
 
 正如可以把同一个公式解释成不同的命题一样，可以把有向图中的同一个节点解释成不同的论证。
 
-<img class="center-picture" src="../assets/1-2.png" width=650 />
+<img class="center-picture" src="./assets/1-2.webp" width=650 />
 
 ### 3.2 推理
 

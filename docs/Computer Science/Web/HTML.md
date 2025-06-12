@@ -88,7 +88,7 @@ HTML元素和HTML标签表示的是一样的意思，但是严格来说，HTML�
 - 图像：图像是通过`<img>`标签来定义的，通过src属性指定图像的URL。图像的名称和尺寸是通过属性的方式指定的。
 
     ```html
-    <img src="/images/logo.png" width="258" height="39" />
+    <img src="/images/logo.webp" width="258" height="39" />
     ```
 
 ### 01.3 HTML元素

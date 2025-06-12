@@ -19,13 +19,13 @@
 
 语义分析的过程：按照特定顺序遍历抽象语法树，在此过程中维护一个符号表。
 
-<img class="center-picture" src="./assets/4 semantic/4-1.png" width=550 />
+<img class="center-picture" src="./assets/4 semantic/4-1.webp" width=550 />
 
 对于第四行，可以看见新引入了一个 Binding $a \mapsto \mathrm{string}$，覆盖了之前在 $\sigma_2$ 中对 $a$ 的 Binding，也就是说内层作用域的绑定会优于外层作用域的绑定。
 
 当语义分析到达作用域的重点的时候，作用域内定义的标识符的绑定会被丢弃。在第六行，$\sigma_2$ 和 $\sigma_3$ 都会被丢弃。
 
-<img class="center-picture" src="./assets/4 semantic/4-2.png" width=550 />
+<img class="center-picture" src="./assets/4 semantic/4-2.webp" width=550 />
 
 在某些语言，可能在同时会有多个环境同时活跃，比如每一个模块/Module、每一个类/Class 都需要有自己的符号表。
 
@@ -114,14 +114,14 @@
 
 典型的函数式符号表使用二叉搜索树实现，每一个节点都包含着从标识符（键）到绑定值（值）的映射，使用字符串比较确定键之间的序关系。这样的话，查找遵循标准的 BST 搜索算法，插入需要按照 Persistent BST 的插入实现，使用路径复制技术，赋值从根节点到被插入节点的父节点的所有节点：
 
-<img class="center-picture" src="./assets/4 semantic/4-3.png" width=550 />
+<img class="center-picture" src="./assets/4 semantic/4-3.webp" width=550 />
 
 简单总结一下：
 
 - 命令式风格的符号表存在副作用，当进入新的作用域的时候，通过副作用直接修改符号表，破坏了旧的符号表，另外，需要额外的信息来移除新加入的绑定，重建旧的符号表。
 - 函数式风格的符号表不存在副作用，当每次进入新的作用域的时候，都会通过在旧表上添加信息来创建新的环境，旧表保持完整。当退出作用域的时候，简单取回旧表的引用即可，如果我们使用平衡树实现，访问和插入的时间复杂度都为 $O(\log N)$。
 
-<img class="center-picture" src="./assets/4 semantic/4-4.png" width=550 />
+<img class="center-picture" src="./assets/4 semantic/4-4.webp" width=550 />
 
 ## 2. 类型检查
 
@@ -134,7 +134,7 @@
 - Soundness：如果类型系统接受一个程序，那么这个程序在运行时就不会出现类型错误，「Well-typed programs don't go wrong」；
 - Completeness：如果一个程序在运行时不会出现类型错误，那么类型系统一定接受这个程序。
 
-<img class="center-picture" src="./assets/4 semantic/4-5.png" width=550 />
+<img class="center-picture" src="./assets/4 semantic/4-5.webp" width=550 />
 
 类型检查主要的议题有：
 
@@ -225,7 +225,7 @@ type b = {i: a}
 
 每一个类型规则都对应着类型检查器的一部分：
 
-<img class="center-picture" src="./assets/4 semantic/4-6.png" width=550 />
+<img class="center-picture" src="./assets/4 semantic/4-6.webp" width=550 />
 
 类型检查本质上其实是对抽象语法树递归的遍历，处理每一个节点的时候，执行下面步骤：
 
@@ -236,7 +236,7 @@ type b = {i: a}
 
 尽管我们是自顶向下地遍历抽象语法树，类型信息从底向上进行传播。
 
-<img class="center-picture" src="./assets/4 semantic/4-7.png" width=550 />
+<img class="center-picture" src="./assets/4 semantic/4-7.webp" width=550 />
 
 现实世界的类型系统复杂的多，举几个很坑爹的例子：
 

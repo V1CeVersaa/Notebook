@@ -87,7 +87,7 @@ $$(p\land q)\land r\equiv p\land (q\land r).$$
 
 Involving Conditional and Biconditional statements, we have
 
-![Conditional and Biconditional statements](images/image.png)
+![Conditional and Biconditional statements](images/image.webp)
 
 <!-- $$p\to q\equiv \neg q\lor p.$$
 
@@ -203,7 +203,7 @@ All the variables in a propositional function must be quantified or set equal to
 
 **Logical Equivalence with Logical Quantifiers**: 
 
-![alt text](images/image1-1.png)
+![alt text](images/image1-1.webp)
 
 **De Morgan's Laws for Quantifiers**: 
 
@@ -216,7 +216,7 @@ $$\neg\exists xP(x)\equiv \forall x\neg P(x).$$
 **Nested Quantifiers**: Two quantifiers are nested if one is within the scope of the other. For example, $\forall x\exists yP(x,y)$ means "For every $x$, there exists a $y$ such that $P(x,y)$ is true".
 
 **Order of Quantifiers**: Only both quantifiers are universal or both are existential, the order of quantifiers can be changed. 
-![alt text](images/image1-2.png)
+![alt text](images/image1-2.webp)
 
 **Distributions for Quantifiers over Logical Connectives**: Here I list two examples: $\forall x(P(x)\land Q(x))\equiv \forall xP(x)\land \forall xQ(x)$ is True, whereas $\forall x(P(x)\to Q(x))\equiv \forall xP(x)\to \forall xQ(x)$ is False.
 

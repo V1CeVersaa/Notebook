@@ -16,7 +16,7 @@ extra:
 theme:
     name: material
     # custom_dir: overrides
-    language: 'zh'
+    language: "zh"
     icon:
         logo: material/notebook-outline
     features:
@@ -33,14 +33,14 @@ theme:
         - search.suggest
     font: false
     palette:
-        - media: '(prefers-color-scheme: light)'
+        - media: "(prefers-color-scheme: light)"
           scheme: default
           primary: brown
           accent: brown
           toggle:
               icon: material/weather-sunny
               name: Switch to dark mode
-        - media: '(prefers-color-scheme: dark)'
+        - media: "(prefers-color-scheme: dark)"
           scheme: slate
           toggle:
               icon: material/weather-night #图标，月亮
@@ -79,7 +79,7 @@ nav:
                       - CS106L 笔记: Computer Science/Programming Language/C++/CS106L.md
                 - Python:
                       - Computer Science/Programming Language/Python/index.md
-                      - 备忘知识: Computer Science/Programming Language/Python/0 Misc.md 
+                      - 备忘知识: Computer Science/Programming Language/Python/0 Misc.md
                       - 第一部分：Python 数据结构: Computer Science/Programming Language/Python/1 Data Structures.md
                       - 第二部分：函数即对象: Computer Science/Programming Language/Python/2 Functions.md
                       - 第三部分：类和协议: Computer Science/Programming Language/Python/3 Classes.md
@@ -195,27 +195,27 @@ nav:
                 - RISC-V:
                       - System/HDL & ISA/RISC-V/RISC-V.md
                       - Unprivileged ISA: System/HDL & ISA/RISC-V/RISC-V-upr.md
-                      - Privileged ISA: System/HDL & ISA/RISC-V/RISC-V-pr.md 
+                      - Privileged ISA: System/HDL & ISA/RISC-V/RISC-V-pr.md
           - Booklist:
                 - The Datacenter as a Computer: System/TDAAC/index.md
                 - Computer Organization & Design:
-                    - System/COAD/index.md
-                    - COAD-Computer Abstractions and Technology: System/COAD/Chapter1.md
-                    - COAD-Arithmetic for Computers: System/COAD/Chapter2.md
-                    - COAD-Instructions Language of the Computer: System/COAD/Chapter3.md
-                    - COAD-The Processor: System/COAD/Chapter4.md
-                    - COAD-Large and Fast Exploiting Memory Hierarchy: System/COAD/Chapter5.md
+                      - System/COAD/index.md
+                      - COAD-Computer Abstractions and Technology: System/COAD/Chapter1.md
+                      - COAD-Arithmetic for Computers: System/COAD/Chapter2.md
+                      - COAD-Instructions Language of the Computer: System/COAD/Chapter3.md
+                      - COAD-The Processor: System/COAD/Chapter4.md
+                      - COAD-Large and Fast Exploiting Memory Hierarchy: System/COAD/Chapter5.md
                 - Digital Design & Computer Architecture:
-                    - System/DDCA/index.md
-                    - DDCA-Combinational Logic: System/DDCA/Chapter2.md
-                    - DDCA-Sequential Logic: System/DDCA/Chapter3.md
-                    - DDCA-Hardware Description Language: System/DDCA/Chapter4.md
-                    - DDCA-Digital Building Blocks: System/DDCA/Chapter5.md
-                    - DDCA-Architecture: System/DDCA/Chapter6.md
-                    - DDCA-Microarchitecture: System/DDCA/Chapter7.md
-                    - DDCA-Memory Systems: System/DDCA/Chapter8.md
+                      - System/DDCA/index.md
+                      - DDCA-Combinational Logic: System/DDCA/Chapter2.md
+                      - DDCA-Sequential Logic: System/DDCA/Chapter3.md
+                      - DDCA-Hardware Description Language: System/DDCA/Chapter4.md
+                      - DDCA-Digital Building Blocks: System/DDCA/Chapter5.md
+                      - DDCA-Architecture: System/DDCA/Chapter6.md
+                      - DDCA-Microarchitecture: System/DDCA/Chapter7.md
+                      - DDCA-Memory Systems: System/DDCA/Chapter8.md
     - AI:
-          - AI/index.md          
+          - AI/index.md
           - 机器学习框架:
                 - AI/ML Framework/index.md
           - 人工智能逻辑:
@@ -252,53 +252,53 @@ nav:
           - Machine Learning Theory:
                 - AI/ML Theory/index.md
                 - 机器学习理论导引:
-                    - AI/ML Theory/ML Theory Intro/index.md
-                    - 第1章：预备知识: AI/ML Theory/ML Theory Intro/1 Preliminaries.md
-                    - 第2章：可学性: AI/ML Theory/ML Theory Intro/2 Learnability.md
-                    - 第3章：复杂度: AI/ML Theory/ML Theory Intro/3 Complexity.md
-                    - 第4章：泛化界: AI/ML Theory/ML Theory Intro/4 Generalization.md
-                    - 第5章：稳定性: AI/ML Theory/ML Theory Intro/5 Stability.md
-                    - 第6章：一致性: AI/ML Theory/ML Theory Intro/6 Consistency.md
-                    - 第7章：收敛率: AI/ML Theory/ML Theory Intro/7 Convergence.md
-                    - 第8章：遗憾界: AI/ML Theory/ML Theory Intro/8 Regret.md
+                      - AI/ML Theory/ML Theory Intro/index.md
+                      - 第1章：预备知识: AI/ML Theory/ML Theory Intro/1 Preliminaries.md
+                      - 第2章：可学性: AI/ML Theory/ML Theory Intro/2 Learnability.md
+                      - 第3章：复杂度: AI/ML Theory/ML Theory Intro/3 Complexity.md
+                      - 第4章：泛化界: AI/ML Theory/ML Theory Intro/4 Generalization.md
+                      - 第5章：稳定性: AI/ML Theory/ML Theory Intro/5 Stability.md
+                      - 第6章：一致性: AI/ML Theory/ML Theory Intro/6 Consistency.md
+                      - 第7章：收敛率: AI/ML Theory/ML Theory Intro/7 Convergence.md
+                      - 第8章：遗憾界: AI/ML Theory/ML Theory Intro/8 Regret.md
                 - Foundations of Machine Learning:
-                    - AI/ML Theory/ML Foundations/index.md
+                      - AI/ML Theory/ML Foundations/index.md
                 - Mathematical Analysis of Machine Learning Algorithms:
-                    - AI/ML Theory/Math Analysis/index.md
-                    - 1 Introduction: AI/ML Theory/Math Analysis/1 Intro.md
-                    - 2 Probability Inequalities: AI/ML Theory/Math Analysis/2 Probability.md
-                    - 3 Uniform Convergence: AI/ML Theory/Math Analysis/3 Convergence.md
-                    - 4 Empirical Covering Number Analysis: AI/ML Theory/Math Analysis/4 Covering.md
-                    - 5 Covering Number Estimates: AI/ML Theory/Math Analysis/5 Estimates.md
+                      - AI/ML Theory/Math Analysis/index.md
+                      - 1 Introduction: AI/ML Theory/Math Analysis/1 Intro.md
+                      - 2 Probability Inequalities: AI/ML Theory/Math Analysis/2 Probability.md
+                      - 3 Uniform Convergence: AI/ML Theory/Math Analysis/3 Convergence.md
+                      - 4 Empirical Covering Number Analysis: AI/ML Theory/Math Analysis/4 Covering.md
+                      - 5 Covering Number Estimates: AI/ML Theory/Math Analysis/5 Estimates.md
           - Reinforcement Learning:
                 - AI/Reinforcement Learning/index.md
                 - Introduction to Reinforcement Learning:
-                    - AI/Reinforcement Learning/RL Basis/index.md
-                    - Book Chapter 1: AI/Reinforcement Learning/RL Basis/Book/Chapter 1.md
-                    - Book Chapter 2: AI/Reinforcement Learning/RL Basis/Book/Chapter 2.md
-                    - Book Chapter 3: AI/Reinforcement Learning/RL Basis/Book/Chapter 3.md
-                    - Book Chapter 4: AI/Reinforcement Learning/RL Basis/Book/Chapter 4.md
-                    - Book Chapter 5: AI/Reinforcement Learning/RL Basis/Book/Chapter 5.md
-                    - Book Chapter 6: AI/Reinforcement Learning/RL Basis/Book/Chapter 6.md
-                    - Book Chapter 7: AI/Reinforcement Learning/RL Basis/Book/Chapter 7.md
+                      - AI/Reinforcement Learning/RL Basis/index.md
+                      - Book Chapter 1: AI/Reinforcement Learning/RL Basis/Book/Chapter 1.md
+                      - Book Chapter 2: AI/Reinforcement Learning/RL Basis/Book/Chapter 2.md
+                      - Book Chapter 3: AI/Reinforcement Learning/RL Basis/Book/Chapter 3.md
+                      - Book Chapter 4: AI/Reinforcement Learning/RL Basis/Book/Chapter 4.md
+                      - Book Chapter 5: AI/Reinforcement Learning/RL Basis/Book/Chapter 5.md
+                      - Book Chapter 6: AI/Reinforcement Learning/RL Basis/Book/Chapter 6.md
+                      - Book Chapter 7: AI/Reinforcement Learning/RL Basis/Book/Chapter 7.md
                 - Deep Reinforcement Learning:
-                    - AI/Reinforcement Learning/RL Deep/index.md
+                      - AI/Reinforcement Learning/RL Deep/index.md
                 - Theory of Reinforcement Learning:
-                    - AI/Reinforcement Learning/RL Theory/index.md
+                      - AI/Reinforcement Learning/RL Theory/index.md
           - Deep Learning:
                 - AI/Deep Learning/index.md
                 - Understanding Deep Learning:
-                    - AI/Deep Learning/Understanding Deep Learning/index.md
+                      - AI/Deep Learning/Understanding Deep Learning/index.md
                 - Deep Learning for CV:
-                    - AI/Deep Learning/Computer Vision/index.md
-                    - Part 1：线性分类器与简单神经网络: AI/Deep Learning/Computer Vision/part 1.md
-                    - Part 2：卷积神经网络: AI/Deep Learning/Computer Vision/part 2.md
-                    - Part 3：深度学习 I: AI/Deep Learning/Computer Vision/part 3.md
-                    - Part 4：深度学习 II: AI/Deep Learning/Computer Vision/part 4.md
-                    - Part 5：深度学习 III: AI/Deep Learning/Computer Vision/part 5.md
+                      - AI/Deep Learning/Computer Vision/index.md
+                      - Part 1：线性分类器与简单神经网络: AI/Deep Learning/Computer Vision/part 1.md
+                      - Part 2：卷积神经网络: AI/Deep Learning/Computer Vision/part 2.md
+                      - Part 3：深度学习 I: AI/Deep Learning/Computer Vision/part 3.md
+                      - Part 4：深度学习 II: AI/Deep Learning/Computer Vision/part 4.md
+                      - Part 5：深度学习 III: AI/Deep Learning/Computer Vision/part 5.md
                 - Deep Learning for NLP:
-                    - AI/Deep Learning/Natural Language Processing/index.md
-          - Online Learning: 
+                      - AI/Deep Learning/Natural Language Processing/index.md
+          - Online Learning:
                 - AI/Online Learning/index.md
                 - "Topic 1: Online Learning and OCO": AI/Online Learning/Lecture 1.md
                 - "Topic 2: Multi-Armed Bandits": AI/Online Learning/Lecture 2.md

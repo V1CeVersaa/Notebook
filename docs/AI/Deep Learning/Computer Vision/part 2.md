@@ -14,7 +14,7 @@
 
 解决方案：定义新的计算节点，令其在图片上直接操作，因此就有了卷积神经网络，大概有五个部分：
 
-<img class="center-picture" src="../assets/7-1.png" width=550 />
+<img class="center-picture" src="./assets/7-1.webp" width=550 />
 
 全链接网络我们已经熟悉了，对于一个 $32\times 32\times 3$ 的图片，我们将其展平为 $3072\times 1$ 的一个向量，然后乘以一个 $10\times 3072$ 的矩阵，进而产生一个 $10\times 1$ 的输出。
 
@@ -22,35 +22,35 @@
 
 我们还可以考虑并行，一个是对一个图片使用多个滤波器，最后可以得到多个激活图，如果我们使用 6 个滤波器，然后我们将这些激活图堆叠起来，可以得到一个 $28\times 28\times 6$ 的输出。同样可以考虑批处理，对于 N 张图片，我们最后可以得到 N 套堆叠起来的激活图。
 
-<img class="center-picture" src="../assets/7-2.png" width=550 />
+<img class="center-picture" src="./assets/7-2.webp" width=550 />
 
 如果我们企图连续使用卷积层，那么由于卷积操作的线性性，我们最后得出的其实相当于是一个修改后的卷积层对原图片进行的卷积，和只使用一次卷积没有什么区别。因此，我们在两个卷积层之间加入一个激活函数，这样就可以引入非线性。
 
-<img class="center-picture" src="../assets/7-3.png" width=550 />
+<img class="center-picture" src="./assets/7-3.webp" width=550 />
 
 相比于之前的线性分类器和全链接网络和简单的神经网络，CNN 在第一层中实际上学习到的是局部的图片模板，经常学习的是定向的边/Oriented Edges 和相反的颜色/Opposite Colors。
 
-<img class="center-picture" src="../assets/7-4.png" width=550 />
+<img class="center-picture" src="./assets/7-4.webp" width=550 />
 
 卷积操作会使图片的维数发生改变，因此我们通常会使用 padding 来保持一定的图片大小。
 
-<img class="center-picture" src="../assets/7-5.png" width=550 />
+<img class="center-picture" src="./assets/7-5.webp" width=550 />
 
 对于卷积操作，每一个激活图的元素都依赖于前一层的一个大小为 $K\times K$ 的区域，这个区域被我们称为感受野/Receptive Field。每增加一轮卷积，感受野的大小就增加 $K-1$，因此，如果我们有 $L$ 个卷积层，感受野的大小就为 $1 + L * (K-1)$。
 
-<img class="center-picture" src="../assets/7-6.png" width=550 />
+<img class="center-picture" src="./assets/7-6.webp" width=550 />
 
 可是问题在于，对于大的图片，我们需要很多层才可以让末端的每一个神经元看到图片的全貌，这就需要**下采样/Downsampling**。
 
 我们在原来的卷积操作上进行调整，原来的卷积操作是在整张图片上进行步长为 1 的滑动，我们可以引入步长卷积/Strided Convolution。
 
-<img class="center-picture" src="../assets/7-7.png" width=550 />
+<img class="center-picture" src="./assets/7-7.webp" width=550 />
 
 对于输入大小为 $3 \times 32 \times 32$ 的图片，我们使用 $10 \times 5 \times 5$ 的滤波器，步长为 1，填充为 2，输出的大小为 $10 \times (32 + 2*2 - 5)/1 + 1 \times 32$。进一步考虑参数，每一个滤波器我们需要学习 76 个参数，因此总共有 $10 * 76 = 760$ 个参数，输出数目为 10240，而每一个输出背后都是 $5 * 5 * 3$ 次乘法运算，因此总共有 $10240 * 5 * 5 * 3 = 768000$ 次乘法运算。
 
 一般的参数设置如下，我们很多时候抄答案就可以了：
 
-<img class="center-picture" src="../assets/7-8.png" width=550 />
+<img class="center-picture" src="./assets/7-8.webp" width=550 />
 
 PyTorch 为我们贴心提供了三种卷积层：
 
@@ -62,11 +62,11 @@ PyTorch 为我们贴心提供了三种卷积层：
 
 常见的池化操作有：
 
-<img class="center-picture" src="../assets/7-9.png" width=550 />
+<img class="center-picture" src="./assets/7-9.webp" width=550 />
 
 经典的卷积神经网络的架构如下：[Conv, ReLU, Pool] × N → Flatten → [FC, ReLU] × N → FC。我们以 LeNet-5 为例：
 
-<img class="center-picture" src="../assets/7-10.png" width=550 />
+<img class="center-picture" src="./assets/7-10.webp" width=550 />
 
 之前的很多实现有一个趋势，我们趋向于使用池化层和步长卷积使得图片的宽度变小，但是事实上又使用了多个滤波器使得通道数增加了，这样总体的体积在某种意义上保留了。现代的很多架构打破了这一点。
 
@@ -82,43 +82,43 @@ $$\hat{x} = \frac{x - \mathbb{E}[x]}{\sqrt{\mathbb{V}[x]}}$$
 
 我们也可以引入可以学习的参数 $\gamma$ 和 $\beta$，对归一化之后的变量进行缩放和平移，如果其恰好和归一化项的系数相等，那么我们就相当于进行了一次恒等变换。
 
-<img class="center-picture" src="../assets/7-11.png" width=550 />
+<img class="center-picture" src="./assets/7-11.webp" width=550 />
 
 但是问题来了，归一化的操作使得我们的每一个输入得到的输出都依赖于我们扔进去的别的输入，这在测试的时候是非常非常严重的问题，于是我们将测试时的均值和方差使用训练时的经验均值和方差来代替。
 
-<img class="center-picture" src="../assets/7-12.png" width=550 />
+<img class="center-picture" src="./assets/7-12.webp" width=550 />
 
 这样甚至还有优点，因为这时的归一化操作已经完全变成了线性操作，那么其就可以并入卷积神经网络的前面和后面的层，可以显著减少计算量。
 
 接下来看看复杂的卷积神经网络的批量归一化：
 
-<img class="center-picture" src="../assets/7-13.png" width=550 />
+<img class="center-picture" src="./assets/7-13.webp" width=550 />
 
 归一化也使得神经网络变得更容易训练，允许我们使用更高的学习率，也有了和更大的收敛速率，初始化也更加鲁棒了。但是在理论层面上不太好理解，并且最大的问题还在于其在学习和训练过程中的不一致性。
 
 类似的还有层归一化/Layer Normalization 和 实例归一化/Instance Normalization，和批量归一化的差别在于初始化对应的通道不一样，但是本质都很相似。
 
-<img class="center-picture" src="../assets/7-14.png" width=550 />
+<img class="center-picture" src="./assets/7-14.webp" width=550 />
 
-<img class="center-picture" src="../assets/7-15.png" width=550 />
+<img class="center-picture" src="./assets/7-15.webp" width=550 />
 
 ## Lecture 8: CNN Architectures I
 
 **2012 AlexNet**：16.4% 错误率。并不深的深度卷积神经网络，两张 GTX 580 的 GPU，将模型分成两个部分，分别在一张 GPU 上训练。其架构是通过不断试错得到的，幸好效果很不错。
 
-<img class="center-picture" src="../assets/8-1.png" width=550 />
+<img class="center-picture" src="./assets/8-1.webp" width=550 />
 
 我们需要注意到，大多数的内存使用都发生在前几层卷积层，几乎所有的参数都集中在全链接层，大多数浮点数计算都发生在卷积层。
 
 **2013 ZFNet**：11.7% 错误率。实际上是一个更大的 AlexNet，但是效果更好。也是试错得到的。
 
-<img class="center-picture" src="../assets/8-2.png" width=550 />
+<img class="center-picture" src="./assets/8-2.webp" width=550 />
 
 **2014 VGG**：7.3% 错误率。使用更小的滤波器，更深的网络以及更加稳定的设计。
 
-<img class="center-picture" src="../assets/8-3.png" width=550 />
+<img class="center-picture" src="./assets/8-3.webp" width=550 />
 
-<img class="center-picture" src="../assets/8-4.png" width=550 />
+<img class="center-picture" src="./assets/8-4.webp" width=550 />
 
 连续使用两层 $3\times 3$ 的卷积层相比于使用一层 $5\times 5$ 的卷积层来讲，其参数更少，浮点数计算量更少，但是就感受野的角度来看，连续使用两层 $3\times 3$ 的卷积层和使用一层 $5\times 5$ 的卷积层是一样的。同样，池化层将通道数加倍也可以显著减少内存使用。
 
@@ -126,15 +126,15 @@ $$\hat{x} = \frac{x - \mathbb{E}[x]}{\sqrt{\mathbb{V}[x]}}$$
 
 GoogLeNet 最开始的部分是 Stem Network：非常积极的下采样，很快从 $3 \times 224 \times 224$ 的图片降到了 $192 \times 28 \times 28$。
 
-<img class="center-picture" src="../assets/8-5.png" width=550 />
+<img class="center-picture" src="./assets/8-5.webp" width=550 />
 
 接着的是 Inception 模块，使用了分支并行，既然卷积层参数和是否使用池化是需要考虑的超参数，那么我们就进行并行，减少超参数的使用。同时也是用了 $1\times 1$ 的卷积来减少通道数。
 
-<img class="center-picture" src="../assets/8-6.png" width=550 />
+<img class="center-picture" src="./assets/8-6.webp" width=550 />
 
 在最后，GoogLeNet 使用全局平均池化来减少空间的维数，进而令全链接层使用更少的参数，计算量也大幅降低。
 
-<img class="center-picture" src="../assets/8-7.png" width=550 />
+<img class="center-picture" src="./assets/8-7.webp" width=550 />
 
 但是，直接在网络的最后训练的效果并不是很好，网络过于深了，梯度消失的问题很严重。GoogLeNet 使用辅助分类器/Auxiliary Classifiers 来缓解这个问题。在网络的中间层加入了几个辅助分类器。有了批归一化之后就不再需要辅助分类器了。
 
@@ -144,21 +144,21 @@ GoogLeNet 最开始的部分是 Stem Network：非常积极的下采样，很快
 
 Kaiming He 等人提出了残差网络/Residual Network，给出的解答非常简单，在一些层之间加入一个加性的 Shortcut Connection，如果我们将中间层设为 $F(x)$，那么加入了 Shortcut Connection 之后，我们就有 $F(x) + x$ 去拟合 $H(x)$。
 
-<img class="center-picture" src="../assets/8-8.png" width=550 />
+<img class="center-picture" src="./assets/8-8.webp" width=550 />
 
 除此之外，ResNet 还学习了很多 GoogLeNet 和 VGG 的特性，比如在最开始的阶段积极下采样，在最后使用全局平均池化。我们也可以见得，ResNet 将整个网络分为不同的阶段，每一个阶段的第一个卷积层使用步长为 2 的卷积来折半分辨率，并且加倍通道数。
 
 总体而言 ResNet 的的深度更深了，但是其需要的计算量大大降低。
 
-<img class="center-picture" src="../assets/8-9.png" width=550 />
+<img class="center-picture" src="./assets/8-9.webp" width=550 />
 
 另外，$1\times 1$ 的卷积层可以在降低计算量的时候，增加层数和非线性。这样的层我们称之为瓶颈层/Bottleneck Layer。
 
-<img class="center-picture" src="../assets/8-10.png" width=550 />
+<img class="center-picture" src="./assets/8-10.webp" width=550 />
 
 瓶颈层可以显著提升神经网络的深度，并且降低误差。
 
-<img class="center-picture" src="../assets/8-11.png" width=550 />
+<img class="center-picture" src="./assets/8-11.webp" width=550 />
 
 后续还有别的更新的网络，在第 11 讲中会介绍。
 
@@ -179,7 +179,7 @@ Kaiming He 等人提出了残差网络/Residual Network，给出的解答非常�
 2. Sigmoid outputs are not zero-centered：也就是输出不是零均值的，考虑 $h_i^{(\ell)} = \sum_j w_{i,j}^{(\ell)} \sigma \left( h_j^{(\ell-1)} \right) + b_i^{(\ell)}$，其中 $h_i^{(\ell)}$ 是第 $\ell$ 层的第 $i$ 神经元，等下两个参数是权重和偏置。求微分可以发现：$\dfrac{\partial L}{\partial w_{i,j}^{(\ell)}} = \dfrac{\partial L}{\partial h_i^{(\ell)}} \cdot \sigma \left( h_j^{(\ell-1)} \right)$，这样就可以看出来，所有 $w^{\ell}_{i,j}$ 的梯度都和 $\dfrac{\partial L}{\partial h_i^{(\ell)}}$ 的符号相同，在二元条件下就会产生丑陋的锯齿状。最大的问题是这样的同向梯度其实限制了梯度的方向，使得梯度下降的效率降低，这在高维的时候尤其严重。但是实践中并没有那么严重，批归一化就可以缓解这个问题。
 3. $\exp$ is a little expensive：$\exp$ 的计算量比较大。
 
-<img class="center-picture" src="../assets/9-2.png" width=550 />
+<img class="center-picture" src="./assets/9-2.webp" width=550 />
 
 Tanh 也一样，虽然解决了零均值的问题，但是梯度消失的问题依然存在。
 
@@ -195,7 +195,7 @@ ReLU 性质非常不错，在 $x > 0$ 的时候，梯度为 1，解决了**一�
 
 对激活函数的建议大体如下：
 
-<img class="center-picture" src="../assets/9-3.png" width=550 />
+<img class="center-picture" src="./assets/9-3.webp" width=550 />
 
 **数据预处理**：只需要考虑上面 Sigmoid 提到的第二个问题，就可以知道为什么我们希望使用零均值的输入。常见手法/处理后的数据类型有这些：
 
@@ -204,7 +204,7 @@ ReLU 性质非常不错，在 $x > 0$ 的时候，梯度为 1，解决了**一�
 - 去相关数据：使用主成分分析，通过协方差矩阵调整数据云的分布，使得特征之间是不相关的；
 - 白化数据：去相关数据 + 标准化数据。
 
-<img class="center-picture" src="../assets/9-4.png" width=550 />
+<img class="center-picture" src="./assets/9-4.webp" width=550 />
 
 PCA 和白化数据相比而言不太常见。
 
@@ -221,13 +221,13 @@ PCA 和白化数据相比而言不太常见。
 
 Xavier 的推导：主要想法是我们希望输出的方差等于输入的方差。
 
-<img class="center-picture" src="../assets/9-5.png" width=550 />
+<img class="center-picture" src="./assets/9-5.webp" width=550 />
 
 但是如果我们是用 ReLU 作为激活函数，注意到 Xavier 假设的是零均值的激活函数，那么 Xavier 也会使得多轮后的激活结果趋近于零，依旧没有学习。解决方法是使用 Kaiming 初始化，定义为 `W = np.random.randn(Din, Dout) / np.sqrt(Din / 2)`。
 
 对于残差网络而言，如果我们还是使用 Kaiming 初始化，那么就有 $\mathbb{V}[F(x)] = \mathbb{V}[x]$，但是 $\mathbb{V}[F(x) + x] > \mathbb{V}[x]$，这会导致方差每一层单调严格增，导致梯度爆炸和严重的优化问题。解决方法甚至更简单，将第一个卷积层使用 Kaiming 初始化，让后面的一个卷积层初始化为 0。
 
-<img class="center-picture" src="../assets/9-6.png" width=550 />
+<img class="center-picture" src="./assets/9-6.webp" width=550 />
 
 **正则化**：如果我们的模型训练还挺好，但是训练误差和验证误差差别很大，这应该就是因为过拟合了，正则化是很好的解决方式：直接在损失函数中增加一个正项，令模型倾向于使用更小的权重。
 
@@ -255,7 +255,7 @@ def train_step(X):
     # perform parameter updates
 ```
 
-<img class="center-picture" src="../assets/9-7.png" width=550 />
+<img class="center-picture" src="./assets/9-7.webp" width=550 />
 
 另一种解释是 Dropout 其实是在训练很多模型的一个大型集成，其中模型之间共享参数，这样，每一种可能的 Dropout 都对应着一个模型。
 
@@ -277,7 +277,7 @@ def predict(X):
 
 更常见的是我们宁愿在训练的时候使用 Dropout 对参数进行缩放，在测试的时候不改变参数的值，这正好是出于测试效率着想：
 
-<img class="center-picture" src="../assets/9-8.png" width=550 />
+<img class="center-picture" src="./assets/9-8.webp" width=550 />
 
 在古早的网络，我们在最后的全链接层使用 Dropout，但是较为现代的网络使用全局平均池化，这就不需要使用 Dropout 了。
 
@@ -318,7 +318,7 @@ def predict(X):
 
 总结一下：
 
-<img class="center-picture" src="../assets/9-9.png" width=550 />
+<img class="center-picture" src="./assets/9-9.webp" width=550 />
 
 ## Lecture 10: Training Neural Networks II
 

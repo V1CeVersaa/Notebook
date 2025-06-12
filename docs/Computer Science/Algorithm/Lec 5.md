@@ -214,7 +214,7 @@ $$
 
 前缀和问题完全基于之前计算的并行求和问题，我们使用平衡二叉树已经算出来了这个数组的所有元素的和，下面根据已经计算出来的结果计算前缀和。
 
-<img class="center-picture" src="./assets/Parallel-1.png" width="550" />
+<img class="center-picture" src="./assets/Parallel-1.webp" width="550" />
 
 注意到每一个非叶子节点都存着很多已经计算好的数据，每一个节点都是其子树求和问题的解，我们的并行计算需要好好利用这些求好的数据，下面引入必要的记号：$B(h, i)$ 表示深度为 $h$ 的第 $i$ 个节点的值，这里的深度从底向上计算，深度为 $0$ 的节点为输入节点；$C(h, i)$ 表示深度为 $h$ 的第 $i$ 个节点的前缀和，这里的深度计算规则和 $B(h, i)$ 一模一样，深度为 $0$ 的节点为输出节点。按照下面约定好的规则，我们可以计算出所有的前缀和：
 
@@ -298,7 +298,7 @@ function SerialSearch:
 
 之后处理真实工作：剩下的工作其实就是相邻两个箭头之间的部分需要确认相应位置，确认了之后就可以根据划分的信息确定最终的位置。注意到这些箭头不会交叉，并且相邻两个箭头之间的距离不超过 $n/p$，加上一共有 $2p$ 个箭头，这些都是通过分割的条件知道的。箭头将整个问题分成了 $2p$ 个大小为 $O(n/p)$ 的子问题，这些子问题直接使用线性查找就好，因为每个子问题都很小，此时的深度为 $O(n/p)$，总工作量为 $2p\cdot O(n/p) = O(n)$，这符合我们的要求。
 
-<img class="center-picture" src="./assets/Parallel-2.png" width="600" />
+<img class="center-picture" src="./assets/Parallel-2.webp" width="600" />
 
 注意这一步不能使用二分查找，一旦二分之后，总工作量就变成了 $2p \cdot \dfrac{n}{p} \cdot O(\log n/p) = O(n\log n/p)$，这显然是不可接受的，无法保证线性约束。
 
@@ -319,7 +319,7 @@ function SerialSearch:
 
 **双对数范式**依赖二叉树的扩展——双对数树，在完全二叉树中，设叶子数量为 $n$，那么树高为 $\log n$。这里的双对数范式是希望构造一棵树，使得树高是 $\log \log n$ 级别的。下面我们来构造这样一棵树，定义某个节点的 level 为从跟到该节点的距离/需要经过的边数，并且记根的 level 为 $0$，下面是一个有十六个叶子节点的树。
 
-<img class="center-picture" src="./assets/Parallel-3.png" width="500" />
+<img class="center-picture" src="./assets/Parallel-3.webp" width="500" />
 
 - 当某个节点的 level 为 $s$，且 $s \leq \log \log n - 1$ 时，该节点有 $2^{2^{H-s-1}}$ 个子节点，这里的 $H$ 使得树的叶子节点的数量为 $2^{2^H}$；
 - 当某个节点的 level 为 $s$，且 $s = \log \log n$ 时，该节点有 $2$ 个子节点作为树的叶子。
@@ -434,11 +434,11 @@ $$
 
 生成顺串的长度的均值一般有 $L_{\mathrm{avg}} = 2M$ 的长度。
 
-<img class="center-picture" src="./assets/Externel-1.png" width="600" />
+<img class="center-picture" src="./assets/Externel-1.webp" width="600" />
 
 当生成了不同长度的顺串的时候，我们需要考虑如何合并这些顺串是最优的。最优解就是哈夫曼树，因为我们的目标是想让长的顺串尽可能少地参与合并，那么显然贪心地不断选择最小的两个顺串合并是最优的。
 
-<img class="center-picture" src="./assets/Externel-2.png" width="600" />
+<img class="center-picture" src="./assets/Externel-2.webp" width="600" />
 
 所谓外部路径长度，就是根到各个叶节点的路径长度之和，内部路径长度就是根到各个分支节点的路径长度之和。我们希望外部路径长度尽可能小，这样我们的 I/O 操作就会尽可能少，因此我们的目标就是构造一颗外部路径长度最小的哈夫曼树。
 

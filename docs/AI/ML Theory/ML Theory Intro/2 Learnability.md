@@ -149,13 +149,13 @@ $$m \geq \frac{2n}{\epsilon}\ln\frac{2n}{\delta}.$$
 
 轴平行矩形/Axis-Parallel Rectangle/APR 是平面 $\mathbb{R}^2$ 上四条边均与坐标轴平行的矩形区域。$\mathbb{R}^2$ 中每个点对应于一个数据样本，即 $\mathcal{X} = \mathbb{R}^2$。概念 $c$ 是某个特定的轴平行矩形，对该矩形内的点 $x$ 有 $c(x) = 1$，对该矩形之外的点有 $c(x) = -1$。概念类 $\mathcal{C}$ 是 $\mathbb{R}^2$ 上所有轴平行矩形的集合。我们的目标是证明轴平行矩形概念类是 PAC 可学的。证明梗概类似于估计面积：
 
-<img class="center-picture" src="../assets/1-1.png" width=550 />
+<img class="center-picture" src="./assets/1-1.webp" width=550 />
 
 上图中轴平行矩形 $R$ 来自目标概念，$\hat{R}$ 表示一个假设，$R$ 和 $\hat{R}$ 的错误区域为 $(R - \hat{R}) \cup (\hat{R} - R)$，即位于 $R$ 内但在 $\hat{R}$ 外的区域，以及在 $\hat{R}$ 内但在 $R$ 外的区域。$R$ 会将前一个区域中的点错误地判断为反例，而将后一个区域中的点错误地判断为正例。
 
 考虑一个简单的学习算法 $\mathfrak{L}$：对于训练集 $D$，$\mathfrak{L}$ 输出一个包含了 $D$ 中所有正例的最小轴平行矩形 $R^D$。显然，$R^D$ 中的点一定包含在目标概念 $R$ 中，因此 $R^D$ 不会将负例判别为正例，它把错误的区域都包含在了 $R$ 中。
 
-<img class="center-picture" src="../assets/1-2.png" width=550 />
+<img class="center-picture" src="./assets/1-2.webp" width=550 />
 
 令 $P(R)$ 表示 $R$ 区域的概率质量，即按照分布 $\mathcal{D}$ 随机生成的点落在区域 $R$ 中的概率。由于学习算法 $\mathfrak{L}$ 的错误仅可能出现在 $R$ 内的点上，不妨设 $P(R) > \epsilon$，否则无论输入什么训练集 $D$，$R^D$ 的错误率都不会超过 $\epsilon$。
 

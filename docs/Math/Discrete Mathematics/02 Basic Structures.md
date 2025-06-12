@@ -64,7 +64,7 @@ $$\overline{A}=\{x:x\in U\land x\notin A\}$$
 
 $$|A\cup B|=|A|+|B|-|A\cap B|$$
 
-![alt text](./images/image2-1.png)
+![alt text](./images/image2-1.webp)
 
 To prove set identies, the most effective way is to show that each side of the identity is a subset of the other side, builder notation and propositional logic are also used in our proof.
 

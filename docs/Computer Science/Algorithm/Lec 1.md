@@ -45,7 +45,7 @@ AVL 树的删除、插入都和一般的二叉搜索树没有差别：插入需�
 
 AVL 树有四种典型的旋转操作：LL、RR、LR 和 RL，其命名是根据插入元素（或者**引起失衡的节点**）的位置和最早失衡的节点的位置关系来的。LL 就意味着插入元素在最早失衡的节点的左子树的左子树上，别的同理。RR 就需要向左旋转一圈、LL 向右旋转一圈、LR 先向左旋转再向右旋转、RL 先向右旋转再向左旋转。
 
-<img class="center-picture" src="./assets/avl-1.png" alt="drawing" width="550" />
+<img class="center-picture" src="./assets/avl-1.webp" alt="drawing" width="550" />
 
 !!! Note "注意"
     1. 在插入和删除的时候有可能多个节点的平衡性质都被破坏；
@@ -180,7 +180,7 @@ Splay 操作定义如下：
 - Zig-Zig：如果是 LL 型或者 RR 型的，那么先旋转父亲 $P$ 和爷爷 $G$，然后再旋转 $P$ 和 $X$；
 - Zig-Zag：如果是 LR 型或者 RL 型的，正常处理即可。
 
-<img class="center-picture" src="./assets/avl-2.png" alt="drawing" width="600" />
+<img class="center-picture" src="./assets/avl-2.webp" alt="drawing" width="600" />
 
 Splay 树的每个操作的**摊还代价**是 $O(\log N)$ 的。选用的势函数为 $\Phi(T) = \sum\limits_{i \in T} \log S(i) = \sum\limits_{i \in T} R(i)$，其中 $i$ 是 $T$ 的后代，$S(i)$ 是以 $i$ 为根节点的子树的节点数，将其取对数就是 $i$ 的秩/Rank $R(i)$。
 
@@ -212,7 +212,7 @@ Splay 树的每个操作的**摊还代价**是 $O(\log N)$ 的。选用的势函
 
 第二种情况可以一次性转化为第三种情况，也就是对新插入的节点向左旋转一次就可以；第三种情况需要对新插入节点的父节点向右旋转一次，再将新插入节点的原父节点和祖父节点的颜色交换。这其实就和 AVL 树处理方法一样：我们将红色视为 Trouble。
 
-<img class="center-picture" src="./assets/RedBlack-1.png" alt="drawing" width="600" />
+<img class="center-picture" src="./assets/RedBlack-1.webp" alt="drawing" width="600" />
 
 **红黑树插入的最多旋转次数为 2**。
 

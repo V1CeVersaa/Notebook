@@ -2,7 +2,7 @@
 
 !!! Abstract
 
-    <img class="center-picture" src="../assets_2/abstract.png" alt="abstract" width=580 />
+    <img class="center-picture" src="../assets_2/abstract.webp" alt="abstract" width=580 />
 
     - Tag: Multi-Armed Bandit, Reinforcement Learning, PAC Learnable, Action Elimination. 
     - Journal of Machine Learning Research Volume 7 (2006) 1079–1105
@@ -93,7 +93,7 @@ $$\begin{aligned}
 
 完全基于 Hoeffding 不等式，对每个摇臂均重复多次采样，使用经验均值估计背后的期望均值，按照经验均值最优原则选择最优摇臂。
 
-<img class="center-picture" src="../assets_2/alg-1.png" alt="alg-1" width=580 />
+<img class="center-picture" src="../assets_2/alg-1.webp" alt="alg-1" width=580 />
 
 **Theorem 1**：这个算法 $\mathrm{Naive}(\epsilon, \delta)$ 是一个 $(\epsilon, \delta)$-PAC 算法，其样本复杂度为 $O(n/\epsilon^2 \log(n/\delta))$。
 
@@ -105,7 +105,7 @@ $$\begin{aligned}
 
 基本想法：我们是用 $\Delta_i = p_1 - p_i > 0$ 衡量摇臂 $i$ 和最优摇臂 $1$ 的差距，目标是对每一个摇臂 $a_i$ 采样 $(1/\Delta_i^2)\log(n/\delta)$ 次。同时我们希望一个一个消除摇臂，而最差的摇臂只需要采样 $(1/\Delta_n^2)\log(n/\delta)$ 次，于是我们可以构建每轮采样 $\left(1/\Delta_{n-i}^2 - 1/\Delta_{n-i+1}^2\right)\log(n/\delta)$ 次的算法。
 
-<img class="center-picture" src="../assets_2/alg-2.png" alt="alg-2" width=580 />
+<img class="center-picture" src="../assets_2/alg-2.webp" alt="alg-2" width=580 />
 
 **Theorem**：假设 $\Delta_i > 0$，则 Successive Elimination with Known Biases（已知偏差的连续消除）算法是一个 $(0, \delta)$-PAC 算法，其摇臂采样复杂度为：
 
@@ -137,7 +137,7 @@ $$O\left(\left(\sum_{i=2}^n \frac{1}{\Delta_i^2}\right) \log \frac{n}{\delta} \r
 
 我们放松对所有臂的期望奖励已知的假设，进而引入适用于任何偏差集合的连续消除算法。
 
-<img class="center-picture" src="../assets_2/alg-3.png" alt="alg-3" width=580 />
+<img class="center-picture" src="../assets_2/alg-3.webp" alt="alg-3" width=580 />
 
 **Theorem**：假设 $\Delta_i > 0$，则 Successive Elimination with Unknown Biases（未知偏差的连续消除）算法是一个 $(0, \delta)$-PAC 算法，其摇臂采样复杂度为：
 
@@ -171,7 +171,7 @@ $$O\left(\sum_{i:\Delta_i>\epsilon} \frac{\log(n/\delta\Delta_i)}{\Delta_i^2} + 
 
 基本想法就是在每一轮迭代的时候消除最差的一半摇臂，我们也不希望最佳摇臂在经验上是最好的，只希望一个 $\epsilon$-最优摇臂位于中位数之上。
 
-<img class="center-picture" src="../assets_2/alg-4.png" alt="alg-4" width=580 />
+<img class="center-picture" src="../assets_2/alg-4.webp" alt="alg-4" width=580 />
 
 **Theorem**：参数为 $(\epsilon, \delta)$ 的中位数消除算法是一个 $(\epsilon, \delta)$-PAC 算法，其摇臂样本复杂度为
 

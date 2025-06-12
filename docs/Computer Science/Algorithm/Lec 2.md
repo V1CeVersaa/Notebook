@@ -51,7 +51,7 @@ LeftistHeap merge_recursive(LeftistHeap h1, LeftistHeap h2) {
 
 迭代方式更加简洁：
 
-<img class="center-picture" src="./assets/Heap-2.png" alt="drawing" width="600" />
+<img class="center-picture" src="./assets/Heap-2.webp" alt="drawing" width="600" />
 
 
 单点插入可以看作是将一个结点作为一个左顷堆，然后与原堆合并的过程。DeleteMin 则是将根结点删除后，将其左右子树合并的过程。没啥可说的。
@@ -71,7 +71,7 @@ LeftistHeap merge_recursive(LeftistHeap h1, LeftistHeap h2) {
 
 斜堆一般不考虑单点删除和 DecreaseKey 这两个操作。
 
-<img class="center-picture" src="./assets/Heap-3.png" alt="drawing" width="600" />
+<img class="center-picture" src="./assets/Heap-3.webp" alt="drawing" width="600" />
 
 !!! Note
     It is an open problem to determine **precisely** the **expected right path length** of both leftist and skew heaps.
@@ -169,7 +169,7 @@ BinQueue Merge( BinQueue H1, BinQueue H2 ){
 
 删除操作看起来复杂得多：
 
-<img class="center-picture" src="./assets/Heap-4.png" alt="drawing" width="600" />
+<img class="center-picture" src="./assets/Heap-4.webp" alt="drawing" width="600" />
 
 ## Fibonacci Heap
 

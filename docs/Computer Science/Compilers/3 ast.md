@@ -31,7 +31,7 @@
 
 每一个终结符和非终结符都可以关联自己的都可以有自己的语义值/Semantic Value，将其语义值类型称为其关联类型，比如对于 $A \rightarrow B C D$，语义动作返回值的类型必须是 $A$ 的关联类型，这个值可以从 B、C、D 的语义值计算得到。在编译期可以直接计算下面的值：
 
-<img class="center-picture" src="./assets/3 ast/3-1.png" width=550 />
+<img class="center-picture" src="./assets/3 ast/3-1.webp" width=550 />
 
 在递归下降解析中，语义动作其实是 Parsing Function 返回的值，或者是这些函数的副作用，或者干脆两者都有。我们在 Yacc 中，在花括号里面写的就是语义动作。
 

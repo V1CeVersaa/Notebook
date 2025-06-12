@@ -178,7 +178,7 @@ avg = make_averager_list()
 
 在这里定义的 `averager` 函数中，`series` 是**自由变量/Free Variable**，指的是未在局部作用域中绑定的变量。Python 在 `__code__` 属性中保存局部变量和自由变量的名称，查看 `avg.__code__.co_freevars` 可以得到 `('series',)`，表示 `series` 是自由变量。
 
-<img class="center-picture" src="./assets/9-1.png" alt="Python 自由变量" width=600>
+<img class="center-picture" src="./assets/9-1.webp" alt="Python 自由变量" width=600>
 
 ```py
 def make_averager_numeric():

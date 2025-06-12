@@ -88,6 +88,6 @@ DRAM 都被连接到内存控制器/Memory Controller 上，内存控制器一�
 
 相较于取高的有效位作组索引位，取中间位当组索引位看起来有一些怪，但是对缓存的利用会更加均匀。就比如顺序扫描一个数组，取自高位当组索引位的缓存就一直只会保存一个组的元素，不能让缓存尽可能的满起来，而取中间位当组索引位的缓存就会让缓存有较高的使用效率。
 
-![alt text](assets/Chapter6/image6-3.png)
+![alt text](assets/Chapter6/image6-3.webp)
 
 ### 6.4.3 Set-Associative Caches

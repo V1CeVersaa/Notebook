@@ -17,7 +17,7 @@ If there exists a constant $c > 0$ and a positive integer $n_0$ such that $\vert
 
 If there exists two constant $c_1, c_2 > 0$ and a positive integer $n_0$ such that $c_1 \cdot \vert g(n) \vert \leqslant \vert f(n) \vert \leqslant c_2 \cdot \vert g(n) \vert$ for all $n \geqslant n_0$, then $f(n)$ is said to be $\Theta(g(n))$.
 
-![alt text](./images/image3-1.png)
+![alt text](./images/image3-1.webp)
 
 - **Tractable/易解 Problem**: There exists a polynomial time algorithm to solve this problem. These problems are said to belong to the **Class P**.
 - **Intractable/难解 Problem**:  There does not exist a polynomial time algorithm to solve this problem.

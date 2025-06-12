@@ -181,7 +181,7 @@ class ShortVector2d(Vector2d):
 
 从 Python 3.8 开始，Python 接口的定义和使用方式有如下四种，其中鸭子类型、静态类型我们已经谈过，我们在这里主要探讨大鹅类型和静态鸭子类型。
 
-<img class="center-picture" src="./assets/13-1.png" width=550>
+<img class="center-picture" src="./assets/13-1.webp" width=550>
 
 ## 十四、继承
 

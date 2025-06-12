@@ -129,7 +129,7 @@ $$D_1 \land D_2 \land \cdots \land D_m$$
 
 现在，我们用"蕴涵消去"规则来说明如何构造一个证明过程。
 
-<img class="center-picture" src="../assets/2-1.png" alt="2-1" width=550 />
+<img class="center-picture" src="./assets/2-1.webp" alt="2-1" width=550 />
 
 我们也将这样的形式推演称为一个证明，记作 $\{p, p \rightarrow q, p \rightarrow (q \rightarrow r)\} \vdash r$。在这个证明中，每一步都包括三个部分：**序号、结论和获得结论的依据**。其中，第 1-3 步的结论都是依据前提通过应用自反规则获得的；第 4 步的结论是依据第 1、3 步的结论应用蕴涵规则获得的。第 5、6 步与第 4 步类似。第 6 步的结论就是证明的最后结论。
 
@@ -333,7 +333,7 @@ $$\begin{aligned}
 
 ???- Info "例题"
 
-    <img class="center-picture" src="../assets/2-2.png" width=500 />
+    <img class="center-picture" src="./assets/2-2.webp" width=500 />
 
 **可满足性和有效性**：设 $\psi$ 是一个一阶公式。
 
@@ -377,7 +377,7 @@ $$Q_1x_1 \ldots Q_nx_n\phi^{\prime}$$
 
 ???- Info "例题"
 
-    <img class="center-picture" src="../assets/2-3.png" width=500 />
+    <img class="center-picture" src="./assets/2-3.webp" width=500 />
 
 如果出现存在量化，也就是我们考虑对于包含存在量词的公式，我们之前没有办法将其转化为字句公式，那么我们可以引入斯科伦常元和斯科伦函数来解决这个问题。
 
@@ -414,7 +414,7 @@ $$Q_1x_1 \ldots Q_nx_n\phi^{\prime}$$
 
 ???- Info "例题"
 
-    <img class="center-picture" src="../assets/2-4.png" width=500 />
+    <img class="center-picture" src="./assets/2-4.webp" width=500 />
 
 **赫布兰德定理**：设 $S$ 是子句集。$S$ 是可满足的当且仅当它的 H-基底是可满足的。
 

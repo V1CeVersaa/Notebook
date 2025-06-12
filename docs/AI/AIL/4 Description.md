@@ -7,7 +7,7 @@
 
 对于上述的 $\operatorname*{prop}$ 关系，可以在一个有向图之间得到表示，可以把 $\operatorname*{prop}$ 关系看作位于节点 $\mathrm{Ind}$ 和 $\mathrm{Val}$ 之间的一条边，并且这条边的标签为 $\mathrm{Prop}$，构成的图称为语义网络。其可以表示个体与个体之间的联系，还可以表示概念与概念之间的联系。
 
-<img class="center-picture" src="../assets/3-1.png" width=570 />
+<img class="center-picture" src="./assets/3-1.webp" width=570 />
 
 **语义网络**：语义网络是一个图，其节点表示对象或者概念，边表示这些对象或者概念之间的关系。
 

@@ -28,7 +28,7 @@
 
 控制流图（这里的定义和在 [Topic 7：基本块与 Trace](./7%20block.md) 中的不同），定义为一个有向图，其节点是语句，边表示控制流，语句可以是复制语句 `x = [y] op z`、拷贝语句或者分支语句。
 
-<img class="center-picture" src="./assets/9 liveness/9-1.png" alt="control flow graph" width="550">
+<img class="center-picture" src="./assets/9 liveness/9-1.webp" alt="control flow graph" width="550">
 
 回忆基本块的定义，基本块是具有单一入口和单一出口的语句序列，我们可以将一些语句组合成一个基本块，这样控制流图的定义就和第七节的定义一致了，但是在这一节我们仍然使用单语句基本块。
 
@@ -39,7 +39,7 @@
 - 存在后续语句 `s'` 使用 x；
 - 从 `s` 到 `s'` 存在一条路径，且这条路径上没有重新定义 x；
 
-<img class="center-picture" src="./assets/9 liveness/9-2.png" alt="liveness" width="550">
+<img class="center-picture" src="./assets/9 liveness/9-2.webp" alt="liveness" width="550">
 
 需要清楚的是，我们不能够准确地计算出变量的活性，考虑下面代码：
 
@@ -63,7 +63,7 @@ return x;
 
 对于下面的代码，假设目标机器只有一个寄存器 `r`，问题在于是否可以将 `a`、`b`、`c` 这三者全部放到同一个寄存器 `r`？先进行活跃分析，得到活跃区间，发现活跃区间并不重叠，这就可以将它们全部放到同一个寄存器 `r` 中，并且进行代码重写了。
 
-<img class="center-picture" src="./assets/9 liveness/9-3.png" alt="liveness" width="550">
+<img class="center-picture" src="./assets/9 liveness/9-3.webp" alt="liveness" width="550">
 
 除此之外，活跃分析还在代码优化（移除无用赋值）、SSA 构造、安全性检查中有用。
 
@@ -78,12 +78,12 @@ return x;
 
 活跃分析本质上就是求解入口活跃变量和出口活跃变量，后面会根据数据流方程和算法进行求解。
 
-<img class="center-picture" src="./assets/9 liveness/9-4.png" alt="pred-succ" width="550">
+<img class="center-picture" src="./assets/9 liveness/9-4.webp" alt="pred-succ" width="550">
 
 - **Def**：对一个变量或者临时值进行赋值，$\operatorname*{def}(n)$ 定义为在 n 处被定义的变量的集合；
 - **Use**：一个变量出现在了赋值语句的右侧或者别的表达式之中，$\operatorname*{use}(n)$ 定义为在 n 处被使用的变量的集合。
 
-<img class="center-picture" src="./assets/9 liveness/9-5.png" alt="def-use" width="550">
+<img class="center-picture" src="./assets/9 liveness/9-5.webp" alt="def-use" width="550">
 
 活性事实/Liveness Facts：
 
@@ -97,7 +97,7 @@ return x;
 - Rule 2：如果 $a \in \operatorname*{use}[n]$，则 $a \in \operatorname*{in}[n]$，换句话说，如果一个变量在节点 n 处被使用，那么其在节点 n 处入口活跃；
 - Rule 3：如果 $a \in \operatorname*{out}[n]$ 且 $a \notin \operatorname*{def}[n]$，则 $a \in \operatorname*{in}[n]$，换句话说，如果一个变量在节点 n 处出口活跃且没有被定义，那么其在节点 n 处入口活跃。
 
-<img class="center-picture" src="./assets/9 liveness/9-6.png" alt="liveness-rule" width="550">
+<img class="center-picture" src="./assets/9 liveness/9-6.webp" alt="liveness-rule" width="550">
 
 因此我们可以导出下面两个方程:
 
@@ -119,19 +119,19 @@ $$\begin{aligned}
 - 将所有节点的 $\operatorname*{in}[n]$ 和 $\operatorname*{out}[n]$ 初始化为空集，直接可以从控制流图中看出来 $\operatorname*{def}$ 集合和 $\operatorname*{use}$ 集合；
 - 重复应用这两个方程，直到所有集合不再变化，即收敛，收敛之后输出；
 
-<img class="center-picture" src="./assets/9 liveness/9-7.png" alt="liveness-algorithm" width="550">
+<img class="center-picture" src="./assets/9 liveness/9-7.webp" alt="liveness-algorithm" width="550">
 
 对于我们在上面举例 Def 和 Use 集合的 CFG，可以计算出最终的 $\operatorname*{in}$ 和 $\operatorname*{out}$ 集合如下：
 
-<img class="center-picture" src="./assets/9 liveness/9-9.png" alt="liveness-result" width="550">
+<img class="center-picture" src="./assets/9 liveness/9-9.webp" alt="liveness-result" width="550">
 
 加速迭代的方法：观察到跨节点传递信息的规则只有 $\operatorname*{out}[n] = \bigcup_{m \in \operatorname*{succ}[n]} \operatorname*{in}[m]$，因此我们清楚，活性分析算法的本质其实就是反向分析，于是算法加入如下 patch：只需要记录每一个节点的后继如何变化，逆着控制流顺序更新节点，对每一个节点先计算 $\operatorname*{out}[n]$，再计算 $\operatorname*{in}[n]$。
 
-<img class="center-picture" src="./assets/9 liveness/9-8.png" alt="liveness-speed" width="550">
+<img class="center-picture" src="./assets/9 liveness/9-8.webp" alt="liveness-speed" width="550">
 
 这样一来，只需要三次迭代即可收敛，而原来的算法需要七次迭代。
 
-<img class="center-picture" src="./assets/9 liveness/9-10.png" alt="liveness-speed-2" width="550">
+<img class="center-picture" src="./assets/9 liveness/9-10.webp" alt="liveness-speed-2" width="550">
 
 ## 3. 一些讨论
 
@@ -152,6 +152,6 @@ $$\begin{aligned}
 
 **定理**：活性方程通常有多组解，比如下面头两个就是解，但是第三个就不是解。
 
-<img class="center-picture" src="./assets/9 liveness/9-11.png" alt="liveness-theorem" width="550">
+<img class="center-picture" src="./assets/9 liveness/9-11.webp" alt="liveness-theorem" width="550">
 
 **定理**：活性方程存在一个最小不动点，且迭代算法必然收敛到这个最小不动点。

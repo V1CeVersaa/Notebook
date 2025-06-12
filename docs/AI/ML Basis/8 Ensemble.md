@@ -210,7 +210,7 @@ Bagging 方法是并行式集成学习方法最著名的代表，基于自助采
 
 Bagging 的算法描述如下：
 
-<img class="center-picture" src="../assets/8-3.png" width="650" />
+<img class="center-picture" src="./assets/8-3.webp" width="650" />
 
 假定基学习器的计算复杂度为 $O(m)$，采样和投票的复杂度为 $O(s)$，则 Bagging 的复杂度大致为 $T(O(m) + O(s))$，考虑到采样与投票的复杂度 $O(s)$ 很小，而 $T$ 通常是一个不太大的常数，因此，训练一个 Bagging 集成与直接使用基学习算法训练一个学习器的复杂度同阶，这说明 Bagging 是一个很高效的集成学习算法。另外，与标准 AdaBoost 只适用于二分类任务不同，Bagging 能不经修改地用于多分类和回归任务。
 

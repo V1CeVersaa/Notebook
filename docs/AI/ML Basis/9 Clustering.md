@@ -115,7 +115,7 @@ $$E = \sum_{i=1}^k\sum_{\boldsymbol{x}\in C_i} \lVert \boldsymbol{x} - \boldsymb
 
 但是，最小化上式是一个 $\mathsf{NP}$ 难问题，因此 k 均值算法采用了贪心策略，通过迭代优化来近似求解。算法描述如下：
 
-<img class="center-picture" src="../assets/9-1.png" width="600" />
+<img class="center-picture" src="./assets/9-1.webp" width="600" />
 
 我们令需要求解的原型向量为均值向量，首先对均值向量进行初始化，然后在迭代过程中交替进行两个步骤：保持当前均值向量不变，计算每个样本与所有均值向量的距离，将其划入距离最近的簇；保持当前簇划分不变，更新每个簇的均值向量。重复上述过程直至收敛，即可得到最终的簇划分。对上述过程的重复可能设置对应阈值，例如最大迭代次数。
 
@@ -127,7 +127,7 @@ $$E = \sum_{i=1}^k\sum_{\boldsymbol{x}\in C_i} \lVert \boldsymbol{x} - \boldsymb
 
 LVQ 的聚类生成过程受监督信息的辅助：随机选择样本，找出与其最近的原型向量，根据两者的类别标记是否一致来对原型向量进行相应的更新。具体算法描述如下：
 
-<img class="center-picture" src="../assets/9-2.png" width="600" />
+<img class="center-picture" src="./assets/9-2.webp" width="600" />
 
 我们考虑原型向量的更新过程，对样本 $\boldsymbol{x}_j$，若最近的原型向量 $\boldsymbol{p}_r$ 与 $\boldsymbol{x}_j$ 的类别标记相同，则令 $\boldsymbol{p}_r$ 向 $\boldsymbol{x}_j$ 的方向靠拢：
 
@@ -205,7 +205,7 @@ $$\begin{aligned}
 
 在每步迭代中，先根据当前参数来计算每个样本属于各个高斯成分的后验概率 $\gamma_{ji}$（E步）；再根据后验概率和当前参数更新模型参数 $\{(\alpha_i,\boldsymbol{\mu}_i,\boldsymbol{\Sigma}_i)\}_{i=1}^k$（M步）。算法过程如下图所示：
 
-<img class="center-picture" src="../assets/9-3.png" width="600" />
+<img class="center-picture" src="./assets/9-3.webp" width="600" />
 
 算法第一行先对高斯混合分布的模型进行初始化，之后 repeat 循环内基于 EM 算法对模型参数进行迭代更新。若 EM 算法的停止条件满足（例如已达到最大迭代轮数，或似然函数值 $LL(D)$ 增长很少甚至不再增长），接下来根据高斯混合分布计算出后验概率，根据后验概率确定簇标记并决定簇划分，最后返回最终结果。
 
@@ -223,7 +223,7 @@ DBSCAN/Density-Based Spatial Clustering of Applications with Noise 基于一组�
 
 因为密度直达要求 $\boldsymbol{x}_i$ 是一个核心对象，但是 $\boldsymbol{x}_j$ 不一定是核心对象，所以**密度直达一般不满足对称性**，密度可达关系满足传递性但不满足对称性，密度相连关系满足对称性和传递性。
 
-<img class="center-picture" src="../assets/9-4-1.png" width="600" />
+<img class="center-picture" src="./assets/9-4-1.webp" width="600" />
 
 基于这些概念，DBSCAN 将簇定义为：由密度可达关系导出的最大的密度相连样本集合。给定邻域参数 $(\epsilon,\text{MinPts})$，簇 $C \subseteq D$ 是满足以下性质的非空样本子集：
 
@@ -234,7 +234,7 @@ DBSCAN/Density-Based Spatial Clustering of Applications with Noise 基于一组�
 
 于是，DBSCAN 算法先任选数据集中的一个核心对象为种子，由此出发确定相应的聚类簇，算法流程如下图所示：
 
-<img class="center-picture" src="../assets/9-4-2.png" width="600" />
+<img class="center-picture" src="./assets/9-4-2.webp" width="600" />
 
 算法首先确定所有核心对象，然后以任一核心对象为出发点，找出由其密度可达的样本生成聚类簇，直到所有核心对象均被访问过为止。
 
@@ -252,7 +252,7 @@ AGNES/AGglomerative NESting 是一种采用自底向上聚合策略的层次聚�
 
 算法的具体流程如下图所示：
 
-<img class="center-picture" src="../assets/9-5.png" width="600" />
+<img class="center-picture" src="./assets/9-5.webp" width="600" />
 
 具体来讲，算法首先将每一个样本看作一个初始聚类簇，并且初始化对应的距离矩阵；然后在每一步找到距离最近的两额聚类簇进行合并，并且更新距离矩阵，重新编号簇并且更新距离矩阵，直到达到预设的聚类簇数。
 

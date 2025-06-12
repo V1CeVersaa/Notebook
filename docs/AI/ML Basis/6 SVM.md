@@ -25,7 +25,7 @@ $$\gamma = \frac{2}{\lVert\boldsymbol{w}\rVert}.$$
 
 它被称为**间隔/Margin**。
 
-<img class="center-picture" src="../assets/6-1.png" width="550"/>
+<img class="center-picture" src="./assets/6-1.webp" width="550"/>
 
 为了找到具有最大间隔的划分超平面，我们需要找到能满足上式约束的参数 $\boldsymbol{w}$ 和 $b$，使得 $\gamma$ 最大，即求解下面优化问题：
 

@@ -19,7 +19,7 @@
 
 比如 `CJUMP` 可以转移到两个标号之间的任何一个，而真正的机器语言中的转移指令在为假的时候下降到下一条指令；表达式内的 `ESEQ` 节点也不太方便，因为 `ESEQ` 节点在计算语句 `s` 的时候可能会产生副作用，因此会导致计算表达式的时候先做什么后做什么结果不一样：
 
-<img class="center-picture" src="./assets/7 block/7-1.png" width=550 />
+<img class="center-picture" src="./assets/7 block/7-1.webp" width=550 />
 
 除此之外，当试图将参数传入固定的形式参数寄存器的时候，在一个 `CALL` 节点的参数表达式中使用另一个 `CALL` 节点会产生问题，比如对于 `CALL(f, [e1, CALL(g, [e2, ...])` 来讲：
 
@@ -50,11 +50,11 @@ IR 树的典范化分三部分：
 
 转化规则基本如下：
 
-<img class="center-picture" src="./assets/7 block/7-2.png" width=550 />
+<img class="center-picture" src="./assets/7 block/7-2.webp" width=550 />
 
 但是对于一些复杂的表达式，比如 `BINOP(op, e1, ESEQ(s, e2))`，我们就不能简单的转换成 `ESEQ(s, BINOP(op, e1, e2))`，因为 `s` 可能有副作用，影响 `e1` 的值。解决方法是使用临时值保存 `e1` 的值，然后使用这个临时值替换 `e1` 的位置，也就是转换成 `ESEQ(MOVE(TEMP t, e1), ESEQ(s, BINOP(op, TEMP t, e2)))`。
 
-<img class="center-picture" src="./assets/7 block/7-3.png" width=550 />
+<img class="center-picture" src="./assets/7 block/7-3.webp" width=550 />
 
 对于 `s` 会不会影响 `e1` 的值这个属性，我们将其命名为可交换性/Commutativity。考虑 `MOVE(MEM(t1), e)` 和 `MEM(t2)`，如果 `t1 != t2`，那么这两个表达式就是可以交换的，否则就是不可以交换的。
 
@@ -84,13 +84,13 @@ IR 树的典范化分三部分：
 
 对于特殊情况，比如仅仅利用 `CALL` 的副作用或者直接对 `CALL` 返回值进行赋值的情况，这两种我们保持中间表示树不变：
 
-<img class="center-picture" src="./assets/7 block/7-4.png" width=550 />
+<img class="center-picture" src="./assets/7 block/7-4.webp" width=550 />
 
 ### 2.3 消除 `SEQ` 节点
 
 在应用完上述规则之后，我们得到的树可能形如：`SEQ(SEQ(SEQ(..., sx), sy), sz)`，需要将每一个 `SEQ` 节点转换成另一个 `SEQ` 节点的右节点，应用规则：`SEQ(SEQ(a, b), c) -> SEQ(a, SEQ(b, c))`。这样我们就得到了形如 `SEQ(s1, SEQ(s2, SEQ(s3, ...)))` 的树。这就可以看成一列语句 `s1, s2, s3, ...` 了。
 
-<img class="center-picture" src="./assets/7 block/7-5.png" width=550 />
+<img class="center-picture" src="./assets/7 block/7-5.webp" width=550 />
 
 ## 3. 处理条件分支
 
@@ -107,7 +107,7 @@ IR 树的典范化分三部分：
 
 控制流图/Control Flow Graph 中的节点是基本块，边就是跳转指令：
 
-<img class="center-picture" src="./assets/7 block/7-6.png" width=550 />
+<img class="center-picture" src="./assets/7 block/7-6.webp" width=550 />
 
 生成过程很自然：
 
@@ -116,7 +116,7 @@ IR 树的典范化分三部分：
 - 如果一个块并不以 `JUMP` 或者 `CJUMP` 结束，那么就添加一个 `JUMP` 指令指向下一个块；
 - 如果一个块不以 `LABEL` 开头，那么就添加一个 `LABEL` 指令在块的开始。
 
-<img class="center-picture" src="./assets/7 block/7-7.png" width=550 />
+<img class="center-picture" src="./assets/7 block/7-7.webp" width=550 />
 
 ### 3.2 轨迹/Traces
 
@@ -129,13 +129,13 @@ IR 树的典范化分三部分：
 
 对于下面的图来讲，我们显然应该按照 Layout 1 的顺序排序基本块，这样可以减少跳转的次数，减少流水线停顿。
 
-<img class="center-picture" src="./assets/7 block/7-8.png" width=550 />
+<img class="center-picture" src="./assets/7 block/7-8.webp" width=550 />
 
 一个轨迹/Trace 是在程序执行过程中可以按照顺序执行的指令序列，可以包含条件分支。换句话说，几个链接在一起的基本块构成了一个 Trace。我们的目标是构造一组覆盖整个程序的轨迹集合，其中每一个 Trace 都没有环，每一个基本块必须严格只在一个 Trace 中出现。
 
 简单的贪心算法的形式化描述如下：
 
-<img class="center-picture" src="./assets/7 block/7-9.png" width=550 />
+<img class="center-picture" src="./assets/7 block/7-9.webp" width=550 />
 
 简单来说，我们只需要从源节点开始跑一个深度优先搜索（Depth-first Traversal of the CFG）就可以，详细描述如下：
 
@@ -143,13 +143,13 @@ IR 树的典范化分三部分：
 - 如何计算新的 Trace：选择没有被标记的一个基本块作为下一个 Trace 的起点；
 - 全局终止条件：不断迭代一直到所有基本块都被标记。
 
-<img class="center-picture" src="./assets/7 block/7-10.png" width=550 />
+<img class="center-picture" src="./assets/7 block/7-10.webp" width=550 />
 
 代码在组织成 Trace 之后，很多（但不是所有的）`CJUMP` 指令后面都紧跟着其 `false` 标号，我们需要处理那些后面没有跟随 `false` 标号的 `CJUMP` 指令：对于 `CJUMP(>, x, y, Lt, Lf), LABEL Lt`：直接将 `OP` 取反，标签交换，变成 `CJUMP(<=, x, y, Lf, Lt)`，就可以了。
 
 如果 `CJUMP` 后面不是真标签也不是假标签，解决方法是在后面添加一个新的标签和跳转指令：
 
-<img class="center-picture" src="./assets/7 block/7-11.png" width=550 />
+<img class="center-picture" src="./assets/7 block/7-11.webp" width=550 />
 
 最后，再选择迹优化方案产生所谓最优迹/Optimal Trace 的时候，我们需要注意：最优性本身需要标准，可能的指导原则可能如下：
 
@@ -157,6 +157,6 @@ IR 树的典范化分三部分：
 - 局部性增强/Locality Enhancement：将相关的代码（逻辑上或执行上）放在内存中相邻的位置，这可以改善缓存性能；
 - 跳转最小化/Jump Minimization：减少常见执行路径中无条件跳转的数量，跳转会打断处理器的流水线，降低效率。
 
-<img class="center-picture" src="./assets/7 block/7-12.png" width=550 />
+<img class="center-picture" src="./assets/7 block/7-12.webp" width=550 />
 
 

@@ -122,7 +122,7 @@ $$P(c \mid \boldsymbol{x}) \propto P(c)\prod_{i=1}^d P(x_i \mid c, pa_i).$$
 
 最直接的做法是假设所有属性都依赖于同一个属性，称为超父/Super-Parent，然后通过交叉验证等模型选择方法来确定超父属性，由此形成了 SPODE/Super-Parent ODE 方法。在下面图的 (b) 中，$x_1$ 是超父属性。
 
-<img class="center-picture" src="../assets/7-1.png" width="650" />
+<img class="center-picture" src="./assets/7-1.webp" width="650" />
 
 TAN/Tree Augmented Naïve Bayes 是在最大带权生成树/Maximum Weighted Spanning Tree 算法的基础上，通过计算任意两个属性之间的条件互信息来确定属性间依赖关系的网络结构。生成过程如下：
 
@@ -151,7 +151,7 @@ $$\hat{P}(c,x_i) = \frac{|D_{c,x_i}| + 1}{|D| + N_i}, \quad \hat{P}(x_j \mid c,x
 
 一个贝叶斯网 $B$ 由结构 $G$ 和参数 $\Theta$ 两部分构成，即 $B = \langle G,\Theta \rangle$；网络结构 $G$ 是一个有向无环图，其每个结点对应于一个属性，若两个属性有直接依赖关系，则它们由一条边连接起来；参数 $\Theta$ 定量描述这种依赖关系，假设属性 $x_i$ 在 $G$ 中的父结点集为 $\pi_i$，则 $\Theta$ 包含了每个属性的条件概率表 $\theta_{x_i|\pi_i} = P_B(x_i \mid \pi_i)$。
 
-<img class="center-picture" src="../assets/7-2.png" width="600" />
+<img class="center-picture" src="./assets/7-2.webp" width="600" />
 
 ### 5.1 结构
  
@@ -167,7 +167,7 @@ $$P(x_1,x_2,x_3,x_4,x_5) = P(x_1)P(x_2)P(x_3 \mid x_1)P(x_4 \mid x_1,x_2)P(x_5 \
 
 注意到即使这样的联合概率分布定义直观上违背概率论中联合概率分布的定义，但是我们应用属性条件独立性假设（在给定父节点集的时候，每个属性和非后裔属性独立），可以验证这样的定义是妥当的。
 
-<img class="center-picture" src="../assets/7-3.png" width="600" />
+<img class="center-picture" src="./assets/7-3.webp" width="600" />
 
 上图显示出了贝叶斯网中三个变量之间的典型依赖关系，其中同父结构和顺序结构在联合概率分布的定义中已经有所体现。在同父结构中，给定父节点 $x_1$ 的取值，则 $x_3$ 和 $x_4$ 条件独立；在顺序结构中，给定 $x$ 的值，则 $y$ 和 $z$ 条件独立。V 型结构也称为冲撞结构，给定子节点 $x_4$ 的取值，$x_1$ 和 $x_2$ **必不独立**。奇妙的是，若 $x_4$ 的取值**完全未知**，则 V 型结构下 $x_1$ 和 $x_2$ 却是相互独立的。这样的独立性称为边际独立性/Marginal Independence，记为 $x_1 \parallel x_2$。
 
@@ -182,7 +182,7 @@ $$P(x_1,x_2,x_3,x_4,x_5) = P(x_1)P(x_2)P(x_3 \mid x_1)P(x_4 \mid x_1,x_2)P(x_5 \
 
 由此产生的无向图称为道德图/Moral Graph，令父结点相连的过程称为道德化/Moralization。基于道德图可以直观、迅速地找到变量间的条件独立性。假定道德图中有变量 $x_i$ 和变量集合 $\boldsymbol{z} = \{z_i\}$，若变量 $x$ 和 $y$ 能在图上被 $\boldsymbol{z}$ 分开，即从图上将 $\boldsymbol{z}$ 结点去除后，$x$ 和 $y$ 分属两个连通分支，则称变量 $x$ 和 $y$ 被 $\boldsymbol{z}$ 有向分离。
 
-<img class="center-picture" src="../assets/7-4.png" width="400" />
+<img class="center-picture" src="./assets/7-4.webp" width="400" />
 
 在上述道德图中，从图中能容易地找出所有的条件独立关系：$x_3 \perp x_4 \mid x_1$，$x_4 \perp x_5 \mid x_2$，$x_3 \perp x_2 \mid x_1$，$x_3 \perp x_5 \mid x_1$，$x_3 \perp x_5 \mid x_2$ 等。
 
@@ -227,7 +227,7 @@ $$P(\mathbf{Q} = \mathbf{q} \mid \mathbf{E} = \mathbf{e}) \simeq \frac{n_q}{T}.$
 
 重点在于如何从当前样本出发产生下一个样本：在第 $t$ 次采样中，算法先假设 $\mathbf{q}^t = \mathbf{q}^{t-1}$，然后对非证据变量逐个进行采样改变其取值，采样概率根据贝叶斯网 $B$ 和其他变量的当前取值计算获得。这是一个马尔可夫链，无论从什么初始状态开始，马尔可夫链第 $t$ 步的状态分布在 $t \to \infty$ 时会收敛到后验概率分布（若贝叶斯网中存在极端概率 0 或者 1，则不能保证马尔可夫链存在平稳分布，这时候吉布斯采样会给出错误的结果）。
 
-<img class="center-picture" src="../assets/7-5.png" width="690" />
+<img class="center-picture" src="./assets/7-5.webp" width="690" />
 
 ## 6. EM 算法
 

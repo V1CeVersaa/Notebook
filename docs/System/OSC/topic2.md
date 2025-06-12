@@ -20,7 +20,7 @@ CPU 调度需要维护进程的调度队列，进程会在不同的队列之间�
 
 这些队列都使用链表实现，头结点都有着两个指针，分别指向链表的第一个和最后一个 PCB 块，每个 PCB 块也包含一个指针，用于指向队列的下一个 PCB 块。
 
-<img class="center-picture" src="assets/topic2/Schedule-1.png" alt="drawing" width="500" />
+<img class="center-picture" src="assets/topic2/Schedule-1.webp" alt="drawing" width="500" />
 
 就绪队列只有一个，但是等待队列一般有多个，因为等待队列等待的事件有很多种，比如等待 I/O 完成、等待子进程终止，等待中断等等：
 
@@ -28,7 +28,7 @@ CPU 调度需要维护进程的调度队列，进程会在不同的队列之间�
 - 进程可能创建一个新的子进程，这时候就放在子进程等待队列中，等待子进程终止；
 - 进程可能由于中断或者时间片到期，被强制释放 CPU，这时候也被放在等待队列中。
 
-<img class="center-picture" src="assets/topic2/Schedule-2.png" alt="drawing" width="500" />
+<img class="center-picture" src="assets/topic2/Schedule-2.webp" alt="drawing" width="500" />
 
 我们把多个等待执行的进程都存放在主存中，很多操作系统还有另外一种形式的调度：交换/Swap。主要思想是：有时从主存中（以及从对 CPU 的争用中）删除一个进程是有利的，这时就可以降低多道程序的度/Degree（即当前在内存中的进程数量）。这种情况下，我们将进程的当前状态保存，将其换到硬盘上，知道被调度的时候才会换入内存、恢复状态，从停止执行的地方继续执行。
 
@@ -39,13 +39,13 @@ Swap 其实就提到了**上下文切换/Context Switch**：举一个中断的�
 - 当进程放弃对 CPU 的控制的时候，会发生资源上下文切换，这是因为它需要当前不可用的资源；
 - 非资源上下文切换发生在 CPU 已从进程中取出的时候，比如当前时间片到期或者被更高优先级的进程抢占的时候。
 
-<img class="center-picture" src="assets/topic2/Schedule-3.png" alt="drawing" width="650" />
+<img class="center-picture" src="assets/topic2/Schedule-3.webp" alt="drawing" width="650" />
 
 上图的过程就是一个上下文切换的过程，微观上看，将状态存到 PCB 和从 PCB 恢复状态的过程就是右边的过程，这也就是分派器/Dispatcher 的职责。从前一个进程暂停运行到下一个进程开始运行的时间叫做 **Dispatch Latency**。
 
 每个进程在 Kernel Space 都会有类似下面这张图一样的内核栈，保存着线程信息等等需要保存的值：
 
-<img class="center-picture" src="assets/topic2/Schedule-11.png" alt="drawing" width="500" />
+<img class="center-picture" src="assets/topic2/Schedule-11.webp" alt="drawing" width="500" />
 
 > Linux 默认的内核栈大小为四页，每页 4KB，所以默认的内核栈大小为 16KB。
 
@@ -92,7 +92,7 @@ Swap 其实就提到了**上下文切换/Context Switch**：举一个中断的�
 
 策略很简单：先请求 CPU 的进程会首先被分配到 CPU。FCFS 策略可以通过 FIFO 队列简单实现。下图是一个简单的例子：
 
-<img class="center-picture" src="assets/topic2/Schedule-4.png" alt="drawing" width="650" />
+<img class="center-picture" src="assets/topic2/Schedule-4.webp" alt="drawing" width="650" />
 
 FCFS 的缺点是平均等待时间往往很长。并且如果进程的 CPU 突发时间变化很大，那么平均等待时间的变化也会很大。另外，**FCFS 是一种非抢占调度**，就很有可能出现一种情况：有一个长时间的 CPU 密集型进程后边跟着很多 I/O 密集型进程，这时很多端的进程都等待着一个长的进程，这种情况被称为**护航效应/Convoy Effect**。
 
@@ -147,7 +147,7 @@ SJF 算法有两种形式：抢占的和非抢占的。当一个新进程到达�
 
 优先级调度的一个问题是**无穷阻塞/Indefinite Blocking**，也被称为**饥饿/Starvation**。有可能一个低优先级进程一直都得不到 CPU，很可能是因为一直都有高优先级的进程在运行。低优先级进程无穷等待的解决方法之一好似老化/Aging，老化逐渐增加在系统中等待很长时间的进程的优先级，这样低优先级进程不久就可以拥有高优先级，进而很快被执行。另一种方法是将轮询和优先级调度结合起来，系统执行最高优先级的进程并且使用轮询运行具有相同优先级的进程，下面是一个简单的例子：
 
-<img class="center-picture" src="assets/topic2/Schedule-5.png" alt="priority scheduling with rr" width="550" />
+<img class="center-picture" src="assets/topic2/Schedule-5.webp" alt="priority scheduling with rr" width="550" />
 
 ### 6. Multi-Level Queue Scheduling
 
@@ -156,7 +156,7 @@ SJF 算法有两种形式：抢占的和非抢占的。当一个新进程到达�
 ???- Info "What's a Good Scheduling Algorithm?"
     省流：几乎没有可用的分析结果和理论结果，只能通过模拟或者实现来评估调度算法。
 
-    <img class="center-picture" src="assets/topic2/Schedule-10.png" alt="drawing" width="650" />
+    <img class="center-picture" src="assets/topic2/Schedule-10.webp" alt="drawing" width="650" />
 
 ## 多处理器调度
 
@@ -181,7 +181,7 @@ SJF 算法有两种形式：抢占的和非抢占的。当一个新进程到达�
 - 每个线程都在一个共同的就绪队列中；
 - 每个处理器有自己的私有线程队列。
 
-<img class="center-picture" src="assets/topic2/Schedule-6.png" alt="smp" width="600" />
+<img class="center-picture" src="assets/topic2/Schedule-6.webp" alt="smp" width="600" />
 
 两者相对比可以很容易发现他们的优缺点：
 
@@ -194,17 +194,17 @@ SMP 系统拥有多个物理处理器，因此允许多个线程同时运行。�
 
 多核处理器的调度问题更为复杂，，一个原因就是**内存停顿/Memory Stall**。内存停顿的原因多种多样，比如缓存不命中。严重情况下，处理器可能花费高达一半的时间等待内存可用。
 
-<img class="center-picture" src="assets/topic2/Schedule-7.png" alt="multicore processor" width="600" />
+<img class="center-picture" src="assets/topic2/Schedule-7.webp" alt="multicore processor" width="600" />
 
 为了解决内存停顿，现代设计采用了多线程的处理器核，每个核都会分配到两个或多个**硬件线程**，这样，如果一个线程因为内存停顿等待内存，该核心就可以切换到另一个线程。从操作系统来看，每一个硬件线程作为一个**逻辑**处理器运行软件线程，这种多线程称为**芯片多线程/Chip MultiThreading/CMT**。
 
-<img class="center-picture" src="assets/topic2/Schedule-8.png" alt="chip multithreading" width="600" />
+<img class="center-picture" src="assets/topic2/Schedule-8.webp" alt="chip multithreading" width="600" />
 
 Intel 使用术语**超线程/HyperThreading** 来描述将多个硬件线程分配给单个硬件核心的技术，这种技术也被称为**同时多线程/Simultaneous Multithreading/SMT**。
 
 但是，硬件核心/物理核的资源必须在其上的所有硬件线程之间共享，因此一个处理核质可以一次执行一个硬件线程，因此多线程、多核处理器需要两个不同级别的调度策略：
 
-<img class="center-picture" src="assets/topic2/Schedule-9.png" alt="multicore processor scheduling" width="600" />
+<img class="center-picture" src="assets/topic2/Schedule-9.webp" alt="multicore processor scheduling" width="600" />
 
 - 第一级别的调度策略由操作系统作出，用于选择哪个软件线程在哪个硬件线程/逻辑处理器上运行。
 - 第二级别的调度策略指定每个核该如何决定运行哪个硬件线程。

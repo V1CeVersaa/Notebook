@@ -82,7 +82,7 @@ class C extends A { var d: int = 0 }
 class D extends B { var e: int = 0 }
 ```
 
-<img class="center-picture" src="assets/12 oop/12-1.png" alt="Field Inheritance" width="550" />
+<img class="center-picture" src="assets/12 oop/12-1.webp" alt="Field Inheritance" width="550" />
 
 这样的方法也可以正确处理多态，比如 `D` 的实例 `d` 可以被看作是 `A` 的实例，相当于将新增的字段都屏蔽了。
 
@@ -100,15 +100,15 @@ class D extends B { var e: int = 0 }
 - 找到后，直接生成对对应 label（如 `A_f`）的函数调用。
 - 静态方法的查找速度很快，完全可以在编译时完成，没有运行时开销；
 
-<img class="center-picture" src="assets/12 oop/12-2.png" alt="Static Method Dispatch" width="550" />
+<img class="center-picture" src="assets/12 oop/12-2.webp" alt="Static Method Dispatch" width="550" />
 
 对于动态方法来讲，处理稍微复杂一点：如果我们对 `C` 的一个对象调用 `c.f()`，编译器在编译期无法确定 `c` 的实际类型是 `C` 还是 `D`，因此就不确定到底是调用 `D_f` 还是 `C_f`：
 
-<img class="center-picture" src="assets/12 oop/12-3.png" alt="Dynamic Method Dispatch" width="550" />
+<img class="center-picture" src="assets/12 oop/12-3.webp" alt="Dynamic Method Dispatch" width="550" />
 
 解决方法是：每一个类描述符都包含一个分发向量/Dispatch Vector/虚表/Virtual Table/vtable，此向量中每一个非静态的方法名都对应一个方法实例，当 `B` 继承 `A` 的时候，其虚表的开始是 `A` 的所有方法名的登记项，然后才是 `B` 中用声明的新方法，当重载出现的时候，`B` 中重载的方法会替换掉 `A` 中对应的方法。
 
-<img class="center-picture" src="assets/12 oop/12-4.png" alt="Dynamic Method Dispatch" width="550" />
+<img class="center-picture" src="assets/12 oop/12-4.webp" alt="Dynamic Method Dispatch" width="550" />
 
 为了执行一个动态方法 `c.f()`，编译器编译出来的代码必须执行如下指令：
 
@@ -128,21 +128,21 @@ class D extends B { var e: int = 0 }
 - 边：如果两个字段或方法曾共现于同一个类中，就在它们之间连一条边；
 - 颜色：对应偏移量 0、1、2...
 
-<img class="center-picture" src="assets/12 oop/12-5.png" alt="Graph Coloring" width="550" />
+<img class="center-picture" src="assets/12 oop/12-5.webp" alt="Graph Coloring" width="550" />
 
 分析步骤和图染色的一样，就是我们不提具体算法了：先构建干涉图、然后染个色、最后根据染出来的颜色确定每个字段的偏移。
 
 === "Step 1: Interference Graph Construction"
 
-    <img class="center-picture" src="assets/12 oop/12-6.png" alt="Graph Coloring" width="550" />
+    <img class="center-picture" src="assets/12 oop/12-6.webp" alt="Graph Coloring" width="550" />
 
 === "Step 2: Coloring"
 
-    <img class="center-picture" src="assets/12 oop/12-7.png" alt="Graph Coloring" width="550" />
+    <img class="center-picture" src="assets/12 oop/12-7.webp" alt="Graph Coloring" width="550" />
 
 === "Step 3: Determining Layout"
 
-    <img class="center-picture" src="assets/12 oop/12-8.png" alt="Graph Coloring" width="550" />
+    <img class="center-picture" src="assets/12 oop/12-8.webp" alt="Graph Coloring" width="550" />
 
 问题当然是有的，最后的字段布局中出现了空槽/Wasted Empty Slots，比如 `B` 和 `C` 的对象布局分别在某些偏移处没有字段，造成空间浪费。
 
@@ -154,13 +154,13 @@ class D extends B { var e: int = 0 }
 
 为了读取对象 `x` 的字段 `a`：首先需要从对象头取出类描述符 `d`，然后从 `d` 中取出与 `a` 对应的字段偏移量，最后通过这个偏移量在对象的合适位置找到数据的值。注意到这时候类描述符就出现了空槽，但是因为类的数量远远小于对象的数目，所以这个开销是完全可以接受的。我们也将这个方法称为在类上着色。
 
-<img class="center-picture" src="assets/12 oop/12-9.png" alt="Graph Coloring" width="550" />
+<img class="center-picture" src="assets/12 oop/12-9.webp" alt="Graph Coloring" width="550" />
 
 但是问题又出现了，正如我们所说，开销从未消失，只不过是从空间的浪费转移到了时间的开销。另外每一个字段的偏移量也没有完全确定，比如在某个类中 `b` 的偏移量就是 1，但是在另一个类中 `b` 的偏移量就是 2。
 
 方法又如何呢？方法的布局和字段类似，可以将方法名和字段名一起着色，然后分别映射到代码地址/偏移，也存在查找的开销。
 
-<img class="center-picture" src="assets/12 oop/12-10.png" alt="Graph Coloring" width="550" />
+<img class="center-picture" src="assets/12 oop/12-10.webp" alt="Graph Coloring" width="550" />
 
 ### 3.2 哈希方法 
 

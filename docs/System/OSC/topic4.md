@@ -55,8 +55,8 @@
 
     第一个的确锁上了，第二个没锁上，等 $P_2$ 或 $P_4$ 释放资源就活了。
 
-    <img class="center-picture" src="assets/topic4/Deadlock-2.png" alt="drawing" width="550" />
-    <img class="center-picture" src="assets/topic4/Deadlock-3.png" alt="drawing" width="550" />
+    <img class="center-picture" src="assets/topic4/Deadlock-2.webp" alt="drawing" width="550" />
+    <img class="center-picture" src="assets/topic4/Deadlock-3.webp" alt="drawing" width="550" />
 
 ## 死锁的处理
 
@@ -79,7 +79,7 @@
 
 安全状态不是死锁状态，死锁状态是非安全状态，非安全状态就有可能出现死锁。这很直观：使用归纳法，如果线程 $T_i$ 的要求不能立刻被满足，那么其等待前面的线程 $T_j$ 全部完成，这样 $T_i$ 就可以获取全部资源了。
 
-<img class="center-picture" src="assets/topic4/Deadlock-4.png" alt="drawing" width="550" />
+<img class="center-picture" src="assets/topic4/Deadlock-4.webp" alt="drawing" width="550" />
 
 基于安全状态，我们可以定义避免算法，基本想法是确保系统始终处于安全状态：最初，系统一定处于安全状态，只有当一个线程申请一个可用资源的时候，系统应该确定进行这个资源分配之后系统仍然处于安全状态，如果不是，那么线程应该等待。
 
@@ -87,7 +87,7 @@
 
 使用死锁避免的时候，系统资源的需求应该提前说明，当线程 $T_i$ 开始执行的时候，所有的需求边都应该处于资源分配图之内。假设某个 $T_i$ 申请资源 $R_j$，我们只有**将申请边** $T_i \to R_j$ **变成分配边** $R_j \to T_i$ **之后不形成环**才可以将资源分配给 $T_i$，否则就要让这个线程等待。下面的资源分配就是错误的：
 
-<img class="center-picture" src="assets/topic4/Deadlock-8.png" alt="drawing" width="550" />
+<img class="center-picture" src="assets/topic4/Deadlock-8.webp" alt="drawing" width="550" />
 
 对于每种资源类型不只有一个实例的资源分配系统，我们需要引入银行家算法：首先需要下面的数据结构。
 
@@ -114,8 +114,8 @@
 ???- Example "PPT 上的例子"
     第一个产生了下面的安全序列，第二个就无论如何都找不到安全序列了。
 
-    <img class="center-picture" src="assets/topic4/Deadlock-9.png" alt="drawing" width="550" />
-    <img class="center-picture" src="assets/topic4/Deadlock-10.png" alt="drawing" width="550" />
+    <img class="center-picture" src="assets/topic4/Deadlock-9.webp" alt="drawing" width="550" />
+    <img class="center-picture" src="assets/topic4/Deadlock-10.webp" alt="drawing" width="550" />
 
 ### 3. 死锁检测
 
@@ -126,7 +126,7 @@
 
 检测死锁的一种方法是维护一个资源分配图的变种：等待图/Wait-for Graph。从资源分配图删除所有的资源类型节点，合并适当边，就可以得到等待图：
 
-<img class="center-picture" src="assets/topic4/Deadlock-5.png" alt="drawing" width="550" />
+<img class="center-picture" src="assets/topic4/Deadlock-5.webp" alt="drawing" width="550" />
 
 确切来讲，等待图中从进程 $P_i$ 到进程 $P_j$ 的边表示 $P_i$ 等待 $P_j$ 释放一个资源。当且仅当在等待图中有一个环的时候系统死锁。在图里找环的时间复杂度是 $O(V + E)$ 的，最坏情况是 $O(n^2)$ 的复杂度。
 
@@ -150,8 +150,8 @@
 ???- Example "PPT 上的例子"
     第一个是没锁上的例子，第二个例子不存在一个安全的分配序列，会产生死锁。
 
-    <img class="center-picture" src="assets/topic4/Deadlock-6.png" alt="drawing" width="550" />
-    <img class="center-picture" src="assets/topic4/Deadlock-7.png" alt="drawing" width="550" />
+    <img class="center-picture" src="assets/topic4/Deadlock-6.webp" alt="drawing" width="550" />
+    <img class="center-picture" src="assets/topic4/Deadlock-7.webp" alt="drawing" width="550" />
 
 检测算法的使用：取决于死锁发生的频率和死锁发生时有多少线程会受到影响。
 

@@ -26,7 +26,7 @@
 
 目标是将干涉图染色，其中颜色的数目和物理寄存器数目相同，并且每个节点只能有一种颜色。
 
-<img class="center-picture" src="assets/10 register/10-1.png" alt="Interference Graph" width="550" />
+<img class="center-picture" src="assets/10 register/10-1.webp" alt="Interference Graph" width="550" />
 
 需要特别处理的情况在于涉及 `MOVE` 指令的情况，对于一条定义了一个变量 $a$ 的指令，其出口活跃变量集合为 $b_1, \cdots, b_j$，可以按照下面方法添加干扰边：
 
@@ -34,7 +34,7 @@
 - 如果这是一条 `MOVE` 指令 `MOVE a, c`，则对 $a$ 和 $b_1, \cdots, b_j$ 中**不等于** $c$ 的变量都添加干扰边，常见做法是对于等于 $c$ 的变量**添加一个虚线连接的边**，后续在合并阶段会有用。
 - 但是，如果后续有一条对 $a$ 的非 `MOVE` 定义，且这时候 `c` 还是活跃的，那么还需要添加干扰边 `(a, c)`。
 
-<img class="center-picture" src="assets/10 register/10-2.png" alt="Interference Graph" width="550" />
+<img class="center-picture" src="assets/10 register/10-2.webp" alt="Interference Graph" width="550" />
 
 ### 2.2 图染色概述
 
@@ -79,21 +79,21 @@
 
 我们引入一种方法，叫做乐观着色/Optimistic Coloring，核心想法是：如果在某一个时刻图中的所有节点的度都大于等于 $K$，我们可以标记一个节点为潜在溢出/Spill Candidate，假设其不和别的节点干涉，将其直接删除、压入栈中，然后继续简化，如果最终可以成功染色，那就万事大吉。在下面这个图上，我们先删除 $d$，然后假设 $b$ 可以直接被乐观删除，结果如下：
 
-<img class="center-picture" src="assets/10 register/10-3.png" alt="Interference Graph" width="550" />
+<img class="center-picture" src="assets/10 register/10-3.webp" alt="Interference Graph" width="550" />
 
 然后我们尝试进行图重建和染色，问题在于，我们乐观估计可以删除 $b$，但是事实上对 $b$ 是否可以成功染色是没有把握的，如果 $b$ 的邻居都被染了色，并且颜色数目小于 $K$，那么我们就可以成功染色，也不需要实际上溢出。上张图实际上是可以按照我们的算法完成染色的，但是对于下面这个图就做不成了：
 
-<img class="center-picture" src="assets/10 register/10-4.png" alt="Interference Graph" width="550" />
+<img class="center-picture" src="assets/10 register/10-4.webp" alt="Interference Graph" width="550" />
 
 这时候就需要我们执行溢出了：如果这个节点的邻居已经染了 $K$ 种颜色，那么**执行一次真正的溢出**，**不给这个节点染色**，然后**继续选择阶段**，鉴别溢出或者正常染色。
 
-<img class="center-picture" src="assets/10 register/10-5.png" alt="Interference Graph" width="550" />
+<img class="center-picture" src="assets/10 register/10-5.webp" alt="Interference Graph" width="550" />
 
 然后需要我们修改代码，对溢出的节点分配栈帧内存，当每一次使用溢出节点时，都先从栈帧中加载，对于每一次定义溢出节点之后，都将其存储到栈帧上。
 
 下面是一个可以不用溢出就染色的例子，练一下：
 
-<img class="center-picture" src="assets/10 register/10-6.png" alt="Interference Graph" width="550" />
+<img class="center-picture" src="assets/10 register/10-6.webp" alt="Interference Graph" width="550" />
 
 ### 3.3 合并/Coalescing 与冻结/Freezing
 
@@ -106,9 +106,9 @@
 
 这两个准则都是安全的，可以保证不将一个可以被 $K$ 染色的图变为不可被 $K$ 染色的图。下面分别对两个准则举例子：
 
-<img class="center-picture" src="assets/10 register/10-7.png" alt="Briggs Condition" width="550" />
+<img class="center-picture" src="assets/10 register/10-7.webp" alt="Briggs Condition" width="550" />
 
-<img class="center-picture" src="assets/10 register/10-8.png" alt="George Condition" width="550" />
+<img class="center-picture" src="assets/10 register/10-8.webp" alt="George Condition" width="550" />
 
 在考虑了 `MOVE` 指令与合并之后，我们可以将算法流程总结为如下，这里新加了一个冻结操作，讲得很清楚了：
 
@@ -120,13 +120,13 @@
 - 选择/Select：从栈中弹出节点，重建图，并为其分配一个颜色；
 - 实际溢出/Actual Spill：如果选择阶段失败了，重写代码并且实现真正的溢出，重新构建图，然后重新开始整个算法。
 
-<img class="center-picture" src="assets/10 register/10-9.png" alt="Algorithm" width="550" />
+<img class="center-picture" src="assets/10 register/10-9.webp" alt="Algorithm" width="550" />
 
-<img class="center-picture" src="assets/10 register/10-10.png" alt="Algorithm" width="550" />
+<img class="center-picture" src="assets/10 register/10-10.webp" alt="Algorithm" width="550" />
 
 有时候合并会引入限制移动/Constrained Move，比如下面这个例子，这时候加一个冻结就好了：
 
-<img class="center-picture" src="assets/10 register/10-11.png" alt="Constrained Move" width="550" />
+<img class="center-picture" src="assets/10 register/10-11.webp" alt="Constrained Move" width="550" />
 
 ### 3.4 预染色节点/Precolored Nodes
 
@@ -151,19 +151,19 @@
 
 === "源代码"
 
-    <img class="center-picture" src="assets/10 register/10-12.png" alt="Source Code" width="550" />
+    <img class="center-picture" src="assets/10 register/10-12.webp" alt="Source Code" width="550" />
 
 === "第一次处理，需要溢出"
 
     决定溢出 `c`，这里我们估计循环会执行 10 次，因此对循环内的使用和定义的优先级都乘以 10，溢出 `c` 是因为其度最高且使用次数最少。
 
-    <img class="center-picture" src="assets/10 register/10-13.png" alt="First Process" width="550" />
+    <img class="center-picture" src="assets/10 register/10-13.webp" alt="First Process" width="550" />
 
-    <img class="center-picture" src="assets/10 register/10-14.png" alt="First Process" width="550" />
+    <img class="center-picture" src="assets/10 register/10-14.webp" alt="First Process" width="550" />
 
-    <img class="center-picture" src="assets/10 register/10-15.png" alt="First Process" width="550" />
+    <img class="center-picture" src="assets/10 register/10-15.webp" alt="First Process" width="550" />
 
 === "第二次处理，对溢出新增的节点进行合并"
 
-    <img class="center-picture" src="assets/10 register/10-16.png" alt="Second Process" width="550" />
+    <img class="center-picture" src="assets/10 register/10-16.webp" alt="Second Process" width="550" />
 

@@ -23,7 +23,7 @@ $$\begin{aligned}
 
 要解决非线性可分问题，就需要使用多层功能神经元，使用简单的两层感知机就可以解决异或问题，其中输入层与输出层之间还有一层神经元，其被称为隐层或者隐含层/Hidden Layer。**隐含层神经元和输出层神经元都是具有激活函数功能的功能神经元**。
 
-<img class="center-picture" src="../assets/5-1.png" alt="5-1" width=900 />
+<img class="center-picture" src="./assets/5-1.webp" alt="5-1" width=900 />
 
 更一般的，常见的神经网络具有层级结构，每层神经元和下面一层神经元完全互连，神经元之间不存在同层连接，也不存在跨层连接.这样的神经网络结构通常称为**多层前馈神经网络/Multi-layer Feedforward Neural Networks**，其中其中输入层神经元接收外界输入，隐层与输出层神经元对信号进行加工，最终结果由输出层神经元输出。
 

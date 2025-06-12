@@ -44,7 +44,7 @@ $$\boldsymbol{w}_{t+1} = \mathcal{M}(\boldsymbol{w}_t, \mathcal{O}(f, \boldsymbo
 
 对于一般的凸优化问题，可以采用梯度下降达到 $O(1/\sqrt{T})$ 的收敛率，我们这里考虑的是梯度投影法，基本流程如下：
 
-<img class="center-picture" src="../assets/7-1.png" width="600" />
+<img class="center-picture" src="./assets/7-1.webp" width="600" />
 
 在第 $t$ 轮迭代中，首先计算函数 $f(\cdot)$ 在 $\boldsymbol{w}_t$ 上的梯度 $\nabla f(\boldsymbol{w}_t)$，然后依据梯度下降 $\boldsymbol{w}'_{t+1} = \boldsymbol{w}_t - \eta_t \nabla f(\boldsymbol{w}_t)$ 更新当前解，其中 $\eta_t > 0$ 为步长。这里需要注意的是，在原始问题中存在 $\boldsymbol{w} \in \mathcal{W}$ 的约束。但是通过梯度下降获得的中间解 $\boldsymbol{w}'_{t+1}$ 不必属于集合 $\mathcal{W}$。因此还需要通过投影操作 $\boldsymbol{w}_{t+1} = \Pi_\mathcal{W}(\boldsymbol{w}'_{t+1})$ 保证下一轮的解属于 $\mathcal{W}$。投影操作的定义为：
 
@@ -131,7 +131,7 @@ $$f(\boldsymbol{w}^{\prime}) \leq f(\boldsymbol{w}) + \langle\nabla f(\boldsymbo
 
 针对光滑且强凸函数的梯度下降算法的基本流程如下：
 
-<img class="center-picture" src="../assets/7-2.png" width="600" />
+<img class="center-picture" src="./assets/7-2.webp" width="600" />
 
 和一般的凸函数的梯度下降方法类似，每轮迭代的优化式子的闭式解为：
 
@@ -327,11 +327,11 @@ $$= O\left(\frac{1}{\sqrt{T}}\right).$$
 
 我们分析如何使用确定优化方法求解支持向量机，唯一区别就是我们使用的是次梯度，而不是一般意义的梯度。
 
-<img class="center-picture" src="../assets/7-5.png" width="600" />
+<img class="center-picture" src="./assets/7-5.webp" width="600" />
 
 算法的第五行出现了错误，应该是 $\boldsymbol{w}_{t+1}^{\prime} = \dfrac{\Lambda}{\max(\lVert \boldsymbol{w}_{t+1}^{\prime}\rVert, \Lambda)} \boldsymbol{w}_{t+1}^{\prime}$。
 
 ### 4.2 对率回归
 
 
-<img class="center-picture" src="../assets/7-6.png" width="600" />
+<img class="center-picture" src="./assets/7-6.webp" width="600" />

@@ -2,7 +2,7 @@
 
 !!! Abstract
 
-    <img class="center-picture" src="../assets_3/abstract.png" alt="abstract" width=500 />
+    <img class="center-picture" src="../assets_3/abstract.webp" alt="abstract" width=500 />
 
     - Tag: Dueling Bandits, Weak Regret, Winner Stays.
     - Proceedings of the 34 th International Conference on Machine Learning, Sydney, Australia, PMLR 70, 2017.
@@ -44,7 +44,7 @@
 
 定义 $q_{i,j}(t)$ 为在时间 $t$ 以及之前决斗中，臂 $i$ 击败臂 $j$ 的**次数**，定义 $C(t,i) = \sum_{j \neq i} (q_{i,j}(t) - q_{j,i}(t))$。$C(t,i)$ 是截至时间 $t$ 臂 $i$ 赢得的决斗次数与输掉的决斗次数之差，也就是所谓的净胜场数。
 
-<img class="center-picture" src="../assets_3/alg-1.png" alt="4.1" width=550 />
+<img class="center-picture" src="../assets_3/alg-1.webp" alt="4.1" width=550 />
 
 选择策略为：在每一个时间点都选择当前 $C(t-1, \cdot)$ 值最高的两个臂 $i_t$ 和 $j_t$ 进行决斗。另一个关键点在于打破平局的规则：在选择参与决斗的臂的时候，都优先选择上一轮参与决斗的臂（只要其是得分最高的摇臂之一），并且算法倾向于在接下来的一小段时间点都选择这两个摇臂（只要它们仍然是得分最高的摇臂之一）。
 
@@ -52,7 +52,7 @@ WS-W 的选择过程可以被组织成迭代/Iteration 和轮/Round，每一个�
 
 Winner Stays 的特性使得 WS-W 的过程由一系列的轮组成，每一轮都是 $N-1$ 次迭代的序列，并且在一个迭代中失败的臂直到下一轮才会被重新访问。比如在第一轮结束之后，最终的胜者 $Z(1)$ 将会有 $C(t, Z(1)) = N-1$，而所有其他臂 $j \neq Z(1)$ 则有 $C(t, j) = -1$。
 
-<img class="center-picture" src="../assets_3/fig-1.png" alt="4.1" width=650 />
+<img class="center-picture" src="../assets_3/fig-1.webp" alt="4.1" width=650 />
 
 ### 4.2 Analysis of WS-W
 
@@ -103,7 +103,7 @@ $$\begin{aligned}
 
 WS-S 将 WS-W 的算法作为子程序，并且使用一个机制来保证强遗憾在一定范围内。具体而言，WS-S 的每一轮都分为 Exploration 和 Exploitation 两个阶段，在 Exploration 阶段，WS-S 会使用 WS-W 的算法来选择臂，而在 Exploitation 阶段，WS-S 会连续摇动选择的最佳摇臂 $\beta$ 的指数次，调整 $\beta$ 的大小平衡了这两个阶段的长度。
 
-<img class="center-picture" src="../assets_3/alg-2.png" alt="4.3" width=550 />
+<img class="center-picture" src="../assets_3/alg-2.webp" alt="4.3" width=550 />
 
 **Theorem 3**：在全序关系设置下，WS-S 的累积期望强遗憾上界为 $\left[\frac{2p^{3}}{(2p-1)^{6}}N(\log(N)+1)+\frac{N \log_{\beta}(T (\beta - 1))}{2p-1}\right]$，其中 $1 < \beta \leq \frac{p}{1-p}$。
 

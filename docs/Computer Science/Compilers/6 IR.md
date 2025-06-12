@@ -34,11 +34,11 @@
 
 下面详细介绍三地址码，其接近大多数目标机器的执行模型，支持大多数目标机器移动的数据类型和操作，提供高于机器码的抽象表达能力，但是这种表达能力是有限的。三地址码的一般形式是 $x = y \operatorname*{op} z$。每一个指令最多具有一个算符，并且最多具有三个操作数。比如表达式 $x + y * z$ 的三地址语句序列就是 $t_1 = y * z, t_2 = x + t_1$。可以看作按照从深到浅的顺序，将表达式树的节点依次写成三地址语句。
 
-<img class="center-picture" src="./assets/6 IR/6-1.png" width=550 />
+<img class="center-picture" src="./assets/6 IR/6-1.webp" width=550 />
 
 下面是一个翻译的例子：
 
-<img class="center-picture" src="./assets/6 IR/6-2.png" width=550 />
+<img class="center-picture" src="./assets/6 IR/6-2.webp" width=550 />
 
 整个三地址指令序列通过一个链表来实现，最常见的实现是使用四元式/Quadruples，每一个 TAC 指令使用一个包含四个字段的结构体表示，比如 $(\mathrm{op}, \mathrm{arg}_1, \mathrm{arg}_2, \mathrm{result})$。对于不需要三个地址的执行，比如一元运算、赋值、跳转和标签，某些地址字段会被设置为空，比如使用 `_` 代表空。典型的例子有：
 
@@ -67,13 +67,13 @@ SSA 方便了编译器的很多分析和优化，比如查询 def-use 信息，�
 
 现代的编译器使用多级 IR 设计，越到后面阶段的 IR 越接近目标机器的机器码，但是 Tiger 编译器只使用单个 IR，大致翻译流程为：AST -> IR Tree -> Assembly -> Machine Code。使用 BNF 形式的文法描述为：
 
-<img class="center-picture" src="./assets/6 IR/6-3.png" width=550 />
+<img class="center-picture" src="./assets/6 IR/6-3.webp" width=550 />
 
 IR 中间指令列举如下：
 
-<img class="center-picture" src="./assets/6 IR/6-4.png" width=550 />
+<img class="center-picture" src="./assets/6 IR/6-4.webp" width=550 />
 
-<img class="center-picture" src="./assets/6 IR/6-5.png" width=550 />
+<img class="center-picture" src="./assets/6 IR/6-5.webp" width=550 />
 
 简单举几个例子：
 
@@ -87,7 +87,7 @@ IR 中间指令列举如下：
 
 对于 $\operatorname*{ESEQ}(s, e)$，其中对 $s$ 求值是为了使用其副作用，在求值结束之后，对 $e$ 求值作为结果，这里语句 $s$ 不返回值。其中副作用意味着更新某些内存单元的内容或者临时寄存器的值。
 
-<img class="center-picture" src="./assets/6 IR/6-6.png" width=550 />
+<img class="center-picture" src="./assets/6 IR/6-6.webp" width=550 />
 
 ## 3. IR Tree 的生成
 
@@ -101,11 +101,11 @@ IR 中间指令列举如下：
 - Nx：不带有返回值的 AST 表达式，比如 `print(x)`；
 - Cx：条件表达式，返回值为布尔值。
 
-<img class="center-picture" src="./assets/6 IR/6-7.png" width=550 />
+<img class="center-picture" src="./assets/6 IR/6-7.webp" width=550 />
 
 很多情况下我们需要在不同的表达式之间进行转换，这部分我们就可以看见，其实 IR 翻译是上下文有关问题，就没办法使用 CFG 刻画了。解决方法是使用不同表达式之间转化的 Utility。
 
-<img class="center-picture" src="./assets/6 IR/6-8.png" width=550 />
+<img class="center-picture" src="./assets/6 IR/6-8.webp" width=550 />
 
 对于简单的声明在当前过程内的栈帧的变量，其相对于桢指针的偏移量 $k$ 是已知的，并且 Tiger 语言的所有变量都是一个字大小的，因此我们可以翻译成这样的中间代码：`MEM(BINOP(PLUS, TEMP FP, CONST k))`。
 
@@ -135,17 +135,17 @@ in a := b
 
 在 Tiger 语言中，所有的记录类型和数组实际上都是指向一个连续的内存块的指针，因此没有实际上的结构左值。下面是计算 `a[i+1]` 和 `a.f` 的地址的中间代码：
 
-<img class="center-picture" src="./assets/6 IR/6-9.png" width=550 />
+<img class="center-picture" src="./assets/6 IR/6-9.webp" width=550 />
 
 ### 3.4 条件语句
 
 对于条件语句，我们使用 `CJUMP(op, e1, e2, T, F)` 来表示 `if (e1 op e2) goto T; else goto F;`：
 
-<img class="center-picture" src="./assets/6 IR/6-10.png" width=550 />
+<img class="center-picture" src="./assets/6 IR/6-10.webp" width=550 />
 
 额外还需要实现短路操作：对于逻辑与 `a & b` 来讲，首先计算 `a`，如果为假就直接得到假结果，否则继续计算 `b`，最终结果为 `b` 的值；对于逻辑或 `a | b` 来讲，首先计算 `a`，如果为真就直接得到真结果，否则继续计算 `b`，最终结果为 `b` 的值。下面以逻辑与作为 `if` 语句的条件为例：
 
-<img class="center-picture" src="./assets/6 IR/6-11.png" width=550 />
+<img class="center-picture" src="./assets/6 IR/6-11.webp" width=550 />
 
 ### 3.5 循环
 
@@ -161,7 +161,7 @@ done:
 
 对于 `break` 语句，其翻译为直接跳转到 `done`，下面是一个例子：
 
-<img class="center-picture" src="./assets/6 IR/6-12.png" width=550 />
+<img class="center-picture" src="./assets/6 IR/6-12.webp" width=550 />
 
 `for` 循环直接重写抽象语法，让其变成 `let` 语句和 `while` 循环的组合：
 
@@ -187,7 +187,7 @@ done
 
 对于变量声明，需要在栈帧之中保留空间，并且生成对应的初始化表达式：
 
-<img class="center-picture" src="./assets/6 IR/6-13.png" width=550 />
+<img class="center-picture" src="./assets/6 IR/6-13.webp" width=550 />
 
 ### 3.8 函数声明
 
