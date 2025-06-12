@@ -48,9 +48,9 @@
 - [x] [Priciples of Compilers: Instruction Selection](./Compilers/8%20instruction.md)
 - [x] [Priciples of Compilers: Liveness Analysis](./Compilers/9%20liveness.md)
 - [x] [Priciples of Compilers: Register Allocation](./Compilers/10%20register.md)
-- [ ] [Priciples of Compilers: Garbage Collection](./Compilers/11%20garbage.md)
-- [ ] [Priciples of Compilers: Object-Oriented Languages](./Compilers/12%20oop.md)
-- [ ] [Priciples of Compilers: Loop Optimizations](./Compilers/13%20loop.md)
+- [x] [Priciples of Compilers: Garbage Collection](./Compilers/11%20garbage.md)
+- [x] [Priciples of Compilers: Object-Oriented Languages](./Compilers/12%20oop.md)
+- [x] [Priciples of Compilers: Loop Optimizations](./Compilers/13%20loop.md)
 
 ### Web
 

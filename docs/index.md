@@ -11,25 +11,12 @@ Hi！欢迎来到我的笔记本，我会在这里更新我的 **课程笔记** 
 
 本项目的许可证为 [知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)
 
-## 最近在学什么？
+## 对我有用的课程与笔记
 
-- [ ] 计算机系统: [Computer Systems](./System/index.md)
-- [ ] 机器学习基础: [Machine Learning Basis](./AI/ML%20Basis/index.md)
-- [ ] 面向对象程序设计：[Object-Oriented Programming](./Computer%20Science/Programming%20Language/C++/index.md)
-- [ ] 在线学习引论：[Online Learning](./AI/Online%20Learning/index.md)
-- [ ] 编译原理：[Principles of Compilers](./Computer%20Science/Compilers/index.md)
-- [ ] 进行一个化的优：[Foundations of Convex Optimization](./Math/Optimization/1%20Introduction.md)
-
-## 学不完了
-
-- [ ] 猜猜我为啥学它: [Typst Learning Record](./Varia/Typst.md)
-- [ ] 某种古老又强大的命令语言：[Shell](./Computer%20Science/Programming%20Utils/Shell.md)
-- [ ] 看起来更像CS人: [GNU Make & CMake](./Computer%20Science/Programming%20Utils/GNU%20Make.md)
-- [ ] 打会 CTF：[CTF: Cryptography](./Computer%20Science/CTF/Crypto/index.md)
-
-## 打个勾先
-
-- [x] 真是离离又散散啊: [Discrete Mathematics](./Math/Discrete%20Mathematics/Discrete%20Mathematics.md)
-- [x] CPU给我干烧了: [Algorithms and Data Structure](./Computer%20Science/Algorithm/index.md)
-- [x] 拼搏百天，我要成为概率大神：[Math: Probability Basis](./Math/Probability%20Basis/index.md)
-- [x] 机器学习理论导引: [Introduction to Machine Learning Theory](./AI/ML%20Theory/ML%20Theory%20Intro/index.md)
+- [ ] [编译原理：Principles of Compilers](./Computer%20Science/Compilers/index.md)
+- [ ] [操作系统：Operating Systems](./System/OSC/index.md)
+- [ ] [计算机体系结构：Computer Architecture](./System/CAQA/index.md)
+- [x] [高级数据结构与算法分析：Advanced Data Structures and Algorithm Analysis](./Computer%20Science/Algorithm/index.md)
+- [ ] [优化基本理论与方法：Optimization](./Math/Optimization/index.md)
+- [ ] [机器学习：Machine Learning](./AI/ML%20Basis/index.md)
+- [ ] [因果推断：Causal Inference](./AI/Causal%20Inference/index.md) 「短学期开坑」
