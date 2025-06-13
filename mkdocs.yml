@@ -146,25 +146,25 @@ nav:
           - System/index.md
           - Computer Organization & Architecture:
                 - System/CAQA/index.md
-                - ZJU SYS II-Processor: System/CAQA/0 Processor.md
-                - ZJU SYS III-Quantitative Analysis: System/CAQA/1 Quantitative.md
-                - ZJU SYS III-Memory Hierarchy: System/CAQA/2 Cache.md
-                - ZJU SYS III-Instruction Level Parallelism: System/CAQA/3 ILP.md
-                - ZJU SYS III-Data Level Parallelism: System/CAQA/4 DLP.md
-                - ZJU SYS III-Thread Level Parallelism: System/CAQA/5 TLP.md
+                - 0 Pipelined Processor: System/CAQA/0 Processor.md
+                - 1 Quantitative Analysis: System/CAQA/1 Quantitative.md
+                - 2 Memory Hierarchy: System/CAQA/2 Cache.md
+                - 3 Instruction Level Parallelism: System/CAQA/3 ILP.md
+                - 4 Data Level Parallelism: System/CAQA/4 DLP.md
+                - 5 Thread Level Parallelism: System/CAQA/5 TLP.md
           - Operating System:
                 - System/OSC/index.md
-                - OS Structure: System/OSC/topic0.md
-                - Process & Thread: System/OSC/topic1.md
-                - Scheduling: System/OSC/topic2.md
-                - Synchronization: System/OSC/topic3.md
-                - Deadlock: System/OSC/topic4.md
-                - Main Memory: System/OSC/topic5.md
-                - Virtual Memory: System/OSC/topic6.md
-                - Mass-Storage Structure: System/OSC/topic7.md
-                - I/O Systems: System/OSC/topic8.md
-                - File System: System/OSC/topic9.md
-                - Misc: System/OSC/misc.md
+                - 0 OS Structure: System/OSC/topic0.md
+                - 1 Process & Thread: System/OSC/topic1.md
+                - 2 Scheduling: System/OSC/topic2.md
+                - 3 Synchronization: System/OSC/topic3.md
+                - 4 Deadlock: System/OSC/topic4.md
+                - 5 Main Memory: System/OSC/topic5.md
+                - 6 Virtual Memory: System/OSC/topic6.md
+                - 7 Mass-Storage Structure: System/OSC/topic7.md
+                - 8 I/O Systems: System/OSC/topic8.md
+                - 9 File System: System/OSC/topic9.md
+                - 10 Misc: System/OSC/misc.md
           - Computer Networks:
                 - System/CN/index.md
           - Database Systems:
