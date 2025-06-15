@@ -2,10 +2,24 @@
 
 !!! Abstract "Outline"
 
-    - [x] [1. SIMD：向量处理器](#1-simd)
-    - [x] [2. SIMD：阵列机](#2-simdarray-processor)
+    - [ ] [1. SIMD：向量处理器](#1-simd)
+    - [ ] [2. SIMD：阵列机](#2-simdarray-processor)
     - [ ] [3. GPU 上的 DLP](#3-gpu-dlp)
-    - [x] [4. 检测与增强 LLP](#4-llp)
+    - [ ] [4. 检测与增强 LLP](#4-llp)
+
+??? Info "高僧预测"
+
+    完全不是重点。
+
+    <img class="center-picture" src="assets/4 DLP/review-1.webp" alt="drawing" width="550" />
+
+    <img class="center-picture" src="assets/4 DLP/review-2.webp" alt="drawing" width="550" />
+
+    <img class="center-picture" src="assets/4 DLP/review-3.webp" alt="drawing" width="550" />
+
+    <img class="center-picture" src="assets/4 DLP/review-4.webp" alt="drawing" width="550" />
+
+    <img class="center-picture" src="assets/4 DLP/review-5.webp" alt="drawing" width="550" />
 
 !!! Info "Flynn 分类法"
 

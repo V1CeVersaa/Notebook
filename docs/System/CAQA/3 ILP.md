@@ -2,6 +2,13 @@
 
 !!! Abstract "Outline"
 
+    - [x] [1. 概述](#1)
+    - [x] [2. Scoreboard 算法](#21-scoreboard)
+    - [x] [3. Tomasulo 算法](#22-tomasulo)
+    - [ ] [4. 基于硬件的推测](#3)
+    - [ ] [5. 多发射和静态调度](#4-ilp)
+    - [ ] [6. 多发射和动态调度](#5-ilp)
+
 ??? Info "高僧预测"
 
     <img class="center-picture" src="assets/3 ILP/review-1.webp" alt="drawing" width="550" />

@@ -3,12 +3,39 @@
 !!! Abstract "Outline"
 
     - [x] [1. 多处理器体系结构](#1)
-    - [x] [2. 缓存一致性](#2)
+    - [x] [2. 缓存一致性协议](#2)
+    - [ ] [3. 存储器一致性模型](#3)
+
+??? Info "高僧预测"
+
+    重点在缓存一致性，细节来讲在监听协议和 MSI 协议。存储器一致性不重要。
+
+    === "MIMD, UMA and NUMA"
+
+        <img class="center-picture" src="assets/5 TLP/review-1.webp" alt="drawing" width="550" />
+
+        <img class="center-picture" src="assets/5 TLP/review-2.webp" alt="drawing" width="550" />
+
+        <img class="center-picture" src="assets/5 TLP/review-3.webp" alt="drawing" width="550" />
+
+    === "Cache Coherence"
+
+        <img class="center-picture" src="assets/5 TLP/review-4.webp" alt="drawing" width="550" />
+
+        <img class="center-picture" src="assets/5 TLP/review-5.webp" alt="drawing" width="550" />
+
+    === "Snooping and MSI"
+
+        <img class="center-picture" src="assets/5 TLP/review-6.webp" alt="drawing" width="550" />
+
+        <img class="center-picture" src="assets/5 TLP/review-7.webp" alt="drawing" width="550" />
+
+        <img class="center-picture" src="assets/5 TLP/review-8.webp" alt="drawing" width="550" />
 
 
 !!! Info "Flynn 分类法"
 
-    <img class="center-picture" src="assets/5 TLP/5-1.png" alt="Flynn" width="550" />
+    <img class="center-picture" src="assets/5 TLP/5-1.webp" alt="Flynn" width="550" />
 
 ## 1. 多处理器体系结构
 
@@ -27,7 +54,7 @@ MIMD 架构主要分为两大类：
 
 ### 1.1 MIMD 多处理器架构
 
-<img class="center-picture" src="assets/5 TLP/5-2.png" alt="Shared Memory System" width="550" />
+<img class="center-picture" src="assets/5 TLP/5-2.webp" alt="Shared Memory System" width="550" />
 
 根据所包含的处理器数量，可以将现有共享存储器的多处理器分为两类，而处理器的数量又决定了存储器的组织方式和互联策略，因此我们按照存储器的组织方式来称呼多处理器：
 
@@ -40,7 +67,7 @@ MIMD 架构主要分为两大类：
     - 之所以 DSM 多处理器也被称为 NUMA 多处理器，这是因为数据的访问时间取决于数据在存储器中的位置，显然，访问本地内存比访问远程内存要快；
     - 缺点是 DSM 让在处理之间传输数据的过程变得更加复杂了，需要软件开发人员编写额外的代码来处理数据传输。
 
-<img class="center-picture" src="assets/5 TLP/5-8.png" alt="Multicomputer System" width="550" />
+<img class="center-picture" src="assets/5 TLP/5-8.webp" alt="Multicomputer System" width="550" />
 
 在 NUMA 多处理器之上，还有一种更特殊的结构叫做 COMA，即全缓存内存访问/Cache Only Memory Access/COMA 多处理器，每个处理器节点中没有固定的存储层次结构，所有缓存构成一个统一的地址空间。
 
@@ -50,9 +77,9 @@ MIMD 架构主要分为两大类：
 
     因为 UMA 有 Shared Cache，其 Cache 一致性是有保证的。
 
-    <img class="center-picture" src="assets/5 TLP/5-4.png" alt="SMP/UMA" width="550" />
+    <img class="center-picture" src="assets/5 TLP/5-4.webp" alt="SMP/UMA" width="550" />
 
-    <img class="center-picture" src="assets/5 TLP/5-5.png" alt="SMP/UMA" width="550" />
+    <img class="center-picture" src="assets/5 TLP/5-5.webp" alt="SMP/UMA" width="550" />
 
 === "DSM/NUMA"
 
@@ -60,28 +87,28 @@ MIMD 架构主要分为两大类：
     
     我们也区分 NC-NUMA/Non-Cache Non-Uniform Memory Access 和 CC-NUMA/Cache Coherent NUMA，前者不使用 Cache，后者有 Cache。使用 Cache 就必须要保证 Cache 一致性，后面会讲。
 
-    <img class="center-picture" src="assets/5 TLP/5-6.png" alt="DSM/NUMA" width="550" />
+    <img class="center-picture" src="assets/5 TLP/5-6.webp" alt="DSM/NUMA" width="550" />
 
-    <img class="center-picture" src="assets/5 TLP/5-7.png" alt="DSM/NUMA" width="550" />
+    <img class="center-picture" src="assets/5 TLP/5-7.webp" alt="DSM/NUMA" width="550" />
 
 === "COMA"
 
     特征：所有 Cache 形成一个统一的地址空间，存在数据迁移，使用分布式的缓存目录进行远端 Cache 的访问。数据在最开始时可以被分配在任意 Cache 中，但程序开始执行后这些数据会被移动到需要使用的地方去。
 
-    <img class="center-picture" src="assets/5 TLP/5-9.png" alt="COMA" width="550" />
+    <img class="center-picture" src="assets/5 TLP/5-9.webp" alt="COMA" width="550" />
 
-    <img class="center-picture" src="assets/5 TLP/5-10.png" alt="COMA" width="550" />
+    <img class="center-picture" src="assets/5 TLP/5-10.webp" alt="COMA" width="550" />
 
 
 ### 1.2 MIMD 多计算机架构
 
-<img class="center-picture" src="assets/5 TLP/5-3.png" alt="Multicomputer System" width="550" />
+<img class="center-picture" src="assets/5 TLP/5-3.webp" alt="Multicomputer System" width="550" />
 
 每一个线程/处理器都有自己的私有内存，他们通过 ICN/Interconnection Network 进行通信，模型被概括为 NORMA/No-Remote Memory Access。
 
 每一个节点由一个或者多个 CPU、RAM、硬盘和 I/O 设备组成，这些节点通过 ICN 连接，利用一系列拓扑机构、开关策略和路径寻找算法来实现通信。
 
-<img class="center-picture" src="assets/5 TLP/5-11.png" alt="Multicomputer System" width="550" />
+<img class="center-picture" src="assets/5 TLP/5-11.webp" alt="Multicomputer System" width="550" />
 
 === "MPP/Massively Parallel Processors"
 
@@ -89,16 +116,16 @@ MIMD 架构主要分为两大类：
 
     特征：一般使用标准的商用 CPU 作为处理器，使用高性能的私有互连网络，能以低延迟和高带宽传递消息，具备强大的输入/输出能力，具备特殊的容错处理能力。
 
-    <img class="center-picture" src="assets/5 TLP/5-12.png" alt="MPP" width="550" />
+    <img class="center-picture" src="assets/5 TLP/5-12.webp" alt="MPP" width="550" />
 
 
 === "COW/Cluster of Workstations"
 
     COW 是由大量通过商用网络连接在一起的 PC 或工作站组成的系统，可以完全使用打屁模生产的商用组件组装，性价比很高。也分为集中式和非集中式两种类型。
 
-    <img class="center-picture" src="assets/5 TLP/5-13.png" alt="COW" width="550" />
+    <img class="center-picture" src="assets/5 TLP/5-13.webp" alt="COW" width="550" />
 
-    <img class="center-picture" src="assets/5 TLP/5-14.png" alt="COW" width="550" />
+    <img class="center-picture" src="assets/5 TLP/5-14.webp" alt="COW" width="550" />
 
 ### 1.3 并行计算的挑战
 
@@ -106,19 +133,19 @@ MIMD 架构主要分为两大类：
 
 === "Example 1"
 
-    <img class="center-picture" src="assets/5 TLP/5-15.png" alt="Example 1" width="550" />
+    <img class="center-picture" src="assets/5 TLP/5-15.webp" alt="Example 1" width="550" />
 
 === "Example 2"
 
-    <img class="center-picture" src="assets/5 TLP/5-16.png" alt="Example 2" width="550" />
+    <img class="center-picture" src="assets/5 TLP/5-16.webp" alt="Example 2" width="550" />
 
 === "Example 3"
 
-    <img class="center-picture" src="assets/5 TLP/5-17.png" alt="Example 3" width="550" />
+    <img class="center-picture" src="assets/5 TLP/5-17.webp" alt="Example 3" width="550" />
 
 ## 2. 缓存一致性协议
 
-!!! Info "卧槽太复杂了"
+!!! Info "卧槽内容太多了，我觉得我意会了"
 
 
 

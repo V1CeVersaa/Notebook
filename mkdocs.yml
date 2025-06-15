@@ -350,6 +350,7 @@ nav:
           - Learning Plan: Varia/Learning Plan.md
           - Typst Learning Report: Varia/Typst.md
           - Environment & Tools: Varia/Envs.md
+          - 马原复习: Varia/marx.md
 
 markdown_extensions:
     - toc:

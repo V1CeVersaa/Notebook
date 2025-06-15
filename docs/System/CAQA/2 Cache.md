@@ -10,6 +10,17 @@
     - [x] [6. Write Strategy](#6-write-strategy)
     - [x] [7. Memory System Performance](#7-memory-system-performance)
 
+??? Info "高僧预测"
+
+    <img class="center-picture" src="./assets/2 cache/review-1.webp" width=500 />
+
+    <img class="center-picture" src="./assets/2 cache/review-2.webp" width=500 />
+
+    <img class="center-picture" src="./assets/2 cache/review-3.webp" width=500 />
+
+    <img class="center-picture" src="./assets/2 cache/review-4.webp" width=500 />
+
+    <img class="center-picture" src="./assets/2 cache/review-5.webp" width=500 />
 
 ## 1. 内存类型与局部性原理
 

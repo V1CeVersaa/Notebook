@@ -115,7 +115,7 @@
 - 建图/Build：构建干涉图，并为 `MOVE` 指令添加虚线边；
 - 简化/Simplify：不断从图中删除度小于 $K$ 的、不和 `MOVE` 指令有关（没有虚线边）的节点，压入栈中；
 - 合并/Coalesce：针对和 `MOVE` 指令有关的节点执行保守合并；简化和合并操作一直进行直到只剩下度数比较大的节点和与 `MOVE` 指令有关的节点；
-- 冻结/Freeze：如果既无法简化也无法合并，那么选择一个和 `MOVE` 指令有关的、低度数的节点，将其所有 `MOVE` 边都变成实线边，然后重新进行简化和合并；
+- 冻结/Freeze：如果既无法简化也无法合并，那么选择一个和 `MOVE` 指令有关的、低度数的节点，将其连接的虚线边去掉，然后重新进行简化和合并；
 - 溢出/Spill：如果必要的话，也就是只剩下度数大的节点了，选择节点标记为潜在溢出，然后继续进行简化和合并；
 - 选择/Select：从栈中弹出节点，重建图，并为其分配一个颜色；
 - 实际溢出/Actual Spill：如果选择阶段失败了，重写代码并且实现真正的溢出，重新构建图，然后重新开始整个算法。
@@ -124,7 +124,7 @@
 
 <img class="center-picture" src="assets/10 register/10-10.webp" alt="Algorithm" width="550" />
 
-有时候合并会引入限制移动/Constrained Move，比如下面这个例子，这时候加一个冻结就好了：
+有时候合并会引入限制移动/Constrained Move，比如下面这个例子，这时候去掉虚线边就好了：
 
 <img class="center-picture" src="assets/10 register/10-11.webp" alt="Constrained Move" width="550" />
 
