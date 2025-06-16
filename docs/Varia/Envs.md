@@ -10,7 +10,11 @@ Anaconda 过于庞大，现在使用的是 micromamba，之后可能也会使用
 
 ## Cursor & VS Code
 
-## Wrap & zsh
+## ITerm2 & fish
+
+## Command Line Tools
+
+- tldr: `brew install tlrc`
 
 
 
