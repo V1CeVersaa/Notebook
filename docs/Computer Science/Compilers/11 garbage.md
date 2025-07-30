@@ -172,7 +172,7 @@
 
 当区分复制且扫描了的区域和复制但未扫描的区域的指针 `scan` 和 `next` 重合的时候，就意味着所有可达对象都已经被复制且扫描了，算法结束。于是 Cheney 算法被分为两个部分：算法本体和指针转发/Pointer Forwarding：
 
-<img class="center-picture" src="assets/11 garbage/11-12.webp" alt="Copying Collection" width="550" /
+<img class="center-picture" src="assets/11 garbage/11-12.webp" alt="Copying Collection" width="550" />
 
 主算法的逻辑：
 

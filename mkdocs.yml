@@ -218,49 +218,50 @@ nav:
           - AI/index.md
           - 机器学习框架:
                 - AI/ML Framework/index.md
+                - Pytorch: AI/ML Framework/Pytorch/index.md
+                - Gymnasium: AI/ML Framework/Gymnasium/index.md
           - 人工智能逻辑:
                 - AI/AIL/index.md
-                - 第1节：绪论: AI/AIL/1 Introduction.md
-                - 第2节：命题逻辑: AI/AIL/2 Proposition.md
-                - 第3节：一阶逻辑: AI/AIL/3 One Order.md
-                - 第4节：描述逻辑: AI/AIL/4 Description.md
-                - 第5节：缺省逻辑: AI/AIL/5 Default.md
-                - 第6节：回答集编程: AI/AIL/6 Answer Set.md
-                - 第7节：经典抽象论辩理论: AI/AIL/7 Classical Debate.md
-                - 第8节：结构化论辩理论: AI/AIL/8 Structured Debate.md
-                - 第9节：概率理论与贝叶斯网络: AI/AIL/9 Bayesian.md
-                - 第10节：归纳推理与归纳逻辑编程: AI/AIL/10 Inductive.md
-                - 第11节：概率论辩: AI/AIL/11 Probabilistic Debate.md
+                - 1 绪论: AI/AIL/1 Introduction.md
+                - 2 命题逻辑: AI/AIL/2 Proposition.md
+                - 3 一阶逻辑: AI/AIL/3 OneOrder.md
+                - 4 描述逻辑: AI/AIL/4 Description.md
+                - 5 缺省逻辑: AI/AIL/5 Default.md
+                - 6 回答集编程: AI/AIL/6 Answer Set.md
+                - 7 经典抽象论辩理论: AI/AIL/7 Classical.md
+                - 8 结构化论辩理论: AI/AIL/8 Structured.md
+                - 9 论辩语义的计算方法: AI/AIL/9 Semantics.md
+                - 10 概率理论与贝叶斯网络: AI/AIL/10 Bayesian.md
           - 机器学习基本知识:
                 - AI/ML Basis/index.md
-                - 第1章：绪论: AI/ML Basis/1 Intro.md
-                - 第2章：模型评估: AI/ML Basis/2 Evaluation.md
-                - 第3章：线性模型: AI/ML Basis/3 Linear.md
-                - 第4章：决策树: AI/ML Basis/4 Decision.md
-                - 第5章：神经网络: AI/ML Basis/5 Neural.md
-                - 第6章：支持向量机: AI/ML Basis/6 SVM.md
-                - 第7章：贝叶斯分类器: AI/ML Basis/7 Bayes.md
-                - 第8章：集成学习: AI/ML Basis/8 Ensemble.md
-                - 第9章：聚类: AI/ML Basis/9 Clustering.md
-                - 第10章：降维与度量学习: AI/ML Basis/10 Dimensionality.md
-                - 第11章：特征选择与稀疏学习: AI/ML Basis/11 Feature.md
-                - 第12章：计算学习理论: AI/ML Basis/12 Computational.md
-                - 第13章：半监督学习: AI/ML Basis/13 Semi-Supervised.md
-                - 第14章：概率图模型: AI/ML Basis/14 Graphical.md
-                - 第15章：规则学习: AI/ML Basis/15 Rule.md
-                - 第16章：强化学习: AI/ML Basis/16 Reinforcement.md
+                - 1 绪论: AI/ML Basis/1 Intro.md
+                - 2 模型评估: AI/ML Basis/2 Evaluation.md
+                - 3 线性模型: AI/ML Basis/3 Linear.md
+                - 4 决策树: AI/ML Basis/4 Decision.md
+                - 5 神经网络: AI/ML Basis/5 Neural.md
+                - 6 支持向量机: AI/ML Basis/6 SVM.md
+                - 7 贝叶斯分类器: AI/ML Basis/7 Bayes.md
+                - 8 集成学习: AI/ML Basis/8 Ensemble.md
+                - 9 聚类: AI/ML Basis/9 Clustering.md
+                - 10 降维与度量学习: AI/ML Basis/10 Dimensionality.md
+                - 11 特征选择与稀疏学习: AI/ML Basis/11 Feature.md
+                - 12 计算学习理论: AI/ML Basis/12 Computational.md
+                - 13 半监督学习: AI/ML Basis/13 Semi-Supervised.md
+                - 14 概率图模型: AI/ML Basis/14 Graphical.md
+                - 15 规则学习: AI/ML Basis/15 Rule.md
+                - 16 强化学习: AI/ML Basis/16 Reinforcement.md
           - Machine Learning Theory:
                 - AI/ML Theory/index.md
                 - 机器学习理论导引:
                       - AI/ML Theory/ML Theory Intro/index.md
-                      - 第1章：预备知识: AI/ML Theory/ML Theory Intro/1 Preliminaries.md
-                      - 第2章：可学性: AI/ML Theory/ML Theory Intro/2 Learnability.md
-                      - 第3章：复杂度: AI/ML Theory/ML Theory Intro/3 Complexity.md
-                      - 第4章：泛化界: AI/ML Theory/ML Theory Intro/4 Generalization.md
-                      - 第5章：稳定性: AI/ML Theory/ML Theory Intro/5 Stability.md
-                      - 第6章：一致性: AI/ML Theory/ML Theory Intro/6 Consistency.md
-                      - 第7章：收敛率: AI/ML Theory/ML Theory Intro/7 Convergence.md
-                      - 第8章：遗憾界: AI/ML Theory/ML Theory Intro/8 Regret.md
+                      - 1 预备知识: AI/ML Theory/ML Theory Intro/1 Preliminaries.md
+                      - 2 可学性: AI/ML Theory/ML Theory Intro/2 Learnability.md
+                      - 3 复杂度: AI/ML Theory/ML Theory Intro/3 Complexity.md
+                      - 4 泛化界: AI/ML Theory/ML Theory Intro/4 Generalization.md
+                      - 5 稳定性: AI/ML Theory/ML Theory Intro/5 Stability.md
+                      - 6 一致性: AI/ML Theory/ML Theory Intro/6 Consistency.md
+                      - 7 收敛率: AI/ML Theory/ML Theory Intro/7 Convergence.md
+                      - 8 遗憾界: AI/ML Theory/ML Theory Intro/8 Regret.md
                 - Foundations of Machine Learning:
                       - AI/ML Theory/ML Foundations/index.md
                 - Mathematical Analysis of Machine Learning Algorithms:
@@ -274,13 +275,15 @@ nav:
                 - AI/Reinforcement Learning/index.md
                 - Introduction to Reinforcement Learning:
                       - AI/Reinforcement Learning/RL Basis/index.md
-                      - Book Chapter 1: AI/Reinforcement Learning/RL Basis/Book/Chapter 1.md
-                      - Book Chapter 2: AI/Reinforcement Learning/RL Basis/Book/Chapter 2.md
-                      - Book Chapter 3: AI/Reinforcement Learning/RL Basis/Book/Chapter 3.md
-                      - Book Chapter 4: AI/Reinforcement Learning/RL Basis/Book/Chapter 4.md
-                      - Book Chapter 5: AI/Reinforcement Learning/RL Basis/Book/Chapter 5.md
-                      - Book Chapter 6: AI/Reinforcement Learning/RL Basis/Book/Chapter 6.md
-                      - Book Chapter 7: AI/Reinforcement Learning/RL Basis/Book/Chapter 7.md
+                      - Sutton & Barto:
+                            - AI/Reinforcement Learning/RL Basis/Sutton/index.md
+                            - Chapter 1: AI/Reinforcement Learning/RL Basis/Sutton/Chapter 1.md
+                            - Chapter 2: AI/Reinforcement Learning/RL Basis/Sutton/Chapter 2.md
+                            - Chapter 3: AI/Reinforcement Learning/RL Basis/Sutton/Chapter 3.md
+                            - Chapter 4: AI/Reinforcement Learning/RL Basis/Sutton/Chapter 4.md
+                            - Chapter 5: AI/Reinforcement Learning/RL Basis/Sutton/Chapter 5.md
+                            - Chapter 6: AI/Reinforcement Learning/RL Basis/Sutton/Chapter 6.md
+                            - Chapter 7: AI/Reinforcement Learning/RL Basis/Sutton/Chapter 7.md
                 - Deep Reinforcement Learning:
                       - AI/Reinforcement Learning/RL Deep/index.md
                 - Theory of Reinforcement Learning:
@@ -305,14 +308,8 @@ nav:
           - Casual Inference:
                 - AI/Causal Inference/index.md
     - Math:
-          - Basic Courses: Math/index.md
-          - Abstract Algebra:
-                - Math/Abstract Algebra/index.md
-          - Topics on Analysis:
-                - Math/Real Analysis/index.md
-                - Mathematical Analysis: Math/Real Analysis/Mathematical Analysis.md
-                - Measure: Math/Real Analysis/Measure.md
-                - Integration: Math/Real Analysis/Integration.md
+          - Math/index.md
+          - Topics on Analysis: Math/Analysis/index.md
           - Optimization:
                 - Math/Optimization/index.md
                 - Course Introduction: Math/Optimization/1 Introduction.md
@@ -329,11 +326,9 @@ nav:
                 - Chapter 3: Math/Probability Basis/Chapter 3.md
                 - Chapter 4: Math/Probability Basis/Chapter 4.md
                 - Chapter 5: Math/Probability Basis/Chapter 5.md
-          - Advanced Probability:
-                - Math/Probability/index.md
-                - Laws of Large Numbers: Math/Probability/Chapter 1.md
+          - Advanced Probability & Stochastic Processes: Math/Probability/index.md
           - Discrete Mathematics:
-                - Math/Discrete Mathematics/Discrete Mathematics.md
+                - Math/Discrete Mathematics/index.md
                 - Propositional Logic: Math/Discrete Mathematics/01 Propositional Logic.md
                 - Basic Structures: Math/Discrete Mathematics/02 Basic Structures.md
                 - Algorithms: Math/Discrete Mathematics/03 Algorithms.md

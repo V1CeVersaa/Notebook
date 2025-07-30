@@ -1,19 +1,16 @@
-# Shell
+# Bourne-Again Shell
 
 !!! Abstract
-    
-    这份笔记将专注于 **zsh**，由于不同种类的 shell 差别过大，故暂不涉及其他种类的 shell。下面代码均以本人 macOS 的 zsh 为例。
 
-## 简单命令
+    我有时候使用 Bash 编写一部分脚本用于训练模型，本笔记参考 [GNU Bash Reference Manual](https://www.gnu.org/software/bash/manual/bash.html)。
 
-## 管道
+## Basics
 
-一个很简单的例子是：在某个路径下查找所有含有 `qemu` 字段的文件，前半段需要 `ls` 命令，后半段需要 `grep` 命令，这时候就需要用到管道符 `|`。
+Bash 是 GNU 操作系统的 shell，或者称其为命令语言解释器，是当前 Unix shell `sh` 的直接前身，很大程度和 `sh` 兼容，融合了 `ksh` 和 `csh` 的使用功能，旨在成为 IEEE POSIX 规范的符合式实现。
 
-```shell
-ls /usr/bin | grep qemu
-```
+根本来讲，shell 是一个执行命令的**宏处理器/Macro Processor**，将文本和符号扩展以创建更大表达式。
 
-简单说来，管道符 `|` 的作用就是将前一个命令的输出作为后一个命令的输入。
+## Definitions
 
-## grep, sed, awk
+- **Control Operator**：执行控制功能的 token，是空行或者是以下之一的字符：`||`、`&&`、`&`、`;`、`;;`、`;&`、`;;&`、`|`、`|&`、`(`、`)`。
+- **Exit Status**：命令返回给调用者的值，被限制为八位，为 `0` 到 `255` 的整数。

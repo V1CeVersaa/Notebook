@@ -4,13 +4,12 @@
     这是我在2023-2024学年春夏学期修读《离散数学理论基础》的课程笔记。
 
     离散数学的内容繁杂，包含逻辑、集合论、图论等内容。对于计算机专业的学生来说，这部分包含的内容更加宽泛，可以说是**“在数理基础课上讲不到的都在这了”**。
+    
+    但可惜没啥意思，几乎屁用没有，我深深怀疑这门课的实用性，修的专业课已经覆盖了这些内容了。连专业课都可以覆盖的数学课，粗浅程度可想而知。
 
-    可能有一些部分还没写完，但是既然考完了，我也不想补了。。。
+    可能有一些部分还没写完，但是既然考完了，那就这样吧。
 
-    参考书籍：
-
-    - 《Discrete Mathematics and Its Applications》 By Kenneth H. Rosen
-    - 《Concrete Mathmatics》 By Ronald L. Graham 
+    参考书籍：*Discrete Mathematics and Its Applications* by Kenneth H. Rosen
 
 ## Table of Contents
 

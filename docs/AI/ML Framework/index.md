@@ -4,6 +4,5 @@
 
 后面添加了一点在学习过程中用到的工具，随用随记。
 
-- [ ] [PyTorch](./Pytorch/index.md)
+- [ ] [PyTorch](./PyTorch/index.md)
 - [ ] [Gymnasium](./Gymnasium/index.md)
-

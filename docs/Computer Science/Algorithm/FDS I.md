@@ -85,7 +85,7 @@ typedef struct TreeNode {
         node = malloc(sizeof(TreeNode));
         node->val = val;
         node->left = NULL;
-        node->right = NULL;   
+        node->right = NULL;
         return node;
     }
     ```
@@ -118,7 +118,7 @@ typedef struct TreeNode {
         TreeNode *node;
         TreeNode **queue = malloc(sizeof(TreeNode *) * MAX_SIZE);
         front = rear = 0;
-        
+
         queue[rear++] = root;
         int *arr = malloc(sizeof(int) * MAX_SIZE);
         while (front < rear) {
@@ -136,7 +136,7 @@ typedef struct TreeNode {
         free(queue);
         return arr;
     }
-    
+
     ```
 
 === "Preorder"
@@ -186,7 +186,7 @@ typedef struct TreeNode {
 === "Inorder & Iterative"
 
     什么？你还想折磨自己？
-    
+
     你需要在循环里边手动建一个堆栈来模仿系统堆栈的行为，想想都觉得受不了，消停写你的迭代版得了。
 
 ### 3.3 Binary Search Trees
@@ -261,7 +261,7 @@ typedef struct TreeNode {
         return root;
     }
     ```
-    
+
     ```C
     TreeNode *rec_findMax(TreeNode *root) {
         if (root == NULL)
@@ -360,7 +360,7 @@ void BuildHeap(Heap H) {
 }
 ```
 
-=== "Percolate" 
+=== "Percolate"
 
     上滤和下滤，逻辑是先把要移动的元素存起来，然后慢慢腾位置，最后把原来的值放到合适的位置。这里的代码是最小堆的代码。
 
@@ -397,7 +397,7 @@ void BuildHeap(Heap H) {
             printf("Heap is full.\n");
             return;
         }
-        for (i = ++H->size; H->data[i/2] > x; i /= 2) 
+        for (i = ++H->size; H->data[i/2] > x; i /= 2)
             H->data[i] = H->data[i/2];
         H->data[i] = x;
     }

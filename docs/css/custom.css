@@ -1,34 +1,20 @@
-@font-face {
-    font-family: 'Monaspace Argon Light';
-    src: url('MonaspaceArgon-Light.woff');
-}
-
-@font-face {
-    font-family: 'Monaspace Argon';
-    src: url('MonaspaceArgon-Regular.woff');
-}
-
 :root {
-    --md-text-font: 'LXGW WenKai Screen', 'Cascadia', 'Monaco';
-    --md-code-font: 'Monaco', 'Cascadia', 'Monaspace Argon',
-        'LXGW WenKai Screen';
+    --md-text-font: "LXGW WenKai Screen", "Cascadia", "Monaco";
+    --md-code-font: "Monaco", "Cascadia", "LXGW WenKai Screen";
     --md-code-font-size: 0.075em;
 }
 
 p code,
 li code {
-    font-family: 'Monaco', 'Cascadia Code', 'Cascadia Mono',
-        'Monaspace Argon Light', 'Monaspace Argon', 'LXGW WenKai Screen';
-    src: url(https://v1ceversaa.github.io/docs/css/MonaspaceArgon-Light.woff)
-        format('woff');
-    src: url(https://v1ceversaa.github.io/docs/css/MonaspaceArgon-Regular.woff)
-        format('woff');
+    font-family: "Monaco", "Cascadia Code", "Cascadia Mono",
+        "LXGW WenKai Screen";
 }
+
 .md-typeset code,
 .md-typeset kbd,
 .md-typeset pre {
-    font-feature-settings: 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06',
-        'ss07', 'ss08', 'calt', 'dlig';
+    font-feature-settings: "ss01", "ss02", "ss03", "ss04", "ss05", "ss06",
+        "ss07", "ss08", "calt", "dlig";
     font-variant-ligatures: normal;
 }
 
@@ -137,7 +123,7 @@ li code {
     }
 }
 
-[data-md-color-scheme='slate'] .md-annotation__index:after {
+[data-md-color-scheme="slate"] .md-annotation__index:after {
     background-color: #4c4c4c;
 }
 
@@ -145,7 +131,7 @@ input#mkdocs-content-password {
     width: 6rem;
 }
 
-[data-md-color-scheme='slate'] input#mkdocs-content-password {
+[data-md-color-scheme="slate"] input#mkdocs-content-password {
     background-color: #161616;
 }
 
@@ -162,7 +148,7 @@ input#mkdocs-content-password {
     word-break: break-all;
 }
 .reference li::marker {
-    content: '[' counter(li) ']';
+    content: "[" counter(li) "]";
     font-size: 0.8em;
 }
 
@@ -174,8 +160,8 @@ input#mkdocs-content-password {
 .md-typeset .general > summary {
     background-color: rgba(0, 63, 136, 0.1);
 }
-[data-md-color-scheme='slate'] .md-typeset .general > .admonition-title,
-[data-md-color-scheme='slate'] .md-typeset .general > summary {
+[data-md-color-scheme="slate"] .md-typeset .general > .admonition-title,
+[data-md-color-scheme="slate"] .md-typeset .general > summary {
     background-color: rgba(60, 53, 120, 0.2);
 }
 .md-typeset .general > .admonition-title::before,
@@ -185,7 +171,7 @@ input#mkdocs-content-password {
 .md-typeset :is(.admonition-title, summary, .general) {
     border: 0 solid rgb(0, 63, 136, 0);
 }
-[dir='ltr'] .md-typeset .general > summary {
+[dir="ltr"] .md-typeset .general > summary {
     padding-left: 0.6rem;
     padding-right: 0.6rem;
 }

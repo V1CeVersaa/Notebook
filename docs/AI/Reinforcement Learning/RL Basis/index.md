@@ -7,12 +7,12 @@
 ## Table of Contents
 
 - [ ] [Course: Lecture 1](./Course/Lecture%201.md)
-- [ ] [Book: Chapter 1 Introduction](./Book/Chapter%201.md)
-- [ ] [Book: Chapter 2 Multi-armed Bandits](./Book/Chapter%202.md)
-- [ ] [Book: Chapter 3 Finite Markov Decision Processes](./Book/Chapter%203.md)
-- [ ] [Book: Chapter 4 Dynamic Programming](./Book/Chapter%204.md)
-- [ ] [Book: Chapter 5 Monte Carlo Methods](./Book/Chapter%205.md)
-- [ ] [Book: Chapter 6 Temporal-Difference Learning](./Book/Chapter%206.md)
-- [ ] [Book: Chapter 7 n-step Bootstrapping](./Book/Chapter%207.md)
+- [ ] [Sutton & Barto: Chapter 1 Introduction](./Sutton/Chapter%201.md)
+- [ ] [Sutton & Barto: Chapter 2 Multi-armed Bandits](./Sutton/Chapter%202.md)
+- [ ] [Sutton & Barto: Chapter 3 Finite Markov Decision Processes](./Sutton/Chapter%203.md)
+- [ ] [Sutton & Barto: Chapter 4 Dynamic Programming](./Sutton/Chapter%204.md)
+- [ ] [Sutton & Barto: Chapter 5 Monte Carlo Methods](./Sutton/Chapter%205.md)
+- [ ] [Sutton & Barto: Chapter 6 Temporal-Difference Learning](./Sutton/Chapter%206.md)
+- [ ] [Sutton & Barto: Chapter 7 n-step Bootstrapping](./Sutton/Chapter%207.md)
 
 

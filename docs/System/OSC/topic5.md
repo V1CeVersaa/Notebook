@@ -2,6 +2,10 @@
 
 !!! Abstract "Outline"
 
+    - [x] [Partition](#partition)
+    - [x] [Segmentation](#segmentation)
+    - [x] [Paging](#paging)
+
 
 ## 背景：内存
 

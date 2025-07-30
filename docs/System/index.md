@@ -7,7 +7,7 @@
 ## Table of Contents
 
 - [ ] [计算机体系结构：量化分析方法（Computer Architecture: A Quantitative Approach）](CAQA/index.md)
-    - 对应计算机系统 III 的体系结构部分知识，也是体系结构课程的教材
+    - 对应计算机系统 III 的体系结构部分知识，也是计算机体系结构课程的教材
 - [ ] [操作系统概念（Operating System Concepts）](OSC/index.md)
     - 对应计算机系统 II 和计算机系统 III 的所有操作系统知识，也是操作系统课程的教材
 - [ ] [操作系统导论（Operating Systems: Three Easy Pieces）](OSTEP/index.md)
@@ -18,7 +18,7 @@
     - [ ] [数字设计与计算机体系结构（Digital Design and Computer Architecture）](DDCA/index.md)
     - [ ] [计算机组成与设计（Computer Organization and Design）](COAD/index.md)
     - [ ] [深入理解计算机系统（Computer Systems: A Programmer's Perspective）](CSAPP/index.md)
-        - 很好的入门书，大部分知识我已经在计算机系统贯通课上学过了，以后也不再读了
+        - 很好的入门书，大部分知识我已经在计算机系统贯通课上学过了，以后也不会读了
 - [ ] [HDL: Verilog](./HDL%20&%20ISA/Verilog.md)
 - [ ] [HDL: Chisel](./HDL%20&%20ISA/Chisel.md)
 - [ ] [ISA: RISC-V](./HDL%20&%20ISA/RISC-V/RISC-V.md)
