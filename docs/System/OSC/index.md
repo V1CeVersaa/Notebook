@@ -4,8 +4,8 @@
 
 - [ ] [Introduction: OS Structure](./topic0.md)
 - [ ] [Process Management: Process, Thread and Concurrency](./topic1.md)
-- [ ] [Process Management: CPU Scheduling](./topic2.md)
-- [ ] [Process Management: Synchronization](./topic3.md)
+- [x] [Process Management: CPU Scheduling](./topic2.md)
+- [x] [Process Management: Synchronization](./topic3.md)
 - [x] [Process Management: Deadlocks](./topic4.md)
 - [x] [Memory Management: Main Memory](./topic5.md)
 - [ ] [Memory Management: Virtual Memory](./topic6.md)

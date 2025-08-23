@@ -1,7 +1,7 @@
 # Rust
 
-!!! info 
-    
+!!! info
+
     <del>2025 年暑假再学一下，到时候会重写，打算写成类似于文档的形式。</del> 事情有变！我打算先学 OCaml 了！
 
     Rust 有一些强大的优势，在 Comprehensive Rust 中是这么讲的：
@@ -12,4 +12,10 @@
 
 ## Table of Contents
 
-- [ ] [Basic Syntax](./Basic%20Syntax.md)
+-   [ ] [Basic Syntax](./1%20Basic.md)
+-   [ ] [Ownership and Memory Management](./2%20Ownership.md)
+-   [ ] [Code Organization](./3%20Organization.md)
+-   [ ] [Abstraction and Generics](./4%20Abstraction.md)
+-   [ ] [Robustness and Concurrency](./5%20Concurrency.md)
+-   [ ] [Advanced Topics](./6%20Advanced.md)
+-   [ ] [Exercise: Build a Simple Redis](./Ex%20Redis.md)

@@ -88,7 +88,12 @@ nav:
                       - Python 新版本特性: Computer Science/Programming Language/Python/6 News.md
                 - Rust:
                       - Computer Science/Programming Language/Rust/index.md
-                      - Basic Syntax: Computer Science/Programming Language/Rust/Basic Syntax.md
+                      - 1 Basic Syntax: Computer Science/Programming Language/Rust/1 Basic.md
+                      - 2 Ownership & Memory: Computer Science/Programming Language/Rust/2 Ownership.md
+                      - 3 Code Organization: Computer Science/Programming Language/Rust/3 Organization.md
+                      - 4 Abstraction & Generics: Computer Science/Programming Language/Rust/4 Abstraction.md
+                      - 5 Error & Concurrency: Computer Science/Programming Language/Rust/5 Concurrency.md
+                      - 6 Advanced Topics: Computer Science/Programming Language/Rust/6 Advanced.md
                 - Go:
                       - Computer Science/Programming Language/Go/index.md
                       - Basic Syntax: Computer Science/Programming Language/Go/Basic Syntax.md
@@ -152,6 +157,7 @@ nav:
                 - 3 Instruction Level Parallelism: System/CAQA/3 ILP.md
                 - 4 Data Level Parallelism: System/CAQA/4 DLP.md
                 - 5 Thread Level Parallelism: System/CAQA/5 TLP.md
+                - 7 Domain-Specific Arch: System/CAQA/7 DSA.md
           - Operating System:
                 - System/OSC/index.md
                 - 0 OS Structure: System/OSC/topic0.md
@@ -216,10 +222,9 @@ nav:
                       - DDCA-Memory Systems: System/DDCA/Chapter8.md
     - AI:
           - AI/index.md
-          - 机器学习框架:
-                - AI/ML Framework/index.md
-                - Pytorch: AI/ML Framework/Pytorch/index.md
-                - Gymnasium: AI/ML Framework/Gymnasium/index.md
+          - PyTorch:
+                - AI/PyTorch/index.md
+                - Tensor: AI/PyTorch/Tensor.md
           - 人工智能逻辑:
                 - AI/AIL/index.md
                 - 1 绪论: AI/AIL/1 Introduction.md
@@ -271,23 +276,6 @@ nav:
                       - 3 Uniform Convergence: AI/ML Theory/Math Analysis/3 Convergence.md
                       - 4 Empirical Covering Number Analysis: AI/ML Theory/Math Analysis/4 Covering.md
                       - 5 Covering Number Estimates: AI/ML Theory/Math Analysis/5 Estimates.md
-          - Reinforcement Learning:
-                - AI/Reinforcement Learning/index.md
-                - Introduction to Reinforcement Learning:
-                      - AI/Reinforcement Learning/RL Basis/index.md
-                      - Sutton & Barto:
-                            - AI/Reinforcement Learning/RL Basis/Sutton/index.md
-                            - Chapter 1: AI/Reinforcement Learning/RL Basis/Sutton/Chapter 1.md
-                            - Chapter 2: AI/Reinforcement Learning/RL Basis/Sutton/Chapter 2.md
-                            - Chapter 3: AI/Reinforcement Learning/RL Basis/Sutton/Chapter 3.md
-                            - Chapter 4: AI/Reinforcement Learning/RL Basis/Sutton/Chapter 4.md
-                            - Chapter 5: AI/Reinforcement Learning/RL Basis/Sutton/Chapter 5.md
-                            - Chapter 6: AI/Reinforcement Learning/RL Basis/Sutton/Chapter 6.md
-                            - Chapter 7: AI/Reinforcement Learning/RL Basis/Sutton/Chapter 7.md
-                - Deep Reinforcement Learning:
-                      - AI/Reinforcement Learning/RL Deep/index.md
-                - Theory of Reinforcement Learning:
-                      - AI/Reinforcement Learning/RL Theory/index.md
           - Deep Learning:
                 - AI/Deep Learning/index.md
                 - Understanding Deep Learning:
@@ -307,6 +295,37 @@ nav:
                 - "Topic 2: Multi-Armed Bandits": AI/Online Learning/Lecture 2.md
           - Casual Inference:
                 - AI/Causal Inference/index.md
+    - RL:
+          - RL/index.md
+          - Barto & Sutton:
+                - RL/Sutton/index.md
+                - Chapter 1: RL/Sutton/Chapter 1.md
+                - Chapter 2: RL/Sutton/Chapter 2.md
+                - Chapter 3: RL/Sutton/Chapter 3.md
+                - Chapter 4: RL/Sutton/Chapter 4.md
+                - Chapter 5: RL/Sutton/Chapter 5.md
+                - Chapter 6: RL/Sutton/Chapter 6.md
+                - Chapter 7: RL/Sutton/Chapter 7.md
+                - Chapter 8: RL/Sutton/Chapter 8.md
+                - Chapter 9: RL/Sutton/Chapter 9.md
+                - Chapter 10: RL/Sutton/Chapter 10.md
+                - Chapter 11: RL/Sutton/Chapter 11.md
+                - Chapter 12: RL/Sutton/Chapter 12.md
+                - Chapter 13: RL/Sutton/Chapter 13.md
+                - Chapter 14: RL/Sutton/Chapter 14.md
+                - Chapter 15: RL/Sutton/Chapter 15.md
+                - Chapter 16: RL/Sutton/Chapter 16.md
+          - Deep RL:
+                - RL/Deep RL/index.md
+          - "RL: Theory & Algorithms":
+                - RL/AJKS/index.md
+                - Chapter 1: RL/AJKS/Chapter 1.md
+                - Chapter 2: RL/AJKS/Chapter 2.md
+                - Chapter 3: RL/AJKS/Chapter 3.md
+          - Gymnasium:
+                - RL/Gymnasium/index.md
+          - Stable Baselines3:
+                - RL/Stable Baselines3/index.md
     - Math:
           - Math/index.md
           - Topics on Analysis: Math/Analysis/index.md
@@ -327,6 +346,8 @@ nav:
                 - Chapter 4: Math/Probability Basis/Chapter 4.md
                 - Chapter 5: Math/Probability Basis/Chapter 5.md
           - Advanced Probability & Stochastic Processes: Math/Probability/index.md
+          - Statistics:
+                - Math/Statistics/index.md
           - Discrete Mathematics:
                 - Math/Discrete Mathematics/index.md
                 - Propositional Logic: Math/Discrete Mathematics/01 Propositional Logic.md

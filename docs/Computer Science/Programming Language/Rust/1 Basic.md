@@ -1,5 +1,20 @@
 # Basic Syntax
 
+## 1. Variables and Mutability
+
+## 2. Data Types
+
+## 3. Functions
+
+## 4. Control Flow
+
+## 5. Basic Collections (Vectors)
+
+## 6. Strings and Text
+
+## 7. Hash Maps
+
+
 ## 一、变量
 
 ### 1 命名惯例

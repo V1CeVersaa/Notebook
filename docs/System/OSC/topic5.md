@@ -2,9 +2,9 @@
 
 !!! Abstract "Outline"
 
-    - [x] [Partition](#partition)
-    - [x] [Segmentation](#segmentation)
-    - [x] [Paging](#paging)
+    - [x] 线性内存分配：[Partition](#partition)
+    - [x] 分段内存分配：[Segmentation](#segmentation)
+    - [x] 近现代主要技术：[Paging](#paging)
 
 
 ## 背景：内存

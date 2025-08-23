@@ -1,6 +1,7 @@
 # Math
 
-!!! Info 
+!!! Info
+
     这是我在浙江大学图灵班学习期间的数学笔记
 
 ## Table of Contents
