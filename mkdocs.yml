@@ -10,12 +10,12 @@ extra:
     social:
         - icon: fontawesome/brands/github
           link: https://github.com/V1CeVersaa
-    # analytics:
-    #     provider: vercel
+    analytics:
+        provider: vercel
 
 theme:
     name: material
-    # custom_dir: overrides
+    custom_dir: overrides
     language: "zh"
     icon:
         logo: material/notebook-outline
@@ -42,6 +42,8 @@ theme:
               name: Switch to dark mode
         - media: "(prefers-color-scheme: dark)"
           scheme: slate
+          primary: black
+          accent: cyan
           toggle:
               icon: material/weather-night #图标，月亮
               name: Switch to light mode
@@ -62,7 +64,7 @@ nav:
                 - Docker: Computer Science/Programming Utils/Docker.md
                 - GNU Make & CMake: Computer Science/Programming Utils/GNU Make.md
                 - Regular Expression: Computer Science/Programming Utils/Regular Expression.md
-                - Tmux Cheatsheet: Computer Science/Programming Utils/tmux.md
+                - Tmux & Screen: Computer Science/Programming Utils/tmux.md
           - Programing Language:
                 - Computer Science/Programming Language/index.md
                 - C:
@@ -412,7 +414,6 @@ extra_css:
     - css/card.css
     - css/tasklist.css
     - css/flink.css
-    - css/more_changelog.css
     - css/neoteroi-mkdocs.css
     - css/fold_toc.css
 
@@ -424,4 +425,3 @@ extra_javascript:
     - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
     # - Javascripts/mathjax.js
     # - Javascripts/katex.js
-    # - Javascripts/tablesort.js

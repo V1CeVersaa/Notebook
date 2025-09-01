@@ -4,10 +4,14 @@
     --md-code-font-size: 0.075em;
 }
 
+mjx-container[jax="CHTML"][display="true"] {
+    margin-bottom: 0.2em !important;
+    margin-top: 0.2em !important;
+}
+
 p code,
 li code {
-    font-family: "Monaco", "Cascadia Code", "Cascadia Mono",
-        "LXGW WenKai Screen";
+    font-family: "Monaco", "Cascadia Code", "LXGW WenKai Screen";
 }
 
 .md-typeset code,

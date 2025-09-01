@@ -1,11 +1,11 @@
 .md-nav__list a.is-active {
-  color: rgb(0, 63, 136);
+    color: rgb(0, 63, 136);
 }
 
 .md-sidebar--secondary .md-nav > .md-nav__list > li > a + .md-nav {
-  display: block;
-  font-size: 0.9em;
+    display: block;
+    font-size: 0.9em;
 }
 .md-sidebar--secondary .md-nav > .md-nav__list > li > a.is-active + .md-nav {
-  display: block;
+    display: block;
 }
