@@ -8,6 +8,7 @@
 
 - [ ] [Machine Learning and Deep Learning](./Chapter%201.md)
 - [ ] [Introduction to Reinforcement Learning](./Chapter%202.md)
-- [ ] []
+- [ ] [Value-based Methods for Deep RL](./Chapter%203.md)
+- [ ] [Policy Gradient Methods for Deep RL](./Chapter%204.md)
 
 ## Introduction

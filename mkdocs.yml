@@ -319,6 +319,10 @@ nav:
                 - Chapter 16: RL/Sutton/Chapter 16.md
           - Deep RL:
                 - RL/Deep RL/index.md
+                - ML & DL: RL/Deep RL/Chapter 1.md
+                - Intro to RL: RL/Deep RL/Chapter 2.md
+                - Value-based Methods: RL/Deep RL/Chapter 3.md
+                - Policy Gradient Methods: RL/Deep RL/Chapter 4.md
           - "RL: Theory & Algorithms":
                 - RL/AJKS/index.md
                 - Chapter 1: RL/AJKS/Chapter 1.md
