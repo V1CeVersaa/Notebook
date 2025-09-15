@@ -28,5 +28,5 @@ Hi！欢迎来到我的笔记本，我会在这里更新我的 **课程笔记** 
 - [ ] [优化基本理论与方法：Optimization](./Math/Optimization/index.md)
 - [ ] [机器学习基础：Machine Learning](./AI/ML%20Basis/index.md)
 - [ ] [强化学习基础：Reinforcement Learning](./RL/Sutton/index.md)
-- [ ] [高维统计：High-Dimensional Statistics](./Math/Statistics/index.md)
+- [ ] [数学笔记：Math Notes, Measure Theory, Real Analysis, Advanced Probability ...](./Math/index.md)
 - [ ] [因果推断：Causal Inference](./AI/Causal%20Inference/index.md) 「坑砸手上了」

@@ -5,7 +5,7 @@
 - [ ] [Chapter 1: Markov Decision Processes](./Chapter%201.md)
 - [ ] [Chapter 2: Sample Complexity with a Generative Model](./Chapter%202.md)
 - [ ] [Chapter 3: Linear Bellman Completeness](./Chapter%203.md)
-- [ ] [Chapter 4: Fitted Dynamic Programming Methods](./Chapter%204.md)
+<!-- - [ ] [Chapter 4: Fitted Dynamic Programming Methods](./Chapter%204.md)
 - [ ] [Chapter 5: Statistical Limits of Generation](./Chapter%205.md)
 - [ ] [Chapter 6: Multi-Armed & Linear Bandits](./Chapter%206.md)
 - [ ] [Chapter 7: Strategic Exploration in Tabular MDPs](./Chapter%207.md)
@@ -18,6 +18,6 @@
 - [ ] [Chapter 14: CPI, TRPO and More](./Chapter%2014.md)
 - [ ] [Chapter 15: Imitation Learning](./Chapter%2015.md)
 - [ ] [Chapter 16: Linear Quadratic Regulators](./Chapter%2016.md)
-- [ ] [Chapter 17: Partially Observable MDPs](./Chapter%2017.md)
+- [ ] [Chapter 17: Partially Observable MDPs](./Chapter%2017.md) -->
 
 ## Notation

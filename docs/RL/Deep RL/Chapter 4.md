@@ -192,6 +192,14 @@ $$
 
 ## 5.4 Natural Policy Gradients
 
+自然策略梯度来自于自然梯度这一思想与方法，用于对策略进行更新。其使用 Fisher Information Metric 给出的最陡方向进行更新。这个度量利用了目标函数的流形。对于目标函数 $J(w)$，最简单的最陡上升形式是 $\Delta w \propto \nabla_w J(w)$。换言之，在对 $\lVert \Delta w\rVert_2$ 加约束的条件下，更新会沿着使 $J(w+\Delta w)-J(w)$ 最大的方向前进。若假设对 $\Delta w$ 的约束并非由 $L_2$ 度量给出，而是由另一种度量给出，则该带约束优化问题
+
+$$
+\max_{\Delta w}\; J(w+\Delta w) - J(w) \quad \text{s.t.}\quad \lVert \Delta w\rVert \le \delta
+$$
+
+的一阶解通常形如 $\Delta w \propto B^{-1}\nabla_w J(w)$，其中 $B$ 是 $n_w\times n_w$ 的矩阵。
+
 在自然梯度中，范数使用 Fisher Information Metric 给出，其可以由 KL 散度 $D_{\mathrm{KL}} (\pi_{w} \| \pi_{w+\Delta w})$ 的局部二次近似得到，其中 KL 散度定义为 $D_{\mathrm{KL}} (p \| q) = {\displaystyle\int} p(x) \log \frac{p(x)}{q(x)} \, \mathrm{d} x$。改进策略 $\pi_w$ 的自然梯度上升为
 
 $$
@@ -208,57 +216,271 @@ $$
 
 但是，当使用大参数量的神经网络的时候，计算、存储和求逆 Fisher 信息矩阵往往是不切实际的，因此自然梯度在深度 RL 中很少直接使用。但是现代提出了很多解决方案，比如 TRPO 和 PPO，这些方法都受自然梯度的启发。
 
-<!--
-**自然策略梯度的动机。**
-自然策略梯度源自“自然梯度”（natural gradient）这一思想，用于对策略进行更新。自然梯度可追溯至 Amari（1998）的工作，并被 Kakade（2001）引入到强化学习中。
+## 5.5 Trust Region Optimization
 
-**用 Fisher 信息度量定义最陡上升方向。**
-自然策略梯度方法使用由 **Fisher 信息度量** 给出的最陡方向（steepest direction），该度量利用了目标函数所在的流形。对于目标函数 $J(w)$，最简单的最陡上升形式是
-
-$$
-\Delta w \propto \nabla_w J(w).
-$$
-
-换言之，在对 $\lVert \Delta w\rVert_2$ 加约束的条件下，更新会沿着使
-
-$$
-J(w+\Delta w)-J(w)
-$$
-
-最大的方向前进（原文处写作 $J(w)-J(w+\Delta w)$，应为笔误）。若假设对 $\Delta w$ 的约束并非由 $L_2$ 度量给出，而是由**另一种度量**给出，则该**带约束优化问题**的一阶解通常形如
-
-$$
-\Delta w \propto B^{-1}\nabla_w J(w),
-$$
-
-其中 $B$ 是 $n_w\times n_w$ 的矩阵。
+<!-- 下面先给出**逐段精确翻译**（含公式），随后是**细致讲解与补充**与**实用要点**。
 
 ---
 
-## 要点补充（推导与实践）
+# 5.5 信赖域优化（Trust Region Optimization）
 
-1. **从带 KL 约束的最优步长得到自然梯度方向**
-   令 $g=\nabla_w J(w)$，近似 $\mathrm{KL}(\pi^w\|\pi^{w+\Delta w})\approx \tfrac12 \Delta w^\top F_w \Delta w$。
-   约束问题
+## 原文精确翻译
 
-   $$
-   \max_{\Delta w}\; g^\top \Delta w \quad
-   \text{s.t.}\quad \tfrac12 \Delta w^\top F_w \Delta w \le \delta
-   $$
+**信赖域思路。**
+作为对自然梯度方法的改造，基于**信赖域**的策略优化方法旨在在**可控**的方式下改进策略。这类带约束的策略优化方法专注于用**动作分布之间的 KL 散度**来限制策略的变化。通过给策略更新的幅度设定上界，信赖域方法也就对**状态分布的变化**给出了约束，从而保证策略性能的改进。
 
-   的一阶解为
+**TRPO。**
+TRPO（Schulman *et al*., 2015）用带约束的更新与优势函数估计来执行更新，其得到如下等价的优化问题：
 
-   $$
-   \Delta w^\*=\alpha\,F_w^{-1}g,\quad
-   \alpha=\sqrt{\tfrac{2\delta}{g^\top F_w^{-1}g}},
-   $$
+$$
+\max_{\Delta w}\;
+\mathbb{E}_{s\sim\rho^{\pi_w},\,a\sim\pi_w}\!
+\left[\frac{\pi_{w+\Delta w}(s,a)}{\pi_w(s,a)}\;A^{\pi_w}(s,a)\right]
+\tag{5.11}
+$$
 
-   即**方向**就是 $F_w^{-1}g$ —— 自然梯度。
+满足约束
+
+$$
+\mathbb{E}\, D_{\mathrm{KL}}\!\big(\pi_w(s,\cdot)\;\big\|\;\pi_{w+\Delta w}(s,\cdot)\big)\ \le\ \delta,
+$$
+
+其中 $\delta\in\mathbb{R}$ 是一个超参数。基于经验数据，TRPO 使用**共轭梯度**方法在 KL 约束下优化该目标。
+
+**PPO。**
+PPO（Schulman *et al*., 2017b）是 TRPO 的近似变体，它把约束改写为**惩罚项**或**截断形式的目标**，而不使用显式 KL 约束。不像 TRPO，PPO 通过修改目标函数来惩罚令
+
+$$
+r_t=\frac{\pi_{w+\Delta w}(s_t,a_t)}{\pi_w(s_t,a_t)}
+$$
+
+远离 1 的策略变化。PPO 最大化的截断目标为
+
+$$
+\mathbb{E}_{s\sim\rho^{\pi_w},\,a\sim\pi_w}\!
+\Big[\,\min\big(r_t\,A^{\pi_w}(s,a),\ \mathrm{clip}(r_t,\,1-\epsilon,\,1+\epsilon)\,A^{\pi_w}(s,a)\big)\Big],
+\tag{5.12}
+$$
+
+其中 $\epsilon\in\mathbb{R}$ 是超参数。该目标把概率比 $r_t$ **截断**在区间 $[\,1-\epsilon,\ 1+\epsilon\,]$ 内，以约束其变化幅度。
+
+---
+
+## 细致讲解与补充
+
+### 1) 为何 (5.11) 是合理的“代理目标”（surrogate objective）
+
+* 由**性能差分引理**与重要性采样可得：若只看一阶项，$J(\pi_{\text{new}})-J(\pi_{\text{old}})$ 可以被
+
+  $$
+  L_{\pi_{\text{old}}}(\pi_{\text{new}})=
+  \mathbb{E}_{s\sim\rho^{\pi_{\text{old}}},\,a\sim\pi_{\text{old}}}\!
+  \Big[\tfrac{\pi_{\text{new}}(a\mid s)}{\pi_{\text{old}}(a\mid s)}\,A^{\pi_{\text{old}}}(s,a)\Big]
+  $$
+
+  近似下界。于是最大化 $L$ 且**约束平均 KL** 足够小（$\le\delta$），就能保证**单调改进**。
+* **信赖域**即“只在 KL 半径 $\delta$ 的球内信任线性近似”。
+
+### 2) TRPO 的数值做法（骨架）
+
+* 化为等价的二次规划：用 Fisher–向量积近似 $F_w$，解
+
+  $$
+  \max_{\Delta w}\ g^\top\Delta w\quad
+  \text{s.t.}\ \tfrac12\,\Delta w^\top F_w\,\Delta w\le\delta,
+  $$
+
+  其解方向为自然梯度 $F_w^{-1}g$（与 §5.4 呼应），再配合**线搜索**确保实际 KL $\le\delta$。
+
+### 3) PPO 的截断机制直觉（为什么用 $\min$）
+
+* 令 $A_t>0$：希望**增大** $r_t$（抬高好动作的概率），但一旦 $r_t>1+\epsilon$ 就**不再奖励**（被 clip 项“截平”）⇒ 防止过冲。
+* 令 $A_t<0$：希望**减小** $r_t$，但当 $r_t<1-\epsilon$ 时**不再进一步惩罚** ⇒ 防止过度下降。
+* $\min(\cdot,\cdot)$ 选择对学习**更保守**的一边，从而近似了“KL 不要太大”的约束。
+* 另一种 PPO 变体是**KL 惩罚版**：最大化 $L_{\text{PG}}-\beta\,\mathrm{KL}$ 并自适应调整 $\beta$ 以把 KL 调到目标值。
+
+### 4) 实际 PPO 损失（常用完整式）
+
+$$
+\mathcal L_{\text{PPO}}
+= \mathbb{E}\Big[
+L_{\text{clip}}(\theta)
+- c_v\,\big(V_\theta(s)-\hat V\big)^2
++ c_H\,\mathcal H\big(\pi_\theta(\cdot\mid s)\big)
+\Big],
+$$
+
+其中 $L_{\text{clip}}$ 为 (5.12) 的截断项，$\hat V$ 是回报或 GAE 目标；$c_v,c_H$ 为系数。**GAE($\lambda$)** 常与 PPO 搭配，显著降方差并加快奖励传播。
+
+### 5) “约束动作分布 ⇒ 约束状态分布”的含义
+
+* 在马尔可夫链中，若每步的策略分布变化小（平均 KL 有界），可用耦合/扰动界证明**占用测度** $d^{\pi}$ 的变化也被控制，从而使性能的线性近似保持有效 → 单调改进保证成立。
+
+---
+
+## 实用要点（工程角度）
+
+* **默认超参数**：$\epsilon\in[0.1,0.3]$，目标 KL $\approx 0.01\text{–}0.02$，每批次更新 $3\text{–}10$ 个 epoch；优势**标准化**有助稳定。
+* **早停**：监控平均 KL，若超阈值则提前停止该轮更新。
+* **值函数与熵**：值函数回归可加入**clip** 版本以防与策略步子不同步；熵奖励维持探索。
+* **连续动作**：若用 $\tanh$ 高斯，计算 $\log\pi$ 要做**变量换元**（包含 $\tanh$ 的雅可比项），否则 $r_t$ 会错。
+* **优势估计**：$\hat A_t=\mathrm{GAE}(\gamma,\lambda)$（典型 $\gamma=0.99,\lambda=0.95$）。
+
+---
+
+## 小练习
+
+1. 从重要性采样恒等式 $\mathbb{E}_{a\sim\pi_{\text{new}}}[f]=\mathbb{E}_{a\sim\pi_{\text{old}}}[r_t f]$ 出发，推到式 (5.11)。
+2. 画出 $A_t>0$ 与 $A_t<0$ 时 PPO 的分段目标关于 $r_t$ 的曲线，并解释为什么它是“保守”的。
+3. 说明当 $\epsilon$ 太大或 epoch 太多时，为什么会破坏“近似信赖域”的假设，导致不稳定。
  -->
 
-## 5.5 Trust Region Optimization
-
-
-
 ## 5.6 Combining Policy Gradient with Q-Learning
+
+<!-- 下面是 **5.6 Combining policy gradient and Q-learning** 的**逐段精确翻译**，然后给出**推导与补充说明**（含式 (5.13) 来源与“用策略反推优势”的证明）。
+
+---
+
+# 5.6 结合策略梯度与 Q-learning
+
+## 原文精确翻译
+
+策略梯度是在强化学习中改进策略的高效技术。正如我们所见，它通常需要当前策略的一个价值函数估计；而一种样本高效的做法是使用能够处理 **off-policy** 数据的 **actor–critic** 架构。
+
+与第 4 章基于 DQN 的方法不同，这些算法具有以下性质：
+
+* **可处理连续动作空间。** 这在机器人等应用中尤为重要，因为力与力矩可以取连续值。
+* **可表示随机策略。** 这便于构建能够显式探索的策略；在最优策略本身是随机的情形也很有用（例如多智能体中纳什均衡是随机策略的场景）。
+
+然而，另一种方法是**直接把策略梯度与 off-policy Q-learning 结合**（O’Donoghue *et al*., 2016）。在某些具体设定下——取决于损失函数以及使用的熵正则——**基于价值的方法与基于策略的方法是等价的**（Fox *et al*., 2015；O’Donoghue *et al*., 2016；Haarnoja *et al*., 2017；Schulman *et al*., 2017a）。例如，当加入**熵正则**时，式 (5.4) 可以写成
+
+$$
+\nabla_w V^{\pi^w}(s_0)
+=\mathbb{E}_{s,a}\!\big[\nabla_w \log \pi_w(s,a)\,Q^{\pi^w}(s,a)\big]
+\;+\;\alpha\,\mathbb{E}_s\!\big[\nabla_w H^{\pi^w}(s)\big], \tag{5.13}
+$$
+
+其中 $H^{\pi^w}(s)=-\sum_{a}\pi_w(s,a)\log\pi_w(s,a)$。
+由此可注意到，下式给出的策略满足最优性条件：
+
+$$
+\pi_w(s,a)=\exp\!\Big(\tfrac{1}{\alpha}A^{\pi^w}(s,a)\;-\;H^{\pi^w}(s)\Big).
+$$
+
+因此，我们可以用策略本身来构造一个**优势函数估计**：
+
+$$
+\hat A^{\pi^w}(s,a)=\alpha\big(\log \pi_w(s,a)+H^{\pi^w}(s)\big).
+$$
+
+由此，我们可以把所有**无模型（model-free）**方法视为**同一思想的不同侧面**。
+
+仍存的一点限制是：无论基于价值还是基于策略的方法，都是**无模型**的，它们并未利用环境的任何模型。下一章将讨论基于模型的方法。
+
+---
+
+## 推导与补充
+
+### A. 式 (5.13) 从何而来（把熵正则并入 PG）
+
+在随机策略梯度目标中加入熵奖励：
+
+$$
+J_{\text{ent}}(w)\;=\;
+\underbrace{\mathbb{E}_{s,a}[\log\pi_w(a\mid s)\,Q^{\pi^w}(s,a)]}_{\text{策略梯度 surrogate}}
+\;+\;\alpha\,\underbrace{\mathbb{E}_{s}[H^{\pi^w}(s)]}_{\text{熵正则}}.
+$$
+
+对 $w$ 求梯度即可得到 (5.13)。第一项就是式 (5.4) 的期望形式；第二项是对熵的参数梯度 $\nabla_w H^{\pi^w}(s)$（通过 $\pi_w$ 反传）。
+
+> 直觉：$\alpha>0$ 鼓励**高熵**，防止过早确定化；$\alpha\to 0$ 时退化回标准 PG。
+
+### B. 用熵正则的极值条件推得 “Boltzmann/softmax” 策略
+
+固定状态 $s$，考虑最大化
+
+$$
+\max_{\pi(\cdot\mid s)}\;
+\sum_a \pi(a\mid s)\,Q(s,a)
+\;+\;\alpha\,H(\pi(\cdot\mid s))
+\quad
+\text{s.t.}\ \sum_a \pi(a\mid s)=1. \tag{★}
+$$
+
+拉格朗日函数
+
+$$
+\mathcal L=\sum_a \pi(a)Q(s,a)-\alpha\sum_a \pi(a)\log\pi(a)+\lambda\!\left(\sum_a \pi(a)-1\right).
+$$
+
+对 $\pi(a)$ 的一阶条件：
+
+$$
+0=\partial_{\pi(a)}\mathcal L
+=Q(s,a)-\alpha(1+\log\pi(a))+\lambda
+\quad\Rightarrow\quad
+\pi^\*(a\mid s)\ \propto\ \exp\!\Big(\tfrac{1}{\alpha}Q(s,a)\Big).
+$$
+
+若再用优势 $A(s,a)=Q(s,a)-V(s)$（其中 $V(s)=\sum_a \pi^\*(a)Q(s,a)$），则
+
+$$
+\pi^\*(a\mid s)\ \propto\ \exp\!\Big(\tfrac{1}{\alpha}A(s,a)\Big).
+$$
+
+把归一化常数写成 $e^{H(s)}$ 的形式，就得到书中表达：
+
+$$
+\boxed{\;\pi^\*(s,a)=\exp\!\Big(\tfrac{1}{\alpha}A(s,a)-H(s)\Big)\;}
+$$
+
+（因为 $\sum_a e^{A/\alpha - H}=1\Rightarrow H(s)=\log\!\sum_a e^{A/\alpha}$）。
+
+### C. 由策略反推优势：$\hat A(s,a)=\alpha(\log\pi+H)$
+
+在最优策略上，上一式两边取对数得
+
+$$
+\log \pi^\*(s,a)=\tfrac{1}{\alpha}A(s,a)-H(s)
+\quad\Rightarrow\quad
+A(s,a)=\alpha\big(\log\pi^\*(s,a)+H(s)\big).
+$$
+
+因此**若当前策略接近最优的熵正则形式**，就可用
+
+$$
+\boxed{\;\hat A^{\pi}(s,a)\;=\;\alpha\big(\log \pi(a\mid s)+H^{\pi}(s)\big)\;}
+$$
+
+当作优势的**无模型估计器**（其期望为 0，因为 $\mathbb{E}_a[\log\pi]=-H$）。
+
+> 在最大熵 RL（如 **Soft Q-Learning / SAC**）中，这一思想更系统：
+> $V_{\text{soft}}(s)=\alpha\log\sum_a \exp(Q(s,a)/\alpha)$，
+> $\pi(a\mid s)\propto \exp(Q(s,a)/\alpha)$，
+> $A_{\text{soft}}(s,a)=Q(s,a)-V_{\text{soft}}(s)=\alpha\log\pi(a\mid s)$（连续动作需加雅可比项）。
+
+### D. “策略法 ≈ 价值法”的若干等价情形
+
+* 以 **熵正则** 的目标 (★) 为中心：
+
+  * **策略法**：最大化 $J_{\text{ent}}(w)$，直接优化 $\pi_w$。
+  * **价值法**：学习满足软 Bellman 方程的 $Q$，再设 $\pi \propto \exp(Q/\alpha)$。
+* 在兼容近似与合适的损失下，两者得到相同的固定点（文献中的“等价”即指此）。
+
+---
+
+## 实用提示
+
+* 选 $\alpha$：越大探索越强、策略越“平滑”；越小越接近常规 RL。SAC 常把 $\alpha$ 自适应调到目标熵。
+* 估计 $H(s)$：离散动作用显式和；连续动作用分布的解析熵（如高斯）或 Monte Carlo 估计。
+* 用 $\hat A(s,a)=\alpha(\log\pi+H)$ 时，仍建议与 **GAE/TD** 等优势估计**混合或对比**，以免偏差过大。
+
+---
+
+## 小练习
+
+1. 从 (★) 出发，用拉格朗日法严格推导 $\pi^\*(a\mid s)\propto\exp(Q/\alpha)$，再换成优势形式。
+2. 证明 $\mathbb{E}_{a\sim\pi}[\log\pi(a\mid s)+H(s)]=0$，并解释为什么这使得 $\hat A$ 作为基线-中心化的优势是合理的。
+3. 说明在连续动作、$\tanh$ 高斯策略下，$\log\pi$ 中必须包含**变量换元雅可比**，否则 $\hat A$ 会系统性偏差。
+ -->
 

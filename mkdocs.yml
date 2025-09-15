@@ -323,6 +323,13 @@ nav:
                 - Intro to RL: RL/Deep RL/Chapter 2.md
                 - Value-based Methods: RL/Deep RL/Chapter 3.md
                 - Policy Gradient Methods: RL/Deep RL/Chapter 4.md
+                - Model-based Methods: RL/Deep RL/Chapter 5.md
+                - Concept of Generalization: RL/Deep RL/Chapter 6.md
+                - Challenges in Online Setting: RL/Deep RL/Chapter 7.md
+                - Benchmarking Deep RL: RL/Deep RL/Chapter 8.md
+                - Deep RL beyond MDPs: RL/Deep RL/Chapter 9.md
+                - Perspectives on Deep RL: RL/Deep RL/Chapter 10.md
+                - Conclusion: RL/Deep RL/Chapter 11.md
           - "RL: Theory & Algorithms":
                 - RL/AJKS/index.md
                 - Chapter 1: RL/AJKS/Chapter 1.md
@@ -334,7 +341,6 @@ nav:
                 - RL/Stable Baselines3/index.md
     - Math:
           - Math/index.md
-          - Topics on Analysis: Math/Analysis/index.md
           - Optimization:
                 - Math/Optimization/index.md
                 - Course Introduction: Math/Optimization/1 Introduction.md
@@ -351,9 +357,6 @@ nav:
                 - Chapter 3: Math/Probability Basis/Chapter 3.md
                 - Chapter 4: Math/Probability Basis/Chapter 4.md
                 - Chapter 5: Math/Probability Basis/Chapter 5.md
-          - Advanced Probability & Stochastic Processes: Math/Probability/index.md
-          - Statistics:
-                - Math/Statistics/index.md
           - Discrete Mathematics:
                 - Math/Discrete Mathematics/index.md
                 - Propositional Logic: Math/Discrete Mathematics/01 Propositional Logic.md

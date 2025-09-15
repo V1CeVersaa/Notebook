@@ -10,5 +10,12 @@
 - [ ] [Introduction to Reinforcement Learning](./Chapter%202.md)
 - [ ] [Value-based Methods for Deep RL](./Chapter%203.md)
 - [ ] [Policy Gradient Methods for Deep RL](./Chapter%204.md)
+- [ ] [Model-based methods for deep RL](./Chapter%205.md)
+- [ ] [The Concept of Generalization](./Chapter%206.md)
+- [ ] [Challenges in the Online Setting](./Chapter%207.md)
+- [ ] [Benchmarking Deep RL Algorithms](./Chapter%208.md)
+- [ ] [Deep RL Beyond MDPs](./Chapter%209.md)
+- [ ] [Perspectives on Deep RL](./Chapter%2010.md)
+- [ ] [Conclusion](./Chapter%2011.md)
 
 ## Introduction
