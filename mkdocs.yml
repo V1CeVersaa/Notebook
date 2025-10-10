@@ -110,6 +110,8 @@ nav:
                 - Algorithms I: Computer Science/Algorithm/Lec 3.md
                 - Algorithms II: Computer Science/Algorithm/Lec 4.md
                 - Algorithms III: Computer Science/Algorithm/Lec 5.md
+          - Computation Theory:
+                - Computer Science/Computation/index.md
           - Principles of Compilers:
                 - Computer Science/Compilers/index.md
                 - Topic 1：词法分析: Computer Science/Compilers/1 lex.md
@@ -317,7 +319,7 @@ nav:
                 - Chapter 14: RL/Sutton/Chapter 14.md
                 - Chapter 15: RL/Sutton/Chapter 15.md
                 - Chapter 16: RL/Sutton/Chapter 16.md
-          - Deep RL:
+          - Deep RL Intro:
                 - RL/Deep RL/index.md
                 - ML & DL: RL/Deep RL/Chapter 1.md
                 - Intro to RL: RL/Deep RL/Chapter 2.md
@@ -330,6 +332,15 @@ nav:
                 - Deep RL beyond MDPs: RL/Deep RL/Chapter 9.md
                 - Perspectives on Deep RL: RL/Deep RL/Chapter 10.md
                 - Conclusion: RL/Deep RL/Chapter 11.md
+          - UCB-CS285:
+                - RL/Deep RL Alg/index.md
+                - Basics: RL/Deep RL Alg/Chapter 1.md
+                - Model-free Methods: RL/Deep RL Alg/Chapter 2.md
+                - Model-based Methods: RL/Deep RL Alg/Chapter 3.md
+                - Exploration: RL/Deep RL Alg/Chapter 4.md
+                - Offline Reinforcement Learning: RL/Deep RL Alg/Chapter 5.md
+                - Inverse Reinforcement Learning: RL/Deep RL Alg/Chapter 6.md
+                - Advanced Topics: RL/Deep RL Alg/Chapter 7.md
           - "RL: Theory & Algorithms":
                 - RL/AJKS/index.md
                 - Chapter 1: RL/AJKS/Chapter 1.md
@@ -369,13 +380,12 @@ nav:
                 - Relations: Math/Discrete Mathematics/09 Relations.md
                 - Graph Theory: Math/Discrete Mathematics/10 Graph Theory.md
                 - Trees: Math/Discrete Mathematics/11 Trees.md
-    - Research:
-          - Research/index.md
     - Varia:
           - Learning Plan: Varia/Learning Plan.md
           - Typst Learning Report: Varia/Typst.md
           - Environment & Tools: Varia/Envs.md
           - 马原复习: Varia/marx.md
+          - 托福记录: Varia/TOEFL.md
 
 markdown_extensions:
     - toc:

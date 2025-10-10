@@ -119,7 +119,14 @@
                 let current_heading = elems.last()
                 if current_heading.numbering != none {
                     (
-                        head_title + h(1fr) + emph(h1-prefix + " " + counter(heading.where(level: 1)).display("1: ") + current_heading.body)
+                        head_title
+                            + h(1fr)
+                            + emph(
+                                h1-prefix
+                                    + " "
+                                    + counter(heading.where(level: 1)).display("1: ")
+                                    + current_heading.body,
+                            )
                     )
                 } else {
                     head_title + h(1fr) + emph(current_heading.body)
@@ -140,7 +147,7 @@
     let math-font = "STIX Two Math"
     show math.equation: eq => {
         // set text(font: math-font)
-        set block(spacing: 0.65em)
+        set block(spacing: 0.7em)
         eq
     }
 
@@ -151,12 +158,14 @@
     // Configure headings
     // Default multi-level decimal numbering for headings
     set heading(numbering: "1.1.1.1.1")
-    show selector(heading.where(level: 1)): set heading(numbering: (..nums) => (h1-prefix + " " + nums.pos().map(str).join(".") + ":"))
-    show selector(heading.where(body: [Contents])).or(heading
-    .where(body: [List of Figures])
-    .or(heading
-    .where(body: [List of Tables])
-    .or(heading.where(body: [List of Listings])))): set heading(numbering: none)
+    show selector(heading.where(level: 1)): set heading(numbering: (..nums) => (
+        h1-prefix + " " + nums.pos().map(str).join(".") + ":"
+    ))
+    show selector(heading.where(body: [Contents])).or(
+        heading
+            .where(body: [List of Figures])
+            .or(heading.where(body: [List of Tables]).or(heading.where(body: [List of Listings]))),
+    ): set heading(numbering: none)
     show selector(heading.where(body: [References])): set heading(numbering: none)
 
     show heading: it => {
@@ -199,20 +208,20 @@
         #if authors.len() > 0 {
             box(inset: (y: 10pt), {
                 authors
-                .map(author => {
-                    text(11pt, weight: "semibold")[
-                        #if "link" in author {
-                            [#link(author.link)[#author.name]]
-                        } else { author.name }
-                    ]
-                })
-                .join(", ", last: {
-                    if authors.len() > 2 {
-                        ", and"
-                    } else {
-                        " and"
-                    }
-                })
+                    .map(author => {
+                        text(11pt, weight: "semibold")[
+                            #if "link" in author {
+                                [#link(author.link)[#author.name]]
+                            } else { author.name }
+                        ]
+                    })
+                    .join(", ", last: {
+                        if authors.len() > 2 {
+                            ", and"
+                        } else {
+                            " and"
+                        }
+                    })
             })
         }
     ]
@@ -233,6 +242,7 @@
                     date.display("[month repr:long] [day padding:zero], [year repr:full]"),
                 )
             ],
+
             text(size: 11pt, "Last updated:"),
             text(
                 size: 11pt,
@@ -244,9 +254,13 @@
     } else {
         align(
             center,
-            text(size: 11pt)[Last updated:#h(5pt)] + text(size: 11pt, fill: accent_color, weight: "semibold", datetime
-            .today()
-            .display("[month repr:long] [day padding:zero], [year repr:full]")),
+            text(size: 11pt)[Last updated:#h(5pt)]
+                + text(
+                    size: 11pt,
+                    fill: accent_color,
+                    weight: "semibold",
+                    datetime.today().display("[month repr:long] [day padding:zero], [year repr:full]"),
+                ),
         )
     }
     v(18pt, weak: true)
@@ -344,101 +358,177 @@
 // | Note        | blue                 |
 // | Attention   | red / rgb("#DC143C") |
 // | Quote       | black                |
-// | Theorem     | navy                 |
-// | Proposition | maroon               |
+// | Theorem     | maroon               |
+// | Proposition | navy                 |
 // | Hypothesis  | orange               |
 // | Proof       | green                |
 // | Corollary   | yellow               |
+// | Lemma       | teal                 |
 
 #let boxnumbering = "1.1.1.1.1.1"
 #let boxcounting = "heading"
 
 #let definition = thmenv("Definition", boxcounting, none, (name, number, body, ..args) => {
-    showybox(title: [*#name* #h(1fr) Definition #number], frame: (
-        border-color: olive,
-        title-color: olive.lighten(30%),
-        body-color: olive.lighten(95%),
-        footer-color: olive.lighten(80%),
-    ), ..args.named(), body)
+    showybox(
+        title: [*#name* #h(1fr) Definition #number],
+        breakable: true,
+        frame: (
+            border-color: olive,
+            title-color: olive.lighten(30%),
+            body-color: olive.lighten(95%),
+            footer-color: olive.lighten(80%),
+        ),
+        ..args.named(),
+        body,
+    )
 }).with(numbering: boxnumbering)
 
 #let example = thmenv("example", boxcounting, none, (name, number, body, ..args) => {
-    showybox(title: [*#name* #h(1fr) Example #number], frame: (
-        border-color: purple,
-        title-color: purple.lighten(30%),
-        body-color: purple.lighten(95%),
-        footer-color: purple.lighten(80%),
-    ), ..args.named(), body)
+    showybox(
+        title: [*#name* #h(1fr) Example #number],
+        breakable: true,
+        frame: (
+            border-color: purple,
+            title-color: purple.lighten(30%),
+            body-color: purple.lighten(95%),
+            footer-color: purple.lighten(80%),
+        ),
+        ..args.named(),
+        body,
+    )
 }).with(numbering: boxnumbering)
 
 #let note = thmenv("note", boxcounting, none, (name, number, body, ..args) => {
-    showybox(title: [*#name* #h(1fr) Note #number], frame: (
-        border-color: blue,
-        title-color: blue.lighten(30%),
-        body-color: blue.lighten(95%),
-        footer-color: blue.lighten(80%),
-    ), ..args.named(), body)
+    showybox(
+        title: [*#name* #h(1fr) Note #number],
+        breakable: true,
+        frame: (
+            border-color: blue,
+            title-color: blue.lighten(30%),
+            body-color: blue.lighten(95%),
+            footer-color: blue.lighten(80%),
+        ),
+        ..args.named(),
+        body,
+    )
 }).with(numbering: boxnumbering)
 
 #let attention = thmenv("attention", boxcounting, none, (name, number, body, ..args) => {
-    showybox(title: [*#name* #h(1fr) Attention #number], frame: (
-        border-color: rgb("#DC143C"),
-        title-color: rgb("#DC143C").lighten(30%),
-        body-color: rgb("#DC143C").lighten(95%),
-        footer-color: rgb("#DC143C").lighten(80%),
-    ), ..args.named(), body)
+    showybox(
+        title: [*#name* #h(1fr) Attention #number],
+        breakable: true,
+        frame: (
+            border-color: rgb("#DC143C"),
+            title-color: rgb("#DC143C").lighten(30%),
+            body-color: rgb("#DC143C").lighten(95%),
+            footer-color: rgb("#DC143C").lighten(80%),
+        ),
+        ..args.named(),
+        body,
+    )
 }).with(numbering: boxnumbering)
 
 #let quote = thmenv("quote", boxcounting, none, (name, number, body, ..args) => {
-    showybox(title: [*#name* #h(1fr) Quote #number], frame: (
-        border-color: black,
-        title-color: black.lighten(30%),
-        body-color: black.lighten(95%),
-        footer-color: black.lighten(80%),
-    ), ..args.named(), body)
+    showybox(
+        title: [*#name* #h(1fr) Quote #number],
+        breakable: true,
+        frame: (
+            border-color: black,
+            title-color: black.lighten(30%),
+            body-color: black.lighten(95%),
+            footer-color: black.lighten(80%),
+        ),
+        ..args.named(),
+        body,
+    )
 }).with(numbering: boxnumbering)
 
-#let theorem = thmenv("theorem", boxcounting, none, (name, number, body, ..args) => {
-    showybox(title: [*#name* #h(1fr) Theorem #number], frame: (
-        border-color: navy,
-        title-color: navy.lighten(30%),
-        body-color: navy.lighten(95%),
-        footer-color: navy.lighten(80%),
-    ), ..args.named(), body)
+#let theorem = thmenv("Theorem", boxcounting, none, (name, number, body, ..args) => {
+    showybox(
+        title: [*#name* #h(1fr) Theorem #number],
+        breakable: true,
+        frame: (
+            border-color: maroon,
+            title-color: maroon.lighten(30%),
+            body-color: maroon.lighten(95%),
+            footer-color: maroon.lighten(80%),
+        ),
+        ..args.named(),
+        body,
+    )
 }).with(numbering: boxnumbering)
 
 #let proposition = thmenv("Proposition", boxcounting, none, (name, number, body, ..args) => {
-    showybox(title: [*#name* #h(1fr) Proposition #number], frame: (
-        border-color: maroon,
-        title-color: maroon.lighten(30%),
-        body-color: maroon.lighten(95%),
-        footer-color: maroon.lighten(80%),
-    ), ..args.named(), body)
+    showybox(
+        title: [*#name* #h(1fr) Proposition #number],
+        breakable: true,
+        frame: (
+            border-color: navy,
+            title-color: navy.lighten(30%),
+            body-color: navy.lighten(95%),
+            footer-color: navy.lighten(80%),
+        ),
+        ..args.named(),
+        body,
+    )
 }).with(numbering: boxnumbering)
 
 #let hypothesis = thmenv("hypothesis", boxcounting, none, (name, number, body, ..args) => {
-    showybox(title: [*#name* #h(1fr) Hypothesis #number], frame: (
-        border-color: orange,
-        title-color: orange.lighten(10%),
-        body-color: orange.lighten(95%),
-        footer-color: orange.lighten(80%),
-    ), ..args.named(), body)
+    showybox(
+        title: [*#name* #h(1fr) Hypothesis #number],
+        breakable: true,
+        frame: (
+            border-color: orange,
+            title-color: orange.lighten(10%),
+            body-color: orange.lighten(95%),
+            footer-color: orange.lighten(80%),
+        ),
+        ..args.named(),
+        body,
+    )
 }).with(numbering: boxnumbering)
 
 #let proof = thmenv("proof", boxcounting, none, (name, number, body, ..args) => {
-    showybox(title: [*#name* #h(1fr) Proof #number], frame: (
-        border-color: green,
-        title-color: green.lighten(30%),
-        body-color: green.lighten(95%),
-        footer-color: green.lighten(80%),
-    ), ..args.named(), body)
+    showybox(
+        title: [*#name* #h(1fr) Proof #number],
+        breakable: true,
+        frame: (
+            border-color: green,
+            title-color: green.lighten(30%),
+            body-color: green.lighten(95%),
+            footer-color: green.lighten(80%),
+        ),
+        ..args.named(),
+        body,
+    )
 }).with(numbering: boxnumbering)
 
 #let corollary = thmenv("corollary", boxcounting, none, (name, number, body, ..args) => {
-    showybox(title: [*#name* #h(1fr) Corollary #number], frame: (
-        border-color: yellow,
-        title-color: yellow.lighten(30%),
-        body-color: yellow.lighten(95%),
-        footer-color: yellow.lighten(80%),
-    ), ..args.named(), body)
+    showybox(
+        title: [*#name* #h(1fr) Corollary #number],
+        breakable: true,
+        frame: (
+            border-color: yellow,
+            title-color: yellow.lighten(30%),
+            body-color: yellow.lighten(95%),
+            footer-color: yellow.lighten(80%),
+        ),
+        ..args.named(),
+        body,
+    )
+}).with(numbering: boxnumbering)
+
+#let lemma = thmenv("lemma", boxcounting, none, (name, number, body, ..args) => {
+    showybox(
+        title: [*#name* #h(1fr) Lemma #number],
+        breakable: true,
+        frame: (
+            border-color: teal,
+            title-color: teal.lighten(30%),
+            body-color: teal.lighten(95%),
+            footer-color: teal.lighten(80%),
+        ),
+        ..args.named(),
+        body,
+    )
 }).with(numbering: boxnumbering)

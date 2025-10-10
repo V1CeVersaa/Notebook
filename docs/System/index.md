@@ -14,6 +14,8 @@
     - 对应计算机系统 II 和计算机系统 III 的操作系统部分知识，内容组织与重点和操作系统概念这本书不太一致
 - [ ] [计算机网络：自顶向下方法（Computer Networking: A Top-Down Approach）](CN/index.md)
     - 自己打算补充一点和计算机网络相关的知识，**暂且搁置**，**有空再学**
+- [ ] [数据库系统（Database Systems）](DB/index.md)
+    - 自己打算补充一点和数据库系统相关的知识，**暂且搁置**，**有空再学**
 - [ ] 决定不再看的书：
     - [ ] [数字设计与计算机体系结构（Digital Design and Computer Architecture）](DDCA/index.md)
     - [ ] [计算机组成与设计（Computer Organization and Design）](COAD/index.md)

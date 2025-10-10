@@ -13,5 +13,6 @@
     - [ ] [Understanding Deep Learning](./Deep%20Learning/Understanding%20Deep%20Learning/index.md)
     - [ ] [Deep Learning for Computer Vision](./Deep%20Learning/Computer%20Vision/index.md)
     - [ ] [Deep Learning for Natural Language Processing](./Deep%20Learning/Natural%20Language%20Processing/index.md)
+- [ ] [Language Modeling from Scratch](./Language%20Models/index.md)
 - [ ] [Introduction to Online Learning](./Online%20Learning/index.md)
 - [ ] [Introduction to Causal Inference](./Causal%20Inference/index.md) <马上开坑>

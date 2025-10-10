@@ -1,5 +1,7 @@
 # Operating System Concepts
 
+!!! Abstract "「大二秋冬 & 大二春夏」"
+
 ## Table of Contents
 
 - [ ] [Introduction: OS Structure](./topic0.md)

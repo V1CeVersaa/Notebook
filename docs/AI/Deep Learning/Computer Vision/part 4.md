@@ -3,7 +3,7 @@
 !!! Abstract "Table of Contents"
 
     - [x] [Lecture 16: Recurrent Neural Networks](#lecture-16-recurrent-neural-networks)
-    - [ ] [Lecture 17: Attention](#lecture-17-attention)
+    - [x] [Lecture 17: Attention](#lecture-17-attention)
     - [ ] [Lecture 18: Vision Transformers](#lecture-18-vision-transformers)
 
 ## Lecture 16: Recurrent Neural Networks
@@ -89,43 +89,70 @@ LSTM 架构在每一个时间点考虑两个向量：Cell State 和 Hidden State
 
 ## Lecture 17: Attention
 
+!!! Info "这部分也有参考 Stanford CS231N 的课程，两门课基本同根同源"
+
 回忆我们之前的 Seq2Seq 模型，整个模型可以拆分为 Encoder 和 Decoder 两个部分，中间通过一个固定长度的上下文向量传输信息。这样一来，这个上下文向量需要在某种程度上总结输入序列的所有信息，并且每次都喂给解码器一个相同的上下文向量，这显然是不合理的。
 
 <img class="center-picture" src="./assets_1/17-1.webp" width=600 />
 
-因此我们就需要引入注意力机制/Attention，基本架构还是差不多，还是 Encoder 和 Decoder 两个部分，但是我们对上下文向量进行了一些调整，基本想法是：将当前编码器的状态 $h_i$ 和当前隐藏层状态 $s_0$ 进行比较，计算出对齐分数 $e_{t, i} = f_{\text{att}}(s_{t-1}, h_{i})$，然后使用 Softmax 函数进行归一化权重 $\alpha_{t, i}$，最后将这些权重乘以编码器的状态 $h_i$ 并求和得到当前输入解码器的上下文向量 $c_t$。
+因此我们就需要引入注意力机制/Attention，基本架构还是差不多，还是 Encoder 和 Decoder 两个部分，但是我们对上下文向量进行了一些调整，基本想法是：将当前编码器的状态 $h_i$ 和当前隐藏层状态 $s_0$ 进行比较，计算出对齐分数 $e_{t, i} = f_{\text{att}}(s_{t-1}, h_{i})$，对齐分数指出输入序列和当前解码器状态的相似度，然后使用 Softmax 函数进行归一化权重 $\alpha_{t, i}$，将其转化为概率分布，最后将这些权重乘以编码器的状态 $h_i$ 并求和得到当前输入解码器的上下文向量 $c_t$。
 
 <img class="center-picture" src="./assets_1/17-2.webp" width=600 />
 
 这个过程是动态的，比如对第一次输入，解码器的最初状态被设置为编码器的最终隐藏状态，那么我们传入函数 $f_{\text{att}}$ 的参数就是解码器的最初状态和编码器的对每一个状态 $h_i$ 的隐藏状态。当我们再一次输入的时候，解码器的隐藏状态被设置为上一次计算出的隐藏状态，然后我们传入函数 $f_{\text{att}}$ 的参数就是解码器的隐藏状态和编码器的对每一个状态 $h_i$ 的隐藏状态。
 
-在解码器的每一个时间步都使用一个不同的上下文向量解决了输入序列被编码成单一固定长度向量的瓶颈问题；另一方面，上下文向量自动地看向输入序列的不同位置，因此也解决了输入序列中不同部分的重要性不同的问题。
+在解码器的每一个时间步都使用一个不同的上下文向量解决了输入序列被编码成单一固定长度向量的瓶颈问题；另一方面，上下文向量自动地看向输入序列的不同位置，因此也解决了输入序列中不同部分的重要性不同的问题。注意力机制是完全可微的，因此我们不需要监督网络，不需要告诉它输入序列中哪些词是必需的。相反，这只是一个由可微操作组成的大型计算图，所有这些都可以通过梯度下降端到端学习，网络会自行学习如何关注输入序列的不同部分。
 
 值得注意的是，解码器并没有用到编码器状态 $h_i$ 其实来自于一个有序序列的事实，只是将其当成来自一个无序的集合。因此我们可以将类似的架构用于任何输入的隐藏向量集合。
 
-当我们从事计算机科学的研究的时候，如果发现一个东西很好用，那么一个自然的想法就是将其抽象化，然后推广到更一般的情况。于是我们开始设计注意力层。
+当我们从事计算机科学的研究的时候，如果发现一个东西很好用，那么一个自然的想法就是将其抽象化，然后推广到更一般的情况。于是我们开始设计注意力层。首先思考注意力机制的作用：
 
-最简单的注意力层的输入是一个查询向量 $q$、一个输入序列 $X$ 和一个相似度函数 $f_{\text{att}}$。经过计算得到一个相似度向量 $e$ 与一个注意力权重 $a$，表示查询向量与输入向量序列中每个元素的相似度与重要性，并且产出一个输出向量 $y$。
+- 数据向量：代表编码器 RNN 的隐藏状态，是我们需要总结的数据。
+- 查询向量：代表解码器 RNN 的隐藏状态，是我们需要输出的内容，查询向量需要回溯查看数据向量，将数据向量信息汇总成一个上下文向量。
 
-<img class="center-picture" src="./assets_1/17-3.webp" width=600 />
+最简单的注意力层的输入是一个查询向量 $q$、一个输入序列 $X$ 和一个相似度函数 $f_{\text{att}}$。经过计算得到一个相似度向量 $e$ 与一个注意力权重 $a$，表示查询向量与输入向量序列中每个元素的相似度与重要性，并且产出一个输出向量 $y$。需要注意的是，当前相似度函数是点积，点积作为相似度函数已经足够好用了，但是点积和 Softmax 会有奇怪的相互作用，当向量的长度增大的时候，点积的值会增大，而 Softmax 会将这个值压缩，导致梯度消失。因此我们使用缩放点积作为相似度函数，也就是 $e_i = \dfrac{q \cdot X_i}{\sqrt{D_Q}}$，其中 $D_Q$ 是查询向量的维度。
 
-对于多个查询向量 $Q$，比如有 $N_Q$ 个，那么我们就可以计算出每一个查询向量 $Q_i$ 和每一个输入向量的相似度 $E_{i, j} = (Q_i \cdot X_j) / \sqrt{D_Q}$，然后使用 Softmax 函数对相似度矩阵的每一个相似度向量进行归一化，最后计算出输出向量序列。
+=== "CS231N"
 
-<img class="center-picture" src="./assets_1/17-4.webp" width=600 />
+    <img class="center-picture" src="./assets_1/17-3-1.webp" width=600 />
 
-再进一步泛化，考虑我们使用输入序列 $X$ 的方式，分在计算相似度的时候被使用，另一部分在计算输出的时候被使用。我们将输入作为两个部分：Key 和 Value，给定查询序列 $Q$，我们计算出其与键序列 $K$ 的相似度矩阵 $E$，然后使用 Softmax 函数对相似度矩阵的每一个相似度向量进行归一化，最后将相似度序列和值序列相乘，得到输出向量序列。这个泛化的另一个关键在于我们使用一个可学习的矩阵 $W_K$ 和 $W_V$ 将输入序列 $X$ 转化成键序列 $K$ 和值序列 $V$，这两点加起来，就给了模型选择如何操纵输入序列的更大的灵活性：
+=== "EECS 498"
 
-<img class="center-picture" src="./assets_1/17-5.webp" width=600 />
+    <img class="center-picture" src="./assets_1/17-3.webp" width=600 />
 
-继续进行抽象，我们可以得到自注意力层/Self-Attention Layer，其对应的是每一个输入向量都对应着一个查询向量，这样我们可以将查询序列转化成一个查询矩阵，查询序列只需要将输入序列和查询矩阵相乘就可以计算出来，这样自注意力层实际上只有一个输入序列 $X$，对应的查询矩阵 $W_Q$ 也是可学习的。自注意力层做的事情就是将一个输入向量和别的输入向量进行比较，然后计算出相似度，然后计算出输出向量。
+对于多个查询向量 $Q$，比如有 $N_Q$ 个，那么我们就可以计算出每一个查询向量 $Q_i$ 和每一个输入向量的相似度 $E_{i, j} = (Q_i \cdot X_j) / \sqrt{D_Q}$，然后使用 Softmax 函数对相似度矩阵的每一个相似度向量进行归一化，最后计算出输出向量序列。这部分就很直观了。
 
-<img class="center-picture" src="./assets_1/17-6.webp" width=600 />
+=== "CS231N"
 
-考虑一下，既然我们只有一个输入序列 $X$，那么如果我们对输入序列的顺序打乱，那么接下来查询序列和键序列也会被打乱，但是值不变，因此计算出的相似度矩阵和权重矩阵也会被打乱，输出向量序列也会被打乱，因此自注意力层实际上是一个某种意义上的排列不变/Permutation Invariant 的层，我们也叫其排列等价/Permutation Equivariant 的层，满足 $f(s(x)) = s(f(x))$，其中 $s$ 是一个排列函数。
+    <img class="center-picture" src="./assets_1/17-4-1.webp" width=600 />
 
-这是因为自注意力层根本不指导正在处理的序列的顺序如何，为了让整个处理变得对位置敏感，我们可以添加一些位置编码/Positional Encoding。
+=== "EECS 498"
 
-有时候我们不希望模型关注到当前时间步之后的位置，也就是不希望提前看到未来的信息，这时候我们可以使用掩码/Mask 来限制模型只能看到当前时间步之前的信息，这样严格限制模型只能使用过去的信息。
+    <img class="center-picture" src="./assets_1/17-4.webp" width=600 />
+
+再进一步泛化，考虑我们使用输入序列 $X$ 的方式，分在计算相似度的时候被使用，另一部分在计算输出的时候被使用。我们可以将数据向量**投射**为两个向量：键向量/Key Vector 和值向量/Value Vector，这是通过添加两个可以学习的权重矩阵 $W_K$ 和 $W_V$ 实现的。通过将数据向量和权重矩阵相乘，我们就可以得到键向量和值向量。
+
+=== "CS231N"
+
+    <img class="center-picture" src="./assets_1/17-5-1.webp" width=600 />
+
+=== "EECS 498"
+
+    <img class="center-picture" src="./assets_1/17-5.webp" width=600 />
+
+继续进行抽象，我们可以得到自注意力层/Self-Attention Layer：在这里，我们只有一个输入向量，没有输入的查询向量，注意力机制内的查询向量是通过学习一个可学习的查询矩阵 $W_Q$，再和输入向量进行矩阵乘得到的。自注意力机制下，这些矩阵的形状都更加简单。在实践上，我们会计算多个矩阵乘法，$[Q \; K \; V] = X[W_Q \; W_K \; W_V]$，这可以通过一个矩阵乘法实现：$[N \times 3D_{out}] = [N \times D_{in}][D_{in} \times 3D_{out}]$。因为硬件上少次的大矩阵乘法会比多次的小矩阵乘法更快。
+
+=== "CS231N"
+
+    <img class="center-picture" src="./assets_1/17-6-1.webp" width=600 />
+
+=== "EECS 498"
+
+    <img class="center-picture" src="./assets_1/17-6.webp" width=600 />
+
+考虑一下，既然我们只有一个输入序列 $X$，那么如果我们对输入序列的顺序打乱，那么接下来查询序列和键序列也会被打乱，但是值不变，因此计算出的相似度矩阵和权重矩阵也会被打乱，输出向量序列也会被打乱，因此自注意力层实际上是一个某种意义上的排列不变/Permutation Invariant 的层，我们也叫其排列等价/Permutation Equivariant 的层，满足 $f(\sigma(x)) = \sigma(f(x))$，其中 $\sigma$ 是一个排列函数。这是因为自注意力层根本不指导正在处理的序列的顺序如何，为了让整个处理变得对位置敏感，我们可以添加一些位置编码/Positional Encoding。
+
+有时候我们不希望模型关注到当前时间步之后的位置，也就是不希望提前看到未来的信息，这样有时候相当于作弊，这时候我们可以使用掩码/Mask 来限制模型只能看到当前时间步之前的信息，这样严格限制模型只能使用过去的信息，称为因果掩码/Causal Masking。
 
 <img class="center-picture" src="./assets_1/17-7.webp" width=600 />
 
@@ -137,7 +164,34 @@ LSTM 架构在每一个时间点考虑两个向量：Cell State 和 Hidden State
 
 <img class="center-picture" src="./assets_1/17-9.webp" width=600 />
 
+事实上，整个自注意力机制只不过是四次矩阵乘法：
 
+- QKV 投影：$[N \times D] \times [D \times 3HD_H] \Rightarrow [N \times 3HD_H]$
+- QK 相似度：$[H \times N \times D_H] \times [H \times D_H \times N] \Rightarrow [H \times N \times N]$
+- V 加权：$[H \times N \times N] \times [H \times N \times D_H] \Rightarrow [H \times N \times D_H]$
+- 输出投影：$[N \times HD_H] \times [HD_H \times D] \Rightarrow [N \times D]$
+
+其对于计算复杂度和内存复杂度都是 $O(N^2)$，我们可以使用 Flash Attention 来优化存储，使得内存复杂度降低为 $O(N)$。
+
+我们可以基于 Self-Attention 构建出 Transformer 块：假设输入为 $x_1, x_2, \cdots, x_N$，首先将输入通过自注意力层，注意自注意力层是整个架构内唯一有向量之间交互的层，然后通过残差连接和层归一化，接着通过多层感知机，最后通过残差连接和层归一化输出为另一个输出向量集合 $y_1, y_2, \cdots, y_N$。
+
+<img class="center-picture" src="./assets_1/17-10.webp" width=600 />
+
+这里面的多层感知机一般是一个两层的神经网络，一般的设置为 $D \Rightarrow 4D \Rightarrow D$。层归一化和 MLP 都是分别对每一个输入向量进行操作的。因此一个 Transformer 块的前向传播只需要六次矩阵乘法，四次来自于自注意力层，两次来自于 MLP。且 Transformer 可以高度并行化和扩展化。
+
+现代的 Transformer 对原来的 Transformer 进行了一些修改，比如将 Layer Normalization 直接放在残差链接外实际上不太好，这样的模型甚至不能学到 Identity Function，因此需要将归一化层放在残差链接内部。
+
+<img class="center-picture" src="./assets_1/17-11.webp" width=600 />
+
+对于归一化来讲，我们还可以使用 RMSNorm/Root-Mean-Square Layer Normalization 来替代 Layer Normalization，其输入为 $x$，输出为 $y$，权重为 $\gamma$，计算为 $y_i = \frac{x_i}{RMS(x)} * \gamma_i$，其中 $RMS(x) = \sqrt{\epsilon + \frac{1}{N}\sum_{i=1}^N x_i^2}$。这使得训练更加稳定一点。
+
+<img class="center-picture" src="./assets_1/17-12.webp" width=600 />
+
+对于 MLP 来讲，我们还可以使用 SwiGLU MLP 来代替传统的 MLP：SwiGLU MLP 需要学习三个权重矩阵 $W_1,W_2$（形状为 $D \times H$）和 $W_3$（形状为 $H \times D$），计算为 $Y = (\sigma(XW_1) \odot XW_2)W_3$，其中 $\odot$ 是逐元素相乘。为了保持总参数量不变，我们设置 $H = 8D/3$。
+
+> We offer no explanation as to why these architectures seem to work; we attribute their success, as all else, to divine benevolence.
+
+最后，我们还可以使用 MoE 架构：在每个块中学习 $E$ 个独立的 MLP 权重集；每个 MLP 是一个专家；每个 token 被路由到 $A < E$ 个活跃专家上，这样总参数增加 $E$ 倍，但计算只增加 $A$ 倍。
 
 ## Lecture 18: Vision Transformers
 

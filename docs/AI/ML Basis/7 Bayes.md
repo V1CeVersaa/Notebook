@@ -254,6 +254,6 @@ EM/Epectation-Maximization 是常见的估计隐变量模型参数的方法。EM
 
 - M 步/Maximization：寻找参数最大化期望似然，即
 
-    $$\Theta^{t+1} = \arg\max_{\Theta} Q(\Theta \mid \Theta^t).$$
+    $$\Theta^{t+1} = \mathop{\arg\max}_{\Theta} Q(\Theta \mid \Theta^t).$$
 
 EM 算法为一种非梯度优化方法，通过两个步骤交替计算，直至收敛到局部最优解，相对来说计算复杂度较低。
