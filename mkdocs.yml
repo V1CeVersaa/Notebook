@@ -112,6 +112,9 @@ nav:
                 - Algorithms III: Computer Science/Algorithm/Lec 5.md
           - Computation Theory:
                 - Computer Science/Computation/index.md
+                - Encoding & Representation: Computer Science/Computation/Part 1.md
+                - Circuit & Computation: Computer Science/Computation/Part 2.md
+                - Formal Languages & Automata: Computer Science/Computation/Part 3.md
           - Principles of Compilers:
                 - Computer Science/Compilers/index.md
                 - Topic 1：词法分析: Computer Science/Compilers/1 lex.md
@@ -226,9 +229,11 @@ nav:
                       - DDCA-Memory Systems: System/DDCA/Chapter8.md
     - AI:
           - AI/index.md
-          - PyTorch:
-                - AI/PyTorch/index.md
-                - Tensor: AI/PyTorch/Tensor.md
+          - Framework & Toolkits:
+                - AI/Framework/index.md
+                - PyTorch: AI/Framework/PyTorch/index.md
+                - Triton: AI/Framework/Triton/index.md
+                - JaxTyping: AI/Framework/JaxTyping/index.md
           - 人工智能逻辑:
                 - AI/AIL/index.md
                 - 1 绪论: AI/AIL/1 Introduction.md
@@ -385,7 +390,7 @@ nav:
           - Typst Learning Report: Varia/Typst.md
           - Environment & Tools: Varia/Envs.md
           - 马原复习: Varia/marx.md
-          - 托福记录: Varia/TOEFL.md
+          - 托福阅读: Varia/TOEFL Reading.md
 
 markdown_extensions:
     - toc:

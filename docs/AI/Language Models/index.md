@@ -5,7 +5,7 @@
 - [ ] [Lecture 1: Overview & Tokenization](./Lecture%201.md)
 - [ ] [Lecture 2: PyTorch & Resource Accounting](./Lecture%202.md)
 - [ ] [Lecture 3: Architectures & Hyperparameters](./Lecture%203.md)
-- [ ] [Lecture 4: Misture of Experts](./Lecture%204.md)
+- [ ] [Lecture 4: Mixture of Experts](./Lecture%204.md)
 - [ ] [Lecture 5: GPUs](./Lecture%205.md)
 - [ ] [Lecture 6: Kernels & Triton](./Lecture%206.md)
 - [ ] [Lecture 7: Parallelism I](./Lecture%207.md)

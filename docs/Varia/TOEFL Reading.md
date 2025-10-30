@@ -1,15 +1,34 @@
-# TOFEL
+# TOEFL Reading Practice
 
 !!! Abstract "Outline"
+
+???- Info "Prompts"
+
+    - 这篇文章的大意是什么？
+    - 这是一篇托福阅读题目，我正在复盘我的答题，请你给出逐段翻译，对重点词汇给出释义，请你将每一段的内容按照下面格式给我：
+
+        template:
+
+        ```md
+        ???- Info "Paragraph number"
+
+            **原文：**
+            这里是原文
+
+            **翻译：**
+            这里是翻译
+
+        **重点词汇：**
+
+        *   **word or phrase**: 中文汉译
+        ```
 
 ## TPO 54
 
 
 ## TPO 55
 
-Reading 37: 3 1 0; Listening 
-
-### Reading I
+### Reading I (-3)
 
 ???- Info "Paragraph 1"
 
@@ -143,8 +162,8 @@ Reading 37: 3 1 0; Listening
 
 **重点词汇：**
 
-*   **resemblance**: 相似之处
-*   **representative government**: 代议制政府
+*   **resemblance**: 相似之处（来自 resemble）
+*   **representative government**: 代议制政府（representive 为代表的之意思）
 *   **compelling**: 有强制力的，令人信服的
 *   **legislature**: 立法机关
 *   **House of Commons**: （英国）下议院
@@ -189,3 +208,79 @@ Reading 37: 3 1 0; Listening
 
     **翻译：**
     美洲殖民者对“实质代表制”一无所知。殖民地的代表被认为是选举他的民众的代理人。他应该首先照顾他们的利益，其次才是殖民地的利益。在新英格兰，镇民大会可以随时召开，人们经常聚集起来告诉他们的代表在特定议题上该如何投票。
+
+## TPO 60
+
+### Reading I
+
+???- Info "Paragraph 1"
+
+    **原文：**
+    Until about the late 1980s, most scientists believed that life was restricted to the top few meters of the soil or ocean sediments. The few reports of organisms being recovered from great depths within Earth were dismissed as contamination with material from the surface layers. Two technical developments changed this view. The first was the development of drilling techniques that gave confidence that samples could be retrieved from depth without contamination. Samples were recovered using a diamond-studded drill bit that headed a great length of rotating steel pipe from a drilling derrick. A concentrated tracer material was added to the lubricating fluid so that when a deep sample of rock was removed, any contaminated material could be identified and cut away to leave a pristine sample of rock from deep within Earth. The second development was the advent of techniques for identifying microorganisms without having to grow them in culture. All organisms contain DNA, and their presence can be revealed by dyes that either stain DNA directly or can be attached to nucleic acid probes. By varying the nucleic acid probe, scientists can demonstrate the presence of different types of microorganisms.
+
+    **翻译：**
+    直到大约20世纪80年代末，大多数科学家都认为生命只存在于土壤或海洋沉积物的顶部几米内。少数关于从地球深处发现生物的报告，曾被当作是地表物质污染的结果而被否定。两项技术的发展改变了这一观点。第一项是钻探技术的发展，它让人们确信能够在不被污染的情况下从深处获取样本。样本是通过一个镶有钻石的钻头获取的，该钻头连接着钻井塔上长长的旋转钢管。在润滑液中加入了浓缩的追踪剂，这样当取出一块深层岩石样本时，任何被污染的部分都可以被识别并切除，从而留下来自地球深处的原始岩石样本。第二项发展是无需培养即可识别微生物的技术的出现。所有生物都含有DNA，它们的存在可以通过染料来揭示，这些染料可以直接对DNA染色，或者可以附着在核酸探针上。通过改变核酸探针，科学家可以证明不同类型微生物的存在。
+
+**重点词汇：**
+
+*   **sediments**: 沉积物
+*   **dismissed as**: 被当作...而不予理会
+*   **contamination**: 污染
+*   **retrieved**: 取回，回收
+*   **diamond-studded drill bit**: 镶有钻石的钻头
+*   **drilling derrick**: 钻井塔，钻探架
+*   **tracer material**: 追踪剂材料
+*   **lubricating fluid**: 润滑液
+*   **pristine**: 原始的，未受污染的
+*   **the advent of**: ...的出现/到来
+*   **culture**: （微生物）培养
+*   **nucleic acid probes**: 核酸探针
+
+???- Info "Paragraph 2"
+
+    **原文：**
+    The first scientists to use these techniques were involved in the Subsurface Science Program of the United States Department of Energy (DOE). They were interested in the possibility that if organisms existed in the depths of Earth, they might degrade organic pollutants and help maintain the purity of groundwater or, rather less usefully, degrade the containers in which the DOE was proposing to deposit the radioactive waste from nuclear facilities. They demonstrated the presence of many different types of microorganisms in rocks at depths down to 500 meters beneath the surface. Since then, microbes have been discovered in many different types of rocks and deep within ocean sediments. The record depth at which life has been found is at the bottom of a South African gold mine, 3.5 kilometers below ground. Pressure and temperature increase as you go deeper into Earth. Some scientists think that subsurface bacteria could withstand temperatures as high as 150℃. This would allow organisms to exist to depths of about 7 kilometers beneath the seafloor and to 4 kilometers below the surface of the land. Although the organisms are often sparsely distributed, this is such an enormous volume that it has been estimated that the total biomass of deep subsurface organisms exceeds that of those living on, or just below, the surface.
+
+    **翻译：**
+    首批使用这些技术的科学家参与了美国能源部的地下科学项目。他们感兴趣的可能性是：如果生物存在于地球深处，它们或许可以降解有机污染物，帮助维持地下水的纯净；或者，从不太有用的方面看，它们也可能降解能源部计划用来存放核设施放射性废料的容器。他们在深入地下500米的岩石中证实了多种不同类型的微生物的存在。自此以后，在许多不同类型的岩石和深海沉积物中都发现了微生物。目前发现生命的最深记录是在一个南非金矿的底部，地下3.5公里处。随着向地球深处深入，压力和温度都会增加。一些科学家认为，地下细菌可以承受高达150℃的温度。这将使生物能够生存在海床下约7公里深处和陆地表面下4公里深处。尽管这些生物通常分布稀疏，但由于地下体积如此巨大，据估计，深层地下生物的总生物量超过了那些生活在地表或地表附近的生物的总生物量。
+
+**重点词汇：**
+
+*   **maintain the purity of**: 维持...的纯净
+*   **deposit**: 存放，沉积
+*   **withstand**: 承受，经受住
+*   **biomass**: 生物量
+
+???- Info "Paragraph 3"
+
+    **原文：**
+    Bacteria are the most numerous of these subsurface organisms, but there are also fungi and protozoa. Some 10,000 strains of microorganism have been isolated from subsurface cores. Each gram of rock contains anything from 100 bacteria to 10 million bacteria(compared with more than 1 billion per gram in agricultural soils); ocean sediments contain even higher numbers. The protozoa feed on the bacteria, forming part of a simple subterranean food chain, but what do the bacteria feed on? Sedimentary rocks are formed from sands and from ocean, river, or lake sediments that have organic material trapped within them. Microbes living in pores within the sediments can utilize these ancient nutrients and grow. As sedimentary rocks are buried more deeply, they become increasingly compacted and their pores filled with minerals. The distribution of microorganisms is thus likely to become more patchy, condensed into the remaining pores and concentrations of nutrients. The bulk of Earth's crust, however, consists of igneous rocks, such as granite and basalt, which are solidified from molten magma. These rocks were too hot to support life when they were first formed; the organisms that inhabit cracks and fissures within the rocks are carried there by the groundwater flowing through them. Subsurface bacteria do not just rely on nutrients trapped within the rock or carried there by groundwater. Some are chemotrophs, deriving their energy from the oxidation of iron or sulfur compounds and building organic material directly from the carbon dioxide and hydrogen gas dissolved in the rock. These bacteria excrete organic compounds that are then utilized by other types of bacteria. These ecosystems based on chemotrophic bacteria are completely independent of material and solar energy from the surface.
+
+    **翻译：**
+    细菌是这些地下生物中数量最多的，但也有真菌和原生动物。从地下岩芯中已经分离出约10,000种微生物。每克岩石中含有从100到1000万不等的细菌（相比之下，每克农业土壤中含有超过10亿个细菌）；海洋沉积物中的数量甚至更高。原生动物以细菌为食，构成了一个简单的地下食物链的一部分，但细菌又以什么为食呢？沉积岩是由沙子和海洋、河流或湖泊的沉积物形成的，这些沉积物中 trapped 了有机物质。生活在沉积物孔隙中的微生物可以利用这些古老的养分并生长。随着沉积岩被埋得更深，它们变得越来越压实，孔隙被矿物质填充。因此，微生物的分布可能变得更加零散，集中在剩余的孔隙和营养富集区。然而，地壳的大部分是由火成岩（如花岗岩和玄武岩）组成的，它们是由熔融的岩浆凝固而成的。这些岩石在最初形成时温度太高，无法支持生命；栖息在岩石裂缝中的生物是由流经它们的地下水带到那里的。地下细菌不仅仅依赖于困在岩石中或由地下水带来的养分。有些是化能营养菌，它们通过氧化铁或硫化合物获得能量，并直接利用溶解在岩石中的二氧化碳和氢气来构建有机物质。这些细菌会分泌出有机化合物，然后被其他类型的细菌利用。这些基于化能营养菌的生态系统完全独立于地表的物质和太阳能。
+
+**重点词汇：**
+
+*   **protozoa**: 原生动物
+*   **strains**: （微生物）菌株，品种
+*   **subterranean**: 地下的
+*   **Sedimentary rocks**: 沉积岩
+*   **trapped**: 被困住的，被封存的
+*   **pores**: 孔隙
+*   **compacted**: 被压实的
+*   **patchy**: 零散的，分布不均的
+*   **condensed into**: 浓缩到...
+*   **The bulk of**: 大部分
+*   **igneous rocks**: 火成岩
+*   **granite**: 花岗岩
+*   **basalt**: 玄武岩
+*   **solidified**: 凝固的
+*   **molten magma**: 熔融的岩浆
+*   **fissures**: 裂缝
+*   **chemotrophs**: 化能营养生物
+*   **deriving from**: 从...获得
+*   **oxidation**: 氧化作用
+*   **excrete**: 分泌，排泄
+
+### Reading II
+

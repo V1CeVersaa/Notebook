@@ -2,7 +2,7 @@
 
 !!! Abstract "Table of Contents"
 
-    - [ ] [Lecture 12: Deep Learning Software](#lecture-12-deep-learning-software)
+    - [x] [Lecture 12: Deep Learning Software](#lecture-12-deep-learning-software)
     - [x] [Lecture 13: Object Detection](#lecture-13-object-detection)
     - [x] [Lecture 14: Object Detectors](#lecture-14-object-detectors)
     - [x] [Lecture 15: Image Segmentation](#lecture-15-image-segmentation)

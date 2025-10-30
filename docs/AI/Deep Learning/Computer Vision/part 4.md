@@ -195,4 +195,6 @@ LSTM 架构在每一个时间点考虑两个向量：Cell State 和 Hidden State
 
 ## Lecture 18: Vision Transformers
 
+> 可以看 [别人的笔记](https://www.notion.so/zhedamarcomai/b5489f3222e946f0b07d5ee2fa145ff9?v=1c6a96acfbb344878a7f390dc8211e1c)
+
 
