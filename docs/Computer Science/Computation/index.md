@@ -10,4 +10,4 @@
 
 - [x] [Part 1: Encoding and Representation](./Part%201.md)
 - [ ] [Part 2: Circuit and Computation](./Part%202.md)
-- [ ] [Part 3: Formal Languages and Automata](./Part%203.md)
+- [x] [Part 3: Formal Languages and Automata](./Part%203.md)
