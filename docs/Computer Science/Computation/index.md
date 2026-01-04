@@ -10,4 +10,7 @@
 
 - [x] [Part 1: Encoding and Representation](./Part%201.md)
 - [ ] [Part 2: Circuit and Computation](./Part%202.md)
-- [x] [Part 3: Formal Languages and Automata](./Part%203.md)
+- [x] [Part 3: Regular Languages and Automata](./Part%203.md)
+- [ ] [Part 4: Context-Free Languages and Pushdown Automata](./Part%204.md)
+- [ ] [Part 5: Turing Machines and Decidability](./Part%205.md)
+- [ ] [Part 6: Computational Complexity](./Part%206.md)

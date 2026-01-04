@@ -1,4 +1,4 @@
-# Topic 1: Online Learning and Online Convex Optimization   ****
+# Topic 1: Online Learning and Online Convex Optimization
 
 
 
@@ -26,30 +26,36 @@ $$w_t = \underset{w\in\Omega}{\text{argmin}} \sum_{\tau=1}^{t-1} f_\tau(w) + \fr
 
 $$\begin{aligned}
     \mathcal{R}_T &= \max_{w\in\Omega} \sum_{t=1}^T (f_t(w_t) - f_t(w)) \leq \max_{w\in\Omega} \sum_{t=1}^T \langle \nabla f_t(w_t), w_t - w \rangle \\ 
-    &= \sum_{t=1}^T \langle \nabla f_t(w_t), w_t\rangle - \min_{w\in\Omega} \sum_{t=1}^T \langle \nabla f_t(w), w\rangle  .
+    &= \sum_{t=1}^T \langle \nabla f_t(w_t), w_t\rangle - \min_{w\in\Omega} \sum_{t=1}^T \langle \nabla f_t(w), w\rangle
 \end{aligned}$$
 
-因此，我们可以想象损失函数实际上是一个线性函数 $f'_t(w) = \langle \nabla f_t(w_t), w\rangle$（这里的 $'$ 并不表示导数），对这个线性问题的遗憾界显然也是原始问题的遗憾界。通过这种简化，我们将`上述FTRL重写为
+因此，我们可以想象损失函数实际上是一个线性函数 $f'_t(w) = \langle \nabla f_t(w_t), w\rangle$（这里的 $'$ 并不表示导数），对这个线性问题的遗憾界显然也是原始问题的遗憾界。通过这种简化，我们将上述FTRL重写为
 
 $$\begin{aligned}
     w_t &= \underset{w\in\Omega}{\text{argmin}} \left\langle w, \sum_{\tau=1}^{t-1} \nabla f_\tau(w_\tau) \right\rangle + \frac{1}{2\eta}\|w\|_2^2 \\ 
     &= \underset{w\in\Omega}{\text{argmin}} \|w\|_2^2 + 2\eta \left\langle w, \sum_{\tau=1}^{t-1} \nabla f_\tau(w_\tau) \right\rangle +\eta^2 \left(\sum_{\tau=1}^{t-1} \nabla f_\tau(w_\tau)\right)^2 \\ 
-    &= \underset{w\in\Omega}{\text{argmin}} \left\|w + \eta \sum_{\tau=1}^{t-1} \nabla f_\tau(w_\tau) \right\|_2^2,
+    &= \underset{w\in\Omega}{\text{argmin}} \left\|w + \eta \sum_{\tau=1}^{t-1} \nabla f_\tau(w_\tau) \right\|_2^2
 \end{aligned}$$
 
 这意味着 $w_t$ 是 $u_t = -\eta\sum_{\tau=1}^{t-1} \nabla f_\tau(w_\tau)$ 在 $\Omega$ 上的 $L_2$ 投影。这个算法被称为**在线梯度下降/OGD**。要了解与常规梯度下降的联系，请注意OGD可以等价地写为
 
-$$u_{t+1} = u_t - \eta\nabla f_t(w_t); \quad w_{t+1} = \underset{w\in\Omega}{\text{argmin}} \|w - u_{t+1}\|,$$
+$$
+u_{t+1} = u_t - \eta\nabla f_t(w_t); \quad w_{t+1} = \underset{w\in\Omega}{\text{argmin}} \|w - u_{t+1}\|
+$$
 
 而常规梯度下降则会执行
 
-$$u_{t+1} = w_t - \eta\nabla f_t(w_t); \quad w_{t+1} = \underset{w\in\Omega}{\text{argmin}} \|w - u_{t+1}\|.$$
+$$
+u_{t+1} = w_t - \eta\nabla f_t(w_t); \quad w_{t+1} = \underset{w\in\Omega}{\text{argmin}} \|w - u_{t+1}\|
+$$
 
 实际上，这两种算法之间几乎没有真正的区别，并且可以为它们证明相同的界（One can prove the same guarantee for both of them）。下面我们应用一般的 FTRL 保证来证明遗憾界。
 
 确实，可以很容易地验证 $\psi(w) = \frac{1}{2}\|w\|_2^2$ 相对于 $L_2$ 范数是强凸的。注意 $L_2$ 范数的对偶范数是它自身。因此，如果我们令 $G$ 是所有梯度的上界，即 $\|\nabla f_t(w_t)\|_2 \leq G$，那么 OGD 的遗憾被界定为
 
-$$\mathcal{R}_T \leq \frac{\max_{w\in\Omega} \|w\|_2^2}{2\eta} + \eta TG^2 = \mathcal{O}\left(\max_{w\in\Omega} \|w\|_2 G\sqrt{T}\right),$$
+$$
+\mathcal{R}_T \leq \frac{\max_{w\in\Omega} \|w\|_2^2}{2\eta} + \eta TG^2 = \mathcal{O}\left(\max_{w\in\Omega} \|w\|_2 G\sqrt{T}\right)
+$$
 
 其中最后一步是通过均值不等式选择最优的 $\eta$ 得到的。
 
@@ -65,7 +71,9 @@ $$\mathcal{R}_T \leq \frac{\max_{w\in\Omega} \|w\|_2^2}{2\eta} + \eta TG^2 = \ma
 
 我们可以再次使用FTRL方法来解决这个问题，但通常不清楚如何解决FTRL中的优化问题。相反，我们考虑一种称为**跟随扰动领导者/FTPL** 的不同方法，它只需要在 $\Omega$ 上进行线性优化。具体来说，令 $\ell_0$ 是从 $[0, 1/\eta]^N$ 中均匀随机抽取的，其中 $\eta > 0$。然后在第 $t$ 轮，FTPL 执行
 
-$$w_t = \underset{w\in\Omega}{\text{argmin}} \left\langle w, \sum_{\tau=0}^{t-1} \ell_\tau \right\rangle.$$
+$$
+w_t = \underset{w\in\Omega}{\text{argmin}} \left\langle w, \sum_{\tau=0}^{t-1} \ell_\tau \right\rangle
+$$
 
 换句话说，$w_t$ 是根据累积损失加上一些扰动 $\ell_0$ 确定的领导者。注意，由于线性性，这个领导者总是 $\Omega$ 中的某个点。此外，对于许多问题，这种线性优化有高效的算法。例如，对于专家问题，这可以通过选择最佳坐标来轻松解决。对于在线最短路径问题，可以通过诸如 Dijkstra 算法的最短路径算法来解决。
 
@@ -73,7 +81,9 @@ $$w_t = \underset{w\in\Omega}{\text{argmin}} \left\langle w, \sum_{\tau=0}^{t-1}
 
 **引理 1**（FTPL 的稳定性）：具有参数 $\eta$ 的 FTPL 确保
 
-$$\mathbb{E}[f_t(w_t) - f_t(w_{t+1})] \leq mN\eta$$
+$$
+\mathbb{E}[f_t(w_t) - f_t(w_{t+1})] \leq mN\eta
+$$
 
 其中期望是相对于 $\ell_0$ 取的。
 
@@ -258,7 +268,13 @@ $$\eta_j = \frac{1}{2^{j-1}}\sqrt{\frac{\ln N}{T}} \quad \text{和} \quad M = \l
 
 现在显然对于每个 $i \neq N$，存在一个 $j$ 使得 $\eta_j \leq \sqrt{\ln\left(\frac{N}{i}\right)/T} \leq 2\eta_j$，因此
 
-$$\sum_{t=1}^T \langle p_t, \ell_t \rangle - L_T(i) \leq \frac{\ln\left(\frac{N}{i}\right)}{\eta_j} + T\eta_j + 2\sqrt{T\ln M} \leq \frac{\ln\left(\frac{N}{i}\right)}{\frac{1}{2}\sqrt{\ln\left(\frac{N}{i}\right)/T}} + T \cdot 2\sqrt{\ln\left(\frac{N}{i}\right)/T} + 2\sqrt{T\ln M} = 3\sqrt{T\ln\left(\frac{N}{i}\right)} + 2\sqrt{T\ln M}.$$
+$$
+\begin{aligned}
+\sum_{t=1}^T \langle p_t, \ell_t \rangle - L_T(i) &\leq \frac{\ln\left(\frac{N}{i}\right)}{\eta_j} + T\eta_j + 2\sqrt{T\ln M} \\
+&\leq \frac{\ln\left(\frac{N}{i}\right)}{\frac{1}{2}\sqrt{\ln\left(\frac{N}{i}\right)/T}} + T \cdot 2\sqrt{\ln\left(\frac{N}{i}\right)/T} + 2\sqrt{T\ln M} \\
+&= 3\sqrt{T\ln\left(\frac{N}{i}\right)} + 2\sqrt{T\ln M}
+\end{aligned}
+$$
 
 剩下的是证明 $M$ 足够小。实际上，由于 $\ln(1 + x) \geq x/2, \forall x \leq 1$，我们有
 

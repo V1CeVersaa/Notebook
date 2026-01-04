@@ -13,4 +13,5 @@
 - [x] [EECS 498 Part 3: Deep Learning I (Lecture 12 to Lecture 15)](./part%203.md)
 - [ ] [EECS 498 Part 4: Deep Learning II (Lecture 16 to Lecture 18)](./part%204.md)
 - [ ] [EECS 498 Part 5: Deep Learning III (Lecture 19 to Lecture 25)](./part%205.md)
+- [ ] [ZJU Introduction to Computer Vision Notes](./part%206.md)
 

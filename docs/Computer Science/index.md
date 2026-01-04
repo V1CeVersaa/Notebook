@@ -18,6 +18,7 @@
 
 ### Programming Language
 
+- [ ] [Programming Language: Index](./Programming%20Language/index.md)
 - [ ] [Programming Language: C](./Programming%20Language/C/index.md)
 - [ ] [Programming Language: C++](Programming%20Language/C++/index.md)
 - [ ] [Programming Language: Python](./Programming%20Language/Python/index.md)
@@ -26,6 +27,7 @@
 
 ### Data Structure & Algorithm Analysis
 
+- [x] [Index](./Algorithm/index.md)
 - [x] [FDS Collection I](./Algorithm/FDS%20I.md) <线性表不太全>
 - [x] [FDS Collection II](./Algorithm/FDS%20II.md) <图的部分还不是很全>
 - [x] [Advanced Trees](./Algorithm/Lec%201.md) <红黑树没写>
@@ -38,21 +40,27 @@
 
 ### Computation Theory
 
-### Priciples of Compilers
+- [x] [Computation Theory: Index](./Computation/index.md)
+- [x] [Computation Theory: Encoding and Representation](./Computation/Part%201.md)
+- [ ] [Computation Theory: Circuit and Computation](./Computation/Part%202.md)
+- [x] [Computation Theory: Formal Languages and Automata](./Computation/Part%203.md)
 
-- [ ] [Priciples of Compilers: Lexical Analysis](./Compilers/1%20lex.md)
-- [ ] [Priciples of Compilers: Syntax Analysis](./Compilers/2%20parse.md)
-- [ ] [Priciples of Compilers: Abstract Syntax](./Compilers/3%20ast.md)
-- [x] [Priciples of Compilers: Semantic Analysis](./Compilers/4%20semantic.md)
-- [x] [Priciples of Compilers: Activation Records](./Compilers/5%20activation.md)
-- [x] [Priciples of Compilers: Translating into IR](./Compilers/6%20IR.md)
-- [x] [Priciples of Compilers: Basic Blocks and Traces](./Compilers/7%20block.md)
-- [x] [Priciples of Compilers: Instruction Selection](./Compilers/8%20instruction.md)
-- [x] [Priciples of Compilers: Liveness Analysis](./Compilers/9%20liveness.md)
-- [x] [Priciples of Compilers: Register Allocation](./Compilers/10%20register.md)
-- [x] [Priciples of Compilers: Garbage Collection](./Compilers/11%20garbage.md)
-- [x] [Priciples of Compilers: Object-Oriented Languages](./Compilers/12%20oop.md)
-- [x] [Priciples of Compilers: Loop Optimizations](./Compilers/13%20loop.md)
+### Principles of Compilers
+
+- [ ] [Principles of Compilers: Index](./Compilers/index.md)
+- [ ] [Principles of Compilers: Lexical Analysis](./Compilers/1%20lex.md)
+- [ ] [Principles of Compilers: Syntax Analysis](./Compilers/2%20parse.md)
+- [ ] [Principles of Compilers: Abstract Syntax](./Compilers/3%20ast.md)
+- [x] [Principles of Compilers: Semantic Analysis](./Compilers/4%20semantic.md)
+- [x] [Principles of Compilers: Activation Records](./Compilers/5%20activation.md)
+- [x] [Principles of Compilers: Translating into IR](./Compilers/6%20IR.md)
+- [x] [Principles of Compilers: Basic Blocks and Traces](./Compilers/7%20block.md)
+- [x] [Principles of Compilers: Instruction Selection](./Compilers/8%20instruction.md)
+- [x] [Principles of Compilers: Liveness Analysis](./Compilers/9%20liveness.md)
+- [x] [Principles of Compilers: Register Allocation](./Compilers/10%20register.md)
+- [x] [Principles of Compilers: Garbage Collection](./Compilers/11%20garbage.md)
+- [x] [Principles of Compilers: Object-Oriented Languages](./Compilers/12%20oop.md)
+- [x] [Principles of Compilers: Loop Optimizations](./Compilers/13%20loop.md)
 
 ### Web
 

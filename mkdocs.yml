@@ -114,7 +114,10 @@ nav:
                 - Computer Science/Computation/index.md
                 - Encoding & Representation: Computer Science/Computation/Part 1.md
                 - Circuit & Computation: Computer Science/Computation/Part 2.md
-                - Formal Languages & Automata: Computer Science/Computation/Part 3.md
+                - Regular Languages & Automata: Computer Science/Computation/Part 3.md
+                - CFG & Pushdown Automata: Computer Science/Computation/Part 4.md
+                - Turing Machines and Decidability: Computer Science/Computation/Part 5.md
+                - Computational Complexity: Computer Science/Computation/Part 6.md
           - Principles of Compilers:
                 - Computer Science/Compilers/index.md
                 - Topic 1：词法分析: Computer Science/Compilers/1 lex.md
@@ -187,21 +190,6 @@ nav:
                 - OSTEP-CPU Virtualization: System/OSTEP/topic1.md
                 - OSTEP-Memory Virtualization: System/OSTEP/topic2.md
                 - OSTEP-Concurrency: System/OSTEP/topic3.md
-          - CSAPP:
-                - System/CSAPP/index.md
-                - CSAPP-A Tour of Computer Systems: System/CSAPP/Chapter1.md
-                - CSAPP-Presenting and Manipulating Information: System/CSAPP/Chapter2.md
-                - CSAPP-Machine-Level Representation of Programs: System/CSAPP/Chapter3.md
-                - CSAPP-Processor Architecture: System/CSAPP/Chapter4.md
-                - CSAPP-Optimizing Program Performance: System/CSAPP/Chapter5.md
-                - CSAPP-The Memory Hierarchy: System/CSAPP/Chapter6.md
-                - CSAPP-Linking: System/CSAPP/Chapter7.md
-                - CSAPP-Exceptional Control Flow: System/CSAPP/Chapter8.md
-                - CSAPP-Virtual Memory: System/CSAPP/Chapter9.md
-                - CSAPP-System-Level IO: System/CSAPP/Chapter10.md
-                - CSAPP-Network Programming: System/CSAPP/Chapter11.md
-                - CSAPP-Concurrent Programming: System/CSAPP/Chapter12.md
-                - CSAPP-Supplement: System/CSAPP/Supplement.md
           - HDL & ISA:
                 - Verilog: System/HDL & ISA/Verilog.md
                 - Chisel: System/HDL & ISA/Chisel.md
@@ -210,6 +198,21 @@ nav:
                       - Unprivileged ISA: System/HDL & ISA/RISC-V/RISC-V-upr.md
                       - Privileged ISA: System/HDL & ISA/RISC-V/RISC-V-pr.md
           - Booklist:
+                - CSAPP:
+                      - System/CSAPP/index.md
+                      - CSAPP-A Tour of Computer Systems: System/CSAPP/Chapter1.md
+                      - CSAPP-Presenting and Manipulating Information: System/CSAPP/Chapter2.md
+                      - CSAPP-Machine-Level Representation of Programs: System/CSAPP/Chapter3.md
+                      - CSAPP-Processor Architecture: System/CSAPP/Chapter4.md
+                      - CSAPP-Optimizing Program Performance: System/CSAPP/Chapter5.md
+                      - CSAPP-The Memory Hierarchy: System/CSAPP/Chapter6.md
+                      - CSAPP-Linking: System/CSAPP/Chapter7.md
+                      - CSAPP-Exceptional Control Flow: System/CSAPP/Chapter8.md
+                      - CSAPP-Virtual Memory: System/CSAPP/Chapter9.md
+                      - CSAPP-System-Level IO: System/CSAPP/Chapter10.md
+                      - CSAPP-Network Programming: System/CSAPP/Chapter11.md
+                      - CSAPP-Concurrent Programming: System/CSAPP/Chapter12.md
+                      - CSAPP-Supplement: System/CSAPP/Supplement.md
                 - The Datacenter as a Computer: System/TDAAC/index.md
                 - Computer Organization & Design:
                       - System/COAD/index.md
@@ -296,8 +299,28 @@ nav:
                       - Part 3：深度学习 I: AI/Deep Learning/Computer Vision/part 3.md
                       - Part 4：深度学习 II: AI/Deep Learning/Computer Vision/part 4.md
                       - Part 5：深度学习 III: AI/Deep Learning/Computer Vision/part 5.md
+                      - Part 6：ICV @ ZJU: AI/Deep Learning/Computer Vision/part 6.md
                 - Deep Learning for NLP:
                       - AI/Deep Learning/Natural Language Processing/index.md
+          - Language Models:
+                - AI/Language Models/index.md
+                - Overview & Tokenization: AI/Language Models/Lecture 1.md
+                - Resource Accounting: AI/Language Models/Lecture 2.md
+                - Architectures & Hyperparameters: AI/Language Models/Lecture 3.md
+                - Mixture of Experts: AI/Language Models/Lecture 4.md
+                - GPUs: AI/Language Models/Lecture 5.md
+                - Kernels & Triton: AI/Language Models/Lecture 6.md
+                - Parallelism I: AI/Language Models/Lecture 7.md
+                - Parallelism II: AI/Language Models/Lecture 8.md
+                - Scaling Laws I: AI/Language Models/Lecture 9.md
+                - Inference: AI/Language Models/Lecture 10.md
+                - Scaling Laws II: AI/Language Models/Lecture 11.md
+                - Evaluation: AI/Language Models/Lecture 12.md
+                - Data I: AI/Language Models/Lecture 13.md
+                - Data II: AI/Language Models/Lecture 14.md
+                - Alignment with SFT/RLHF: AI/Language Models/Lecture 15.md
+                - Alignment with RL I: AI/Language Models/Lecture 16.md
+                - Alignment with RL II: AI/Language Models/Lecture 17.md
           - Online Learning:
                 - AI/Online Learning/index.md
                 - "Topic 1: Online Learning and OCO": AI/Online Learning/Lecture 1.md
@@ -386,11 +409,12 @@ nav:
                 - Graph Theory: Math/Discrete Mathematics/10 Graph Theory.md
                 - Trees: Math/Discrete Mathematics/11 Trees.md
     - Varia:
-          - Learning Plan: Varia/Learning Plan.md
           - Typst Learning Report: Varia/Typst.md
           - Environment & Tools: Varia/Envs.md
           - 马原复习: Varia/marx.md
           - 托福阅读: Varia/TOEFL Reading.md
+          - 托福写作: Varia/TOEFL Writing.md
+          - 托福词汇: Varia/TOEFL Words.md
 
 markdown_extensions:
     - toc:

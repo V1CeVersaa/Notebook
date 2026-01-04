@@ -23,8 +23,188 @@
         *   **word or phrase**: 中文汉译
         ```
 
-## TPO 54
+## Real 24
 
+### Reading II (-1)
+
+???- Info "Paragraph 1"
+
+    **原文：**
+    The Cenozoic era is characterized by the diversification of mammal species, but it has also been punctuated by mass extinctions. Its best-known extinctions are probably those that occurred at the end of the Pleistocene epoch. The Pleistocene extinctions appear dramatic because of the extinction of the megafauna (large animals).
+
+    **翻译：**
+    新生代以哺乳动物物种的多样化为特征，但它也一直被大灭绝事件所打断。其中最著名的大概就是发生在更新世末期的那次。更新世的灭绝事件显得尤为剧烈，因为其中包含了巨型动物群（大型动物）的灭绝。
+
+**重点词汇：**
+
+*   **diversification**: 多样化
+*   **punctuated by**: 被...打断/穿插
+*   **Pleistocene epoch**: 更新世
+*   **megafauna**: 巨型动物群
+
+???- Info "Paragraph 2"
+
+    **原文：**
+    There is much debate about the cause of the Pleistocene extinctions. The main extinctions occurred at the end of the last glacial period, between 13,000 and 11,500 years ago. Surprisingly enough, animals appear to be more vulnerable to extinction when the climate changes from glacial to interglacial (a period with warmer temperatures and less extensive glaciers) rather than the other way around, probably because warming occurs faster. Thus climatic change would be an obvious explanation. However, many scientists have noted that it is only the last glacial period—rather than any of the previous ones—that brought extinctions of such magnitude. This observation suggests that part, if not all, of the blame for megafauna extinctions should be placed on the spread of modern humans and modern hunting techniques, which were concurrent with that time period.
+
+    **翻译：**
+    关于更新世灭绝的原因存在很多争论。主要的灭绝事件发生在上一个冰川期结束时，即13,000到11,500年前。令人惊讶的是，动物在气候从冰川期转向间冰期（一个温度更高、冰川范围缩小的时期）时，似乎比反过来时更容易灭绝，这可能是因为变暖发生得更快。因此，气候变化会是一个显而易见的解释。然而，许多科学家指出，只有最后一个冰川期——而非之前的任何一个——造成了如此大规模的灭绝。这一观察表明，巨型动物群的灭绝，即使不全是，也至少部分应归咎于与现代人类及其狩猎技术的传播，这两者在该时期是同时发生的。
+
+**重点词汇：**
+
+*   **interglacial**: 间冰期
+*   **magnitude**: 规模，大小
+
+???- Info "Paragraph 3"
+
+    **原文：**
+    Many scientists today insist that human activity, rather than climatic change, must be the root cause of the Pleistocene extinctions. This is the overkill hypothesis, and the survival of mammoths until only a few thousand years ago on human-free Wrangel Island, off the coast of Siberia, appears to support this view. However, Steve Wroe and Colleagues point out that our actual knowledge about the effect of humans on mammal extinctions is drawn from historical examples of island animals. Hunting and/or habitat disturbance may have been the cause of the comparatively recent (within the past few thousand years) extinctions of the giant lemurs (monkey-like animals) on the island of Madagascar or the moas (giant herbivorous birds) on the islands of New Zealand, but there are problems with extending such scenarios to larger landmasses, such as North America or Australia.
+
+    **翻译：**
+    如今许多科学家坚持认为，人类活动，而非气候变化，必定是更新世灭绝的根本原因。这就是“过度捕杀”假说，而猛犸象在西伯利亚海岸外无人居住的弗兰格尔岛上一直存活到几千年前，这一事实似乎支持了这一观点。然而，史蒂夫·罗和他的同事指出，我们关于人类对哺乳动物灭绝影响的实际知识，来源于历史上岛屿动物的例子。狩猎和/或栖息地干扰可能是马达加斯加岛上的巨型狐猴（类猴动物）或新西兰岛屿上的摩亚鸟（大型食草鸟类）在相对近期（过去几千年内）灭绝的原因，但将这种情形推广到更大的陆地，如北美或澳洲，是存在问题的。
+
+**重点词汇：**
+
+*   **herbivorous**: 食草的
+
+???- Info "Paragraph 4"
+
+    **原文：**
+    Other researchers argue for climate change being the key factor in megafaunal extinctions. The extinctions in North America did not follow a north-to-south pattern, as would be expected with the invasion of humans from Beringia, an ancient land bridge that connected areas today known as Siberia and Alaska. Furthermore, horses in Alaska underwent a rapid decrease in body size shortly before becoming extinct—and before human arrival—and that pattern is consistent with the hypothesis of climate change being the extinction agent. Human hunters and climate change are not mutually exclusive hypotheses, and hunting pressure may have provided the final factor that drove already unstable populations to extinction.
+
+    **翻译：**
+    其他研究人员则主张气候变化是巨型动物灭绝的关键因素。北美的灭绝并未遵循从北到南的模式，而如果人类是从白令陆桥（一个连接今天西伯利亚和阿拉斯加地区的古老陆桥）入侵的话，本应出现这种模式。此外，阿拉斯加的马在灭绝前不久——并且在人类抵达之前——经历了体型的迅速减小，这种模式与气候变化是灭绝动因的假说一致。人类狩猎和气候变化并非互斥的假说，狩猎压力可能提供了最终因素，将本已不稳定的种群推向灭绝。
+
+**重点词汇：**
+
+*   **argue for**: 主张，支持
+*   **unstable populations**: 不稳定的种群
+
+???- Info "Paragraph 5"
+
+    **原文：**
+    About 30 percent of mammals became extinct at the end of the Pleistocene. That is approximately the magnitude of the other two major Cenozoic extinctions, which occurred during the late Eocene and late Miocene epochs. However, the preceding two extinctions differ in several critical ways from that of the Pleistocene. The late Eocene extinctions were associated with the dramatic fall in higher-latitude temperatures. Higher-latitude forests turned to temperate woodlands, with the accompanying disappearance of mammals adapted to these tropical-like forests. This included not only a diversity of archaic mammals but also some early, more modern types, such as higher-latitude primates and early horses.
+
+    **翻译：**
+    大约30%的哺乳动物在更新世末期灭绝。这与新生代另外两次主要灭绝（发生在始新世晚期和中新世晚期）的规模大致相当。然而，前两次灭绝在几个关键方面与更新世的灭绝不同。始新世晚期的灭绝与高纬度地区温度的急剧下降有关。高纬度森林转变为温带林地，随之而来的是适应了这些类热带森林的哺乳动物的消失。这不仅包括多种古老的哺乳动物，也包括一些早期的、更现代的类型，例如高纬度灵长类和早期马类。
+
+**重点词汇：**
+
+*   **Eocene**: 始新世
+*   **Miocene**: 中新世
+*   **higher-latitude**: 高纬度的
+*   **archaic**: 古老的
+*   **primates**: 灵长类动物
+
+???- Info "Paragraph 6"
+
+    **原文：**
+    The late Miocene extinctions were associated again not only with falling higher-latitude temperatures but also with global drying. The major extinctions were of browsing mammals (animals that feed on twigs and leaves rather than grass), including a variety of large browsing horses, which suffered habitat loss as the savanna woodlands turned into open grasslands and prairie. North America was especially hard hit by the climatic events of the late Miocene because of its relatively high latitudinal position and the fact that animals could not migrate to more tropical areas in South America before the formation of the Isthmus of Panama, which now connects North and South America, in the Pliocene.
+
+    **翻译：**
+    中新世晚期的灭绝再次不仅与高纬度温度下降有关，还与全球变干有关。主要的灭绝对象是食叶哺乳动物（以嫩枝和树叶而非草为食的动物），包括多种大型食叶马，它们因稀树草原林地转变为开阔的草原和牧场而遭受栖息地丧失。北美在中新世晚期的气候事件中受到的打击尤其严重，这是因为它相对较高的纬度位置，以及动物在当时无法迁徙到南美洲的更热带地区（巴拿马地峡——如今连接南北美洲——直到上新世才形成）。
+
+**重点词汇：**
+
+*   **browsing mammals**: 食叶哺乳动物
+*   **twigs**: 嫩枝，细枝
+*   **savanna**: 稀树草原
+*   **prairie**: 大草原，牧场
+*   **Isthmus of Panama**: 巴拿马地峡
+*   **Pliocene**: 上新世
+
+???- Info "Paragraph 7"
+
+    **原文：**
+    Most significantly for the overkill hypothesis, mammals of all body sizes (not just large ones) were affected in both the Eocene and Miocene. Other organisms, both terrestrial and marine, also experienced profound extinctions. The late Pleistocene extinction affected primarily large mammals and birds, which are the species most likely to be human hunters' prey or competitors.
+
+    **翻译：**
+    对“过度捕杀”假说最为重要的是，在始新世和中新世的灭绝中，所有体型的哺乳动物（不仅仅是大型动物）都受到了影响。其他生物，包括陆地和海洋生物，也经历了深刻的灭绝。而更新世晚期的灭绝主要影响大型哺乳动物和鸟类，这些物种最有可能成为人类猎人的猎物或竞争者。
+
+**重点词汇：**
+
+*   **organisms**: 生物体，有机体
+*   **terrestrial**: 陆地的
+
+## Real 25
+
+### Reading I (-2)
+
+???- Info "Paragraph 1"
+
+    **原文：**
+    The collection and analysis of rocks brought back from the Moon during the Apollo spaceflight program in 1969 renewed interest in the process by which the Moon formed. One theory, the collision model, was that Earth, while it was still in the process of forming, was hit by a projectile that was Mars-sized (half the diameter of Earth). While some debris from this collision was ejected into space, other debris remained in Earth's orbit, where it formed a thin ring of rocks. The Moon then formed from this ring by accretion, the processes of collision and sticking responsible for building most bodies in the solar system. Consistent with this model was the finding that lunar samples were depleted of elements that vaporize readily, such as zinc, as would have occurred as a result of a violent impact. Stuck in the gas phase, these elements would have been swept into space. Apollo's samples were also exceedingly dry, water being among the lost substances.
+
+    **翻译：**
+    1969年阿波罗太空计划期间从月球带回的岩石的收集和分析，重新激发了人们对月球形成过程的兴趣。一种理论，即碰撞模型，认为地球在其仍在形成的过程中，被一个火星大小（直径为地球的一半）的抛射体撞击。这次碰撞产生的一些碎片被喷射到太空中，而其他碎片则留在了地球轨道上，形成了一个由岩石构成的薄环。随后，月球通过吸积过程从这个环中形成，吸积是构建太阳系中大多数天体的碰撞和粘附过程。与这个模型一致的是，研究发现月球样本中缺乏容易蒸发的元素，例如锌，这正是一次剧烈撞击会导致的结果。这些元素以气态形式存在，会被席卷到太空中。阿波罗号带回的样本也极其干燥，水属于那些丢失的物质之一。
+
+**重点词汇：**
+
+*   **projectile**: 抛射体，投射物
+*   **debris**: 碎片，残骸
+*   **accretion**: 吸积（指物质通过引力聚集增大的过程）
+*   **depleted of**: 缺乏...的，耗尽...的
+*   **vaporize**: 蒸发，汽化
+
+???- Info "Paragraph 2"
+
+    **原文：**
+    Another remarkable property of lunar samples is that they are highly depleted in the siderophile, or iron-loving elements that tend to concentrate in the metallic iron cores of planets. When planetary cores form by the molten iron sinking to the planet's center, the siderophile elements (such as platinum, gold, and iridium) are incorporated into the falling iron and are highly depleted from the crustal and mantle materials left above (the mantle is the layer above the core, while the crust is the thin outermost layer). That the lunar rocks were depleted in siderophile elements was peculiar, however, because the Moon cannot have a substantial iron core. The mean density of the Moon is 3.4 times the density of water, very similar to that of rocks on the lunar surface and much lower than that of Earth, which is 5.5 times the mean density of water. If it had a substantial core of dense metallic iron, the mean density of the Moon would be higher than is observed.
+
+    **翻译：**
+    月球样本的另一个显著特性是，它们高度缺乏亲铁元素，即那些倾向于集中在行星金属铁核中的元素。当行星核心通过熔融铁下沉到行星中心形成时，亲铁元素（如铂、金和铱）会融入下沉的铁中，从而在上方留下的地壳和地幔物质中高度匮乏（地幔是核心之上的层，而地壳是最薄的外层）。然而，月球岩石缺乏亲铁元素这一点很奇怪，因为月球不可能有一个巨大的铁核。月球的平均密度是水密度的3.4倍，与月球表面岩石的密度非常相似，并且远低于地球的5.5倍水密度。如果月球有一个由致密金属铁构成的大核心，其平均密度将会比观测到的要高。
+
+**重点词汇：**
+
+*   **siderophile elements**: 亲铁元素
+*   **concentrate**: 集中，浓缩
+*   **incorporated into**: 被纳入，融入
+*   **crustal**: 地壳的
+*   **mantle**: 地幔
+
+???- Info "Paragraph 3"
+
+    **原文：**
+    The collision model solves the siderophile mystery by suggesting that metallic cores had formed in both Earth and the impact projectile before the collision. In the collision, the iron cores of both bodies ended up in the center of Earth, and the debris ejected into orbit was mainly from the mantles of both bodies. The preceding burying of siderophiles in planetary cores explains why gold and platinum are so rare on the Moon and in the crustal rocks of Earth. The impact ejection of mantle materials from both the giant impactor and the target Earth is consistent with some of the remarkable similarities between the Moon's trace elements (elements that exist in only low concentrations) and those of rocks from Earth's mantle. It is also consistent with Earth and the Moon having identical ratios of the isotopes (variations of a single element) of the elements that are present on both of them.
+
+    **翻译：**
+    碰撞模型通过提出地球和撞击抛射体在碰撞前都已形成了金属核，解开了亲铁元素之谜。在碰撞中，两个天体的铁核最终都留在了地球的中心，而被喷射到轨道上的碎片主要来自两个天体的地幔。先前亲铁元素被埋藏在行星核中，这解释了为什么金和铂在月球上以及地球的地壳岩石中如此稀有。来自巨大撞击体和目标地球的地幔物质被撞击抛射出去，这与月球的微量元素（仅以低浓度存在的元素）和地球地幔岩石中的微量元素之间存在的一些显著相似性是一致的。这也与地球和月球上共同存在的元素的同位素（同一元素的不同形态）比率完全相同这一点相符。
+
+**重点词汇：**
+
+*   **trace elements**: 微量元素
+*   **variations**: 变体，变化形式
+
+???- Info "Paragraph 4"
+
+    **原文：**
+    A collisional origin is very appealing, but did it actually happen? For an impact to eject enough material to form the Moon, the colliding body has to be huge, a Mars-sized body. Theoretical modeling of planet formation by planetary scientist George Wetherill showed that a natural consequence of the accretion process is that several large bodies do form in each planet's accretion zone (the area in which the planet-forming material accumulates). The growth process includes the impact of several bodies, each of which carries more than 10 percent of the mass of the final planet.
+
+    **翻译：**
+    碰撞起源说非常吸引人，但它真的发生了吗？要让一次撞击能喷射出足够形成月球的物质，撞击天体必须非常巨大，一个火星大小的天体。行星科学家乔治·韦瑟里尔对行星形成的理论建模表明，吸积过程的一个自然结果就是在每个行星的吸积区（行星形成物质积累的区域）内确实会形成几个大型天体。这个生长过程包括了数个天体的撞击，每个天体的质量都超过了最终行星质量的百分之十。
+
+**重点词汇：**
+
+*   **accretion zone**: 吸积区
+
+???- Info "Paragraph 5"
+
+    **原文：**
+    In the case of Earth, these big bodies were the size of Mars and larger. Their impact not only ejected material into space but also injected considerable amounts of heat into Earth's mantle. This heat input and great violence led to the forging of Earth's core during the accretion phase, before the planet was fully formed. Core formation requires high internal temperatures so that blobs of molten iron descend through the mantle to reach the core. Celestial objects that form through the accretion of small bodies form a core only after long-term buildup of radioactive heat from the decay of uranium, potassium, and thorium. In Earth's case, the early heat from the accretion of large bodies led to core formation as accretion occurred. Both Earth and the large projectile that struck it had differentiated (separated into layers) and already had metal cores at the time of collision.
+
+    **翻译：**
+    就地球而言，这些大型天体有火星大小甚至更大。它们的撞击不仅将物质抛射到太空，还向地球的地幔注入了大量的热量。这种热量输入和巨大的暴力导致了地球核心在吸积阶段、在地球完全形成之前就被锻造出来。地核的形成需要很高的内部温度，以便熔融铁块能够穿过地幔下沉到地核。通过吸积小型天体形成的天体，只有在铀、钾和钍衰变产生的放射性热量长期积累之后才能形成地核。但在地球的案例中，来自大型天体吸积的早期热量使得地核形成与吸积过程同时发生。地球和撞击它的大型抛射体在碰撞时都已经发生了分异（分层），并且已经拥有了金属核。
+
+**重点词汇：**
+
+*   **forging**: 锻造，形成
+*   **blobs**: 滴，团，小块
+*   **celestial objects**: 天体
+*   **differentiated**: 分异的，已分层的
+
+### Reading II (-1)
+
+有点简单，错的那道题是因为做到这个题的时候下课了，再不跑就翘不掉后一节，赶紧润了没仔细对照原文，不需要复盘了。
 
 ## TPO 55
 

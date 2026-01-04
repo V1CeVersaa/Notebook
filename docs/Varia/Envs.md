@@ -4,9 +4,11 @@
 
 ## Mamba & Conda & uv
 
-Anaconda 过于庞大，现在使用的是 micromamba，之后可能也会使用 miniconda 作为包管理器，最近也有尝试 uv。
+<del>Anaconda 过于庞大，现在使用的是 micromamba，之后可能也会使用 miniconda 作为包管理器，最近也有尝试 uv。</del>
 
-我在我的 MacBook 上使用 uv 进行包管理，使用主要分为两个部分，分别基于 `uv tool` 进行工具管理以及使用 uv 进行项目管理。
+Anaconda 狗都不用，micromamba 在我的 mac 上爆了，现在是 miniconda 和 uv 共存，我一般使用 uv 来进行环境管理，爽。
+
+uv 使用主要分为两个部分，分别基于 `uv tool` 进行工具管理以及使用 uv 进行项目管理。
 
 ### uv 工具管理
 
@@ -40,3 +42,4 @@ Anaconda 过于庞大，现在使用的是 micromamba，之后可能也会使用
 ## Command Line Tools
 
 - tldr: `brew install tlrc`
+- mole: `brew install tw93/tap/mole`
