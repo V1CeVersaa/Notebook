@@ -118,6 +118,7 @@ nav:
                 - CFG & Pushdown Automata: Computer Science/Computation/Part 4.md
                 - Turing Machines and Decidability: Computer Science/Computation/Part 5.md
                 - Computational Complexity: Computer Science/Computation/Part 6.md
+                - Randomized Computation: Computer Science/Computation/Part 7.md
           - Principles of Compilers:
                 - Computer Science/Compilers/index.md
                 - Topic 1：词法分析: Computer Science/Compilers/1 lex.md
@@ -267,6 +268,7 @@ nav:
                 - 14 概率图模型: AI/ML Basis/14 Graphical.md
                 - 15 规则学习: AI/ML Basis/15 Rule.md
                 - 16 强化学习: AI/ML Basis/16 Reinforcement.md
+                - 复习总结: AI/ML Basis/review.md
           - Machine Learning Theory:
                 - AI/ML Theory/index.md
                 - 机器学习理论导引:

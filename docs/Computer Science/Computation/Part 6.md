@@ -5,7 +5,9 @@
     - 形式化定义运行时间、复杂度类 $\mathbf{P}$、$\mathbf{EXP}$；
     - 我们证明了使用图灵机计算函数的时间与使用 RAM 机器/NAND-RAM 程序计算的时间在多项式意义上是相关的，实现了双向的模拟，只要我们在图灵机等价的模型上，无论在什么模型上考虑问题的复杂度，其 $\mathbf{P}$ 或者 $\mathbf{EXP}$ 的本质都是不变的；
     - 我们给出了一个高效的通用 NAND-RAM 程序，并用它来建立时间层次定理，表明 $\mathbf{P} \subsetneq \mathbf{EXP}$，如果允许使用更多资源，则可以解决更多的问题；
-    - 建模了关于电路规模的复杂度类 $\mathit{SIZE}(T(n))$，并定义了非均匀计算模型，表明 $\mathbf{P} \subsetneq \mathbf{P}_{/\text{poly}}$，并且 $\mathbf{P}_{/\text{poly}}$ 甚至包含不可计算的问题。
+    - 建模了关于电路规模的复杂度类 $\mathit{SIZE}(T(n))$，并定义了非均匀计算模型，表明 $\mathbf{P} \subsetneq \mathbf{P}_{/\text{poly}}$，并且 $\mathbf{P}_{/\text{poly}}$ 甚至包含不可计算的问题；
+    - 知道具体确定某个问题的复杂度类是非常困难的，我们引入了多项式时间归约的概念，从而可以将不同的问题联系起来，进而刻画它们的复杂度关系；
+    - 引入复杂度类 $\mathbf{NP}$，并且证明了 3SAT 是 $\mathbf{NP}$-Complete 的，从而可以将所有 $\mathbf{NP}$ 问题规约到 3SAT 上，来证明其他问题也是 $\mathbf{NP}$-Complete 的。
 
 ## 1. Defining Running Time
 

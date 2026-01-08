@@ -44,6 +44,10 @@
 - [x] [Computation Theory: Encoding and Representation](./Computation/Part%201.md)
 - [ ] [Computation Theory: Circuit and Computation](./Computation/Part%202.md)
 - [x] [Computation Theory: Formal Languages and Automata](./Computation/Part%203.md)
+- [ ] [Computation Theory: Context-Free Languages and Pushdown Automata](./Computation/Part%204.md)
+- [ ] [Computation Theory: Turing Machines and Decidability](./Computation/Part%205.md)
+- [x] [Computation Theory: Computational Complexity](./Computation/Part%206.md)
+- [x] [Computation Theory: Randomized Computation](./Computation/Part%207.md)
 
 ### Principles of Compilers
 
