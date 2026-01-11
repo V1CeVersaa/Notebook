@@ -400,5 +400,24 @@ Epipolar Geometry/极线几何：描述了两个视角下的点之间的几何�
 <!--
 9. 深度学习：记住概念 公式不用记（唯一记住神经网络的数学表达式）历史网络结构(network arch）不考
 10. 识别：分类检测分割 人体的姿态估计 知道任务是在干嘛（输入输出格式），代表性方法的名字
-12. 计算摄影 HDR 和 deblur（原理方法） 上色、合成不考，后面的gan啥的也不考
 -->
+
+## Lec 10: Computational Photography
+
+**HDR/High Dynamic Range Imaging/高动态范围成像**：Exposure = Gain x Irradiance x Time。Gain 是传感器的灵敏度，被 ISO/感光度控制；Irradiance 是场景的亮度，也就是光强，可以通过光圈控制；Time 是曝光时间，可以使用快门控制。ISO 越高，传感器越灵敏，但是噪点也越多。
+
+动态范围/Dynamic Range 是指图像中一个量的最高值和最低值之比，人眼的动态范围非常大，但是 8bit 的 RGB 图像动态范围只有 256:1，原始的单反相机/SLR 传感器动态范围大概在 4096:1 左右，因为其使用 RAW 格式保存图像数据，一般使用 12 位保存数据。
+
+HDR 的想法是：拍摄多张不同曝光时间的图像，然后将这些图像合成为一张 HDR 图像。合并的过程对每一个像素点进行处理：
+
+- 首先选择每张图像中曝光合适的像素点，过曝和欠曝的像素点不考虑；
+- 然后将这些像素点的值根据曝光时间的倒数进行加权平均，得到一个更准确的像素值。
+
+**Deblurring/去模糊**：图像模糊常见有两种原因：失焦模糊/Defocus Blur 和运动模糊/Motion Blur。失焦模糊是因为相机对焦不准，导致图像中的点被模糊成一个圆盘；运动模糊是因为相机或者物体在曝光时间内发生了运动，导致图像中的点被模糊成一条线段。先不管去模糊的算法，我们尽可能还是避免模糊的产生，比如使用更短的曝光时间、更大的光圈、更高的 ISO，或者用单反。
+
+模糊其实可以建模成一个卷积的过程，模糊图像是清晰图像和一个模糊核/Blur Kernel 的卷积，模糊核决定了模糊的原因。去模糊的目标是已知模糊图像和模糊核，求解清晰图像，这个问题可以使用反卷积/Deconvolution 方法进行求解。Deconvolution 可以根据是否知道卷积核分为两种情况：
+
+- Non-blind Deconvolution/非盲去卷积/NBID：已知模糊图像 G 和模糊核 H，求解清晰图像 F。
+    - 使用傅立叶变换进行求解：$\mathcal{F}(G) = \mathcal{F}(F \ast H) = \mathcal{F}(F) \cdot \mathcal{F}(H)$，因此 $F = \mathcal{F}^{-1}(\mathcal{F}(G) \div \mathcal{F}(H))$。但是由于模糊核实际上是一个低通滤波器，因此 Inverse Filter/逆滤波器会放大高频噪声，因此需要使用 Wiener Filter/维纳滤波器进行改进，在分母上加入常数项，抑制高频噪声的影响。
+    - 可以使用优化方法进行求解：优化变量为 $F$，建模模糊过程为 $G = F \ast H + N$，其中 $N$ 是高斯噪声，然后最小化 MSE 重建误差 $\lVert G - F \ast H \rVert^2$，但是这个优化问题是病态的，因此需要加入正则化项，对于一个自然图像，其梯度一般是稀疏的，因此可以使用 L1 正则化对梯度进行正则 $\lambda \lVert \nabla F \rVert_1$，最终的优化目标为 $\lVert G - F \ast H \rVert^2 + \lambda \lVert \nabla F \rVert_1$。
+- Blind Deconvolution/盲去卷积/BID：不知道卷积核，需要先验知识：比如卷积核一般是稀疏且非负的，可以使用优化方法进行求解：$\min_{F, H} \lVert G - F \ast H \rVert^2 + \lambda_1 \lVert \nabla F \rVert_1 + \lambda_2 \lVert H \rVert_1$，限制条件为 $H \geq 0$。
