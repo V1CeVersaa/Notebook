@@ -57,7 +57,7 @@ $$
 
 ## 6. Support Vector Machine
 
-
+image.png
 
 ## 7. Bayesian Classifier
 
