@@ -143,7 +143,10 @@ $X$ 是一个集合，$f:X -> bb(R)$ 是一个我们希望进行积分的函数�
     假设第二条成立，只需要验证其可以推出第一条就可以。设 ${A_i}$ 为 $cal(A)$ 中的递增数列，则 ${A_i^c}$ 为递减数列，且每个 $A_i^c in cal(A)$。由第二条成立知 $inter.big_i A_i^c in cal(A)$。于是 $union.big_i A_i = ( inter.big_i A_i^c )^c in cal(A)$。故 $cal(A)$ 在可数并下封闭，即为 $sigma$-代数。
 ]
 
-#pagebreak()
+#takeaway("Takeaway for Section 1.1")[
+    - $sigma$-代数是一个集合的子集族，要求在取补、可数并与可数交下封闭。
+    - $sigma$-代数族的交仍然是一个 $sigma$-代数，因此对于任意集合 $X$ 的子集族 $cal(F)$，都存在包含 $cal(F)$ 的 $X$ 上的最小 $sigma$-代数，称为 $cal(F)$ *生成* 的 $sigma$-代数。
+]
 
 == Measures
 

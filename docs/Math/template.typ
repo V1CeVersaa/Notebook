@@ -532,3 +532,18 @@
         body,
     )
 }).with(numbering: boxnumbering)
+
+#let takeaway = thmenv("takeaway", none, none, (name, number, body, ..args) => {
+    showybox(
+        title: [*#name* #h(1fr) Takeaway #number],
+        breakable: true,
+        frame: (
+            border-color: red,
+            title-color: red.lighten(30%),
+            body-color: red.lighten(95%),
+            footer-color: red.lighten(80%),
+        ),
+        ..args.named(),
+        body,
+    )
+}).with(numbering: boxnumbering)

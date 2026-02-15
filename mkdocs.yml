@@ -291,19 +291,19 @@ nav:
                       - 4 Empirical Covering Number Analysis: AI/ML Theory/Math Analysis/4 Covering.md
                       - 5 Covering Number Estimates: AI/ML Theory/Math Analysis/5 Estimates.md
           - Deep Learning:
-                - AI/Deep Learning/index.md
+                - AI/DeepLearning/index.md
                 - Understanding Deep Learning:
-                      - AI/Deep Learning/Understanding Deep Learning/index.md
+                      - AI/DeepLearning/UnderstandingDeepLearning/index.md
                 - Deep Learning for CV:
-                      - AI/Deep Learning/Computer Vision/index.md
-                      - Part 1：线性分类器与简单神经网络: AI/Deep Learning/Computer Vision/part 1.md
-                      - Part 2：卷积神经网络: AI/Deep Learning/Computer Vision/part 2.md
-                      - Part 3：深度学习 I: AI/Deep Learning/Computer Vision/part 3.md
-                      - Part 4：深度学习 II: AI/Deep Learning/Computer Vision/part 4.md
-                      - Part 5：深度学习 III: AI/Deep Learning/Computer Vision/part 5.md
-                      - Part 6：ICV @ ZJU: AI/Deep Learning/Computer Vision/part 6.md
+                      - AI/DeepLearning/ComputerVision/index.md
+                      - Part 1：线性分类器与简单神经网络: AI/DeepLearning/ComputerVision/part_1.md
+                      - Part 2：卷积神经网络: AI/DeepLearning/ComputerVision/part_2.md
+                      - Part 3：深度学习 I: AI/DeepLearning/ComputerVision/part_3.md
+                      - Part 4：深度学习 II: AI/DeepLearning/ComputerVision/part_4.md
+                      - Part 5：深度学习 III: AI/DeepLearning/ComputerVision/part_5.md
+                      - Part 6：ICV @ ZJU: AI/DeepLearning/ComputerVision/part_6.md
                 - Deep Learning for NLP:
-                      - AI/Deep Learning/Natural Language Processing/index.md
+                      - AI/DeepLearning/NaturalLanguageProcessing/index.md
           - Language Models:
                 - AI/Language Models/index.md
                 - Overview & Tokenization: AI/Language Models/Lecture 1.md

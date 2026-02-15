@@ -1,4 +1,4 @@
-# Introduction to Computer Vision in ZJU
+# Introduction to Computer Vision @ ZJU
 
 ## Lec 1: Introduction & Linear Algebra Review
 
@@ -397,10 +397,7 @@ Epipolar Geometry/极线几何：描述了两个视角下的点之间的几何�
 
 ## Lec 9: Others
 
-<!--
-9. 深度学习：记住概念 公式不用记（唯一记住神经网络的数学表达式）历史网络结构(network arch）不考
-10. 识别：分类检测分割 人体的姿态估计 知道任务是在干嘛（输入输出格式），代表性方法的名字
--->
+包括深度学习、识别、基于深度学习的三维重建等内容，考试不考，在我 EECS 498 的笔记中基本覆盖了。
 
 ## Lec 10: Computational Photography
 
