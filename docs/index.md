@@ -21,14 +21,15 @@ Hi！欢迎来到我的笔记本，我会在这里更新我的 **课程笔记** 
 
 ## 对我有用的课程与笔记
 
-- [x] [编译原理：Principles of Compilers](./Computer%20Science/Compilers/index.md)
-- [ ] [操作系统：Operating Systems](./System/OSC/index.md)
-- [ ] [计算机体系结构：Computer Architecture](./System/CAQA/index.md)
-- [x] [高级数据结构与算法分析：Advanced Data Structures and Algorithm Analysis](./Computer%20Science/Algorithm/index.md)
-- [x] [理论计算机科学导引：Introduction to Theoretical Computer Science](./Computer%20Science/Computation/index.md)
-- [ ] [优化基本理论与方法：Optimization](./Math/Optimization/index.md)
-- [ ] [机器学习基础：Machine Learning](./AI/ML%20Basis/index.md)
-- [ ] [强化学习基础：Reinforcement Learning](./RL/Sutton/index.md)
-- [ ] [计算机视觉导论: Introduction to Computer Vision](./AI/Deep%20Learning/Computer%20Vision/index.md)
-- [ ] [数学笔记：Math Notes, Measure Theory, Real Analysis, Advanced Probability ...](./Math/index.md)
-- [ ] [因果推断：Causal Inference](./AI/Causal%20Inference/index.md) 「坑砸手上了」
+- [x] [编译原理：Principles of Compilers](./cs/compilers/index.md)
+- [ ] [操作系统：Operating Systems](./system/OSC/index.md)
+- [ ] [计算机体系结构：Computer Architecture](./system/CAQA/index.md)
+- [x] [高级数据结构与算法分析：Advanced Data Structures and Algorithm Analysis](./cs/algorithm/index.md)
+- [x] [理论计算机科学导引：Introduction to Theoretical Computer Science](./cs/computation/index.md)
+- [ ] [优化基本理论与方法：Optimization](./math/Optimization/index.md)
+- [ ] [机器学习基础：Machine Learning](./ai/ml/index.md)
+- [ ] [强化学习基础：Reinforcement Learning](./rl/Sutton/index.md)
+- [ ] [计算机视觉导论: Introduction to Computer Vision](./ai/dl/cv/index.md)
+- [ ] [大语言模型导论: Language Modeling From Scratch](./ai/lm/index.md)
+- [ ] [数学笔记：Math Notes, Measure Theory, Real Analysis, Advanced Probability ...](./math/index.md)
+- [ ] [因果推断：Causal Inference](./ai/ci/index.md) 「坑砸手上了」
