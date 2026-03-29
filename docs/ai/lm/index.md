@@ -17,5 +17,5 @@
 - [ ] [Lecture 13: Data I](./l_13.md)
 - [ ] [Lecture 14: Data II](./l_14.md)
 - [ ] [Lecture 15: Alignment with SFT/RLHF](./l_15.md)
-- [ ] [Lecture 16: Alignment with RL I](./l_16.md)
-- [ ] [Lecture 17: Alignment with RL II](./l_17.md)
+- [x] [Lecture 16: Alignment with RLVR](./l_16.md)
+- [x] [Lecture 17: Alignment with RL Implementations](./l_17.md)

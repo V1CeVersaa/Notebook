@@ -9,45 +9,48 @@
 
 ### Programming Utils
 
-- [ ] [Programming Utils: Git](./Programming%20Utils/Git.md)
-- [x] [Programming Utils: Screen & tmux](./Programming%20Utils/tmux.md)
-- [ ] [Programming Utils: Linux](./Programming%20Utils/Linux.md)
-- [ ] [Programming Utils: Shell](./Programming%20Utils/Shell.md)
-- [ ] [Programming Utils: GNU Make & CMake](./Programming%20Utils/GNU%20Make.md)
-- [ ] [Programming Utils: Regular Expression](./Programming%20Utils/Regular%20Expression.md)
+- [ ] [Programming Utils: Git](./utils/Git.md)
+- [x] [Programming Utils: Screen & tmux](./utils/tmux.md)
+- [ ] [Programming Utils: Linux](./utils/Linux.md)
+- [ ] [Programming Utils: Shell](./utils/Shell.md)
+- [ ] [Programming Utils: GNU Make & CMake](./utils/GNU%20Make.md)
+- [ ] [Programming Utils: Regular Expression](./utils/Regular%20Expression.md)
 
 ### Programming Language
 
-- [ ] [Programming Language: Index](./Programming%20Language/index.md)
-- [ ] [Programming Language: C](./Programming%20Language/C/index.md)
-- [ ] [Programming Language: C++](Programming%20Language/C++/index.md)
-- [ ] [Programming Language: Python](./Programming%20Language/Python/index.md)
-- [ ] [Programming Language: Rust](./Programming%20Language/Rust/index.md)
-- [ ] [Programming Language: OCaml](./Programming%20Language/OCaml/index.md)
+- [ ] [Programming Language: Index](./pl/index.md)
+- [ ] [Programming Language: C](./pl/c/index.md)
+- [ ] [Programming Language: C++](./pl/cpp/index.md)
+- [ ] [Programming Language: Python](./pl/python/index.md)
+- [ ] [Programming Language: Rust](./pl/rust/index.md)
+- [ ] [Programming Language: OCaml](./pl/ocaml/index.md)
+- [ ] [Programming Language: Swift](./pl/swift/index.md)
 
 ### Data Structure & Algorithm Analysis
 
-- [x] [Index](./algorithm/index.md)
-- [x] [FDS Collection I](./algorithm/l_fds_1.md) <线性表不太全>
-- [x] [FDS Collection II](./algorithm/l_fds_2.md) <图的部分还不是很全>
-- [x] [Advanced Trees](./algorithm/l_1.md) <红黑树没写>
-- [x] [Advanced Heaps](./algorithm/l_2.md) <某几个摊还分析没写>
-- [x] [Algorithm Analysis I](./algorithm/l_3.md)
-- [x] [Algorithm Analysis II](./algorithm/l_4.md)
-- [x] [Algorithm Analysis III](./algorithm/l_5.md)
+- [x] [Algorithm & DS: Index](./algorithm/index.md)
+- [x] [Algorithm & DS: FDS Collection I](./algorithm/l_fds_1.md) <线性表不太全>
+- [x] [Algorithm & DS: FDS Collection II](./algorithm/l_fds_2.md) <图的部分还不是很全>
+- [x] [Algorithm & DS: Advanced Trees](./algorithm/l_1.md) <红黑树没写>
+- [x] [Algorithm & DS: Advanced Heaps](./algorithm/l_2.md) <某几个摊还分析没写>
+- [x] [Algorithm & DS: Algorithm Analysis I](./algorithm/l_3.md)
+- [x] [Algorithm & DS: Algorithm Analysis II](./algorithm/l_4.md)
+- [x] [Algorithm & DS: Algorithm Analysis III](./algorithm/l_5.md)
 
 ### Information Theory
 
+- [ ] [Information Theory: Index](./information/index.md)
+
 ### Computation Theory
 
-- [x] [Computation Theory: Index](./Computation/index.md)
-- [x] [Computation Theory: Encoding and Representation](./Computation/Part%201.md)
-- [ ] [Computation Theory: Circuit and Computation](./Computation/Part%202.md)
-- [x] [Computation Theory: Formal Languages and Automata](./Computation/Part%203.md)
-- [ ] [Computation Theory: Context-Free Languages and Pushdown Automata](./Computation/Part%204.md)
-- [ ] [Computation Theory: Turing Machines and Decidability](./Computation/Part%205.md)
-- [x] [Computation Theory: Computational Complexity](./Computation/Part%206.md)
-- [x] [Computation Theory: Randomized Computation](./Computation/Part%207.md)
+- [x] [Computation Theory: Index](./computation/index.md)
+- [x] [Computation Theory: Encoding and Representation](./computation/l_1.md)
+- [ ] [Computation Theory: Circuit and Computation](./computation/l_2.md)
+- [x] [Computation Theory: Formal Languages and Automata](./computation/l_3.md)
+- [ ] [Computation Theory: Context-Free Languages and Pushdown Automata](./computation/l_4.md)
+- [ ] [Computation Theory: Turing Machines and Decidability](./computation/l_5.md)
+- [x] [Computation Theory: Computational Complexity](./computation/l_6.md)
+- [x] [Computation Theory: Randomized Computation](./computation/l_7.md)
 
 ### Principles of Compilers
 
@@ -68,16 +71,15 @@
 
 ### Web
 
-- [ ] [Web: CSS](./Web/CSS.md)
-- [ ] [Web: HTML](./Web/HTML.md)
-- [ ] [Web: JavaScript](./Web/Javascript/Javascript.md)
-- [x] [Web: YAML](./Web/YAML.md)
-- [ ] [Web: TOML](./Web/TOML.md)
+- [ ] [Web: CSS](./web/css.md)
+- [ ] [Web: HTML](./web/html.md)
+- [ ] [Web: JavaScript](./web/js.md)
+- [ ] [Web: Vue.js](./web/vue.md)
+- [x] [Web: YAML](./web/yaml.md)
+- [ ] [Web: TOML](./web/toml.md)
 
 ### Blockchain
 
-### CTF
-
-!!! Info "退役了，不再打下去了"
-
-
+- [ ] [Blockchain: Index](./Blockchain/index.md)
+- [ ] [Blockchain: Basis](./Blockchain/basis.md)
+- [ ] [Blockchain: Ethereum](./Blockchain/ethereum/index.md)

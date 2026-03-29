@@ -22,13 +22,13 @@ Hi！欢迎来到我的笔记本，我会在这里更新我的 **课程笔记** 
 ## 对我有用的课程与笔记
 
 - [x] [编译原理：Principles of Compilers](./cs/compilers/index.md)
-- [ ] [操作系统：Operating Systems](./system/OSC/index.md)
-- [ ] [计算机体系结构：Computer Architecture](./system/CAQA/index.md)
+- [ ] [操作系统：Operating Systems](./system/osc/index.md)
+- [ ] [计算机体系结构：Computer Architecture](./system/caqa/index.md)
 - [x] [高级数据结构与算法分析：Advanced Data Structures and Algorithm Analysis](./cs/algorithm/index.md)
 - [x] [理论计算机科学导引：Introduction to Theoretical Computer Science](./cs/computation/index.md)
-- [ ] [优化基本理论与方法：Optimization](./math/Optimization/index.md)
+- [ ] [优化基本理论与方法：Optimization](./math/opt/index.md)
 - [ ] [机器学习基础：Machine Learning](./ai/ml/index.md)
-- [ ] [强化学习基础：Reinforcement Learning](./rl/Sutton/index.md)
+- [ ] [强化学习基础：Reinforcement Learning](./rl/sutton/index.md)
 - [ ] [计算机视觉导论: Introduction to Computer Vision](./ai/dl/cv/index.md)
 - [ ] [大语言模型导论: Language Modeling From Scratch](./ai/lm/index.md)
 - [ ] [数学笔记：Math Notes, Measure Theory, Real Analysis, Advanced Probability ...](./math/index.md)

@@ -1,0 +1,1253 @@
+\section{Measure Theory}
+
+\subsection{Probability Spaces}
+
+一个{\normalfont\bfseries 概率空间 / Probability Space}是一个三元组 $(\Omega, \calF, P)$，其中 $\Omega$ 是结果 / Outcomes 的集合，$\calF$ 是事件 / Events 的集合，而 $P : \calF \to [0,1]$ 是一个给事件分配概率的函数。我们假设 $\calF$ 是一个{\normalfont\bfseries $\sigma$-代数 / $\sigma$-Algebra}，即 $\Omega$ 的子集的一个非空集合，满足对可数交、可数并和补集运算的封闭性。仅给定 $(\Omega, \calF)$，我们称之为{\normalfont\bfseries 可测空间 / Measurable Space}，即我们可以通过其定义测度的空间，所谓测度是一个非负的、可数可加的函数，即一个函数 $\mu : \calF \to \RR$，满足
+
+\begin{itemize}
+    \item 对所有 $A \in \calF$，$\mu(A) \ge \mu(\varnothing) = 0$；
+    \item 若 $A_i \in \calF$ 是互不相交的集合序列，则 $\mu\!\left( \bigcup_i A_i \right) = \sum_i \mu(A_i)$。
+\end{itemize}
+
+如果对于全集 $\Omega$，$\mu(\Omega) = 1$，我们称 $\mu$ 是一个{\normalfont\bfseries 概率测度 / Probability Measure}。在本书中，概率测度通常用 $P$ 表示。
+
+\begin{theorem}
+    令 $\mu$ 是 $(\Omega, \calF)$ 上的一个测度，则 $\mu$ 满足下面性质：
+    \begin{enumerate}
+        \item {\normalfont\bfseries 单调性 / Monotonicity}。如果 $A \subset B$，则 $\mu(A) \le \mu(B)$；
+        \item {\normalfont\bfseries 次可加性 / Subadditivity}。如果 $A \subset \bigcup_{m=1}^{\infty} A_m$，则 $\mu(A) \le \sum_{m=1}^{\infty} \mu(A_m)$；
+        \item {\normalfont\bfseries 下连续性 / Continuity from below}。如果 $A_i \uparrow A$，换句话说 $A_1 \subset A_2 \subset \cdots$ 并且 $\bigcup_i A_i = A$，则 $\mu(A_i) \uparrow \mu(A)$；
+        \item {\normalfont\bfseries 上连续性 / Continuity from above}。如果 $A_i \downarrow A$，换句话说 $A_1 \supset A_2 \supset \cdots$，$\bigcap_i A_i = A$，且 $\mu(A_1) < \infty$，则 $\mu(A_i) \downarrow \mu(A)$。
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item 由于 $B = A \cup (B \cap A^c)$，可以知道 $\mu(B) = \mu(A) + \mu(B \cap A^c) \ge \mu(A)$；
+        \item 令 $A_n' = A_n \cap A$，$B_1 = A_1'$，$B_n = A_n' - \bigcup_{m=1}^{n-1} A_m'$，则 $B_n$ 互不相交且 $\bigcup_m B_m = A$，还有 $B_n \subset A_n$，所以
+              \[
+                  \mu(A) = \sum_{m=1}^{\infty} \mu(B_m) \le \sum_{m=1}^{\infty} \mu(A_m).
+              \]
+        \item 令 $B_n = A_n - A_{n-1}$（其中 $A_0 = \varnothing$），则 $B_n$ 互不相交且 $\bigcup_{m=1}^\infty B_m = A$，$\bigcup_{m=1}^n B_m = A_n$，所以
+              \[
+                  \mu(A) = \sum_{m=1}^{\infty} \mu(B_m) = \lim_{n \to \infty} \sum_{m=1}^n \mu(B_m) = \lim_{n \to \infty} \mu(A_n).
+              \]
+        \item 由 (iii)，$A_1 - A_n \uparrow A_1 - A$，所以 $\mu(A_1 - A_n) \uparrow \mu(A_1 - A)$。由于 $\mu(A_1) < \infty$，我们有 $\mu(A_1 - A_n) = \mu(A_1) - \mu(A_n)$，$\mu(A_1 - A) = \mu(A_1) - \mu(A)$，因此 $\mu(A_n) \downarrow \mu(A)$。
+    \end{enumerate}
+\end{proof}
+
+注意到，如果 $\calF_i$ 是一列 $\sigma$-代数，那么其交 $\bigcap_i \calF_i$ 也是一个 $\sigma$-代数。如果我们给定一个集合 $\Omega$ 和 $\Omega$ 的子集的集合 $\calA$，那么存在包含 $\calA$ 的最小 $\sigma$-代数。我们将此称为{\normalfont\bfseries 由 $\calA$ 生成的 $\sigma$-代数}并记为 $\sigma(\calA)$。
+
+下面记 $\RR^d$ 为实数向量 $(x_1, \dots, x_d)$ 的集合，$\mathcal{R}^d$ 为 Borel 集合，即包含开集的最小 $\sigma$-代数。我们可以如下定义 Stieltjes 测度函数和 Lebesgue 测度：
+
+\begin{theorem}\label{theorem-1-1-2}
+    在 $(\RR, \mathcal{R})$ 上定义的函数 $F$ 如果满足下面性质：
+    \begin{itemize}
+        \item $F$ 是非减的；
+        \item $F$ 是右连续的，即 $\lim_{y \downarrow x} F(y) = F(x)$；
+    \end{itemize}
+    那么称 $F$ 是一个{\normalfont\bfseries Stieltjes 测度函数 / Stieltjes Measure Function}。与这个 Stieltjes 测度函数 $F$ 对应，在 $(\RR, \mathcal{R})$ 上存在唯一的测度 $\mu$，满足 $\mu((a,b]) = F(b) - F(a)$。当 $F(x) = x$ 时，产生的测度称为{\normalfont\bfseries 勒贝格测度 / Lebesgue Measure}。
+\end{theorem}
+
+这个定理的难点在于，我们只知道测度在半开区间 $(a,b]$ 上的取值，但是测度的定义域是 $\sigma$-代数，我们需要完成定义域的扩展，并且保证扩展后的测度唯一。证明这个定理的过程漫长而曲折，我们仅仅需要学习其主要思路。首先，我们需要知道为什么这里选择的是左开右闭区间。至于{\normalfont\bfseries 为什么是右闭}，是因为如果 $b_n \downarrow b$，则 $\bigcap_n (a,b_n] = (a,b]$。至于{\normalfont\bfseries 为什么是左开}，我们将在下面的定义{\normalfont\bfseries 半代数 / Semialgebra}以及{\normalfont\bfseries 代数 / Algebra}中看到。
+
+\begin{definition}[半代数 / Semialgebra]
+    一个集合族 $\calS$ 如果满足下面性质，那么称 $\calS$ 是一个{\normalfont\bfseries 半代数 / Semialgebra}。
+    \begin{enumerate}
+        \item 对交运算封闭，即如果 $S,T \in \calS$，那么 $S \cap T \in \calS$；
+        \item 如果 $S \in \calS$，则 $S^c$ 可以表示成 $\calS$ 中若干集合的有限个两两不交并。
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}[代数 / Algebra]
+    全集 $\Omega$ 的子集的集合 $\calA$ 如果满足下面条件，那么称之为一个{\normalfont\bfseries 代数 / Algebra}。
+    \begin{enumerate}
+        \item 对补集运算封闭，即如果 $A \in \calA$，那么 $A^c \in \calA$；
+        \item 对并运算封闭，即如果 $A,B \in \calA$，那么 $A \cup B \in \calA$。
+    \end{enumerate}
+    显然代数对交运算也封闭，因为
+    \[
+        A \cap B = (A^c \cup B^c)^c.
+    \]
+\end{definition}
+
+这三类集合族有着明确的包含关系：半代数 $\subset$ 代数 $\subset$ $\sigma$-代数。半代数和代数都要求对可数交运算封闭，而 $\sigma$-代数要求对有限交封闭；半代数的补运算封闭性更弱，要求补集可以表示成有限个两两不交集合的并；而代数和 $\sigma$-代数要求补集本身就属于集合族。这就直接证明了包含关系。
+
+至于为什么选择左开右闭区间，左开右闭区间 $(a,b]$ 构成了实数轴上的一个半代数，而关于半代数的测度是最好定义的，但是半代数对于并不封闭，就需要扩展到代数，然后再扩展到 $\sigma$-代数来解决极限行为。下面引理解释了这个逐步扩张的过程：
+
+\begin{lemma}[From Semialgebra to Algebra]\label{lemma-1-1-1}
+    如果 $\calS$ 是一个半代数，则
+    \[
+        \overline{\calS} = \left\{ \text{finite disjoint unions of sets in } \calS \right\}
+    \]
+    是一个代数，称为{\normalfont\bfseries 由 $\calS$ 生成的代数} / {\normalfont\bfseries Algebra generated by $\calS$}。
+\end{lemma}
+
+\begin{proof}
+    设 $A = \biguplus_i S_i$，$B = \biguplus_j T_j$，其中 $\uplus$ 表示不交并，且我们假设这里面的指标集是有限的，那么
+    \[
+        A \cap B = \biguplus_{i,j} (S_i \cap T_j) \in \overline{\calS}.
+    \]
+    也就是说 $\overline{\calS}$ 对有限交运算封闭，再看补集：如果 $A = \biguplus_i S_i$，则
+    \[
+        A^c = \bigcap_i S_i^c.
+    \]
+    这里面 $S_i^c$ 都是 $\calS$ 中集合的有限不交并，肯定在 $\overline{\calS}$ 中，使用 $\overline{\calS}$ 关于有限交封闭，就可以得到 $A^c \in \overline{\calS}$。
+\end{proof}
+
+给定一个在 $\calS$ 上的集合函数 $\mu$，我们可以把它扩展到 $\overline{\calS}$ 上：参照 Lemma~\ref{lemma-1-1-1} 的方法，如果 $A_i$ 两两不交，则定义
+\[
+    \mu\!\left( \biguplus_{i=1}^n A_i \right) = \sum_{i=1}^n \mu(A_i).
+\]
+进一步可以在代数上定义{\normalfont\bfseries 测度}：
+
+\begin{definition}[Measure on an Algebra]
+    设 $\calA$ 是一个代数，如果一个集合函数 $\mu$ 满足下面条件，那么称 $\mu$ 是{\normalfont\bfseries 代数 $\calA$ 上的测度}：
+    \begin{enumerate}
+        \item 对所有 $A \in \calA$，$\mu(A) \ge \mu(\varnothing) = 0$；
+        \item 若 $A_i \in \calA$ 两两不交且它们的并仍属于 $\calA$，则
+              \[
+                  \mu\!\left( \bigcup_i A_i \right) = \sum_{i=1}^{\infty} \mu(A_i).
+              \]
+    \end{enumerate}
+\end{definition}
+
+如果 $\mu$ 满足下面条件，存在一列集合 $A_n \in \calA$ 使得 $\mu(A_n) < \infty$ 且 $\bigcup_n A_n = \Omega$，那么称 $\mu$ 是{\normalfont\bfseries $\sigma$-有限 / $\sigma$-Finite}的。
+
+一个关键的技巧是将一个一般的集合转化为一个单调递增的集合，或者一个互不相交的集合：令 $A_1' = A_1$，当 $n \ge 2$ 的时候，令
+\[
+    A_n' = \bigcup_{m=1}^n A_m
+    \qquad \text{or} \qquad
+    A_n' = A_n \cap \left( \bigcap_{m=1}^{n-1} A_m^c \right) \in \calA,
+\]
+这样，我们就可以不失一般性地假设要么 $A_n \uparrow \Omega$，要么 $A_n$ 两两不交。
+
+下面的结果帮助我们把定义在半代数 $\calS$ 上的测度扩展到它所生成的 $\sigma$-代数 $\sigma(\calS)$。
+
+\begin{theorem}[Carath\'eodory Extension Theorem]\label{theorem-1-1-3}
+    令 $\calS$ 为一个半代数，$\mu$ 定义在 $\calS$ 上并满足 $\mu(\varnothing) = 0$。假设：
+    \begin{enumerate}
+        \item 若 $S \in \calS$ 可以写成有限个两两不交集合 $S_i \in \calS$ 的并，则 $\mu(S) = \sum_i \mu(S_i)$；
+        \item 若 $S_i, S \in \calS$ 且 $S = \biguplus_{i \ge 1} S_i$，则 $\mu(S) \le \sum_{i \ge 1} \mu(S_i)$。
+    \end{enumerate}
+    则 $\mu$ 存在唯一的一个扩张 $\overline{\mu}$，使其成为由 $\calS$ 生成的代数 $\overline{\calS}$ 上的测度。若 $\overline{\mu}$ 是 $\sigma$-有限的，则还存在唯一的一个扩张 $\nu$，使其成为 $\sigma(\calS)$ 上的测度。
+\end{theorem}
+
+这意味着满足有限可加性以及可数次可加性的测度可以唯一地扩展到代数上，如果扩展后的测度是 $\sigma$-有限的，那么还可以唯一地扩展到 $\sigma$-代数上。这个定理证明很复杂，因此略过，或者可以查看实分析以及测度论的相关章节。为了检查定理中的第二个条件（可数次可加性），下面的引理是有用的：
+
+\begin{lemma}\label{lemma-1-1-2}
+    假设 $\calS$ 是一个半代数，$\mu$ 定义在 $\calS$ 上并满足 $\mu(\varnothing) = 0$。$\mu$ 有如下性质：如果 $S \in \sigma(\calS)$ 且其可以写成有限个两两不交集合 $S_i \in \calS$ 的并，则 $\mu(S) = \sum_i \mu(S_i)$。那么下面这些结论成立：
+    \begin{enumerate}
+        \item 若 $A,B_i \in \overline{\calS}$ 且 $A = \biguplus_{i=1}^n B_i$，则 $\overline{\mu}(A) = \sum_i \overline{\mu}(B_i)$；
+        \item 若 $A,B_i \in \overline{\calS}$ 且 $A \subset \bigcup_{i=1}^n B_i$，则 $\overline{\mu}(A) \le \sum_i \overline{\mu}(B_i)$。
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    关于第一条：由于 $B_i \in \overline{\calS}$，所以 $B_i$ 可以写成 $\calS$ 中集合的有限个两两不交并，即 $B_i = \biguplus_j S_{i,j}$，其中 $S_{i,j} \in \calS$。因此
+    \[
+        \overline{\mu}(A) = \overline{\mu}\!\left( \biguplus_{i,j} S_{i,j} \right)
+        = \sum_{i,j} \mu(S_{i,j})
+        = \sum_i \overline{\mu}(B_i).
+    \]
+    关于第二条：先考虑 $n=1$ 的情形，此时 $B_1 = B$。注意到 $B = A + (B \cap A^c)$，且 $B \cap A^c \in \overline{\calS}$，因此
+    \[
+        \overline{\mu}(A) \le \overline{\mu}(A) + \overline{\mu}(B \cap A^c) = \overline{\mu}(B).
+    \]
+    将 $B_k$ 转化为互不相交的一列集合，令
+    \[
+        F_k = B_1^c \cap \cdots \cap B_{k-1}^c \cap B_k,
+    \]
+    并注意到
+    \[
+        \bigcup_i B_i = F_1 + \cdots + F_n,
+        \qquad
+        A = A \cap \left( \bigcup_i B_i \right) = (A \cap F_1) + \cdots + (A \cap F_n).
+    \]
+    于是利用第一条、以及在 $n=1$ 的情形下的第二条，再用一次第一条，得到
+    \[
+        \overline{\mu}(A)
+        = \sum_{k=1}^n \overline{\mu}(A \cap F_k)
+        \le \sum_{k=1}^n \overline{\mu}(F_k)
+        = \overline{\mu}\!\left( \bigcup_i B_i \right).
+    \]
+\end{proof}
+
+\begin{proof}[For Theorem~\ref{theorem-1-1-2}]
+    令 $\calS$ 为半开矩形 $(a,b]$ 所组成的半代数，这里 $-\infty \le a_i < b_i \le \infty$。我们使用 Theorem~\ref{theorem-1-1-3} 来证明。对于第一个条件，我们将区间 $(a,b]$ 进行细分，得到 $\biguplus_{i=1}^n (a_i,b_i]$，其中 $a_1 = a$、$b_n = b$，并且对于 $2 \le i \le n$，$a_i = b_{i-1}$。因此第一个条件显然成立。
+
+    对于第二个条件，先不失一般性地假设 $-\infty \le a_i < b_i \le \infty$ 且 $(a,b] = \bigcup_{i \ge 1} (a_i,b_i]$。选择 $\delta > 0$，使得 $F(a+\delta) < F(a) + \varepsilon$，并且选择 $\eta_i$ 使得 $F(b_i+\eta_i) < F(b_i) + \varepsilon 2^{-i}$。开区间 $(a_i, b_i+\eta_i)$ 覆盖 $[a+\delta,b]$，因此存在一个{\normalfont\bfseries 有限子覆盖} $(\alpha_j,\beta_j)_{1}^{J}$。由于
+    \[
+        (a+\delta,b] \subset \bigcup_{j=1}^{J} (\alpha_j,\beta_j],
+    \]
+    使用 Lemma~\ref{lemma-1-1-2} 的第二条，可以得到
+    \[
+        F(b) - F(a+\delta)
+        \le \sum_{j=1}^{J} F(\beta_j) - F(\alpha_j)
+        \le \sum_{i=1}^{\infty} F(b_i+\eta_i) - F(a_i).
+    \]
+    其中第二步是使用了子覆盖实际上是覆盖的一个细分。由于 $\delta$ 与 $\eta_i$ 的选取，我们就得到了
+    \[
+        F(b) - F(a) \le 2\varepsilon + \sum_{i=1}^{\infty} F(b_i) - F(a_i).
+    \]
+    最后，只需要注意到 $\varepsilon$ 是任意的，我们就可以将 $\varepsilon$ 去掉，从而证明了在 $-\infty < a < b < \infty$ 的情形下的结论。由于我们假设了 $(a,b]$ 的结构，其可以被一列半开矩形覆盖，只需要有下面观察：如果 $(a,b] \subset \bigcup_i (a_i,b_i]$，且还有 $(A,B] \subset (a,b]$ 满足 $-\infty < A < B < \infty$，则
+    \[
+        F(B) - F(A) \le \sum_{i=1}^{\infty} F(b_i) - F(a_i).
+    \]
+    由于该不等式对于任意有限区间 $(A,B] \subset (a,b]$ 都成立，因此我们就得到了在 $-\infty \le a < b \le \infty$ 的情形下的结论。
+\end{proof}
+
+我们希望类似构建一下 $\RR^d$ 上的测度函数，类似于 Theorem~\ref{theorem-1-1-2}，第一步是给出定义函数的假设，类比 $d=1$ 的情形，自然会假设：
+\begin{enumerate}
+    \item $F$ 是单调不减的。若 $x \le y$，也就是对于所有的 $i$ 都有 $x_i \le y_i$，则 $F(x) \le F(y)$；
+    \item $F$ 是右连续的，即 $\lim_{y \downarrow x} F(y) = F(x)$，这里 $y \downarrow x$ 表示每个分量都满足 $y_i \downarrow x_i$；
+    \item 若 $x_n \downarrow -\infty$，即每个坐标都趋于 $-\infty$，则 $F(x_n) \downarrow 0$，若 $x_n \uparrow \infty$，那么 $F(x_n) \uparrow 1$。
+\end{enumerate}
+但是这样的限定是不足够的，仅仅保证在各个维度上的分布都是单调不减的，不能保证其在混合差分下的单调性。比如二维下的公式
+\begin{align*}
+    \mu((a_1,b_1] \times (a_2,b_2])
+     & = \mu((-\infty,b_1] \times (-\infty,b_2])
+    - \mu((-\infty,a_1] \times (-\infty,b_2])               \\
+     & \phantom{={}}
+    - \mu((-\infty,b_1] \times (-\infty,a_2])
+    + \mu((-\infty,a_1] \times (-\infty,a_2])               \\
+     & = F(b_1,b_2) - F(a_1,b_2) - F(b_1,a_2) + F(a_1,a_2).
+\end{align*}
+这就必须引入一个新的条件：对于我们要求测度的半开矩形 $A = (a_1,b_1] \times \cdots \times (a_d,b_d]$，定义顶点集合
+\[
+    V = \{a_1,b_1\} \times \cdots \times \{a_d,b_d\},
+\]
+对于每个 $v \in V$ 定义
+\begin{align*}
+    \operatorname{sgn}(v) & = (-1)^{\#\{i : v_i = a_i\}},                \\
+    \Delta_A F            & = \sum_{v \in V} \operatorname{sgn}(v) F(v).
+\end{align*}
+这里 $\operatorname{sgn}$ 指的是这个顶点含有下界 $a_i$ 的坐标个数的奇偶性。令 $\mu(A) = \Delta_A F$，假设第四条：
+\begin{enumerate}[resume]
+    \item 对所有矩形 $A$，都有 $\Delta_A F \ge 0$。
+\end{enumerate}
+
+\begin{theorem}
+    假设 $F : \RR^d \to [0,1]$ 满足上面讲的四条条件，那么在 $(\RR^d, \mathcal{R}^d)$ 上存在一个唯一的概率测度 $\mu$，使得对于所有有限矩形 $A$ 都有 $\mu(A) = \Delta_A F$。
+\end{theorem}
+
+\begin{example}\label{example-1-1-12}
+    设 $F(x) = \prod_{i=1}^d F_i(x)$，其中每个 $F_i$ 满足 Theorem~\ref{theorem-1-1-2} 的条件 (i) 和 (ii)，那么
+    \[
+        \Delta_A F = \prod_{i=1}^d (F_i(b_i) - F_i(a_i)).
+    \]
+    当 $F_i(x) = x$ 对所有 $i$ 成立时，得到的就是 $\RR^d$ 上的 Lebesgue 测度。
+\end{example}
+
+\begin{proof}[Proof Sketch]
+    令 $\mu(A) = \Delta_A F$ 对所有有限矩形成立，然后利用单调性把定义扩展到 $\calS_d$ 上。为了验证 Theorem~\ref{theorem-1-1-3} 的条件 (i)，对 $A = \biguplus_k B_k$ 称之为 $A$ 的一个{\normalfont\bfseries 正则细分 / Regular Subdivision}，如果每个矩形 $B_k$ 的形状为
+    \[
+        (\alpha_{1,j_1-1}, \alpha_{1,j_1}] \times \cdots \times (\alpha_{d,j_d-1}, \alpha_{d,j_d}], \quad 1 \le j_i \le n_i,
+    \]
+    即由各维度上的分点独立确定。对于正则细分，容易验证 $\lambda(A) = \sum_k \lambda(B_k)$（先考虑所有端点都有限的情形，然后取极限推广到一般情形）。对于一般的有限细分 $A = \biguplus_j A_j$，将各个分点合并后进一步细分为正则细分即可。
+
+    为了验证条件 (ii)，证明的思路和一维情形几乎完全一致。记 $\bar{1} = (1,\ldots,1) \in \RR^d$，设 $-\infty < a < b < \infty$，$(a,b] \subset \bigcup_{i \ge 1} (a^i,b^i]$，其中各分量都有限。选择 $\delta > 0$ 使得 $\mu((a-\delta\bar{1},b]) > \mu((a,b]) - \varepsilon$，选择 $\eta_i$ 使得 $\mu((a^i,b^i+\eta_i\bar{1}]) < \mu((a^i,b^i]) + \varepsilon 2^{-i}$。开矩形 $(a^i,b^i+\eta_i\bar{1})$ 覆盖紧集 $[a+\delta\bar{1},b]$，故存在有限子覆盖，由 Lemma~\ref{lemma-1-1-2} 的 (b) 可得
+    \[
+        \mu([a+\delta\bar{1},b]) \le \sum_{j=1}^J \mu((\alpha^j,\beta^j]) \le \sum_{i=1}^\infty \mu((a^i,b^i+\eta_i\bar{1}]).
+    \]
+    由 $\delta$ 与 $\eta_i$ 的选取，$\mu((a,b]) \le 2\varepsilon + \sum_{i=1}^\infty \mu((a^i,b^i])$，令 $\varepsilon \to 0$ 即可。
+\end{proof}
+
+\clearpage
+
+\subsection{Distributions}
+
+若 $X$ 是在 $\Omega$ 上定义的{\normalfont\bfseries 实值函数}，如果对于 $\RR$ 上的每个 Borel 集合 $B$，$X^{-1}(B) = \{ \omega : X(\omega) \in B \} \in \calF$，则其被称为一个{\normalfont\bfseries 随机变量 / Random Variable}。如果我们需要强调所在的 $\sigma$-域，我们会说 $X$ 是 $\calF$-可测的，或者 $X \in \calF$。
+
+如果 $\Omega$ 是一个离散概率空间，那么任意的函数 $X : \Omega \to \RR$ 都是随机变量，指标函数也是一个经典且有用的随机变量例子：对于 $A \in \calF$，定义
+\[
+    \mathbf{1}_A(\omega) =
+    \begin{cases}
+        1, & \omega \in A,    \\
+        0, & \omega \notin A.
+    \end{cases}
+\]
+随机变量 $X$ 会在 $\RR$ 上诱导一个概率测度，称为它的{\normalfont\bfseries 分布 / Distribution}，对任意 Borel 集 $A$，定义为 $\mu(A) = P(X \in A) = P(X^{-1}(A))$。简单来讲，我们将 $\RR$ 上的 Borel 集 $A$ 拉回到 $\Omega$ 上的 $X^{-1}(A)$，然后对 $X^{-1}(A)$ 取概率 $P$。
+
+验证 $\mu$ 是一个概率测度：首先若 $A_i$ 两两不相交，则 $X^{-1}(A_i)$ 也是两两不相交的，因此
+\[
+    \mu \!\left( \bigcup_i A_i \right)
+    = P\!\left( X \in \bigcup_i A_i \right)
+    = P\!\left( \bigcup_i \{X \in A_i\} \right)
+    = \sum_i P(X \in A_i)
+    = \sum_i \mu(A_i).
+\]
+
+随机变量 $X$ 的分布 $\mu$ 通过其{\normalfont\bfseries 分布函数 / Distribution Function} $F(x) = P(X \le x) = \mu((-\infty,x])$ 来描述，任意分布函数都有丰富的性质：
+
+\begin{theorem}\label{theorem-1-2-1}
+    任意分布函数 $F$ 都满足下面性质：
+    \begin{enumerate}
+        \item $F$ 单调不减；
+        \item $\lim_{x \to \infty} F(x) = 1$，且 $\lim_{x \to -\infty} F(x) = 0$；
+        \item $F$ 右连续，即 $\lim_{y \downarrow x} F(y) = F(x)$；
+        \item 若 $F(x-) = \lim_{y \uparrow x} F(y)$，则 $F(x-) = P(X < x)$；
+        \item $P(X = x) = F(x) - F(x-)$。
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item 注意到若 $x \le y$，则 $\{X \le x\} \subset \{X \le y\}$，由 Theorem 1.1.1 的单调性可得 $P(X \le x) \le P(X \le y)$；
+        \item 若 $x \uparrow \infty$，则 $\{X \le x\} \uparrow \Omega$；若 $x \downarrow -\infty$，则 $\{X \le x\} \downarrow \varnothing$，再使用 Theorem 1.1.1 的下/上连续性；
+        \item 若 $y \downarrow x$，则 $\{X \le y\} \downarrow \{X \le x\}$，由上连续性得证；
+        \item 若 $y \uparrow x$，则 $\{X \le y\} \uparrow \{X < x\}$，由下连续性得证；
+        \item $P(X = x) = P(X \le x) - P(X < x) = F(x) - F(x-)$，由 (iii) 和 (iv) 得证。\qedhere
+    \end{enumerate}
+\end{proof}
+
+下一个结果说明 Theorem~\ref{theorem-1-2-1} 中的前三条性质已足够刻画分布函数：
+
+\begin{theorem}\label{theorem-1-2-2}
+    若 $F$ 满足 Theorem~\ref{theorem-1-2-1} 中的 (i)、(ii)、(iii)，则 $F$ 是某个随机变量的分布函数。
+\end{theorem}
+
+\begin{proof}
+    令 $\Omega = (0,1)$，$\calF$ 为 Borel 集，$P$ 为 Lebesgue 测度。若 $\omega \in (0,1)$，令
+    \[
+        X(\omega) = \sup\{y : F(y) < \omega\}.
+    \]
+    我们需要证明
+    \[
+        \{\omega : X(\omega) \le x\} = \{\omega : \omega \le F(x)\}.
+    \]
+    若 $\omega \le F(x)$，则 $x \notin \{y : F(y) < \omega\}$，因此 $X(\omega) \le x$。另一方面，若 $\omega > F(x)$，由 $F$ 右连续，存在 $\varepsilon > 0$ 使得 $F(x + \varepsilon) < \omega$，故 $X(\omega) \ge x + \varepsilon > x$。因此
+    \[
+        P(\omega : X(\omega) \le x) = P(\omega : \omega \le F(x)) = F(x). \qedhere
+    \]
+\end{proof}
+
+即使 $F$ 不一定是一一映射，我们仍称 $X$ 为 $F$ 的逆，记为 $F^{-1}$。这个构造在计算机生成随机变量时十分有用：先生成均匀分布的 $U$，然后对 $U$ 施加分布函数的逆 $F^{-1}(U)$，就得到了分布函数为 $F$ 的随机变量。
+
+若 $X$ 与 $Y$ 在 $(\RR, \mathcal{R})$ 上诱导了相同的分布 $\mu$，则称 $X$ 与 $Y$ {\normalfont\bfseries 同分布 / Equal in Distribution}。由 Theorem~\ref{theorem-1-1-2} 可知，当且仅当 $X$ 与 $Y$ 有相同的分布函数时，即 $P(X \le x) = P(Y \le x)$ 对所有 $x$ 成立，此时记
+\[
+    X \stackrel{d}{=} Y \qquad \text{or} \qquad X =_d Y.
+\]
+
+当分布函数 $F(x) = P(X \le x)$ 具有如下形式
+\begin{equation}\label{eq-1-2-1}
+    F(x) = \int_{-\infty}^x f(y) \dif y,
+\end{equation}
+我们称 $X$ 具有{\normalfont\bfseries 密度函数 / Density Function} $f$。为了以 \eqref{eq-1-2-1} 为 $F$ 的定义函数，$f$ 必须满足 $f(x) \ge 0$ 且 $\int f(x) \dif x = 1$。以下给出几个重要的例子：
+
+\begin{example}[均匀分布 $\mathrm{Uniform}(0,1)$]
+    密度函数 $f(x) = 1$ 在 $x \in (0,1)$ 上，否则为 $0$。分布函数
+    \[
+        F(x) =
+        \begin{cases}
+            0, & x \le 0,       \\
+            x, & 0 \le x \le 1, \\
+            1, & x > 1.
+        \end{cases}
+    \]
+\end{example}
+
+\begin{example}[指数分布 $\mathrm{Exp}(\lambda)$]
+    密度函数 $f(x) = \lambda e^{-\lambda x}$ 在 $x \ge 0$ 上，否则为 $0$。分布函数
+    \[
+        F(x) =
+        \begin{cases}
+            0,                  & x \le 0, \\
+            1 - e^{-\lambda x}, & x \ge 0.
+        \end{cases}
+    \]
+\end{example}
+
+\begin{example}[标准正态分布 $\mathcal{N}(0,1)$]
+    密度函数
+    \[
+        f(x) = (2\pi)^{-1/2} \exp(-x^2/2).
+    \]
+    其分布函数没有闭合形式的表达式，但对于大的 $x$ 有以下界：
+\end{example}
+
+\begin{theorem}\label{theorem-1-2-6}
+    对于 $x > 0$，
+    \[
+        (x^{-1} - x^{-3}) \exp(-x^2/2) \le \int_x^{\infty} \exp(-y^2/2) \dif y \le x^{-1} \exp(-x^2/2).
+    \]
+\end{theorem}
+
+\begin{proof}
+    作变量替换 $y = x + z$ 并利用 $\exp(-z^2/2) \le 1$，得到上界：
+    \[
+        \int_x^{\infty} \exp(-y^2/2) \dif y \le \exp(-x^2/2) \int_0^{\infty} \exp(-xz) \dif z = x^{-1} \exp(-x^2/2).
+    \]
+    对于下界，注意到
+    \[
+        \int_x^{\infty} (1 - 3y^{-4}) \exp(-y^2/2) \dif y = (x^{-1} - x^{-3}) \exp(-x^2/2). \qedhere
+    \]
+\end{proof}
+
+$\RR$ 上的分布函数 $F$ 称为{\normalfont\bfseries 绝对连续 / Absolutely Continuous}的，如果它有密度；称为{\normalfont\bfseries 奇异 / Singular}的，如果其对应的测度关于 Lebesgue 测度是奇异的。
+
+\begin{example}[Cantor 集上的均匀分布]
+    Cantor 集 $C$ 由 $[0,1]$ 中不断去掉中间三分之一开区间得到。定义分布函数 $F(x) = 0$ 当 $x \le 0$，$F(x) = 1$ 当 $x \ge 1$，$F(x) = 1/2$ 当 $x \in [1/3,2/3]$，$F(x) = 1/4$ 当 $x \in [1/9,2/9]$，$F(x) = 3/4$ 当 $x \in [7/9,8/9]$，以此类推，将 $F$ 延拓到 $[0,1]$ 上。由单调性知不存在满足 \eqref{eq-1-2-1} 的 $f$（因为 $f$ 在测度为 $1$ 的集合上为 $0$），且 $\mu(C^c) = 0$。
+\end{example}
+
+概率测度 $P$ 称为{\normalfont\bfseries 离散 / Discrete} 的，如果存在可数集 $S$ 使得 $P(S^c) = 0$。
+
+\begin{example}[点质量 / Point Mass at $0$]
+    $F(x) = 1$ 当 $x \ge 0$，$F(x) = 0$ 当 $x < 0$。
+\end{example}
+
+\begin{example}[稠密间断 / Dense Discontinuities]
+    令 $q_1, q_2, \dots$ 为有理数的一个枚举，$\alpha_i > 0$ 满足 $\sum_{i=1}^{\infty} \alpha_i = 1$。令
+    \[
+        F(x) = \sum_{i=1}^{\infty} \alpha_i \mathbf{1}_{[q_i,\infty)}(x),
+    \]
+    其中 $\mathbf{1}_{[\theta,\infty)}(x) = 1$ 若 $x \in [\theta,\infty)$，否则为 $0$。
+\end{example}
+
+\clearpage
+
+\subsection{Random Variables}
+
+在本节中，我们将证明一些有用的结论：我们所定义的量是随机变量，即它们是可测的。一个函数 $X : \Omega \to S$ 称为从 $(\Omega, \calF)$ 到 $(S, \calS)$ 的{\normalfont\bfseries 可测映射 / Measurable Map}，如果
+\[
+    X^{-1}(B) \equiv \{ \omega : X(\omega) \in B \} \in \calF \quad \text{for all } B \in \calS.
+\]
+当 $(S,\calS) = (\RR^d, \mathcal{R}^d)$ 且 $d > 1$ 时，$X$ 称为{\normalfont\bfseries 随机向量 / Random Vector}；当 $d=1$ 时，$X$ 称为{\normalfont\bfseries 随机变量 / Random Variable}。
+
+\begin{theorem}\label{theorem-1-3-1}
+    若对所有 $A \in \calA$，$\{X(\omega) \in A\} \in \calF$，且 $\calA$ 生成 $\calS$（即 $\calS$ 是包含 $\calA$ 的最小 $\sigma$-代数），则 $X$ 是可测的。
+\end{theorem}
+
+\begin{proof}
+    以 $\{X \in B\}$ 作为 $\{\omega : X(\omega) \in B\}$ 的简写，我们有
+    \[
+        \{X \in \cup_i B_i\} = \cup_i \{X \in B_i\},
+        \qquad
+        \{X \in B^c\} = \{X \in B\}^c.
+    \]
+    因此集合类 $\mathcal{B} = \{B : \{X \in B\} \in \calF\}$ 是一个 $\sigma$-代数。由于 $\calA \subset \mathcal{B}$ 且 $\calA$ 生成 $\calS$，所以 $\mathcal{B} \supset \calS$。
+\end{proof}
+
+由上述定理可知，$\{X \in B\} : B \in \calS\}$ 是一个 $\sigma$-代数，它是使 $X$ 成为可测映射的最小 $\sigma$-代数，称为 $X$ {\normalfont\bfseries 生成的 $\sigma$-域 / $\sigma$-Field Generated by $X$}，记为
+\begin{equation}\label{eq-1-3-1}
+    \sigma(X) = \{\{X \in B\} : B \in \calS\}.
+\end{equation}
+
+\begin{example}
+    若 $(S,\calS) = (\RR, \mathcal{R})$，则 Theorem~\ref{theorem-1-3-1} 中 $\calA$ 的可选取值为 $\{(-\infty,x] : x \in \RR\}$ 或 $\{(-\infty,x) : x \in \mathbf{Q}\}$，其中 $\mathbf{Q}$ 为有理数集。
+\end{example}
+
+\begin{example}
+    若 $(S,\calS) = (\RR^d, \mathcal{R}^d)$，则 $\calA$ 的一个有用选取为
+    \[
+        \{(a_1,b_1) \times \cdots \times (a_d,b_d) : -\infty < a_i < b_i < \infty\},
+    \]
+    或者取开集的更大的集合。
+\end{example}
+
+\begin{theorem}\label{theorem-1-3-4}
+    若 $X : (\Omega, \calF) \to (S, \calS)$ 和 $f : (S, \calS) \to (T, \mathcal{T})$ 是可测映射，则 $f(X)$ 是从 $(\Omega, \calF)$ 到 $(T, \mathcal{T})$ 的可测映射。
+\end{theorem}
+
+\begin{proof}
+    令 $B \in \mathcal{T}$。$\{\omega : f(X(\omega)) \in B\} = \{\omega : X(\omega) \in f^{-1}(B)\} \in \calF$，因为 $f^{-1}(B) \in \calS$。
+\end{proof}
+
+由 Theorem~\ref{theorem-1-3-4}，若 $X$ 是随机变量，则对于所有 $c \in \RR$，$cX$、$X^2$、$\sin(X)$ 等也是随机变量。
+
+\begin{theorem}\label{theorem-1-3-5}
+    若 $X_1, \dots, X_n$ 是随机变量且 $f : (\RR^n, \mathcal{R}^n) \to (\RR, \mathcal{R})$ 是可测的，则 $f(X_1, \dots, X_n)$ 是随机变量。
+\end{theorem}
+
+\begin{proof}
+    由 Theorem~\ref{theorem-1-3-4}，只需证明 $(X_1, \dots, X_n)$ 是随机向量。若 $A_1, \dots, A_n$ 是 Borel 集，则
+    \[
+        \{(X_1, \dots, X_n) \in A_1 \times \cdots \times A_n\} = \bigcap_i \{X_i \in A_i\} \in \calF.
+    \]
+    由于形如 $A_1 \times \cdots \times A_n$ 的集合生成 $\mathcal{R}^n$，由 Theorem~\ref{theorem-1-3-1} 得证。
+\end{proof}
+
+\begin{corollary}
+    若 $X_1, \dots, X_n$ 是随机变量，则 $X_1 + \cdots + X_n$ 是随机变量。
+\end{corollary}
+
+\begin{proof}
+    由 Theorem~\ref{theorem-1-3-5}，取 $f(x_1,\dots,x_n) = x_1 + \cdots + x_n$，注意到 $\{x : x_1 + \cdots + x_n < a\}$ 是开集，因此 $f$ 可测。
+\end{proof}
+
+\begin{theorem}\label{theorem-1-3-7}
+    若 $X_1, X_2, \dots$ 是随机变量，则
+    \[
+        \inf_n X_n, \quad \sup_n X_n, \quad \limsup_{n \to \infty} X_n, \quad \liminf_{n \to \infty} X_n
+    \]
+    也是随机变量。
+\end{theorem}
+
+\begin{proof}
+    由于 $\{\inf_n X_n < a\} = \bigcup_n \{X_n < a\} \in \calF$，类似地 $\{\sup_n X_n > a\} = \bigcup_n \{X_n > a\} \in \calF$。对于后两个，注意到
+    \[
+        \liminf_{n \to \infty} X_n = \sup_n \left( \inf_{m \ge n} X_m \right),
+        \qquad
+        \limsup_{n \to \infty} X_n = \inf_n \left( \sup_{m \ge n} X_m \right).
+    \]
+\end{proof}
+
+由 Theorem~\ref{theorem-1-3-7}，集合
+\[
+    \Omega_o \equiv \{\omega : \lim_{n \to \infty} X_n \text{ exists}\} = \{\omega : \limsup_{n \to \infty} X_n - \liminf_{n \to \infty} X_n = 0\}
+\]
+是可测的。若 $P(\Omega_o) = 1$，则称 $X_n$ {\normalfont\bfseries 几乎必然收敛 / Converges Almost Surely}，简称 a.s.\ 收敛。这种收敛在测度论中称为{\normalfont\bfseries 几乎处处 / Almost Everywhere} 收敛。为使极限在全空间上有定义，令
+\[
+    X_\infty = \limsup_{n \to \infty} X_n,
+\]
+但此随机变量可能取值 $+\infty$ 或 $-\infty$。为此引入{\normalfont\bfseries 广义实数线 / Extended Real Line} $\RR^* \equiv [-\infty,\infty]$，其 Borel 集 $\mathcal{R}^*$ 是由形如 $[-\infty,a)$、$(a,b)$、$(b,\infty]$ 的区间生成的。上面的所有结论对广义实值随机变量同样成立。
+
+\clearpage
+
+\subsection{Integration}
+
+令 $\mu$ 为 $(\Omega, \calF)$ 上的 $\sigma$-有限测度，我们将通过四步来定义 $\int f \dif\mu$：
+\begin{enumerate}
+    \item 简单函数 / Simple Functions
+    \item 有界函数 / Bounded Functions
+    \item 非负函数 / Nonnegative Functions
+    \item 一般函数 / General Functions
+\end{enumerate}
+逐步推广的同时，我们会在每一步证明积分的（部分）线性、单调和绝对值不等式。
+
+\medskip\noindent\textbf{Step 1.} $\varphi$ 称为{\normalfont\bfseries 简单函数 / Simple Function}，若 $\varphi(\omega) = \sum_{i=1}^n a_i \mathbf{1}_{A_i}$，其中 $A_i$ 两两不交，$\mu(A_i) < \infty$。定义
+\[
+    \int \varphi \dif\mu = \sum_{i=1}^n a_i \, \mu(A_i).
+\]
+
+\begin{lemma}\label{lemma-1-4-1}
+    设 $\varphi$ 和 $\psi$ 为简单函数，则
+    \begin{enumerate}[(i)]
+        \item 若 $\varphi \ge 0$ a.e.，则 $\int \varphi \dif\mu \ge 0$；
+        \item 对任意 $a \in \RR$，$\int a\varphi \dif\mu = a\int \varphi \dif\mu$；
+        \item $\int (\varphi + \psi) \dif\mu = \int \varphi \dif\mu + \int \psi \dif\mu$。
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    (i) 和 (ii) 是定义的直接推论。对于 (iii)，设 $\varphi = \sum_i a_i \mathbf{1}_{A_i}$，$\psi = \sum_j b_j \mathbf{1}_{B_j}$。令 $A_0 = \cup_j B_j - \cup_i A_i$，$B_0 = \cup_i A_i - \cup_j B_j$，$a_0 = b_0 = 0$，则
+    \[
+        \varphi + \psi = \sum_{i=0}^m \sum_{j=0}^n (a_i+b_j) \mathbf{1}_{(A_i \cap B_j)},
+    \]
+    且 $A_i \cap B_j$ 两两不交。因此
+    \begin{align*}
+        \int (\varphi + \psi) \dif\mu
+         & = \sum_{i,j} (a_i+b_j) \mu(A_i \cap B_j)                                                         \\
+         & = \sum_i a_i \mu(A_i) + \sum_j b_j \mu(B_j) = \int \varphi \dif\mu + \int \psi \dif\mu. \qedhere
+    \end{align*}
+\end{proof}
+
+由 (i)--(iii) 的推论，我们可以得到更多有用的性质：
+
+\begin{lemma}\label{lemma-1-4-2}
+    若 (i) 和 (iii) 成立，则：
+    \begin{enumerate}[(iv)]
+        \item 若 $\varphi \le \psi$ a.e.，则 $\int \varphi \dif\mu \le \int \psi \dif\mu$；
+        \item 若 $\varphi = \psi$ a.e.，则 $\int \varphi \dif\mu = \int \psi \dif\mu$；
+    \end{enumerate}
+    若额外地 (ii) 在 $a=-1$ 时成立，则：
+    \begin{enumerate}[(iv)]
+        \setcounter{enumi}{2}
+        \item $\left|\int \varphi \dif\mu\right| \le \int |\varphi| \dif\mu$。
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    由 (iii)，$\int \psi \dif\mu = \int \varphi \dif\mu + \int (\psi - \varphi) \dif\mu$，而 $\psi - \varphi \ge 0$ a.e.，所以第二个积分由 (i) 非负，即得 (iv)。(v) 由 (iv) 直接得到。对于 (vi)，注意 $\varphi \le |\varphi|$ 且 $-\varphi \le |\varphi|$，由 (iv) 和 (ii)（取 $a=-1$）即得 $-\int |\varphi| \dif\mu \le \int \varphi \dif\mu \le \int |\varphi| \dif\mu$。
+\end{proof}
+
+\medskip\noindent\textbf{Step 2.} 令 $E$ 为满足 $\mu(E) < \infty$ 的集合，$f$ 为在 $E^c$ 上为 $0$ 的有界函数。定义
+\begin{equation}\label{eq-1-4-1}
+    \int f \dif\mu = \sup_{\varphi \le f} \int \varphi \dif\mu = \inf_{\psi \ge f} \int \psi \dif\mu,
+\end{equation}
+其中 $\varphi, \psi$ 为在 $E^c$ 上为 $0$ 的简单函数。上确界与下确界相等的证明如下：由 Lemma~\ref{lemma-1-4-2}~(iv)，$\sup \le \inf$。反方向，设 $|f| \le M$，定义
+\[
+    E_k = \left\{ x \in E : \frac{kM}{n} \ge f(x) > \frac{(k-1)M}{n} \right\}, \quad -n \le k \le n,
+\]
+以及 $\psi_n = \sum_{k=-n}^{n} \frac{kM}{n} \mathbf{1}_{E_k}$，$\varphi_n = \sum_{k=-n}^{n} \frac{(k-1)M}{n} \mathbf{1}_{E_k}$。则 $\varphi_n \le f \le \psi_n$ 且
+\[
+    \int (\psi_n - \varphi_n) \dif\mu = \frac{M}{n} \mu(E).
+\]
+由于 $n$ 任意，故 $\sup = \inf$。
+
+\begin{lemma}\label{lemma-1-4-3}
+    设 $E$ 满足 $\mu(E) < \infty$，$f,g$ 为在 $E^c$ 上为 $0$ 的有界函数，则
+    \begin{enumerate}[(i)]
+        \item 若 $f \ge 0$ a.e.，则 $\int f \dif\mu \ge 0$；
+        \item 对任意 $a \in \RR$，$\int af \dif\mu = a \int f \dif\mu$；
+        \item $\int (f+g) \dif\mu = \int f \dif\mu + \int g \dif\mu$；
+        \item 若 $g \le f$ a.e.，则 $\int g \dif\mu \le \int f \dif\mu$；
+        \item 若 $g = f$ a.e.，则 $\int g \dif\mu = \int f \dif\mu$；
+        \item $\left|\int f \dif\mu\right| \le \int |f| \dif\mu$。
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    (i) 取 $\varphi \equiv 0$ 即得。(ii) 当 $a > 0$ 时，$a\varphi \le af$ 当且仅当 $\varphi \le f$，因此
+    \[
+        \int af \dif\mu = \sup_{\varphi \le f} \int a\varphi \dif\mu = a \sup_{\varphi \le f} \int \varphi \dif\mu = a \int f \dif\mu.
+    \]
+    当 $a < 0$ 时，$a\varphi \le af$ 当且仅当 $\varphi \ge f$，因此
+    \[
+        \int af \dif\mu = \sup_{\varphi \ge f} a \int \varphi \dif\mu = a \inf_{\varphi \ge f} \int \varphi \dif\mu = a \int f \dif\mu.
+    \]
+    (iii) 若 $\psi_1 \ge f$ 且 $\psi_2 \ge g$，则 $\psi_1 + \psi_2 \ge f+g$，故
+    \[
+        \int (f+g) \dif\mu \le \inf_{\psi_1 \ge f, \psi_2 \ge g} \int (\psi_1 + \psi_2) \dif\mu = \int f \dif\mu + \int g \dif\mu.
+    \]
+    将 $-f$ 和 $-g$ 代入并利用 (ii) 得反向不等式。(iv)--(vi) 由 Lemma~\ref{lemma-1-4-2} 的方法得证。
+\end{proof}
+
+\medskip\noindent{\normalfont\bfseries 记号.} 定义 $f$ 在集合 $E$ 上的积分为
+\[
+    \int_E f \dif\mu \equiv \int f \cdot \mathbf{1}_E \dif\mu.
+\]
+
+\medskip\noindent\textbf{Step 3.} 若 $f \ge 0$，定义
+\[
+    \int f \dif\mu = \sup \left\{ \int h \dif\mu : 0 \le h \le f, \; h \text{ bounded}, \; \mu(\{x : h(x) > 0\}) < \infty \right\}.
+\]
+
+\begin{lemma}\label{lemma-1-4-4}
+    设 $E_n \uparrow \Omega$，$\mu(E_n) < \infty$，$a \wedge b = \min(a,b)$，则
+    \[
+        \int_{E_n} f \wedge n \dif\mu \uparrow \int f \dif\mu \quad \text{as } n \uparrow \infty.
+    \]
+\end{lemma}
+
+\begin{proof}
+    由 Lemma~\ref{lemma-1-4-3}~(iv)，左端随 $n$ 递增。由于 $h = (f \wedge n) \mathbf{1}_{E_n}$ 是定义类中的一员，每项不超过 $\int f \dif\mu$。反方向，若 $0 \le h \le f$，$h \le M$，$\mu(\{x:h(x)>0\}) < \infty$，则对 $n \ge M$，由 (iv) 和 (iii)，
+    \[
+        \int_{E_n} f \wedge n \dif\mu \ge \int_{E_n} h \dif\mu = \int h \dif\mu - \int_{E_n^c} h \dif\mu.
+    \]
+    由于 $0 \le \int_{E_n^c} h \dif\mu \le M \mu(E_n^c \cap \{x : h(x) > 0\}) \to 0$，故 $\liminf \int_{E_n} f \wedge n \dif\mu \ge \int h \dif\mu$。由于 $h$ 任意，取上确界即得。
+\end{proof}
+
+\begin{lemma}\label{lemma-1-4-5}
+    设 $f,g \ge 0$，则
+    \begin{enumerate}[(i)]
+        \item $\int f \dif\mu \ge 0$；
+        \item 若 $a > 0$，$\int af \dif\mu = a \int f \dif\mu$；
+        \item $\int (f+g) \dif\mu = \int f \dif\mu + \int g \dif\mu$；
+        \item 若 $0 \le g \le f$ a.e.，则 $\int g \dif\mu \le \int f \dif\mu$；
+        \item 若 $0 \le g = f$ a.e.，则 $\int g \dif\mu = \int f \dif\mu$。
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    (i) 平凡。(ii) 当 $a > 0$ 时，$ah \le af$ 当且仅当 $h \le f$，由定义即得。(iii) 若 $f \ge h$ 且 $g \ge k$，则 $f+g \ge h+k$，取上确界得 $\int(f+g)\dif\mu \ge \int f\dif\mu + \int g\dif\mu$。反方向，由 Lemma~\ref{lemma-1-4-3} 和 Lemma~\ref{lemma-1-4-4} 的 (iv) 知 $(a+b) \wedge n \le (a \wedge n) + (b \wedge n)$，故
+    \[
+        \int_{E_n} (f+g) \wedge n \dif\mu \le \int_{E_n} f \wedge n \dif\mu + \int_{E_n} g \wedge n \dif\mu.
+    \]
+    令 $n \to \infty$ 并由 Lemma~\ref{lemma-1-4-4} 得另一方向。(iv) 和 (v) 由 (i) 和 (iii) 按照 Lemma~\ref{lemma-1-4-2} 的方式得证。
+\end{proof}
+
+\medskip\noindent\textbf{Step 4.} 称 $f$ 是{\normalfont\bfseries 可积的 / Integrable}，若 $\int |f| \dif\mu < \infty$。令
+\[
+    f^+(x) = f(x) \vee 0, \qquad f^-(x) = (-f(x)) \vee 0,
+\]
+其中 $a \vee b = \max(a,b)$。则 $f = f^+ - f^-$ 且 $|f| = f^+ + f^-$。定义
+\[
+    \int f \dif\mu = \int f^+ \dif\mu - \int f^- \dif\mu.
+\]
+右端有良定义，因为 $f^+, f^- \le |f|$，由 Lemma~\ref{lemma-1-4-5}~(iv) 两者的积分均有限。
+
+\begin{lemma}\label{lemma-1-4-6}
+    若 $f = f_1 - f_2$，其中 $f_1, f_2 \ge 0$ 且 $\int f_i \dif\mu < \infty$，则
+    \[
+        \int f \dif\mu = \int f_1 \dif\mu - \int f_2 \dif\mu.
+    \]
+\end{lemma}
+
+\begin{proof}
+    $f_1 + f^- = f_2 + f^+$，四个函数均 $\ge 0$，由 Lemma~\ref{lemma-1-4-5}~(iii) 得
+    \[
+        \int f_1 \dif\mu + \int f^- \dif\mu = \int f_2 \dif\mu + \int f^+ \dif\mu.
+    \]
+    移项即得。
+\end{proof}
+
+\begin{theorem}\label{theorem-1-4-7}
+    设 $f,g$ 可积，则
+    \begin{enumerate}[(i)]
+        \item 若 $f \ge 0$ a.e.，则 $\int f \dif\mu \ge 0$；
+        \item 对所有 $a \in \RR$，$\int af \dif\mu = a \int f \dif\mu$；
+        \item $\int (f+g) \dif\mu = \int f \dif\mu + \int g \dif\mu$；
+        \item 若 $g \le f$ a.e.，则 $\int g \dif\mu \le \int f \dif\mu$；
+        \item 若 $g = f$ a.e.，则 $\int g \dif\mu = \int f \dif\mu$；
+        \item $\left|\int f \dif\mu\right| \le \int |f| \dif\mu$。
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    (i) 平凡。(ii) 当 $a > 0$ 时 $(af)^+ = a(f^+)$，因此结论成立。(iii) 观察到 $f+g = (f^+ + g^+) - (f^- + g^-)$，由 Lemma~\ref{lemma-1-4-6} 和 Lemma~\ref{lemma-1-4-5}，
+    \begin{align*}
+        \int(f+g)\dif\mu & = \int (f^+ + g^+) \dif\mu - \int (f^- + g^-)\dif\mu                         \\
+                         & = \int f^+ \dif\mu + \int g^+ \dif\mu - \int f^- \dif\mu - \int g^- \dif\mu.
+    \end{align*}
+    (iv)--(vi) 由 (i)--(iii) 按 Lemma~\ref{lemma-1-4-2} 得证。
+\end{proof}
+
+\medskip\noindent{\normalfont\bfseries 特殊情形的记号.}
+\begin{enumerate}[(a)]
+    \item 当 $(\Omega,\calF,\mu) = (\RR^d, \mathcal{R}^d, \lambda)$ 时，写 $\int f(x) \dif x$ 代替 $\int f \dif\lambda$。
+    \item 当 $(\Omega,\calF,\mu) = (\RR, \mathcal{R}, \lambda)$ 且 $E = [a,b]$ 时，写 $\int_a^b f(x) \dif x$ 代替 $\int_E f \dif\lambda$。
+    \item 当 $(\Omega,\calF,\mu) = (\RR, \mathcal{R}, \mu)$ 且 $\mu((a,b]) = G(b) - G(a)$ 时，写 $\int f(x) \dif G(x)$ 代替 $\int f \dif\mu$。
+    \item 当 $\Omega$ 可数，$\calF$ 为全体子集，$\mu$ 为计数测度时，$\int f \dif\mu = \sum_{i \in \Omega} f(i)$。
+\end{enumerate}
+
+\subsection{Properties of the Integral}
+
+本节发展上一节定义的积分的性质。首先推广 Theorem~\ref{theorem-1-4-7}~(vi)。
+
+\begin{theorem}[Jensen's Inequality]\label{theorem-1-5-1}
+    设 $\varphi$ 是凸函数，即对所有 $\lambda \in (0,1)$ 和 $x,y \in \RR$，
+    \[
+        \lambda \varphi(x) + (1-\lambda)\varphi(y) \ge \varphi(\lambda x + (1-\lambda)y).
+    \]
+    若 $\mu$ 是概率测度，且 $f$ 和 $\varphi(f)$ 可积，则
+    \[
+        \varphi\!\left(\int f \dif\mu\right) \le \int \varphi(f) \dif\mu.
+    \]
+\end{theorem}
+
+\begin{proof}
+    令 $c = \int f \dif\mu$，选取线性函数 $\ell(x) = ax + b$ 使得 $\ell(c) = \varphi(c)$ 且 $\varphi(x) \ge \ell(x)$ 对所有 $x$ 成立。这样的函数存在，因为凸性意味着
+    \[
+        \lim_{h \downarrow 0} \frac{\varphi(c) - \varphi(c-h)}{h}
+        \le \lim_{h \downarrow 0} \frac{\varphi(c+h) - \varphi(c)}{h},
+    \]
+    极限存在因为序列单调。取 $a$ 为两极限之间的任意值，令 $\ell(x) = a(x-c) + \varphi(c)$，则 $\ell$ 满足要求。由 Theorem~\ref{theorem-1-4-7}~(iv)，
+    \[
+        \int \varphi(f) \dif\mu \ge \int (af+b) \dif\mu = a\int f \dif\mu + b = \ell\!\left(\int f \dif\mu\right) = \varphi\!\left(\int f \dif\mu\right).
+    \]
+    其中用到 $c = \int f \dif\mu$ 以及 $\ell(c) = \varphi(c)$。
+\end{proof}
+
+记 $\|f\|_p = \left(\int |f|^p \dif\mu\right)^{1/p}$，对 $1 \le p < \infty$。注意对任意实数 $c$，$\|cf\|_p = |c| \cdot \|f\|_p$。
+
+\begin{theorem}[H\"older's Inequality]\label{theorem-1-5-2}
+    若 $p, q \in (1,\infty)$ 满足 $1/p + 1/q = 1$，则
+    \[
+        \int |fg| \dif\mu \le \|f\|_p \|g\|_q.
+    \]
+\end{theorem}
+
+\begin{proof}
+    若 $\|f\|_p = 0$ 或 $\|g\|_q = 0$，则 $|fg| = 0$ a.e.，结论平凡。否则两边除以 $\|f\|_p \|g\|_q$，可不妨设 $\|f\|_p = \|g\|_q = 1$。固定 $y \ge 0$，令
+    \[
+        \varphi(x) = x^p/p + y^q/q - xy, \quad x \ge 0.
+    \]
+    则 $\varphi'(x) = x^{p-1} - y$，$\varphi''(x) = (p-1)x^{p-2}$，所以 $\varphi$ 在 $x_o = y^{1/(p-1)}$ 处取极小值。由于 $q = p/(p-1)$，$x_o^p = y^{p/(p-1)} = y^q$，故
+    \[
+        \varphi(x_o) = y^q(1/p + 1/q) - y^{1/(p-1)} y = 0.
+    \]
+    因此 $xy \le x^p/p + y^q/q$。取 $x = |f|$，$y = |g|$ 并积分，
+    \[
+        \int |fg| \dif\mu \le \frac{1}{p} + \frac{1}{q} = 1 = \|f\|_p \|g\|_q.
+    \]
+\end{proof}
+
+\begin{remark}
+    $p = q = 2$ 的特殊情形称为 {\normalfont\bfseries Cauchy--Schwarz 不等式}。可以通过观察对任意 $\theta$，
+    \[
+        0 \le \int (f + \theta g)^2 \dif\mu = \int f^2 \dif\mu + \theta \left(2\int fg \dif\mu\right) + \theta^2 \left(\int g^2 \dif\mu\right),
+    \]
+    故右端关于 $\theta$ 的二次式至多有一个实根，判别式 $b^2 - 4ac \le 0$ 即得。
+\end{remark}
+
+下面的目标是给出保证
+\[
+    \lim_{n \to \infty} \int f_n \dif\mu = \int \left(\lim_{n \to \infty} f_n\right) \dif\mu
+\]
+成立的条件。首先定义{\normalfont\bfseries 依测度收敛 / Convergence in Measure}：称 $f_n \to f$ in measure，若对任意 $\varepsilon > 0$，
+\[
+    \mu(\{x : |f_n(x) - f(x)| > \varepsilon\}) \to 0 \quad \text{as } n \to \infty.
+\]
+在有限测度空间上，这比 a.e.\ 收敛更弱，但下面的结果在这种更一般的假设下成立。
+
+\begin{theorem}[Bounded Convergence Theorem]\label{theorem-1-5-3}
+    设 $E$ 满足 $\mu(E) < \infty$，$f_n$ 在 $E^c$ 上为 $0$，$|f_n(x)| \le M$，且 $f_n \to f$ in measure，则
+    \[
+        \int f \dif\mu = \lim_{n \to \infty} \int f_n \dif\mu.
+    \]
+\end{theorem}
+
+\begin{proof}
+    令 $\varepsilon > 0$，$G_n = \{x : |f_n(x) - f(x)| < \varepsilon\}$，$B_n = E - G_n$。由 Theorem~\ref{theorem-1-4-7}~(iii) 和 (vi)，
+    \begin{align*}
+        \left|\int f \dif\mu - \int f_n \dif\mu\right|
+         & = \left|\int (f - f_n) \dif\mu\right| \le \int |f - f_n| \dif\mu \\
+         & = \int_{G_n} |f - f_n| \dif\mu + \int_{B_n} |f - f_n| \dif\mu    \\
+         & \le \varepsilon \mu(E) + 2M \mu(B_n).
+    \end{align*}
+    由于 $f_n \to f$ in measure，$\mu(B_n) \to 0$，且 $\varepsilon > 0$ 任意，$\mu(E) < \infty$，结论成立。
+\end{proof}
+
+\begin{example}
+    考虑 $\RR$ 上 Borel 集与 Lebesgue 测度。令 $f_n(x) = 1/n$ 在 $[0,n]$ 上，其余为 $0$。则 $\int f_n \dif\lambda = 1$ 但 $f_n \to 0$，说明 Theorem~\ref{theorem-1-5-3} 在 $\mu(E) = \infty$ 时不一定成立。
+\end{example}
+
+\begin{theorem}[Fatou's Lemma]\label{theorem-1-5-5}
+    若 $f_n \ge 0$，则
+    \[
+        \liminf_{n \to \infty} \int f_n \dif\mu \ge \int \left(\liminf_{n \to \infty} f_n\right) \dif\mu.
+    \]
+\end{theorem}
+
+\begin{example}
+    不等式可以严格：$f_n(x) = n \mathbf{1}_{(0,1/n]}(x)$ 在 $((0,1), \mathcal{R}, \lambda)$ 上，$\int f_n \dif\lambda = 1$ 但 $\liminf f_n = 0$。
+\end{example}
+
+\begin{proof}
+    令 $g_n(x) = \inf_{m \ge n} f_m(x)$，则 $f_n(x) \ge g_n(x)$，且 $g_n(x) \uparrow g(x) = \liminf_{n \to \infty} f_n(x)$。由于 $\int f_n \dif\mu \ge \int g_n \dif\mu$，故只需证
+    \[
+        \liminf_{n \to \infty} \int g_n \dif\mu \ge \int g \dif\mu.
+    \]
+    令 $E_m \uparrow \Omega$ 为有限测度集合。由于 $g_n \ge 0$，对固定的 $m$，
+    \[
+        (g_n \wedge m) \cdot \mathbf{1}_{E_m} \to (g \wedge m) \cdot \mathbf{1}_{E_m} \quad \text{a.e.}
+    \]
+    由有界收敛定理（Theorem~\ref{theorem-1-5-3}），
+    \[
+        \liminf_{n \to \infty} \int g_n \dif\mu \ge \int_{E_m} g_n \wedge m \dif\mu \to \int_{E_m} g \wedge m \dif\mu.
+    \]
+    对 $m$ 取上确界并由 Lemma~\ref{lemma-1-4-4} 得 $\int g \dif\mu$。
+\end{proof}
+
+\begin{theorem}[Monotone Convergence Theorem]\label{theorem-1-5-7}
+    若 $f_n \ge 0$ 且 $f_n \uparrow f$，则
+    \[
+        \int f_n \dif\mu \uparrow \int f \dif\mu.
+    \]
+\end{theorem}
+
+\begin{proof}
+    由 Fatou 引理（Theorem~\ref{theorem-1-5-5}），$\liminf \int f_n \dif\mu \ge \int f \dif\mu$。另一方面，$f_n \le f$ 意味着 $\limsup \int f_n \dif\mu \le \int f \dif\mu$。
+\end{proof}
+
+\begin{theorem}[Dominated Convergence Theorem]\label{theorem-1-5-8}
+    若 $f_n \to f$ a.e.，$|f_n| \le g$ 对所有 $n$，且 $g$ 可积，则 $\int f_n \dif\mu \to \int f \dif\mu$。
+\end{theorem}
+
+\begin{proof}
+    $f_n + g \ge 0$，由 Fatou 引理，
+    \[
+        \liminf_{n \to \infty} \int (f_n + g) \dif\mu \ge \int (f+g) \dif\mu.
+    \]
+    两边减去 $\int g \dif\mu$（有限值），得
+    \[
+        \liminf_{n \to \infty} \int f_n \dif\mu \ge \int f \dif\mu.
+    \]
+    对 $-f_n$ 应用同样的论证，得
+    \[
+        \limsup_{n \to \infty} \int f_n \dif\mu \le \int f \dif\mu.
+    \]
+\end{proof}
+
+\subsection{Expected Value}
+
+我们现在将积分特化到概率测度 $P$ 上。若 $X \ge 0$ 是 $(\Omega, \calF, P)$ 上的随机变量，定义其{\normalfont\bfseries 期望值 / Expected Value} 为 $EX = \int X \dif P$，这始终有意义但可能为 $\infty$。对一般情形，令 $x^+ = \max\{x,0\}$ 为{\normalfont\bfseries 正部 / Positive Part}，$x^- = \max\{-x,0\}$ 为{\normalfont\bfseries 负部 / Negative Part}。当 $EX^+ < \infty$ 或 $EX^- < \infty$ 时，称 $EX$ {\normalfont\bfseries 存在}，并令 $EX = EX^+ - EX^-$。
+
+$EX$ 也称为 $X$ 的{\normalfont\bfseries 均值 / Mean}，记为 $\mu$。$EX$ 通过对 $X$ 积分来定义，因此继承了积分的所有性质。由 Theorem~\ref{lemma-1-4-5}、\ref{theorem-1-4-7} 以及 $E(b) = b$，我们有：
+
+\begin{theorem}\label{theorem-1-6-1}
+    设 $X, Y \ge 0$ 或 $E|X|, E|Y| < \infty$，则
+    \begin{enumerate}[(a)]
+        \item $E(X+Y) = EX + EY$；
+        \item $E(aX+b) = aE(X) + b$，对任意实数 $a,b$；
+        \item 若 $X \ge Y$，则 $EX \ge EY$。
+    \end{enumerate}
+\end{theorem}
+
+\subsubsection{Inequalities}
+
+对概率测度，Theorem~\ref{theorem-1-5-1} 变为：
+
+\begin{theorem}[Jensen's Inequality]\label{theorem-1-6-2}
+    设 $\varphi$ 是凸函数，若 $E|X|$ 和 $E|\varphi(X)|$ 有限，则
+    \[
+        E(\varphi(X)) \ge \varphi(EX).
+    \]
+\end{theorem}
+
+两个有用的特殊情形：$|EX| \le E|X|$ 以及 $(EX)^2 \le E(X^2)$。
+
+为陈述下一个结果，引入记号：若只在 $A \subset \Omega$ 上积分，写
+\[
+    E(X; A) = \int_A X \dif P.
+\]
+
+\begin{theorem}[Chebyshev's Inequality]\label{theorem-1-6-4}
+    设 $\varphi : \RR \to \RR$ 满足 $\varphi \ge 0$，$A \in \mathcal{R}$，令 $i_A = \inf\{\varphi(y) : y \in A\}$，则
+    \[
+        i_A \, P(X \in A) \le E(\varphi(X); X \in A) \le E\varphi(X).
+    \]
+\end{theorem}
+
+\begin{proof}
+    由 $i_A$ 的定义和 $\varphi \ge 0$，
+    \[
+        i_A \mathbf{1}_{(X \in A)} \le \varphi(X) \mathbf{1}_{(X \in A)} \le \varphi(X).
+    \]
+    取期望并由 Theorem~\ref{theorem-1-6-1}~(c) 即得。
+\end{proof}
+
+\begin{remark}
+    有些作者称此结果为 {\normalfont\bfseries Markov 不等式}，而将 Chebyshev 不等式保留给取 $\varphi(x) = x^2$，$A = \{x : |x| \ge a\}$ 的特殊情形：
+    \begin{equation}\label{eq-1-6-1}
+        a^2 P(|X| \ge a) \le EX^2.
+    \end{equation}
+\end{remark}
+
+\begin{theorem}[H\"older's Inequality]\label{theorem-1-6-3}
+    若 $p,q \in [1,\infty]$ 满足 $1/p + 1/q = 1$，则
+    \[
+        E|XY| \le \|X\|_p \|Y\|_q,
+    \]
+    其中 $\|X\|_r = (E|X|^r)^{1/r}$，$r \in [1,\infty)$；$\|X\|_\infty = \inf\{M : P(|X| > M) = 0\}$。
+\end{theorem}
+
+\subsubsection{Integration to the Limit}
+
+将上一节的三个经典结果用期望值的语言重述：
+
+\begin{theorem}[Fatou's Lemma]\label{theorem-1-6-5}
+    若 $X_n \ge 0$，则
+    \[
+        \liminf_{n \to \infty} EX_n \ge E\!\left(\liminf_{n \to \infty} X_n\right).
+    \]
+\end{theorem}
+
+\begin{theorem}[Monotone Convergence Theorem]\label{theorem-1-6-6}
+    若 $0 \le X_n \uparrow X$，则 $EX_n \uparrow EX$。
+\end{theorem}
+
+\begin{theorem}[Dominated Convergence Theorem]\label{theorem-1-6-7}
+    若 $X_n \to X$ a.s.，$|X_n| \le Y$ 对所有 $n$，且 $EY < \infty$，则 $EX_n \to EX$。
+\end{theorem}
+
+$Y$ 为常数的特殊情形称为{\normalfont\bfseries 有界收敛定理 / Bounded Convergence Theorem}。
+
+在后续内容中，我们还需要一个关于积分到极限的更一般的结果：
+
+\begin{theorem}\label{theorem-1-6-8}
+    设 $X_n \to X$ a.s.，$g, h$ 为连续函数，满足
+    \begin{enumerate}[(i)]
+        \item $g \ge 0$ 且 $g(x) \to \infty$ 当 $|x| \to \infty$；
+        \item $|h(x)|/g(x) \to 0$ 当 $|x| \to \infty$；
+        \item $Eg(X_n) \le K < \infty$ 对所有 $n$。
+    \end{enumerate}
+    则 $Eh(X_n) \to Eh(X)$。
+\end{theorem}
+
+\begin{proof}
+    减去常数可不妨设 $h(0) = 0$。取 $M$ 足够大使得 $P(|X| = M) = 0$ 且当 $|x| \ge M$ 时 $g(x) > 0$。对随机变量 $Y$，令 $\tilde{Y} = Y \mathbf{1}_{(|Y| \le M)}$。由于 $P(|X| = M) = 0$，$\tilde{X}_n \to \tilde{X}$ a.s.，且 $h(\tilde{X}_n)$ 有界，由有界收敛定理得
+    \[
+        Eh(\tilde{X}_n) \to Eh(\tilde{X}). \tag{a}
+    \]
+    为控制截断的影响，令 $\varepsilon_M = \sup\{|h(x)|/g(x) : |x| \ge M\}$，则
+    \[
+        |Eh(\tilde{Y}) - Eh(Y)| \le E(|h(Y)|; |Y| > M) \le \varepsilon_M \, Eg(Y). \tag{b}
+    \]
+    在 (b) 中取 $Y = X_n$，由 (iii) 得
+    \[
+        |Eh(\tilde{X}_n) - Eh(X_n)| \le K\varepsilon_M. \tag{c}
+    \]
+    由 $g \ge 0$ 连续和 Fatou 引理，$Eg(X) \le \liminf Eg(X_n) \le K$。在 (b) 中取 $Y = X$ 得
+    \[
+        |Eh(\tilde{X}) - Eh(X)| \le K\varepsilon_M. \tag{d}
+    \]
+    由三角不等式、(a)、(c)、(d)，
+    \[
+        \limsup_{n \to \infty} |Eh(X_n) - Eh(X)| \le 2K\varepsilon_M.
+    \]
+    由于 $K < \infty$ 且 $\varepsilon_M \to 0$（当 $M \to \infty$），结论得证。
+\end{proof}
+
+最重要的特殊情形是 $g(x) = |x|^p$（$p > 1$）且 $h(x) = x$，此时 Theorem~\ref{theorem-1-6-8} 说明若 $X_n \to X$ a.s.\ 且 $\sup_n E|X_n|^p \le K < \infty$，则 $EX_n \to EX$。
+
+\subsubsection{Computing Expected Values}
+
+在 $(\Omega, \calF, P)$ 上积分虽然理论上很自然，但实际计算时我们需要转移到可以做微积分的空间上。大多数情形下，我们将利用下面的结果，其中 $S = \RR^d$。
+
+\begin{theorem}[Change of Variables Formula]\label{theorem-1-6-9}
+    设 $X$ 为 $(S, \calS)$ 上的随机元素，分布为 $\mu$，即 $\mu(A) = P(X \in A)$。若 $f$ 是从 $(S, \calS)$ 到 $(\RR, \mathcal{R})$ 的可测函数，且 $f \ge 0$ 或 $E|f(X)| < \infty$，则
+    \[
+        Ef(X) = \int_S f(y) \, \mu(\mathrm{d}y).
+    \]
+\end{theorem}
+
+\begin{remark*}
+    为理解这个公式，将 $X$ 写为 $h$，$P \circ h^{-1}$ 写为 $\mu$，则
+    \[
+        \int_\Omega f(h(\omega)) \dif P = \int_S f(y) \dif(P \circ h^{-1}).
+    \]
+\end{remark*}
+
+\begin{proof}
+    我们通过验证四类越来越一般的特殊情形来证明，这种方法与 Section 1.4 中定义积分的方式平行，后续会多次使用。
+
+    \textsc{Case 1: 示性函数。} 若 $B \in \calS$ 且 $f = \mathbf{1}_B$，则
+    \[
+        E\mathbf{1}_B(X) = P(X \in B) = \mu(B) = \int_S \mathbf{1}_B(y) \, \mu(\mathrm{d}y).
+    \]
+
+    \textsc{Case 2: 简单函数。} 设 $f(x) = \sum_{m=1}^n c_m \mathbf{1}_{B_m}$，其中 $c_m \in \RR$，$B_m \in \calS$。由期望的线性性和 Case 1，
+    \[
+        Ef(X) = \sum_{m=1}^n c_m E\mathbf{1}_{B_m}(X) = \sum_{m=1}^n c_m \int_S \mathbf{1}_{B_m}(y) \, \mu(\mathrm{d}y) = \int_S f(y) \, \mu(\mathrm{d}y).
+    \]
+
+    \textsc{Case 3: 非负函数。} 若 $f \ge 0$，令
+    \[
+        f_n(x) = ([2^n f(x)] / 2^n) \wedge n,
+    \]
+    其中 $[x]$ 为不超过 $x$ 的最大整数，$a \wedge b = \min\{a, b\}$。则 $f_n$ 为简单函数且 $f_n \uparrow f$，由简单函数的结果和单调收敛定理，
+    \[
+        Ef(X) = \lim_n Ef_n(X) = \lim_n \int_S f_n(y) \, \mu(\mathrm{d}y) = \int_S f(y) \, \mu(\mathrm{d}y).
+    \]
+
+    \textsc{Case 4: 可积函数。} 一般情形通过 $f(x) = f(x)^+ - f(x)^-$ 得到。条件 $E|f(X)| < \infty$ 保证 $Ef(X)^+$ 和 $Ef(X)^-$ 均有限。由非负函数的结果和期望的线性性，
+    \[
+        Ef(X) = Ef(X)^+ - Ef(X)^- = \int_S f(y)^+ \, \mu(\mathrm{d}y) - \int_S f(y)^- \, \mu(\mathrm{d}y) = \int_S f(y) \, \mu(\mathrm{d}y). \qedhere
+    \]
+\end{proof}
+
+Theorem~\ref{theorem-1-6-9} 的一个重要推论是：我们可以通过在实数轴上积分来计算随机变量函数的期望值。
+
+若 $k$ 为正整数，$EX^k$ 称为 $X$ 的 $k$ 阶\textbf{矩}。一阶矩 $EX$ 通常称为\textbf{均值}，记为 $\mu$。若 $EX^2 < \infty$，则 $X$ 的\textbf{方差}定义为
+\[
+    \mathrm{var}(X) = E(X - \mu)^2.
+\]
+计算方差时下面的公式很有用：
+\begin{equation}\label{eq-1-6-2}
+    \mathrm{var}(X) = E(X - \mu)^2 = EX^2 - 2\mu \, EX + \mu^2 = EX^2 - \mu^2.
+\end{equation}
+由此立即得到
+\begin{equation}\label{eq-1-6-3}
+    \mathrm{var}(X) \le EX^2.
+\end{equation}
+当我们需要 $EX$ 的平方时，写为 $(EX)^2$。由 $E(aX + b) = aEX + b$（Theorem~\ref{theorem-1-6-1}(b)），
+\begin{equation}\label{eq-1-6-4}
+    \mathrm{var}(aX + b) = a^2 E(X - EX)^2 = a^2 \, \mathrm{var}(X).
+\end{equation}
+
+下面是一些重要的具体分布的例子。
+
+\begin{example}[Exponential Distribution]\label{example-1-6-10}
+    若 $X$ 服从参数为 $1$ 的\textbf{指数分布}，则
+    \[
+        EX^k = \int_0^\infty x^k e^{-x} \dif x = k!
+    \]
+    故均值为 $1$，方差为 $EX^2 - (EX)^2 = 2 - 1 = 1$。令 $Y = X/\lambda$，由 Exercise 1.2.5，$Y$ 的密度为 $\lambda e^{-\lambda y}$（$y \ge 0$），即参数为 $\lambda$ 的\textbf{指数密度}。由 Theorem~\ref{theorem-1-6-1}(b) 和 \eqref{eq-1-6-4}，$Y$ 的均值为 $1/\lambda$，方差为 $1/\lambda^2$。
+\end{example}
+
+\begin{example}[Standard Normal Distribution]\label{example-1-6-11}
+    若 $X$ 服从\textbf{标准正态分布}，则
+    \begin{align*}
+        EX              & = \int x (2\pi)^{-1/2} \exp(-x^2/2) \dif x = 0, \quad \text{（由对称性）} \\
+        \mathrm{var}(X) & = EX^2 = \int x^2 (2\pi)^{-1/2} \exp(-x^2/2) \dif x = 1.
+    \end{align*}
+    令 $\sigma > 0$，$\mu \in \RR$，$Y = \sigma X + \mu$，则 $EY = \mu$，$\mathrm{var}(Y) = \sigma^2$。由 Exercise 1.2.5，$Y$ 的密度为
+    \[
+        (2\pi\sigma^2)^{-1/2} \exp\!\left(-(y - \mu)^2 / 2\sigma^2\right),
+    \]
+    即均值为 $\mu$、方差为 $\sigma^2$ 的\textbf{正态分布}。
+\end{example}
+
+\begin{example}[Bernoulli Distribution]\label{example-1-6-12}
+    $X$ 服从参数为 $p$ 的 \textbf{Bernoulli 分布}，即 $P(X = 1) = p$，$P(X = 0) = 1 - p$。显然
+    \[
+        EX = p \cdot 1 + (1 - p) \cdot 0 = p.
+    \]
+    由 $X^2 = X$ 得 $EX^2 = EX = p$，故
+    \[
+        \mathrm{var}(X) = EX^2 - (EX)^2 = p - p^2 = p(1 - p).
+    \]
+\end{example}
+
+\begin{example}[Poisson Distribution]\label{example-1-6-13}
+    $X$ 服从参数为 $\lambda$ 的 \textbf{Poisson 分布}，即
+    \[
+        P(X = k) = e^{-\lambda} \frac{\lambda^k}{k!}, \quad k = 0, 1, 2, \ldots
+    \]
+    利用下降阶乘矩：对 $k \ge 1$，
+    \[
+        E\bigl(X(X-1)\cdots(X-k+1)\bigr) = \sum_{j=k}^{\infty} j(j-1)\cdots(j-k+1) e^{-\lambda} \frac{\lambda^j}{j!} = \lambda^k \sum_{j=k}^{\infty} e^{-\lambda} \frac{\lambda^{j-k}}{(j-k)!} = \lambda^k.
+    \]
+    由此得 $EX = \lambda$，且
+    \[
+        \mathrm{var}(X) = EX^2 - (EX)^2 = E(X(X-1)) + EX - (EX)^2 = \lambda^2 + \lambda - \lambda^2 = \lambda.
+    \]
+\end{example}
+
+\begin{example}[Geometric Distribution]\label{example-1-6-14}
+    $N$ 服从成功概率为 $p \in (0,1)$ 的\textbf{几何分布}，即
+    \[
+        P(N = k) = p(1-p)^{k-1}, \quad k = 1, 2, \ldots
+    \]
+    $N$ 是在独立试验中观察到一次成功所需的次数。对恒等式 $\sum_{k=0}^{\infty} (1-p)^k = 1/p$ 逐项求导，
+    \[
+        -\sum_{k=1}^{\infty} k(1-p)^{k-1} = -1/p^2, \qquad \sum_{k=2}^{\infty} k(k-1)(1-p)^{k-2} = 2/p^3.
+    \]
+    故
+    \[
+        EN = \sum_{k=1}^{\infty} kp(1-p)^{k-1} = 1/p,
+    \]
+    \[
+        EN(N-1) = \sum_{k=1}^{\infty} k(k-1)p(1-p)^{k-1} = \frac{2(1-p)}{p^2},
+    \]
+    \[
+        \mathrm{var}(N) = EN^2 - (EN)^2 = EN(N-1) + EN - (EN)^2 = \frac{2(1-p)}{p^2} + \frac{1}{p} - \frac{1}{p^2} = \frac{1-p}{p^2}.
+    \]
+\end{example}
+
+\subsection{Product Measures, Fubini's Theorem}
+
+设 $(X, \calA, \mu_1)$ 和 $(Y, \mathcal{B}, \mu_2)$ 是两个 $\sigma$-有限测度空间。令
+\[
+    \Omega = X \times Y = \{(x,y) : x \in X, y \in Y\},
+\]
+\[
+    \calS = \{A \times B : A \in \calA, B \in \mathcal{B}\}.
+\]
+$\calS$ 中的元素称为{\normalfont\bfseries 矩形 / Rectangles}。容易验证 $\calS$ 是一个半代数：
+\begin{itemize}
+    \item 对交运算封闭：$(A \times B) \cap (C \times D) = (A \cap C) \times (B \cap D)$；
+    \item 补集可以表示为有限不交并：$(A \times B)^c = (A^c \times B) \cup (A \times B^c) \cup (A^c \times B^c)$。
+\end{itemize}
+令 $\calF = \calA \times \mathcal{B}$ 为由 $\calS$ 生成的 $\sigma$-代数。
+
+\begin{theorem}\label{theorem-1-7-1}
+    在 $\calF$ 上存在唯一的测度 $\mu$，满足
+    \[
+        \mu(A \times B) = \mu_1(A)\mu_2(B).
+    \]
+\end{theorem}
+
+\textbf{记号}\quad $\mu$ 通常记作 $\mu_1 \times \mu_2$。
+
+\begin{proof}
+    由 Theorem~\ref{theorem-1-1-3}，只需证明：若 $A \times B = \biguplus_i (A_i \times B_i)$ 是有限或可数个不交并，则
+    \[
+        \mu(A \times B) = \sum_i \mu(A_i \times B_i).
+    \]
+    对每个 $x \in A$，令 $I(x) = \{i : x \in A_i\}$，则 $B = \biguplus_{i \in I(x)} B_i$，从而
+    \[
+        1_A(x)\mu_2(B) = \sum_i 1_{A_i}(x)\mu_2(B_i).
+    \]
+    关于 $\mu_1$ 积分，利用 Exercise 1.5.6 得
+    \[
+        \mu_1(A)\mu_2(B) = \sum_i \mu_1(A_i)\mu_2(B_i),
+    \]
+    即为所求。
+\end{proof}
+
+利用 Theorem~\ref{theorem-1-7-1} 和数学归纳法，如果 $(\Omega_i, \calF_i, \mu_i)$，$i = 1, \ldots, n$，都是 $\sigma$-有限测度空间，且 $\Omega = \Omega_1 \times \cdots \times \Omega_n$，那么在由形如 $A_1 \times \cdots \times A_n$（$A_i \in \calF_i$）的集合生成的 $\sigma$-代数 $\calF$ 上，存在唯一的测度 $\mu$，满足
+\[
+    \mu(A_1 \times \cdots \times A_n) = \prod_{m=1}^n \mu_m(A_m).
+\]
+特别地，当 $(\Omega_i, \calF_i, \mu_i) = (\RR, \mathcal{R}, \lambda)$ 对所有 $i$ 成立时，得到的就是 $\RR^n$ 上 Borel 子集的 \textbf{Lebesgue 测度}。
+
+\medskip
+
+回到 $(\Omega, \calF, \mu)$ 是两个测度空间 $(X, \calA, \mu_1)$ 和 $(Y, \mathcal{B}, \nu)$ 的乘积的情形，下面的定理是本节的核心目标：
+
+\begin{theorem}[Fubini's Theorem]\label{theorem-1-7-2}
+    若 $f \ge 0$ 或 $\int |f| \dif\mu < \infty$，则
+    \[
+        \int_X \int_Y f(x,y)\,\mu_2(dy)\,\mu_1(dx)
+        = \int_{X \times Y} f \dif\mu
+        = \int_Y \int_X f(x,y)\,\mu_1(dx)\,\mu_2(dy). \tag{$\ast$}
+    \]
+\end{theorem}
+
+由对称性，证明第一个等号即可。在证明交换积分的合理性之前，需要先解决两个可测性问题：
+\begin{enumerate}
+    \item 当 $x$ 固定时，$y \mapsto f(x,y)$ 是 $\mathcal{B}$-可测的；
+    \item $x \mapsto \int_Y f(x,y)\,\mu_2(dy)$ 是 $\calA$-可测的。
+\end{enumerate}
+
+先从 $f = 1_E$（$E \in \calF$）的情形出发。对 $x \in X$，定义 $E$ 在 $x$ 处的{\normalfont\bfseries 截面 / Cross-section}为 $E_x = \{y : (x,y) \in E\}$。
+
+\begin{lemma}\label{lemma-1-7-3}
+    若 $E \in \calF$，则 $E_x \in \mathcal{B}$。
+\end{lemma}
+
+\begin{proof}
+    注意到 $(E^c)_x = (E_x)^c$，$(\bigcup_i E_i)_x = \bigcup_i (E_i)_x$。因此，使得 $E_x \in \mathcal{B}$ 的集合 $E$ 构成的集族 $\mathcal{E}$ 是一个 $\sigma$-代数。由于 $\calS$ 中的矩形满足此性质（$(A \times B)_x = B$ 若 $x \in A$，否则为 $\varnothing$），故 $\mathcal{E}$ 包含矩形，从而 $\mathcal{E} \supset \calF$。
+\end{proof}
+
+\begin{lemma}\label{lemma-1-7-4}
+    若 $E \in \calF$，则 $g(x) \equiv \mu_2(E_x)$ 是 $\calA$-可测的，且
+    \[
+        \int_X g \dif\mu_1 = \mu(E).
+    \]
+\end{lemma}
+
+\begin{proof}
+    注意使结论成立的集合 $E$ 的集族不一定是 $\sigma$-代数：因为 $\mu(E_1 \cup E_2) = \mu(E_1) + \mu(E_2) - \mu(E_1 \cap E_2)$，所以可测性和等式不能由简单的加法直接得到。这正是 Dynkin 的 $\pi$-$\lambda$ 定理（Theorem A.1.4）发挥作用的场景。
+
+    令 $\mathcal{L}$ 为所有使得结论成立的集合 $E$ 构成的集族。我们验证 $\mathcal{L}$ 是一个 $\lambda$-系统：
+    \begin{enumerate}
+        \item 性质 (i)：$\Omega \in \mathcal{L}$ 是显然的（$g(x) = \mu_2(Y)$）；
+        \item 性质 (iii)：若 $E_n \in \mathcal{L}$，$E_n \uparrow E$，那么由单调收敛定理，结论对 $E$ 成立；
+        \item 性质 (ii)：若 $A, B \in \mathcal{L}$，$A \subset B$，为证 $B - A \in \mathcal{L}$，利用
+              \[
+                  \mu_2((A - B)_x) = \mu_2(A_x - B_x) = \mu_2(A_x) - \mu_2(B_x),
+              \]
+              关于 $x$ 积分即得第二个结论。
+    \end{enumerate}
+    但要使用 $\pi$-$\lambda$ 定理，需要 $\mu_1$ 和 $\mu_2$ 是 $\sigma$-有限的，以保证各步骤中的量有限。具体来说，先对 $E \subset F \times G$（其中 $\mu_1(F) < \infty$，$\mu_2(G) < \infty$）的情形证明，取 $\Omega = F \times G$。$\calS$ 中包含在 $F \times G$ 中的矩形构成一个 $\pi$-系统，包含它的 $\lambda$-系统 $\mathcal{L}$ 就包含了 $\calF|_{F \times G}$。然后利用 $\sigma$-有限性取极限即可推广到一般情形。
+\end{proof}
+
+有了这两个引理，Theorem~\ref{theorem-1-7-2} 的证明分四步完成：
+
+\begin{proof}[Proof of Theorem~\ref{theorem-1-7-2}]
+    \textit{Case 1.}\quad 若 $E \in \calF$，$f = 1_E$，则 $(\ast)$ 即为 Lemma~\ref{lemma-1-7-4}。
+
+    \textit{Case 2.}\quad 由于每个积分对 $f$ 都是线性的，$(\ast)$ 对简单函数成立。
+
+    \textit{Case 3.}\quad 若 $f \ge 0$，令 $f_n(x) = ([2^n f(x)]/2^n) \wedge n$，其中 $[y]$ 表示取整函数。则 $f_n$ 是简单函数且 $f_n \uparrow f$，由单调收敛定理，$(\ast)$ 对所有 $f \ge 0$ 成立。
+
+    \textit{Case 4.}\quad 一般情形：写 $f(x) = f(x)^+ - f(x)^-$，将 Case 3 应用到 $f^+$、$f^-$ 和 $|f|$，即得结论。\qedhere
+\end{proof}
+
+为了说明 Theorem~\ref{theorem-1-7-2} 中各假设的必要性，下面给出几个反例。
+
+\begin{example}\label{example-1-7-5}
+    令 $X = Y = \{1, 2, \ldots\}$，$\calA = \mathcal{B} = $ 所有子集，$\mu_1 = \mu_2 = $ 计数测度。对 $m \ge 1$，令 $f(m,m) = 1$，$f(m+1,m) = -1$，其余 $f(m,n) = 0$。则
+    \[
+        \sum_m \sum_n f(m,n) = 1, \qquad \sum_n \sum_m f(m,n) = 0.
+    \]
+    这是因为：按列求和，第一列为 $1$，其余列为 $0$；按行求和，每行都是 $0$。此例说明当 $\int |f| \dif\mu = \infty$ 时，迭代积分的次序可能影响结果。
+\end{example}
+
+\begin{example}\label{example-1-7-6}
+    令 $X = (0,1)$，$Y = (1, \infty)$，均配备 Borel 集和 Lebesgue 测度。令 $f(x,y) = e^{-xy} - 2e^{-2xy}$，则
+    \[
+        \int_0^1 \int_1^\infty f(x,y) \dif y \dif x = \int_0^1 x^{-1}(e^{-x} - e^{-2x}) \dif x > 0,
+    \]
+    \[
+        \int_1^\infty \int_0^1 f(x,y) \dif x \dif y = \int_1^\infty y^{-1}(e^{-2y} - e^{-y}) \dif y < 0.
+    \]
+    两个迭代积分符号不同，再次说明可积性条件不可省略。
+\end{example}
+
+\begin{example}\label{example-1-7-7}
+    此例说明为何 $\mu_1$ 和 $\mu_2$ 必须是 $\sigma$-有限的。令 $X = (0,1)$，$\calA = $ Borel 集，$\mu_1 = $ Lebesgue 测度；$Y = (0,1)$，$\mathcal{B} = $ 所有子集，$\mu_2 = $ 计数测度。令 $f(x,y) = 1$ 若 $x = y$，否则为 $0$。则
+    \[
+        \int_Y f(x,y)\,\mu_2(dy) = 1 \;\text{对所有 $x$}, \qquad \int_X \int_Y f(x,y)\,\mu_2(dy)\,\mu_1(dx) = 1;
+    \]
+    \[
+        \int_X f(x,y)\,\mu_1(dx) = 0 \;\text{对所有 $y$}, \qquad \int_Y \int_X f(x,y)\,\mu_1(dx)\,\mu_2(dy) = 0.
+    \]
+    此处 $\mu_2$ 不是 $\sigma$-有限的（$(0,1)$ 不可数，计数测度下不可写成有限测度集的可数并），故 Fubini 定理不适用。
+\end{example}
+
+\clearpage

@@ -57,50 +57,53 @@ nav:
     - Computer Science:
           - cs/index.md
           - Programing Utils:
-                - cs/Programming Utils/index.md
-                - Shell: cs/Programming Utils/Shell.md
-                - Git: cs/Programming Utils/Git.md
-                - Linux: cs/Programming Utils/Linux.md
-                - Docker: cs/Programming Utils/Docker.md
-                - GNU Make & CMake: cs/Programming Utils/GNU Make.md
-                - Regular Expression: cs/Programming Utils/Regular Expression.md
-                - Tmux & Screen: cs/Programming Utils/tmux.md
+                - cs/utils/index.md
+                - Shell: cs/utils/Shell.md
+                - Git: cs/utils/Git.md
+                - Linux: cs/utils/Linux.md
+                - Docker: cs/utils/Docker.md
+                - GNU Make & CMake: cs/utils/GNU Make.md
+                - Regular Expression: cs/utils/Regular Expression.md
+                - Tmux & Screen: cs/utils/tmux.md
           - Programing Language:
-                - cs/Programming Language/index.md
+                - cs/pl/index.md
                 - C:
-                      - cs/Programming Language/C/index.md
-                      - Basic Syntax: cs/Programming Language/C/topic1.md
-                      - Array, Pointer and String: cs/Programming Language/C/topic2.md
-                      - Memory Management: cs/Programming Language/C/topic3.md
-                      - Standard Library: cs/Programming Language/C/topic4.md
+                      - cs/pl/c/index.md
+                      - Basic Syntax: cs/pl/c/topic1.md
+                      - Array, Pointer and String: cs/pl/c/topic2.md
+                      - Memory Management: cs/pl/c/topic3.md
+                      - Standard Library: cs/pl/c/topic4.md
                 - C++:
-                      - cs/Programming Language/C++/index.md
-                      - Basic Syntax: cs/Programming Language/C++/Basic Syntax.md
-                      - Object Oriented Programming: cs/Programming Language/C++/Object Oriented Programming.md
-                      - Standard Library: cs/Programming Language/C++/Standard Library.md
-                      - CS106L 笔记: cs/Programming Language/C++/CS106L.md
+                      - cs/pl/cpp/index.md
+                      - Basic Syntax: cs/pl/cpp/basic.md
+                      - Object Oriented Programming: cs/pl/cpp/oop.md
+                      - Standard Library: cs/pl/cpp/stdlib.md
+                      - CS106L 笔记: cs/pl/cpp/cs106l.md
                 - Python:
-                      - cs/Programming Language/Python/index.md
-                      - 备忘知识: cs/Programming Language/Python/0 Misc.md
-                      - 第一部分：Python 数据结构: cs/Programming Language/Python/1 Data Structures.md
-                      - 第二部分：函数即对象: cs/Programming Language/Python/2 Functions.md
-                      - 第三部分：类和协议: cs/Programming Language/Python/3 Classes.md
-                      - 第四部分：控制流: cs/Programming Language/Python/4 Control Flow.md
-                      - 第五部分：元编程: cs/Programming Language/Python/5 Metaprogramming.md
-                      - Python 新版本特性: cs/Programming Language/Python/6 News.md
+                      - cs/pl/python/index.md
+                      - 备忘知识: cs/pl/python/0_misc.md
+                      - 第一部分：Python 数据结构: cs/pl/python/1_ds.md
+                      - 第二部分：函数即对象: cs/pl/python/2_func.md
+                      - 第三部分：类和协议: cs/pl/python/3_class.md
+                      - 第四部分：控制流: cs/pl/python/4_control.md
+                      - 第五部分：元编程: cs/pl/python/5_metaprogramming.md
+                      - Python 新版本特性: cs/pl/python/6_news.md
+                      - 妙妙小工具: cs/pl/python/7_tools.md
                 - Rust:
-                      - cs/Programming Language/Rust/index.md
-                      - 1 Basic Syntax: cs/Programming Language/Rust/1 Basic.md
-                      - 2 Ownership & Memory: cs/Programming Language/Rust/2 Ownership.md
-                      - 3 Code Organization: cs/Programming Language/Rust/3 Organization.md
-                      - 4 Abstraction & Generics: cs/Programming Language/Rust/4 Abstraction.md
-                      - 5 Error & Concurrency: cs/Programming Language/Rust/5 Concurrency.md
-                      - 6 Advanced Topics: cs/Programming Language/Rust/6 Advanced.md
+                      - cs/pl/rust/index.md
+                      - 1 Basic Syntax: cs/pl/rust/1_basic.md
+                      - 2 Ownership & Memory: cs/pl/rust/2_ownership.md
+                      - 3 Code Organization: cs/pl/rust/3_organization.md
+                      - 4 Abstraction & Generics: cs/pl/rust/4_abstraction.md
+                      - 5 Error & Concurrency: cs/pl/rust/5_concurrency.md
+                      - 6 Advanced Topics: cs/pl/rust/6_advanced.md
                 - Go:
-                      - cs/Programming Language/Go/index.md
-                      - Basic Syntax: cs/Programming Language/Go/Basic Syntax.md
+                      - cs/pl/go/index.md
+                      - Basic Syntax: cs/pl/go/basic.md
                 - OCaml:
-                      - cs/Programming Language/OCaml/index.md
+                      - cs/pl/ocaml/index.md
+                - Swift:
+                      - cs/pl/swift/index.md
           - Algorithms & DS:
                 - cs/algorithm/index.md
                 - FDS Collection I: cs/algorithm/l_fds_1.md
@@ -119,6 +122,8 @@ nav:
                 - Turing Machines and Decidability: cs/computation/l_5.md
                 - Computational Complexity: cs/computation/l_6.md
                 - Randomized Computation: cs/computation/l_7.md
+          - Information Theory:
+                - cs/information/index.md
           - Principles of Compilers:
                 - cs/compilers/index.md
                 - Topic 1：词法分析: cs/compilers/1_lex.md
@@ -134,54 +139,45 @@ nav:
                 - Topic 11：垃圾回收: cs/compilers/11_garbage.md
                 - Topic 12：面向对象语言: cs/compilers/12_oop.md
                 - Topic 13：循环优化: cs/compilers/13_loop.md
-          - Quantum Computing:
-                - cs/Quantum Computing/index.md
-                - Quantum Basis: cs/Quantum Computing/basis.md
-                - Quantum Machine Learning: cs/Quantum Computing/QML.md
           - Blockchain:
+                - cs/blockchain/index.md
                 - Blockchain Basis: cs/blockchain/basis.md
                 - Ethereum:
                       - cs/blockchain/ethereum/index.md
-                      - Solidity: cs/blockchain/ethereum/Solidity.md
-                      - ERC Standard: cs/blockchain/ethereum/ERC.md
+                      - Solidity: cs/blockchain/ethereum/solidity.md
+                      - ERC Standard: cs/blockchain/ethereum/erc.md
           - Web:
-                - cs/Web/index.md
-                - CSS: cs/Web/CSS.md
-                - HTML: cs/Web/HTML.md
-                - JavaScript:
-                      - Javascript: cs/Web/Javascript/Javascript.md
-                      - Vue: cs/Web/Javascript/Vue.md
-                - YAML: cs/Web/YAML.md
-                - TOML: cs/Web/TOML.md
-          - CTF:
-                - DNS Protocol: cs/CTF/DNS.md
-                - Cryptography:
-                      - cs/CTF/Crypto/index.md
-                      - ECC: cs/CTF/Crypto/ECC.md
+                - cs/web/index.md
+                - CSS: cs/web/css.md
+                - HTML: cs/web/html.md
+                - Javascript: cs/web/js.md
+                - Vue.js: cs/web/vue.md
+                - YAML: cs/web/yaml.md
+                - TOML: cs/web/toml.md
     - System:
           - system/index.md
           - Computer Organization & Architecture:
-                - system/CAQA/index.md
-                - 0 Pipelined Processor: system/CAQA/0 Processor.md
-                - 1 Quantitative Analysis: system/CAQA/1 Quantitative.md
-                - 2 Memory Hierarchy: system/CAQA/2 Cache.md
-                - 3 Instruction Level Parallelism: system/CAQA/3 ILP.md
-                - 4 Data Level Parallelism: system/CAQA/4 DLP.md
-                - 5 Thread Level Parallelism: system/CAQA/5 TLP.md
-                - 7 Domain-Specific Arch: system/CAQA/7 DSA.md
+                - system/caqa/index.md
+                - 0 Pipelined Processor: system/caqa/0_Processor.md
+                - 1 Quantitative Analysis: system/caqa/1_Quantitative.md
+                - 2 Memory Hierarchy: system/caqa/2_Cache.md
+                - 3 Instruction Level Parallelism: system/caqa/3_ILP.md
+                - 4 Data Level Parallelism: system/caqa/4_DLP.md
+                - 5 Thread Level Parallelism: system/caqa/5_TLP.md
+                - 7 Domain-Specific Arch: system/caqa/7_DSA.md
           - Operating System:
-                - system/OSC/index.md
-                - 0 OS Structure: system/OSC/topic0.md
-                - 1 Process & Thread: system/OSC/topic1.md
-                - 2 Scheduling: system/OSC/topic2.md
-                - 3 Synchronization: system/OSC/topic3.md
-                - 4 Deadlock: system/OSC/topic4.md
-                - 5 Main Memory: system/OSC/topic5.md
-                - 6 Virtual Memory: system/OSC/topic6.md
-                - 7 Mass-Storage Structure: system/OSC/topic7.md
-                - 8 I/O Systems: system/OSC/topic8.md
-                - 9 File System: system/OSC/topic9.md
-                - 10 Misc: system/OSC/misc.md
+                - system/osc/index.md
+                - 0 OS Structure: system/osc/topic0.md
+                - 1 Process & Thread: system/osc/topic1.md
+                - 2 Scheduling: system/osc/topic2.md
+                - 3 Synchronization: system/osc/topic3.md
+                - 4 Deadlock: system/osc/topic4.md
+                - 5 Main Memory: system/osc/topic5.md
+                - 6 Virtual Memory: system/osc/topic6.md
+                - 7 Mass-Storage Structure: system/osc/topic7.md
+                - 8 I/O Systems: system/osc/topic8.md
+                - 9 File System: system/osc/topic9.md
+                - 10 Misc: system/osc/misc.md
           - Computer Networks:
                 - system/CN/index.md
           - Database Systems:
@@ -272,24 +268,24 @@ nav:
           - Machine Learning Theory:
                 - ai/mlt/index.md
                 - 机器学习理论导引:
-                      - ai/mlt/MLTheoryIntro/index.md
-                      - 1 预备知识: ai/mlt/MLTheoryIntro/1 Preliminaries.md
-                      - 2 可学性: ai/mlt/MLTheoryIntro/2 Learnability.md
-                      - 3 复杂度: ai/mlt/MLTheoryIntro/3 Complexity.md
-                      - 4 泛化界: ai/mlt/MLTheoryIntro/4 Generalization.md
-                      - 5 稳定性: ai/mlt/MLTheoryIntro/5 Stability.md
-                      - 6 一致性: ai/mlt/MLTheoryIntro/6 Consistency.md
-                      - 7 收敛率: ai/mlt/MLTheoryIntro/7 Convergence.md
-                      - 8 遗憾界: ai/mlt/MLTheoryIntro/8 Regret.md
+                      - ai/mlt/intro/index.md
+                      - 1 预备知识: ai/mlt/intro/1 Preliminaries.md
+                      - 2 可学性: ai/mlt/intro/2 Learnability.md
+                      - 3 复杂度: ai/mlt/intro/3 Complexity.md
+                      - 4 泛化界: ai/mlt/intro/4 Generalization.md
+                      - 5 稳定性: ai/mlt/intro/5 Stability.md
+                      - 6 一致性: ai/mlt/intro/6 Consistency.md
+                      - 7 收敛率: ai/mlt/intro/7 Convergence.md
+                      - 8 遗憾界: ai/mlt/intro/8 Regret.md
                 - Foundations of Machine Learning:
-                      - ai/mlt/MLFoundations/index.md
+                      - ai/mlt/fml/index.md
                 - Mathematical Analysis of Machine Learning Algorithms:
-                      - ai/mlt/MathAnalysis/index.md
-                      - 1 Introduction: ai/mlt/MathAnalysis/1 Intro.md
-                      - 2 Probability Inequalities: ai/mlt/MathAnalysis/2 Probability.md
-                      - 3 Uniform Convergence: ai/mlt/MathAnalysis/3 Convergence.md
-                      - 4 Empirical Covering Number Analysis: ai/mlt/MathAnalysis/4 Covering.md
-                      - 5 Covering Number Estimates: ai/mlt/MathAnalysis/5 Estimates.md
+                      - ai/mlt/ma/index.md
+                      - 1 Introduction: ai/mlt/ma/1 Intro.md
+                      - 2 Probability Inequalities: ai/mlt/ma/2 Probability.md
+                      - 3 Uniform Convergence: ai/mlt/ma/3 Convergence.md
+                      - 4 Empirical Covering Number Analysis: ai/mlt/ma/4 Covering.md
+                      - 5 Covering Number Estimates: ai/mlt/ma/5 Estimates.md
           - Deep Learning:
                 - ai/dl/index.md
                 - Understanding Deep Learning:
@@ -321,8 +317,8 @@ nav:
                 - Data I: ai/lm/l_13.md
                 - Data II: ai/lm/l_14.md
                 - Alignment with SFT/RLHF: ai/lm/l_15.md
-                - Alignment with RL I: ai/lm/l_16.md
-                - Alignment with RL II: ai/lm/l_17.md
+                - Alignment with RLVR: ai/lm/l_16.md
+                - Alignment with RL Implementations: ai/lm/l_17.md
           - Online Learning:
                 - ai/ol/index.md
                 - "Topic 1: Online Learning and OCO": ai/ol/Lecture 1.md
@@ -332,23 +328,23 @@ nav:
     - RL:
           - rl/index.md
           - Barto & Sutton:
-                - rl/Sutton/index.md
-                - Chapter 1: rl/Sutton/Chapter 1.md
-                - Chapter 2: rl/Sutton/Chapter 2.md
-                - Chapter 3: rl/Sutton/Chapter 3.md
-                - Chapter 4: rl/Sutton/Chapter 4.md
-                - Chapter 5: rl/Sutton/Chapter 5.md
-                - Chapter 6: rl/Sutton/Chapter 6.md
-                - Chapter 7: rl/Sutton/Chapter 7.md
-                - Chapter 8: rl/Sutton/Chapter 8.md
-                - Chapter 9: rl/Sutton/Chapter 9.md
-                - Chapter 10: rl/Sutton/Chapter 10.md
-                - Chapter 11: rl/Sutton/Chapter 11.md
-                - Chapter 12: rl/Sutton/Chapter 12.md
-                - Chapter 13: rl/Sutton/Chapter 13.md
-                - Chapter 14: rl/Sutton/Chapter 14.md
-                - Chapter 15: rl/Sutton/Chapter 15.md
-                - Chapter 16: rl/Sutton/Chapter 16.md
+                - rl/sutton/index.md
+                - Chapter 1: rl/sutton/Chapter 1.md
+                - Chapter 2: rl/sutton/Chapter 2.md
+                - Chapter 3: rl/sutton/Chapter 3.md
+                - Chapter 4: rl/sutton/Chapter 4.md
+                - Chapter 5: rl/sutton/Chapter 5.md
+                - Chapter 6: rl/sutton/Chapter 6.md
+                - Chapter 7: rl/sutton/Chapter 7.md
+                - Chapter 8: rl/sutton/Chapter 8.md
+                - Chapter 9: rl/sutton/Chapter 9.md
+                - Chapter 10: rl/sutton/Chapter 10.md
+                - Chapter 11: rl/sutton/Chapter 11.md
+                - Chapter 12: rl/sutton/Chapter 12.md
+                - Chapter 13: rl/sutton/Chapter 13.md
+                - Chapter 14: rl/sutton/Chapter 14.md
+                - Chapter 15: rl/sutton/Chapter 15.md
+                - Chapter 16: rl/sutton/Chapter 16.md
           - Deep RL Intro:
                 - rl/Deep RL/index.md
                 - ML & DL: rl/Deep RL/Chapter 1.md
@@ -383,33 +379,33 @@ nav:
     - Math:
           - math/index.md
           - Optimization:
-                - math/Optimization/index.md
-                - Course Introduction: math/Optimization/1 Introduction.md
-                - Basis for Optimizaion: math/Optimization/2 Smooth.md
-                - Descent Method: math/Optimization/3 Descent.md
-                - Acceleration Method: math/Optimization/4 Acceleration.md
-                - Convex Method: math/Optimization/5 Convex.md
-                - Constraint Set: math/Optimization/6 Constrained.md
-                - Structure Optimization: math/Optimization/7 Structure.md
-                - Stochastic Optimization: math/Optimization/8 Stochastic.md
+                - math/opt/index.md
+                - Course Introduction: math/opt/1 Introduction.md
+                - Basis for Optimizaion: math/opt/2 Smooth.md
+                - Descent Method: math/opt/3 Descent.md
+                - Acceleration Method: math/opt/4 Acceleration.md
+                - Convex Method: math/opt/5 Convex.md
+                - Constraint Set: math/opt/6 Constrained.md
+                - Structure Optimization: math/opt/7 Structure.md
+                - Stochastic Optimization: math/opt/8 Stochastic.md
           - Basic Probability:
-                - math/Probability Basis/index.md
-                - Chapter 1-2: math/Probability Basis/Chapter 1-2.md
-                - Chapter 3: math/Probability Basis/Chapter 3.md
-                - Chapter 4: math/Probability Basis/Chapter 4.md
-                - Chapter 5: math/Probability Basis/Chapter 5.md
+                - math/prob_basis/index.md
+                - Chapter 1-2: math/prob_basis/Chapter 1-2.md
+                - Chapter 3: math/prob_basis/Chapter 3.md
+                - Chapter 4: math/prob_basis/Chapter 4.md
+                - Chapter 5: math/prob_basis/Chapter 5.md
           - Discrete Mathematics:
-                - math/Discrete Mathematics/index.md
-                - Propositional Logic: math/Discrete Mathematics/01 Propositional Logic.md
-                - Basic Structures: math/Discrete Mathematics/02 Basic Structures.md
-                - Algorithms: math/Discrete Mathematics/03 Algorithms.md
-                - Number Theory: math/Discrete Mathematics/04 Number Theory.md
-                - Induction and Recursion: math/Discrete Mathematics/05 Induction and Recursion.md
-                - Counting: math/Discrete Mathematics/06 Counting.md
-                - Advanced Counting Techniques: math/Discrete Mathematics/08 Advanced Counting Techniques.md
-                - Relations: math/Discrete Mathematics/09 Relations.md
-                - Graph Theory: math/Discrete Mathematics/10 Graph Theory.md
-                - Trees: math/Discrete Mathematics/11 Trees.md
+                - math/discrete/index.md
+                - Propositional Logic: math/discrete/01 Propositional Logic.md
+                - Basic Structures: math/discrete/02 Basic Structures.md
+                - Algorithms: math/discrete/03 Algorithms.md
+                - Number Theory: math/discrete/04 Number Theory.md
+                - Induction and Recursion: math/discrete/05 Induction and Recursion.md
+                - Counting: math/discrete/06 Counting.md
+                - Advanced Counting Techniques: math/discrete/08 Advanced Counting Techniques.md
+                - Relations: math/discrete/09 Relations.md
+                - Graph Theory: math/discrete/10 Graph Theory.md
+                - Trees: math/discrete/11 Trees.md
     - Varia:
           - Typst Learning Report: varia/Typst.md
           - Environment & Tools: varia/Envs.md

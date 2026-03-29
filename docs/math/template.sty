@@ -1,0 +1,366 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{template}[2026/03/25 v1.0 Left-side boxed note template]
+
+\RequirePackage{amsmath,amsthm,amsfonts,amssymb}
+\RequirePackage{mathtools}
+\RequirePackage{mathrsfs}
+\RequirePackage{bm}
+\RequirePackage{extarrows}
+\RequirePackage[a4paper, margin=1in]{geometry}
+\RequirePackage{float}
+\RequirePackage{indentfirst}
+\RequirePackage{anyfontsize}
+\RequirePackage{booktabs,multirow,multicol}
+\RequirePackage[shortlabels,inline]{enumitem}
+\RequirePackage{appendix}
+\RequirePackage{iftex}
+\RequirePackage{physics}
+
+\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage{graphicx}
+\graphicspath{
+    {./figure/}{./figures/}{./image/}{./images/}{./graphic/}{./graphics/}{./picture/}{./pictures/}
+}
+\RequirePackage{subcaption}
+
+\RequirePackage[ruled,linesnumbered,noline]{algorithm2e}
+\RequirePackage{listings}
+\lstdefinestyle{simpleStyle}{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    keywordstyle=\color{blue},
+    identifierstyle=\color{black},
+    stringstyle=\color{violet},
+    commentstyle=\color[RGB]{34,139,34},
+    showstringspaces=false,
+    numbers=left,
+    numbersep=2em,
+    numberstyle=\footnotesize,
+    frame=single,
+    framesep=1em,
+}
+\lstset{style=simpleStyle}
+
+\RequirePackage{hyperref}
+\hypersetup{
+    colorlinks=true,linkcolor=,urlcolor=cyan
+}
+
+\setlength{\parskip}{3pt plus 1pt minus 0.5pt}
+
+\makeatletter
+\appto\normalsize{%
+    \setlength{\baselineskip}{\dimexpr\baselineskip + 1pt\relax}%
+}
+\makeatother
+\AtBeginDocument{\normalsize}
+
+\ifXeTeX
+    \RequirePackage{fontspec}
+    \RequirePackage{xeCJK}
+    \IfFontExistsTF{Palatino}{
+        \setmainfont{Palatino}
+    }{
+        \IfFontExistsTF{STIX Two Text}{
+            \setmainfont{STIX Two Text}
+        }{}
+    }
+    \IfFontExistsTF{Palatino}{
+        \setsansfont{Palatino}
+    }{
+        \IfFontExistsTF{STIX Two Text}{
+            \setsansfont{STIX Two Text}
+        }{}
+    }
+    \IfFontExistsTF{Fira Code}{
+        \setmonofont{Fira Code}
+    }{
+        \IfFontExistsTF{Monaspace Neon}{
+            \setmonofont{Monaspace Neon}
+        }{
+            \IfFontExistsTF{LXGW WenKai Mono}{
+                \setmonofont{LXGW WenKai Mono}
+            }{}
+        }
+    }
+    \IfFontExistsTF{Noto Serif SC}{
+        \IfFontExistsTF{LXGW WenKai}{
+            \setCJKmainfont[
+                ItalicFont={STKaiti}
+            ]{Noto Serif SC}
+        }{
+            \IfFontExistsTF{LXGW WenKai GB}{
+                \setCJKmainfont[
+                    ItalicFont={STKaiti}
+                ]{Noto Serif SC}
+            }{
+                \setCJKmainfont{Noto Serif SC}
+            }
+        }
+    }{
+        \IfFontExistsTF{Source Han Serif SC}{
+            \IfFontExistsTF{LXGW WenKai}{
+                \setCJKmainfont[
+                    ItalicFont={STKaiti}
+                ]{Source Han Serif SC}
+            }{
+                \IfFontExistsTF{LXGW WenKai GB}{
+                    \setCJKmainfont[
+                        ItalicFont={STKaiti}
+                    ]{Source Han Serif SC}
+                }{
+                    \setCJKmainfont{Source Han Serif SC}
+                }
+            }
+        }{}
+    }
+    \IfFontExistsTF{Noto Serif SC}{
+        \IfFontExistsTF{LXGW WenKai}{
+            \setCJKsansfont[
+                ItalicFont={STKaiti}
+            ]{Noto Serif SC}
+        }{
+            \IfFontExistsTF{LXGW WenKai GB}{
+                \setCJKsansfont[
+                    ItalicFont={STKaiti}
+                ]{Noto Serif SC}
+            }{
+                \setCJKsansfont{Noto Serif SC}
+            }
+        }
+    }{
+        \IfFontExistsTF{Source Han Serif SC}{
+            \IfFontExistsTF{LXGW WenKai}{
+                \setCJKsansfont[
+                    ItalicFont={STKaiti}
+                ]{Source Han Serif SC}
+            }{
+                \IfFontExistsTF{LXGW WenKai GB}{
+                    \setCJKsansfont[
+                        ItalicFont={STKaiti}
+                    ]{Source Han Serif SC}
+                }{
+                    \setCJKsansfont{Source Han Serif SC}
+                }
+            }
+        }{}
+    }
+    \IfFontExistsTF{LXGW WenKai Mono}{
+        \setCJKmonofont{LXGW WenKai Mono}
+    }{
+        \IfFontExistsTF{Monaspace Neon}{
+            \setCJKmonofont{Monaspace Neon}
+        }{
+            \IfFontExistsTF{Fira Code}{
+                \setCJKmonofont{Fira Code}
+            }{}
+        }
+    }{}
+\fi
+
+\renewcommand*{\proofname}{\normalfont\bfseries Proof}
+
+\RequirePackage{thmtools}
+
+\declaretheorem[style=plain, name=Theorem, numbered=yes, numberwithin=section]{theorem}
+\declaretheorem[style=plain, name=Theorem, numbered=no]{theorem*}
+
+\declaretheorem[style=plain, name=Proposition, numbered=yes, sibling=theorem]{proposition}
+\declaretheorem[style=plain, name=Proposition, numbered=no]{proposition*}
+
+\declaretheorem[style=plain, name=Corollary, numbered=yes, sibling=theorem]{corollary}
+\declaretheorem[style=plain, name=Corollary, numbered=no]{corollary*}
+
+\declaretheorem[style=plain, name=Lemma, numbered=yes, sibling=theorem]{lemma}
+\declaretheorem[style=plain, name=Lemma, numbered=no]{lemma*}
+
+\declaretheorem[style=plain, name=Claim, numbered=yes, sibling=theorem]{claim}
+\declaretheorem[style=plain, name=Claim, numbered=no]{claim*}
+
+\declaretheorem[style=plain, name=Definition, numbered=yes, numberwithin=section]{definition}
+\declaretheorem[style=plain, name=Definition, numbered=no]{definition*}
+
+\declaretheorem[style=plain, name=Example, numbered=yes, numberwithin=section]{example}
+\declaretheorem[style=plain, name=Example, numbered=no]{example*}
+
+\declaretheorem[style=plain, name=Problem, numbered=yes, numberwithin=section]{problem}
+\declaretheorem[style=plain, name=Problem, numbered=no]{problem*}
+
+\declaretheorem[style=remark, name=Remark, numbered=yes, numberwithin=section]{remark}
+\declaretheorem[style=remark, name=Remark, numbered=no]{remark*}
+
+\declaretheoremstyle[headfont=\color{orange!80}\bfseries, bodyfont=\normalfont, spaceabove=3pt, spacebelow=3pt]{notestyle}
+
+\declaretheorem[style=notestyle, name=Note, numbered=yes, numberwithin=section]{note}
+\declaretheorem[style=notestyle, name=Note, numbered=no]{note*}
+
+\declaretheoremstyle[headfont=\bfseries, bodyfont=\normalfont, spaceabove=3pt, spacebelow=3pt, qed=\ensuremath{\square}]{solutionstyle}
+
+\declaretheorem[style=solutionstyle, name=Solution, numbered=yes, numberwithin=section]{solution}
+\declaretheorem[style=solutionstyle, name=Solution, numbered=no]{solution*}
+
+\RequirePackage[most]{tcolorbox}
+
+\newcommand{\newtcbenvironment}[2]{
+    \tcolorboxenvironment{#1}{#2, enhanced, breakable, sharp corners, leftrule=2pt, rightrule=0pt, toprule=0pt, bottomrule=0pt}
+    \tcolorboxenvironment{#1*}{#2, enhanced, breakable, rounded corners, leftrule=2pt, rightrule=0pt, toprule=0pt, bottomrule=0pt}
+}
+
+\newtcbenvironment{theorem}{colframe=RoyalPurple, colback=RoyalPurple!8}
+\newtcbenvironment{proposition}{colframe=RoyalPurple, colback=RoyalPurple!8}
+\newtcbenvironment{corollary}{colframe=NavyBlue, colback=SkyBlue!8}
+\newtcbenvironment{lemma}{colframe=NavyBlue, colback=SkyBlue!8}
+\newtcbenvironment{claim}{colframe=NavyBlue, colback=SkyBlue!8}
+
+\newtcbenvironment{definition}{colframe=ForestGreen, colback=ForestGreen!5}
+\newtcbenvironment{example}{colframe=RawSienna, colback=RawSienna!5}
+\newtcbenvironment{problem}{colframe=WildStrawberry!30, colback=WildStrawberry!5}
+
+\newtcolorbox{cbox}[1][]{%
+    enhanced,
+    breakable,
+    sharp corners,
+    leftrule=2pt, rightrule=0pt, toprule=0pt, bottomrule=0pt,
+    colframe=SkyBlue,
+    colback=SkyBlue!8,
+    fontupper=\itshape,
+    #1
+}
+
+\newcommand{\subtitle}[1]{\gdef\notecoversubtitle{#1}}
+\newcommand{\notecoversubtitle}{}
+\newcommand{\lastupdated}[1]{\gdef\notecoverlastupdated{#1}}
+\newcommand{\notecoverlastupdated}{\today}
+\definecolor{NoteTOCRed}{RGB}{220,40,70}
+
+\makeatletter
+\newcommand{\notetocentryfont}{%
+    \normalfont
+    \fontsize{\dimexpr\f@size pt - 1pt\relax}{\dimexpr\baselineskip - 1pt\relax}\selectfont
+}
+\newcommand{\notetocentry}[5]{%
+    \ifnum #1>\c@tocdepth \else
+        \vskip -1.2pt
+        {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
+        \parindent #2\relax \@afterindenttrue \interlinepenalty\@M
+        \leavevmode
+        \@tempdima #3\relax
+        \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+        {\color{NoteTOCRed}\notetocentryfont #4}\nobreak
+        \leaders\hbox{\textcolor{NoteTOCRed}{.\kern0.35em}}\hfill
+        \nobreak\hb@xt@\@pnumwidth{\hfil\color{NoteTOCRed}\notetocentryfont #5}\par}%
+    \fi
+}
+
+\@ifundefined{l@chapter}
+{\def\l@chapter#1#2{\notetocentry{0}{0em}{2em}{#1}{#2}}}
+{\renewcommand*\l@chapter[2]{\notetocentry{0}{0em}{2em}{#1}{#2}}}
+\renewcommand*\l@section[2]{\notetocentry{1}{0em}{2em}{#1}{#2}}
+\renewcommand*\l@subsection[2]{\notetocentry{2}{2em}{2.4em}{#1}{#2}}
+\renewcommand*\l@subsubsection[2]{\notetocentry{3}{4em}{3em}{#1}{#2}}
+\renewcommand*\l@figure[2]{\notetocentry{1}{0em}{2em}{#1}{#2}}
+\renewcommand*\l@table[2]{\notetocentry{1}{0em}{2em}{#1}{#2}}
+\renewcommand*\l@lstlisting[2]{\notetocentry{1}{0em}{2em}{#1}{#2}}
+
+\newcommand{\notetocheading}[1]{%
+    \par\noindent{\bfseries\fontsize{24}{28}\selectfont #1\par}%
+}
+
+\newcommand{\notetoclistheading}[1]{%
+    \par\noindent{\bfseries\fontsize{14}{18}\selectfont #1\par}%
+}
+\newif\ifnote@toclof
+\newif\ifnote@toclot
+\newif\ifnote@toclol
+\newcommand{\note@tocresetflags}{%
+    \note@tocloffalse
+    \note@toclotfalse
+    \note@toclolfalse
+}
+\newcommand{\note@tocparseoptions}[1]{%
+    \note@tocresetflags
+    \def\note@tocraw{#1}%
+    \ifx\note@tocraw\@empty\else
+        \@for\note@tocoption:=#1\do{%
+            \edef\note@tocoption{\expandafter\zap@space\note@tocoption \@empty}%
+            \def\note@toclofkey{lof}%
+            \def\note@toclotkey{lot}%
+            \def\note@toclolkey{lol}%
+            \ifx\note@tocoption\note@toclofkey
+                \note@tocloftrue
+            \fi
+            \ifx\note@tocoption\note@toclotkey
+                \note@toclottrue
+            \fi
+            \ifx\note@tocoption\note@toclolkey
+                \note@tocloltrue
+            \fi
+        }%
+    \fi
+}
+
+\makeatletter
+\newcommand{\makecover}{%
+    \hypersetup{pageanchor=false}%
+    \begin{titlepage}
+        \newgeometry{margin=1.25in}
+        \parindent=0pt
+        \thispagestyle{empty}
+        \vspace*{0.22\textheight}
+        \begin{flushright}
+            {\bfseries\fontsize{28}{34}\selectfont \@title\par}
+            \vspace{1.25em}
+            {\Large\itshape \notecoversubtitle\par}
+            \vspace{2.5em}
+            {\large Last updated: \notecoverlastupdated\par}
+        \end{flushright}
+        \vfill
+    \end{titlepage}
+    \clearpage
+    \hypersetup{pageanchor=true}%
+    \restoregeometry
+}
+
+\newcommand{\makenotecontents}[1][]{%
+    \clearpage
+    \note@tocparseoptions{#1}%
+    \notetocheading{Contents}%
+    \vspace{\baselineskip}%
+    \@starttoc{toc}%
+    \ifnote@toclof
+        \vspace{4pt}
+        \notetoclistheading{List of Figures}%
+        \@starttoc{lof}%
+    \fi
+    \ifnote@toclot
+        \vspace{4pt}
+        \notetoclistheading{List of Tables}%
+        \@starttoc{lot}%
+    \fi
+    \ifnote@toclol
+        \vspace{4pt}
+        \notetoclistheading{List of Listings}%
+        \@starttoc{lol}%
+    \fi
+    \ifnote@toclof
+        \begin{center}
+            \vspace{1em}
+            \bfseries * \quad * \quad *
+        \end{center}
+    \else\ifnote@toclot
+            \begin{center}
+                \vspace{1em}
+                \bfseries * \quad * \quad *
+            \end{center}
+        \else\ifnote@toclol
+                \begin{center}
+                    \vspace{1em}
+                    \bfseries * \quad * \quad *
+                \end{center}
+            \fi\fi\fi
+    \vspace{2em}%
+    \clearpage
+}
+\makeatother
+
+\endinput

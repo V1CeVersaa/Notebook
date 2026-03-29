@@ -1,0 +1,842 @@
+\documentclass[11pt]{article}
+
+\usepackage{template}
+
+\title{Measure Theory}
+\subtitle{Note of Measure Theory by Donald L. Cohn}
+\lastupdated{2026-03-25}
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+\raggedbottom
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calC}{\mathcal{C}}
+\newcommand{\calD}{\mathcal{D}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calM}{\mathcal{M}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\dif}{\,\mathrm{d}}
+\newcommand{\vol}{\operatorname{vol}}
+\newcommand{\diffset}{\operatorname{diff}}
+\newcommand{\diam}{\varnothing}
+\newcommand{\stubsection}[2][]{\section{#2}\if\relax\detokenize{#1}\relax\else\label{#1}\fi\mbox{}\par}
+\newcommand{\stubsubsection}[2][]{\subsection{#2}\if\relax\detokenize{#1}\relax\else\label{#1}\fi\mbox{}\par}
+\newcommand{\stubsubsubsection}[2][]{\subsubsection{#2}\if\relax\detokenize{#1}\relax\else\label{#1}\fi\mbox{}\par}
+
+\begin{document}
+
+\makecover
+\makenotecontents
+
+\section{Measures}
+
+$X$ 是一个集合，$f:X \to \RR$ 是一个我们希望进行积分的函数，因此我们需要处理 $X$ 的子集的大小，因此在这一章，我们需要引入测度，测度是处理这类集合大小问题的基本工具。
+
+这章的前两节是抽象但是基础的内容，分别介绍了 $\sigma$-代数和测度，我们对 $\sigma$-代数内的集合讨论测度。第三节介绍了构造测度的一般技术，第四节介绍了 Lebesgue 测度的基本性质。最后在第五节和第六节，我们将介绍一些处理测度与 $\sigma$-代数的额外基础技巧。
+
+\subsection{Algebras and Sigma-Algebras}
+
+\begin{definition}[Algebra]
+    令 $X$ 为任意集合。若 $X$ 的{\normalfont\bfseries 子集族} $\calA$ 满足下列条件，则称 $\calA$ 为 $X$ 上的一个 {\normalfont\bfseries 代数 / Algebra}：
+    \begin{itemize}
+        \item $X \in \calA$；
+        \item 对每个 $A \in \calA$，其补集 $A^c \in \calA$；
+        \item 对任意有限列 $A_1,\dots,A_n \in \calA$，有 $\bigcup_{i=1}^n A_i \in \calA$；
+        \item 对任意有限列 $A_1,\dots,A_n \in \calA$，有 $\bigcap_{i=1}^n A_i \in \calA$。
+    \end{itemize}
+\end{definition}
+
+当然，在后三条，我们也要求了 $\calA$ 在取补、有限并与有限交下封闭。利用
+\[
+    \bigcap_{i=1}^n A_i = \left( \bigcup_{i=1}^n A_i^c \right)^c,
+\]
+我们可以知道取补和有限并封闭蕴含有限交封闭，因此{\normalfont\bfseries 可以只通过前三条定义代数}。
+
+\begin{definition}[Sigma-Algebra]
+    令 $X$ 为任意集合。若 $X$ 的{\normalfont\bfseries 子集族} $\calA$ 满足下列条件，则称 $\calA$ 为 $X$ 上的一个 {\normalfont\bfseries $\sigma$-代数 / $\sigma$-Algebra}：
+    \begin{itemize}
+        \item $X \in \calA$；
+        \item 对每个 $A \in \calA$，其补集 $A^c \in \calA$；
+        \item 对任意可数列 $\{A_i\}$（$\forall i,\ A_i \in \calA$），有 $\bigcup_{i=1}^{\infty} A_i \in \calA$；
+        \item 对任意可数列 $\{A_i\}$（$\forall i,\ A_i \in \calA$），有 $\bigcap_{i=1}^{\infty} A_i \in \calA$。
+    \end{itemize}
+\end{definition}
+
+因此，$X$ 上的 $\sigma$-代数就是一个包含 $X$ 的子集族，且要求在取补、可数并与可数交下封闭。与代数情形相同，也可仅用前三条或者第一、二、四条下等价定义。下面陈述是显然的：
+\begin{itemize}
+    \item 每个 $X$ 上的 $\sigma$-代数都是 $X$ 上的代数，因为有限并可视为特殊构造下的可数并。
+    \item 可以将上述两个定义的第一条改成 $\diam \in \calA$，因为 $\diam \in \calA \Longleftrightarrow X \in \calA$。
+    \item 对于所有 $X$ 上的非空的、在取补以及有限并下封闭的子集族 $\calA$，有 $X \in \calA$，这是因为 $X = A \cup A^c$，因此也可以使用 $\calA$ 非空替代条件 $X \in \calA$。
+\end{itemize}
+
+若 $\calA$ 是 $X$ 上的 $\sigma$-代数，有时把集合 $E \subseteq X$ 称为 {\normalfont\bfseries $\calA$-可测 / $\calA$-measurable}。
+
+\begin{example}[Some Families that are or are not Algebras or Sigma-Algebras]
+    \begin{itemize}
+        \item $X$ 为无限集，令 $\calA$ 为 $X$ 的所有满足 $A$ 或 $A^c$ 有限的 $X$ 的子集全体。则 $\calA$ 是 $X$ 上的代数，但不是 $\sigma$-代数。
+              \begin{itemize}
+                  \item $\calA$ 是 $X$ 上的代数，这点非常好验证，因为有限并并不改变任何性质；
+                  \item $\calA$ 不是 $\sigma$-代数，如果我取一堆 $X$ 的子集，其分别只有一个元素，那么显然其可数并不是有限的，且其可数并的补集并不能确定一定是有限的，可以在自然数集中找到反例。
+              \end{itemize}
+        \item $X$ 为不可数集，令 $\calA$ 为 $X$ 的所有可数子集全体。则 $\calA$ 不含 $X$，且在取补下不封闭；因此不是代数。
+        \item 令 $\calA$ 为所有可表示为有限个 $\RR$ 上区间的并构成的集合，区间类型为 $(a,b]$、$(a,+\infty)$ 或 $(-\infty,b]$。则很容易检验 $\calA$ 是 $\RR$ 上的代数，但不是 $\sigma$-代数。
+              \begin{itemize}
+                  \item 可以证明有界开区间 $(a,b)$ 是 $\calA$ 中集合的可数并，但是本身并不在 $\calA$ 中。
+              \end{itemize}
+    \end{itemize}
+\end{example}
+
+下面考虑一下构造 $\sigma$-代数的方法。
+
+\begin{proposition}
+    令 $X$ 为一个集合，则 $X$ 上任意的非空 $\sigma$-代数族的{\normalfont\bfseries 交}仍是 $X$ 上的一个 $\sigma$-代数。
+\end{proposition}
+
+\begin{proof}[Proof of Proposition 1.1]
+    令 $\calC$ 为 $X$ 上一个非空的 $\sigma$-代数族，令 $\calA$ 为它们的交。显然 $X \in \calA$，因为显然每一个 $\sigma$-代数都包含 $X$；若 $A \in \calA$，则每个属于 $\calC$ 的 $\sigma$-代数都含有 $A$，因而含有 $A^c$，故 $A^c \in \calA$；若 $\{A_i\}$ 是 $\calA$ 中的序列，则 $\bigcup_i A_i$ 属于 $\calC$ 中每个 $\sigma$-代数，从而也属于 $\calA$。
+\end{proof}
+
+但是，需要注意的是，一族 $\sigma$-代数的{\normalfont\bfseries 并}未必是 $\sigma$-代数。先证
+
+\begin{corollary}
+    令 $X$ 为一个集合，$\calF$ 为 $X$ 的子集族。则存在包含 $\calF$ 的 $X$ 上 {\normalfont\bfseries 最小} 的 $\sigma$-代数。
+\end{corollary}
+
+如果要说明 $\calA$ 是 $X$ 上包含 $\calF$ 的最小 $\sigma$-代数，我们需要说明 $\calA$ 首先是一个包含 $\calF$ 的 $\sigma$-代数，其次要说明所有包含 $\calF$ 的 $\sigma$-代数都包含 $\calA$，且如果 $\calA_1$ 和 $\calA_2$ 都是 $X$ 上包含 $\calF$ 的最小的 $\sigma$-代数，则 $\calA_1 = \calA_2$，这样就可以说明包含 $\calF$ 的最小 $\sigma$-代数是唯一的。这个 $\sigma$-代数就称作是 $\calF$ {\normalfont\bfseries 生成} 的 $\sigma$-代数，记作 $\sigma(\calF)$。
+
+\begin{proof}[Proof of Corollary 1.1]
+    令 $\calC$ 为所有包含 $\calF$ 的 $X$ 上 $\sigma$-代数的全体，则 $\calC$ 非空，因为幂集本身即为 $\sigma$-代数。由 Proposition 1.1 可以知道，$\calC$ 中所有 $\sigma$-代数的交为一个 $\sigma$-代数；它包含 $\calF$，且被每一个包含 $\calF$ 的 $\sigma$-代数所包含。这样得到的结果就很强了，结论已经不言自明。
+\end{proof}
+
+现在据此定义一个重要的 $\sigma$-代数族。$\RR^d$ 上的 {\normalfont\bfseries Borel $\sigma$-代数} 定义为由 $\RR^d$ 的所有{\normalfont\bfseries 开集}生成的 $\sigma$-代数，记为 $\calB(\RR^d)$。属于 $\calB(\RR^d)$ 的集合称为 $\RR^d$ 的 {\normalfont\bfseries Borel 集}。当 $d=1$ 时，通常记为 $\calB(\RR)$，而不是 $\calB(\RR^1)$。
+
+\begin{proposition}
+    实数轴上的 Borel $\sigma$-代数 $\calB(\RR)$ 可分别由下列任一集合族生成：
+    \begin{itemize}
+        \item $\RR$ 的所有闭集的集合族；
+        \item 形如 $(-\infty,b]$ 的所有半无界子区间族；
+        \item 形如 $(a,b]$ 的所有半开子区间族。
+    \end{itemize}
+\end{proposition}
+
+\begin{proof}[Proof of Proposition 1.2]
+    设 $\calB_1,\calB_2,\calB_3$ 分别为由这三条描述的集合族生成的 $\sigma$-代数。先证 $\calB(\RR) \supseteq \calB_1 \supseteq \calB_2 \supseteq \calB_3$，再证 $\calB_3 \supseteq \calB(\RR)$，这样就可以证明 $\calB(\RR) = \calB_1 = \calB_2 = \calB_3$。
+    \begin{itemize}
+        \item 由于 $\calB(\RR)$ 包含所有开集且在取补下封闭，它包含所有闭集，因而包含由闭集生成的 $\calB_1$。
+        \item 集合 $(-\infty,b]$ 为闭集，故属于 $\calB_1$，从而 $\calB_1 \supseteq \calB_2$。
+        \item 又因 $(a,b] = (-\infty,b] \cap (-\infty,a]^c$，每个 $(a,b]$ 均在 $\calB_2$ 中，故 $\calB_2 \supseteq \calB_3$。
+        \item 最后，每个开区间 $(a,b)$ 都是一列 $(a,b]$ 型集合的并，而每个开集是开区间的并，因此每个开集属于 $\calB_3$，从而 $\calB_3 \supseteq \calB(\RR)$。
+    \end{itemize}
+\end{proof}
+
+在后续内容中，我们应该注意到 $\calB(\RR)$ 的如下性质：
+\begin{itemize}
+    \item 其包含了分析中关心的每一个 $\RR$ 的子集；
+    \item 其又足够小，以至于可以使用构造性的方法来处理。
+\end{itemize}
+
+\begin{proposition}
+    $\RR^d$ 上的 Borel $\sigma$-代数 $\calB(\RR^d)$ 可以被下面任何一个集合族生成：
+    \begin{itemize}
+        \item $\RR^d$ 的所有闭集的集合族；
+        \item $\RR^d$ 中所有形如 $\{(x_1,\dots,x_d): x_i \le b\}$ 的闭半空间的集合族，其中 $i$ 是某个坐标指标，$b \in \RR$；
+        \item $\RR^d$ 中所有“矩形”之集合族，它们形如 $\{(x_1,\dots,x_d): a_i < x_i \le b_i,\ \text{for } i = 1,\dots,d\}$。
+    \end{itemize}
+\end{proposition}
+
+证明基本可以沿用 Proposition 1.2 的论证，因此大部分略去，只需要注意到形如 $\{(x_1,\dots,x_d): a_i < x_i \le b_i,\ \text{for } i = 1,\dots,d\}$ 的矩形可以写成两个半空间的差就可以了。
+
+更细致地看 $\calB(\RR^d)$ 中的一些集合。设 $\calG$ 或者 $\calG(\RR^d)$ 为 $\RR^d$ 的开集全体，$\calF$ 或者 $\calF(\RR^d)$ 为闭集全体。记 $\calG_\delta$ 为 $\calG$ 中{\normalfont\bfseries 序列的交}所得的全体集合，$\calF_\sigma$ 为 $\calF$ 中{\normalfont\bfseries 序列的并}所得的全体集合，这两个又被称为 $G_\delta$ 类和 $F_\sigma$ 类，其名称中的 $G$ 与 $F$ 分别来自德语 Gebiet 与法语 ferm\'e，而下标 $\sigma,\delta$ 分别来自德语 Summe 与 Durchschnitt 的首字母。我们有下面命题：
+
+\begin{proposition}
+    $\RR^d$ 的每个闭集都是 $G_\delta$ 集；而 $\RR^d$ 的每个开集都是 $F_\sigma$ 集。
+\end{proposition}
+
+\begin{proof}[Proof of Proposition 1.4]
+    假设 $F$ 为闭集。我们需要构造开集序列 $\{U_n\}$ 使 $F = \bigcap_n U_n$。令 $U_n$ 按照如下方式进行定义：
+    \[
+        U_n \coloneqq \{x \in \RR^d : \exists y \in F,\ \|x-y\| < 1/n\}.
+    \]
+    当 $F$ 为空集时，$U_n$ 为空集；否则每个 $U_n$ 显然是开集，且 $F \subseteq \bigcap_n U_n$。对于反方向的结果，注意到在度量空间里，闭集等价于包含其所有收敛序列的极限点。因此对于任意的 $x \in \bigcap_n U_n$，其都是一个 $F$ 内收敛点列的极限点，由闭集的性质可以得到 $x \in F$。因此 $F = \bigcap_n U_n$。
+
+    如果 $U$ 是开集，则其补 $U^c$ 为闭集，从而 $U^c$ 是 $G_\delta$，即存在开集列 $U_n$ 使 $U^c = \bigcap_n U_n$。于是 $U = \bigcup_n U_n^c$，其中每个 $U_n^c$ 闭，因此 $U$ 为 $F_\sigma$。
+\end{proof}
+
+单纯纠结于符号的含义是没有意义的，这个命题的含义是：$\RR^d$ 的每个闭集都可以通过开集的序列的交得到，而每个开集都可以通过闭集的序列的并得到。
+
+更一般地，给定任意集合族 $\mathcal{S}$，定义 $\mathcal{S}_\sigma$ 为 $\mathcal{S}$ 中序列的并得到的全体集合，$\mathcal{S}_\delta$ 为 $\mathcal{S}$ 中序列的交得到的全体集合。我们可以迭代 $\sigma,\delta$ 这两个操作，得到链 $\mathcal{S}_{\sigma,\delta}$ 等等。
+
+我们讲一个序列 $\{A_n\}$ 称为是递增的，当其满足 $A_i \subseteq A_{i+1}$，同理可以定义递减的序列。
+
+\begin{proposition}
+    设 $X$ 为一个集合，$\calA$ 为 $X$ 上的一个代数。若满足下述任一条件，则 $\calA$ 为 $\sigma$-代数：
+    \begin{itemize}
+        \item $\calA$ 在递增序列的并下封闭；
+        \item $\calA$ 在递减序列的交下封闭。
+    \end{itemize}
+\end{proposition}
+
+\begin{proof}[Proof of Proposition 1.5]
+    先假设第一条成立，由于 $\calA$ 已是代数，我们只需验证它在可数并下封闭即可。设 $\{A_i\}$ 为 $\calA$ 中的任意序列。对任意的 $n$，定义 $B_n = \bigcup_{i=1}^n A_i$。则 $\{B_n\}$ 为递增列，且每个 $B_n \in \calA$。由第一条成立知 $\bigcup_n B_n \in \calA$。但 $\bigcup_n B_n = \bigcup_i A_i$，故 $\calA$ 在可数并下封闭，即为 $\sigma$-代数。
+
+    假设第二条成立，只需要验证其可以推出第一条就可以。设 $\{A_i\}$ 为 $\calA$ 中的递增数列，则 $\{A_i^c\}$ 为递减数列，且每个 $A_i^c \in \calA$。由第二条成立知 $\bigcap_i A_i^c \in \calA$。于是 $\bigcup_i A_i = \left(\bigcap_i A_i^c\right)^c \in \calA$。故 $\calA$ 在可数并下封闭，即为 $\sigma$-代数。
+\end{proof}
+
+\begin{cbox}[title=Takeaway for Section 1.1]
+    \begin{itemize}
+        \item $\sigma$-代数是一个集合的子集族，要求在取补、可数并与可数交下封闭。
+        \item $\sigma$-代数族的交仍然是一个 $\sigma$-代数，因此对于任意集合 $X$ 的子集族 $\calF$，都存在包含 $\calF$ 的 $X$ 上的最小 $\sigma$-代数，称为 $\calF$ {\normalfont\bfseries 生成} 的 $\sigma$-代数。
+    \end{itemize}
+\end{cbox}
+
+\subsection{Measures}
+
+令 $X$ 为一个集合，$\calA$ 为 $X$ 上的一个 $\sigma$-代数。对一个从定义域 $\calA$ 到扩展半轴 $[0,+\infty]$ 的函数 $\mu$ 而言，如果对一个 $\calA$ 上的互不相交的序列 $\{A_i\}$ 满足
+\[
+    \mu\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} \mu(A_i),
+\]
+那么称其为 {\normalfont\bfseries 可数可加 / Countably Additive} 的函数。这里由于 $\mu(A_i) \ge 0$，右端的求和总共是存在，要么其为一个实数，要么其为 $+\infty$。
+
+\begin{definition}[Measure]
+    一个 $\calA$ 上的 {\normalfont\bfseries 测度 / Measure} $\mu : \calA \to [0,+\infty]$ 是一个满足 $\mu(\diam)=0$ 的可数可加函数。
+\end{definition}
+
+我们也对 {\normalfont\bfseries 有限可加 / Finitely Additive} 的函数进行定义，一个有限可加的函数 $\mu : \calA \to [0,+\infty]$ 是一个满足
+\[
+    \mu\left(\bigcup_{i=1}^n A_i\right) = \sum_{i=1}^n \mu(A_i)
+\]
+的函数。很容易检查，每一个可数可加的测度都是有限可加的，这只需要将可数列的后面一些项都取为空集，并且利用 $\mu(\diam)=0$ 即可。从另一方面来看，有限可加的测度并不一定是可数可加的，可以很容易举出反例来。
+
+相比于可数可加性，有限可加性更像是一个更加自然的性质。但是一方面看，可数可加性对于几乎所有的应用都足够了，并且支持很多更加强大的积分理论。因此我们更加致力于研究可数可加测度。接下来提到的没有任何特别说明的测度都指的是可数可加的测度。
+
+\begin{definition}[Measure Space]
+    对于一个集合 $X$，$\calA$ 为 $X$ 上的一个 $\sigma$-代数，$\mu$ 为 $\calA$ 上的一个测度，则三元组 $(X,\calA,\mu)$ 称为一个 {\normalfont\bfseries 测度空间 / Measure Space}。若只给定 $(X,\calA)$，则称其为一个 {\normalfont\bfseries 可测空间 / Measurable Space}，对于一个测度空间，一般也称 $\mu$ 为可测空间 $(X,\calA)$ 上的一个测度，如果 $\calA$ 于上下文清楚，则也称 $\mu$ 为 $X$ 上的一个测度。
+\end{definition}
+
+\begin{example}
+    \begin{itemize}
+        \item {\normalfont\bfseries 计数测度}：令 $X$ 为任意集合，$\calA$ 为 $X$ 上的 $\sigma$-代数。定义 $\mu:\calA \to [0,+\infty]$ 为 $A$ 含有的元素的个数，如果 $A$ 为空集，则 $\mu(A)=0$，如果 $A$ 为无限集，则 $\mu(A)=+\infty$。这一定义给出一个测度；常称为 $(X,\calA)$ 上的 {\normalfont\bfseries 计数测度 / Counting Measure}。
+        \item {\normalfont\bfseries 狄拉克测度}：令 $X$ 为任意非空集合，$\calA$ 为 $X$ 上的 $\sigma$-代数，且取定 $x \in X$。定义 $\mu_\delta:\calA \to [0,+\infty]$ 为 $\mu_\delta(A)=1$ 当且仅当 $x \in A$，否则 $\mu_\delta(A)=0$。这一定义给出一个测度；常称为 $(X,\calA)$ 上的集中于 $x$ 的 {\normalfont\bfseries 狄拉克测度 / Dirac Measure} 或者 {\normalfont\bfseries 点质量测度 / Point Mass Measure}。
+        \item 令 $X$ 为正整数集，$\calA$ 为 $X$ 上的所有满足 {\normalfont\bfseries $A$ 或 $A^c$ 有限} 的子集全体，则 $\calA$ 是一个代数，但是不是 $\sigma$-代数。定义 $\mu:\calA \to [0,+\infty]$ 为 $\mu(A)=1$ 当且仅当 $A$ 为无限集，否则 $\mu(A)=0$。这一定义给出一个有限可加的测度，但是并不能拓展到一个 $\calA$ 生成的 $\sigma$-代数上的可数可加测度。
+        \item 令 $X$ 为任意集合，$\calA$ 为 $X$ 上的任意一个 $\sigma$-代数。定义 $\mu:\calA \to [0,+\infty]$ 为 $\mu(A)=+\infty$ 当且仅当 $A \ne \diam$，否则 $\mu(A)=0$。这一定义给出一个可数可加测度。
+        \item 令 $X$ 至少含两个元素，$\calA$ 为 $X$ 的幂集。定义 $\mu:\calA \to [0,+\infty]$ 为 $\mu(A)=1$ 当且仅当 $A \ne \diam$，否则 $\mu(A)=0$。这一定义给出的函数不是测度，甚至不是一个有限可加测度。如果我们取 $A_1,A_2$ 两两不交且各非空，则 $\mu(A_1 \cup A_2)=1$，而 $\mu(A_1)+\mu(A_2)=2$。
+    \end{itemize}
+\end{example}
+
+\begin{proposition}
+    令 $(X,\calA,\mu)$ 为一个测度空间，$A,B \in \calA$ 且 $A \subseteq B$。则 $\mu(A) \le \mu(B)$，如果 $\mu(A) < +\infty$，则 $\mu(B-A) = \mu(B) - \mu(A)$。
+\end{proposition}
+
+\begin{proof}[Proof of Proposition 1.2.1]
+    集合 $A$ 与 $B-A$ 两两不交，且 $B = A \cup (B-A)$。由可列可加性可以得到
+    \[
+        \mu(B) = \mu(A) + \mu(B-A).
+    \]
+    由于 $\mu(B-A) \ge 0$，所以 $\mu(B) \ge \mu(A)$。如果 $\mu(A) < +\infty$，则 $\mu(B-A) = \mu(B) - \mu(A)$。
+\end{proof}
+
+令 $\mu$ 为可测空间 $(X,\calA)$ 上的一个测度，如果 $\mu(X) < +\infty$，则称 $\mu$ 为 {\normalfont\bfseries 有限测度 / Finite Measure}，如果存在序列 $\{A_i\}$ 满足 $X = \bigcup_i A_i$ 且 $\mu(A_i) < +\infty$，则称 $\mu$ 为 {\normalfont\bfseries $\sigma$-有限测度 / Sigma-Finite Measure}。更一般地来看，如果 $E \in \calA$ 可以表示为 $\calA$ 下有限测度集合的可数并，则称 $E$ 在 $\mu$ 下 $\sigma$-有限。如果测度空间 $(X,\calA,\mu)$ 满足 $\mu$ 是有限的或者 $\sigma$-有限的，则称这个测度空间是有限的或者 $\sigma$-有限的。
+
+我们讲的大多数性质和构造都适用于所有的测度，但是有一些重要的定理需要用到有限性或者 $\sigma$-有限性。
+
+\begin{proposition}[Countable Subadditivity]
+    令 $(X,\calA,\mu)$ 为一个测度空间，$\{A_k\}$ 为 $\calA$ 中的任意序列，那么我们有下面 {\normalfont\bfseries 可数次可加性 / Countable Subadditivity}：
+    \[
+        \mu\left(\bigcup_{k=1}^{\infty} A_k\right) \le \sum_{k=1}^{\infty} \mu(A_k).
+    \]
+\end{proposition}
+
+\begin{proof}[Proof of Proposition 1.2.2]
+    按照如下方式定义 $\{B_k\}$：$B_1=A_1$，$B_k=A_k-\left(\bigcup_{i=1}^{k-1} A_i\right)$，那么每一个 $B_k$ 都属于 $\calA$，且两两不交，$\bigcup_k B_k = \bigcup_k A_k$，还满足 $\mu(B_k) \le \mu(A_k)$。这样我们就可以得到：
+    \[
+        \mu\left(\bigcup_k A_k\right)
+        = \mu\left(\bigcup_k B_k\right)
+        = \sum_k \mu(B_k)
+        \le \sum_k \mu(A_k).
+    \]
+\end{proof}
+
+这个定理告诉我们，可数可加性可以推出可数次可加性。
+
+\begin{proposition}\label{Proposition-1-2-3}
+    令 $(X,\calA,\mu)$ 为一个测度空间：
+    \begin{itemize}
+        \item 如果 $\{A_k\}$ 是 $\calA$ 中的递增序列，则 $\mu\left(\bigcup_k A_k\right) = \lim_k \mu(A_k)$；
+        \item 如果 $\{A_k\}$ 是 $\calA$ 中的递减序列，且对某个 $n$ 有 $\mu(A_n) < +\infty$，则 $\mu\left(\bigcap_k A_k\right) = \lim_k \mu(A_k)$。
+    \end{itemize}
+\end{proposition}
+
+\begin{proof}[Proof of Proposition 1.2.3]
+    先证第一条。按如下方式定义序列 $\{B_k\}$：$B_1=A_1$，$B_k=A_k-A_{k-1}$，那么每一个 $B_k$ 都属于 $\calA$，且两两不交，$\bigcup_k B_k = A_k$，因此就得到
+    \[
+        \mu\left(\bigcup_k A_k\right)
+        = \mu\left(\bigcup_k B_k\right)
+        = \sum_k \mu(B_k)
+        = \lim_k \sum_{i=1}^k \mu(B_i)
+        = \lim_k \mu\left(\bigcup_{i=1}^k B_i\right)
+        = \lim_k \mu(A_k).
+    \]
+
+    再证第二条，我们不妨假设对于 $n=1$ 有 $\mu(A_1) < +\infty$，按照下面方式定义 $\{C_k\}$：$C_k=A_1-A_k$，那么 $\{C_k\}$ 是一个 $\calA$ 中的递增序列，且满足 $\bigcup_k C_k = A_1 - \bigcap_k A_k$，因此就得到
+    \[
+        \mu\left(A_1 - \bigcap_k A_k\right)
+        = \mu\left(\bigcup_k C_k\right)
+        = \lim_k \mu(C_k)
+        = \lim_k \mu(A_1-A_k).
+    \]
+    在 Proposition 1.2.1 中我们知道如果 $\mu(A_1) < +\infty$，则 $\mu\left(A_1-\bigcap_k A_k\right)=\mu(A_1)-\mu\left(\bigcap_k A_k\right)$，因此就得到 $\mu\left(\bigcap_k A_k\right)=\lim_k \mu(A_k)$。
+\end{proof}
+
+\begin{proposition}
+    令 $(X,\calA)$ 为一个可测空间，$\mu$ 为 $(X,\calA)$ 上的一个有限可加测度，如果其满足下面两条之一，那么 $\mu$ 就是一个测度：
+    \begin{itemize}
+        \item $\lim_k \mu(A_k) = \mu\left(\bigcup_k A_k\right)$ 对每一个 $\calA$ 中的递增序列 $\{A_k\}$ 成立；
+        \item $\lim_k \mu(A_k) = 0$ 对每一个 $\calA$ 中的递减序列 $\{A_k\}$ 成立，且恒有 $\bigcap_k A_k = \diam$。
+    \end{itemize}
+\end{proposition}
+
+\begin{proof}[Proof of Proposition 1.2.4]
+    我们其实需要验证的就是可数可加性，令 $\{B_j\}$ 为 $\calA$ 中的两两不交的序列，我们需要证明的是 $\mu\left(\bigcup_j B_j\right)=\sum_j \mu(B_j)$。
+
+    首先假设第一条成立，对每一个 $k$，定义 $A_k=\bigcup_{j=1}^k B_j$，则通过有限可加性可以得到 $\mu(A_k)=\sum_{j=1}^k \mu(B_j)$，再由第一条成立知
+    \[
+        \mu\left(\bigcup_{j=1}^{\infty} B_j\right)
+        = \mu\left(\bigcup_{j=1}^{\infty} A_j\right)
+        = \lim_k \mu(A_k)
+        = \sum_{j=1}^{\infty} \mu(B_j).
+    \]
+    因此就知道 $\mu$ 是可数可加的。
+
+    再假设第二条成立，令 $A_k=\bigcup_{j=k}^{\infty} B_j$，这样 $A_k$ 是一个递减序列，然后根据有限可加性可以得到
+    \[
+        \mu\left(\bigcup_{j=1}^{\infty} B_j\right)
+        = \sum_{i=1}^k \mu(B_i) + \mu(A_{k+1}).
+    \]
+    再由第二条成立知 $\lim_k \mu(A_{k+1})=0$，因此就得到 $\mu\left(\bigcup_{j=1}^{\infty} B_j\right)=\sum_{j=1}^{\infty} \mu(B_j)$，也就证明了可数可加性。
+\end{proof}
+
+这一节的最后我们介绍一些术语：
+
+\begin{definition}[Borel Measure]
+    在 $(\RR^d,\calB(\RR^d))$ 上的测度常称为 $\RR^d$ 上的 {\normalfont\bfseries Borel 测度 / Borel Measure}。更一般地，若 $X \subset \RR^d$ 为 Borel 集，$\calA$ 为包含在 $X$ 内的 Borel 子集所成的 $\sigma$-代数，则 $(X,\calA)$ 上的测度称为 $X$ 上的 {\normalfont\bfseries Borel 测度 / Borel Measure}。
+\end{definition}
+
+\begin{definition}[Continuous and Discrete Measure]
+    令 $(X,\calA,\mu)$ 为一个测度空间，如果对每个 $x \in X$ 均有 $\mu(\{x\})=0$，则称 $\mu$ 为 {\normalfont\bfseries 连续测度 / Continuous Measure}，如果存在一个至多可数集 $D \subset X$ 使 $\mu(D^c)=0$，则称 $\mu$ 为 {\normalfont\bfseries 离散测度 / Discrete Measure}。
+\end{definition}
+
+连续测度意味着所有单点集的测度都为 0，意味着整个集合的测度均匀分布。离散测度意味着一个集合的测度集中在一个至多可数集上面，意味着这个测度可以表示成一个狄拉克测度的可数并。
+
+\clearpage
+
+\subsection{Outer Measures}
+
+在本章，我们开始介绍构造测度的一种标准方法，之后我们使用这种方法来构造 $\RR^d$ 上的勒贝格测度。
+
+\begin{definition}[Outer Measure]
+    令 $X$ 为一个集合，记 $\calP(X)$ 为 $X$ 的所有子集的全体。$X$ 上的一个 {\normalfont\bfseries 外测度 / Outer Measure} 是一个函数 $\mu^*:\calP(X) \to [0,+\infty]$，其满足下面三条性质：
+    \begin{itemize}
+        \item $\mu^*(\diam)=0$；
+        \item 若 $A \subseteq B \subseteq X$，则 $\mu^*(A) \le \mu^*(B)$；
+        \item {\normalfont\bfseries 可数次可加性}：若 $\{A_n\}$ 是 $X$ 的子集的一个可数序列，则 $\mu^*\left(\bigcup_n A_n\right) \le \sum_{n=1}^{\infty} \mu^*(A_n)$。
+    \end{itemize}
+\end{definition}
+
+也就是说，$X$ 上的外测度是一个从 $X$ 的所有子集的全体到 $[0,+\infty]$ 的，单调的、可数次可加的函数，在 $\diam$ 处的取值为 $0$。注意到一个测度可以不是外测度，只有当其定义域是 $\calP(X)$ 时，$X$ 上的一个测度才是一个外测度。另一方面，外测度一般都不满足测度的可数可加性，因此一般都不是测度。
+
+接下来我们的目标之一就是证明：对于 $X$ 上的每一个外测度 $\mu^*$，在 $X$ 上面存在一个比较自然的 $\sigma$-代数 $\calM_{\mu^*}$，使得 $\mu^*$ 在 $\calM_{\mu^*}$ 的限制是可数可加的，进而是一个测度。按照这种方式，可以从外测度构造出很多重要的测度。
+
+\begin{example}
+    \begin{itemize}
+        \item 令 $X$ 为任意集合，在 $\calP(X)$ 上定义 $\mu^*$ 为：当 $A$ 可数时取 $0$，当 $A$ 不可数时取 $1$。则 $\mu^*$ 是一个外测度。
+        \item 令 $X$ 为任意集合，在 $\calP(X)$ 上定义 $\mu^*$ 为：当 $A$ 有限时取 $0$，当 $A$ 无限时取 $1$。则 $\mu^*$ 不是一个外测度，这是因为其不能满足可数次可加性。
+        \item {\normalfont\bfseries Lebesgue Outer Measure}：对于 $\RR$ 上的每一个子集 $A$，令 $\calC_A$ 为所有有界开区间序列 $\{(a_i,b_i)\}$ 的集合，使得 $A \subseteq \bigcup_i (a_i,b_i)$。定义 $\lambda^*:\calP(\RR)\to[0,+\infty]$ 为
+              \[
+                  \lambda^*(A) = \inf\left\{\sum_i (b_i-a_i) : \{(a_i,b_i)\}\in \calC_A \right\}.
+              \]
+    \end{itemize}
+\end{example}
+
+下面我们将验证 $\lambda^*$ 是一个外测度。
+
+\begin{proposition}
+    $\RR$ 上的 Lebesgue 外测度 $\lambda^*$ 是一个外测度；并且它把 $\RR$ 的每个子区间的 Lebesgue 外测度赋为该区间的长度。
+\end{proposition}
+
+\begin{proof}[Proof of Proposition 1.3.1]
+    我们首先验证其是一个外测度：首先 $\lambda^*(\diam)=0$ 显然成立，因为对于任意正数 $\varepsilon$，总存在一个有界开区间序列 $\{(a_i,b_i)\}$ 使得其并包含 $\diam$，使得 $\sum_i (b_i-a_i)<\varepsilon$。其次，对于单调性，注意到如果 $A \subseteq B$，每一个包含 $B$ 的有界开区间序列总会包含 $A$。
+
+    最后只需要考虑可数次可加性了。令 $\{A_n\}_{n=1}^{\infty}$ 为 $\RR$ 的子集的一个可数序列，如果 $\sum_{n=1}^{\infty}\lambda^*(A_n)=+\infty$，则自然有 $\lambda^*(\bigcup_n A_n)\le \sum_{n=1}^{\infty}\lambda^*(A_n)$。于是可以假设 $\sum_{n=1}^{\infty}\lambda^*(A_n)<+\infty$，再令 $\varepsilon>0$。对于每一个 $n$，选取一个有界开区间序列 $\{(a_{n,i},b_{n,i})\}_{i=1}^{\infty}$ 使得其并包含 $A_n$，且满足
+    \[
+        \sum_{i=1}^{\infty}(b_{n,i}-a_{n,i}) < \lambda^*(A_n) + \varepsilon / 2^n.
+    \]
+    我们将这些序列合并为一个序列 $\{(a_j,b_j)\}_{j=1}^{\infty}$，则合并后的序列显然满足 $\bigcup_j A_j \subseteq \bigcup_j (a_j,b_j)$，且
+    \[
+        \sum_{j=1}^{\infty}(b_j-a_j)
+        < \sum_{n=1}^{\infty}\left(\lambda^*(A_n)+\varepsilon/2^n\right)
+        = \sum_{n=1}^{\infty}\lambda^*(A_n)+\varepsilon.
+    \]
+    由于 $\varepsilon$ 任意，因此就得到了 $\lambda^*(\bigcup_n A_n)\le \sum_{n=1}^{\infty}\lambda^*(A_n)$。因此就知道 $\lambda^*$ 是一个外测度。
+
+    最后我们计算 $\RR$ 上子区间的外测度：首先考虑一个有界闭区间 $[a,b]$，显然有 $\lambda^*([a,b]) \le b-a$，只需要使得构造出来的开区间序列为第一个开区间稍大于 $[a,b]$，其余开区间长度极小即可。接下来证明反向不等式，令 $\{(a_i,b_i)\}_{i=1}^{\infty}$ 为一个有界开区间序列，其并包含 $[a,b]$。由于 $[a,b]$ 是紧的，因此存在一个正整数 $n$ 使得 $[a,b] \subseteq \bigcup_{i=1}^n (a_i,b_i)$，很容易知道 $b-a \le \sum_{i=1}^n (b_i-a_i)$，因此就得到了 $b-a \le \sum_{i=1}^{\infty}(b_i-a_i)$。由于 $\{(a_i,b_i)\}_{i=1}^{\infty}$ 任意，因此就得到了 $\lambda^*([a,b]) \ge b-a$，因此就得得到了 $\lambda^*([a,b])=b-a$。
+
+    最后的最后，由于任意有界区间 $I$ 都包含于且被任意接近于其长度的有界闭区间所夹，因此任意有界区间的外测度都等于其长度。无界区间的外测度为 $+\infty$，因为它包含任意长的闭有界区间。
+\end{proof}
+
+按照相同的方式可以定义 $\RR^d$ 上的勒贝格外测度 $\lambda_d^*$，其将每个 $d$ 维区间的外测度赋为其{\normalfont\bfseries 体积}。
+
+\begin{proposition}
+    可以按照如下方式定义 $\RR^d$ 上的勒贝格外测度 $\lambda_d^*$：$\RR^d$ 上一个 $d$ 维区间是形如 $I_1 \times \dots \times I_d$ 的集合，其中每一个 $I_i$ 为 $\RR$ 的子区间，每一个区间都可以是可开可闭的，这里的 $I_1 \times \dots \times I_d$ 按照如下方式给出：
+    \[
+        I_1 \times \dots \times I_d
+        = \{(x_1,\dots,x_d): x_i \in I_i \text{ for } i=1,\dots,d\}.
+    \]
+    定义 $d$ 维区间的体积 $\vol(I_1 \times \dots \times I_d)$ 为各 $I_i$ 长度的乘积。对于 $\RR^d$ 的任意子集 $A$，令 $\calC_A$ 为所有有界 $d$ 维开区间序列 $\{R_i\}$ 的集合，使得 $A \subseteq \bigcup_{i=1}^{\infty} R_i$。定义 $\lambda_d^*:\calP(\RR^d)\to[0,+\infty]$ 为
+    \[
+        \lambda_d^*(A)
+        = \inf\left\{\sum_{i=1}^{\infty}\vol(R_i): \{R_i\}\in \calC_A\right\}.
+    \]
+    则 $\lambda_d^*$ 是一个外测度，并且它将每个 $d$ 维区间的外测度赋为其{\normalfont\bfseries 体积}。
+\end{proposition}
+
+\begin{proof}[Proof of Proposition 1.3.2]
+    证明与 Proposition 1.3.1 的相仿，这里大部分略去。注意到，如果 $K$ 是一个 $d$ 维紧区间，且 $\{R_i\}_{i=1}^{\infty}$ 为 $d$ 维有界开区间序列，满足 $K \subseteq \bigcup_{i=1}^{\infty} R_i$，则存在正整数 $n$ 使得 $K \subseteq \bigcup_{i=1}^n R_i$，且 $K$ 可以分解为有限族 $d$ 维区间 $\{K_j\}$ 的并，他们只在边界处重叠，且对于每一个 $K_j$，都存在一个 $R_i$ 使得 $K_j$ 的内部包含于 $R_i$。于是
+    \[
+        \vol(K) = \sum_j \vol(K_j) \le \sum_i \vol(R_i).
+    \]
+    因此就有 $\vol(K) \le \lambda_d^*(K)$。剩下的证明与 Proposition 1.3.1 的相仿，从 $\RR$ 到 $\RR^d$ 的修改细节略去。
+\end{proof}
+
+\begin{definition}[$\mu^*$-Measurable and Lebesgue Measurable]
+    令 $X$ 为一个集合，$\mu^*$ 为 $X$ 上的外测度。若 $B \subseteq X$ 满足：对 $X$ 的{\normalfont\bfseries 每个}子集 $A$ 都有
+    \[
+        \mu^*(A) = \mu^*(A\cap B) + \mu^*(A\cap B^c),
+    \]
+    则称 $B$ 是 {\normalfont\bfseries $\mu^*$-可测} 的，或者说是关于 $\mu^*$ 可测的。
+
+    一个 $\RR$ 上或者 $\RR^d$ 上 {\normalfont\bfseries Lebesgue 可测 / Lebesgue Measurable} 的集合就是关于一个 Lebesgue 外测度可测的集合。
+\end{definition}
+
+$\mu^*$ 可测的子集可以将 $X$ 的每个子集按照一种自然的方式分成两块，使得这两块的测度可以正确相加。而外测度 $\mu^*$ 的次可加性意味着 $\mu^*(A)\le \mu^*(A\cap B)+\mu^*(A\cap B^c)$，因此为了检验 $B$ 的 $\mu^*$-可测性，我们只需验证 $\mu^*(A)\ge \mu^*(A\cap B)+\mu^*(A\cap B^c)$ 对 $X$ 的每个子集 $A$ 都成立。如果 $\mu^*(A)=+\infty$，上面的式子显然成立，只需要验证 $\mu^*(A)<+\infty$ 的 $A$ 即可。
+
+\begin{proposition}
+    设 $X$ 为集合，$\mu^*$ 为 $X$ 上的外测度。若 $B \subseteq X$ 满足 $\mu^*(B)=0$ 或 $\mu^*(B^c)=0$，则 $B$ 是 $\mu^*$-可测的。
+\end{proposition}
+
+\begin{proof}[Proof of Proposition 1.3.3]
+    设 $\mu^*(B)=0$ 或 $\mu^*(B^c)=0$。按上文所述，我们需要验证：对每个 $A \subset X$，
+    \[
+        \mu^*(A) \ge \mu^*(A\cap B) + \mu^*(A\cap B^c).
+    \]
+    然而关于 $B$ 的假设与 $\mu^*$ 的{\normalfont\bfseries 单调性}意味着，该不等式右端的两项之一为 $0$，而另一项至多为 $\mu^*(A)$；因此所需不等式成立。
+\end{proof}
+
+这个命题意味着对于每一个外测度，$\diam$ 和 $X$ 都是可测的。
+
+下面我们将介绍一个关键定理，其将是我们构造出很多测度的关键工具。
+
+\begin{theorem}[Carath\'eodory's Theorem]
+    设 $X$ 为集合，$\mu^*$ 为 $X$ 上的外测度，记 $\calM_{\mu^*}$ 为 $X$ 的所有 $\mu^*$-可测子集的全体。则
+    \begin{itemize}
+        \item $\calM_{\mu^*}$ 是一个 $\sigma$-代数；
+        \item $\mu^*$ 在 $\calM_{\mu^*}$ 上的限制是一个测度。
+    \end{itemize}
+\end{theorem}
+
+\begin{proof}[Proof of Carath\'eodory's Theorem]
+    我们从证明 $\calM_{\mu^*}$ 是一个{\normalfont\bfseries 代数}开始。首先注意到 Proposition 1.3.3 表明 $X \in \calM_{\mu^*}$。还需要注意到 $\mu^*(A) = \mu^*(A\cap B)+\mu^*(A\cap B^c)$ 在 $B$ 与 $B^c$ 互换时不变，因此 $B$ 可测蕴含 $B^c$ 可测，故 $\calM_{\mu^*}$ 在取补下封闭。接下来说明 $\calM_{\mu^*}$ 在有限并下封闭，我们只用证明如果 $B_1,B_2$ 都是 $\mu^*$-可测的，那么 $B_1\cup B_2$ 也是 $\mu^*$-可测的。为此，任取 $X$ 的子集 $A$，由 $B_1$ 和 $B_2$ 的可测性有
+    \begin{align*}
+        \mu^*(A\cap(B_1\cup B_2))
+         & = \mu^*(A\cap(B_1\cup B_2)\cap B_1) + \mu^*(A\cap(B_1\cup B_2)\cap B_1^c) \\
+         & = \mu^*(A\cap B_1) + \mu^*(A\cap B_1^c \cap B_2).
+    \end{align*}
+    使用这个等式以及 $(B_1\cup B_2)^c = B_1^c \cap B_2^c$，我们得到
+    \begin{align*}
+        \mu^*(A\cap(B_1\cup B_2)) + \mu^*(A\cap(B_1\cup B_2)^c)
+         & = \mu^*(A\cap B_1) + \mu^*(A\cap B_1^c \cap B_2) + \mu^*(A\cap B_1^c \cap B_2^c) \\
+         & = \mu^*(A\cap B_1) + \mu^*(A\cap B_1^c)                                          \\
+         & = \mu^*(A),
+    \end{align*}
+    其中第二个等号是因为 $B_2$ 可测。这样，由于 $A$ 是 $X$ 的任意子集，$B_1\cup B_2$ 可测，因此 $\calM_{\mu^*}$ 在有限并下封闭，所以是一个代数。
+
+    接下来假设 $\{B_i\}$ 为一个两两不交的 $\mu^*$-可测集的序列，我们将用归纳法证明：对每个 $A \subset X$ 与正整数 $n$，有
+    \begin{equation}\label{1-3-Equation-1}
+        \mu^*(A) = \sum_{i=1}^n \mu^*(A\cap B_i) + \mu^*\left(A\cap \bigcap_{i=1}^n B_i^c\right)
+    \end{equation}
+    成立。当 $n=1$ 时，这个式子就是 $B_1$ 可测性的重述。设 $n$ 时这个式子成立，注意到 $B_{n+1}$ 的可测性以及 $\{B_i\}$ 两两不交，我们就能得到
+    \begin{align*}
+        \mu^*\left(A\cap \bigcap_{i=1}^n B_i^c\right)
+         & = \mu^*\left(A\cap \bigcap_{i=1}^n B_i^c \cap B_{n+1}\right)
+        + \mu^*\left(A\cap \bigcap_{i=1}^n B_i^c \cap B_{n+1}^c\right)                 \\
+         & = \mu^*(A\cap B_{n+1}) + \mu^*\left(A\cap \bigcap_{i=1}^{n+1} B_i^c\right).
+    \end{align*}
+    因此
+    \[
+        \mu^*(A)
+        = \sum_{i=1}^n \mu^*(A\cap B_i) + \mu^*(A\cap B_{n+1}) + \mu^*\left(A\cap \bigcap_{i=1}^n B_i^c \cap B_{n+1}^c\right).
+    \]
+    于是归纳法就完成了。注意到如果我们将 \eqref{1-3-Equation-1} 右侧的 $\mu^*(A\cap \bigcap_{i=1}^n B_i^c)$ 改成 $\mu^*(A\cap \bigcap_{i=1}^{\infty} B_i^c)$，不会使右端变大；令 $n$ 在和式中趋于无穷，再根据外测度的次可加性，得到
+    \begin{equation}\label{1-3-Equation-2}
+        \begin{aligned}
+            \mu^*(A)
+             & \ge \sum_{i=1}^{\infty} \mu^*(A\cap B_i) + \mu^*\left(A\cap \left(\bigcup_{i=1}^{\infty} B_i\right)^c\right)               \\
+             & \ge \mu^*\left(A\cap \bigcup_{i=1}^{\infty} B_i\right) + \mu^*\left(A\cap \left(\bigcup_{i=1}^{\infty} B_i\right)^c\right) \\
+             & \ge \mu^*(A).
+        \end{aligned}
+    \end{equation}
+    这就表明上面每一个不等号都必须是等号，这就表明 $\bigcup_{i=1}^{\infty} B_i$ 是 $\mu^*$-可测的，因此 $\calM_{\mu^*}$ 在可数不交并下封闭。很容易证明任何一个序列 $\{B_i\}$ 的并都是一个序列不交并，从而很容易就知道 $\calM_{\mu^*}$ 是一个 $\sigma$-代数。
+
+    最后，我们证明 $\mu^*$ 在 $\calM_{\mu^*}$ 上的限制是一个测度，只需要证明可数可加性就可以。如果 $\{B_i\}$ 是 $\calM_{\mu^*}$ 中两两不交的序列，则把 \eqref{1-3-Equation-2} 中的 $A$ 换成 $\bigcup_{i=1}^{\infty} B_i$ 可得
+    \[
+        \mu^*\left(\bigcup_{i=1}^{\infty} B_i\right) \ge \sum_{i=1}^{\infty} \mu^*(B_i) + 0.
+    \]
+    反向不等式显然成立，事实上上面的不等式在 \eqref{1-3-Equation-2} 下面就是一个等式，于是 $\mu^*$ 在 $\calM_{\mu^*}$ 上的限制满足可数可加性，因此就是一个测度。
+\end{proof}
+
+下面我们讨论 Carath\'eodory 定理的应用，开始讨论 Lebesgue 测度。我们将 $\RR$ 上 Lebesgue 可测的集合记为 $\calM_{\lambda^*}$。
+
+\begin{proposition}
+    $\RR$ 的每个 Borel 集都是 Lebesgue 可测的。
+\end{proposition}
+
+\begin{proof}[Proof of Proposition 1.3.4]
+    首先验证所有形如 $(-\infty,b]$ 的区间都是 Lebesgue 可测的。令 $B$ 为这样的一个区间，我们只需要检查 $\lambda^*(A) \ge \lambda^*(A\cap B) + \lambda^*(A\cap B^c)$ 对任意满足 $\lambda^*(A)<+\infty$ 的 $A \subset \RR$ 都成立即可。取任意 $\varepsilon > 0$，并取一列开区间 $\{(a_n,b_n)\}$ 覆盖 $A$ 且满足 $\sum_{n=1}^{\infty}(b_n-a_n)<\lambda^*(A)+\varepsilon$。对于每一个 $n$，集合 $(a_n,b_n)\cap B$ 与 $(a_n,b_n)\cap B^c$ 是两两不交的区间（其中一个可能为空），其并为 $(a_n,b_n)$，因此
+    \begin{equation}\label{1-3-Equation-5}
+        b_n-a_n = \lambda^*((a_n,b_n)) = \lambda^*((a_n,b_n)\cap B) + \lambda^*((a_n,b_n)\cap B^c).
+    \end{equation}
+    这两个等式都是因为括号里面的集合是区间，因此其外测度等于其长度。由于序列 $\{(a_n,b_n)\cap B\}$ 覆盖 $A\cap B$，序列 $\{(a_n,b_n)\cap B^c\}$ 覆盖 $A\cap B^c$，根据单调性和可数次可加性，我们有
+    \begin{align*}
+        \lambda^*(A\cap B) + \lambda^*(A\cap B^c)
+         & \le \sum_n \lambda^*((a_n,b_n)\cap B) + \sum_n \lambda^*((a_n,b_n)\cap B^c) \\
+         & = \sum_n (b_n-a_n) < \lambda^*(A) + \varepsilon.
+    \end{align*}
+    由于 $\varepsilon$ 的任意性，这就得到了 $\lambda^*(A)\ge \lambda^*(A\cap B)+\lambda^*(A\cap B^c)$，因此 $B$ 是 Lebesgue 可测的。
+
+    根据 Carath\'eodory 定理，Lebesgue 可测集全体 $\calM_{\lambda^*}$ 是 $\RR$ 上的一个 $\sigma$-代数，并且包含每个形如 $(-\infty,b]$ 的区间；而 $\calB(\RR)$ 是包含所有这类区间的最小 $\sigma$-代数，于是 $\calB(\RR) \subseteq \calM_{\lambda^*}$。命题得证。
+\end{proof}
+
+对于 $\RR^d$ 上的 Lebesgue 外测度 $\lambda_d^*$，我们也可以按照相同的方式定义 $\RR^d$ 上的勒贝格可测集的全体 $\calM_{\lambda_d^*}$，并且也可以证明 $\RR^d$ 的每一个 Borel 集都是 Lebesgue 可测的，只需要修改对于 $\RR$ 的证明中的一些细节就可以了。
+
+将 Lebesgue 外测度限制在 $\calM_{\lambda^*}$ 上的测度称为 $\RR$ / $\RR^d$ 上的 {\normalfont\bfseries Lebesgue 测度 / Lebesgue Measure}，记为 $\lambda$ / $\lambda_d$。我们可以通过上下文指明具体的版本，比如称 $(\RR,\calM_{\lambda^*})$ 上的勒贝格测度，或者 $(\RR^d,\calM_{\lambda_d^*})$ 上的勒贝格测度，大多数的时候，我们处理的都是 Borel 集上的 Lebesgue 测度，其与别的版本的 Lebesgue 测度的关系可以见 \ref{Section-1-5}。
+
+由此立刻出现几个问题，都是有关与 Lebesgue 可测集的范围的：是否每一个 $\RR$ / $\RR^d$ 的子集都是 Lebesgue 可测的？另一个就是上面两个命题的反向，是否每一个 Lebesgue 可测集都是 Borel 集？这些问题的答案都是否定的，可以见 \ref{Section-1-4} 与 \ref{Section-2-1}。
+
+在本节的最后，我们讨论一下 $(\RR,\calB(\RR))$ 上测度与分布函数的关系，下面两个命题给出了在 $(\RR,\calB(\RR))$ 上构造和表示测度的重要方法。
+
+\begin{proposition}
+    令 $\mu$ 为 $(\RR,\calB(\RR))$ 上的一个有限测度，令 $F_\mu:\RR \to \RR$ 按照如下方式定义 $F_\mu(x) = \mu((-\infty,x])$。则 $F_\mu$ 有界、单调不减、右连续，并满足 $\lim_{x\to-\infty} F_\mu(x) = 0$。
+\end{proposition}
+
+\begin{proof}[Proof of Proposition 1.3.5]
+    由测度的单调性可以得知，$0 \le \mu((-\infty,x]) \le \mu(\RR)$ 对每一个 $x \in \RR$ 都成立，且 $\mu((-\infty,x]) \le \mu((-\infty,y])$ 对每一个 $x \le y$ 都成立，因此我们就知道 $F_\mu$ 其实是有界且单调不减的。下面我们来验证右连续性：令 $x \in \RR$，取一个定义为 $x_n = x + 1/n$ 的正实数数列 $\{x_n\}$，于是 $(-\infty,x] = \bigcap_{n=1}^{\infty} (-\infty,x_n]$，由 Proposition~\ref{Proposition-1-2-3} 指出的连续性可以得到
+    \[
+        F_\mu(x)
+        = \mu((-\infty,x])
+        = \mu\left(\bigcap_{n=1}^{\infty} (-\infty,x_n]\right)
+        = \lim_{n\to\infty}\mu((-\infty,x_n])
+        = \lim_{n\to\infty} F_\mu(x_n).
+    \]
+    由于 $F_\mu$ 是一个单调不减的函数，对于 $x < y < x_n$，显然成立 $|F_\mu(y)-F_\mu(x)| \le |F_\mu(x_n)-F_\mu(x)|$，夹一夹就得出了 $F_\mu$ 的右连续性。
+
+    也很容易使用相同的方法验证 $\lim_{x\to-\infty} F_\mu(x)=0$，这里可以构造出 $\{(-\infty,-n]\}_{n=1}^{\infty}$ 的数列，然后使用连续性和单调性证明。
+\end{proof}
+
+令 $\mu$ 和 $F_\mu$ 为上面描述的测度与函数，由于 $\mu((-\infty,b])$ 有界，于是
+\begin{equation}\label{1-3-Equation-3}
+    \mu((a,b]) = \mu((-\infty,b]) - \mu((-\infty,a]),
+\end{equation}
+因此，
+\begin{equation}\label{1-3-Equation-4}
+    \mu((a,b]) = F_\mu(b) - F_\mu(a).
+\end{equation}
+由于 $F_\mu$ 有界且单调不减，对每一个 $x \in \RR$，当 $t$ 从左侧趋向 $x$ 时，$F_\mu(t)$ 的极限存在，其值为 $\sup\{F_\mu(t): t<x\}$，记为 $F_\mu(x-)$。
+
+令 $\{a_n\}$ 为一个递增趋近于 $b$ 的数列，对每一个区间 $(a_n,b]$ 都有 $\mu((a_n,b]) = F_\mu(b)-F_\mu(a_n)$，取一个交集的极限就可以发现 $\mu(\{b\}) = F_\mu(b)-F_\mu(b-)$，因此如果 $F_\mu$ 连续，则 $\mu(\{b\})=0$，因此 $\mu$ 是一个连续测度；如果 $F_\mu$ 在 $b$ 处有一个跳跃，则 $\mu(\{b\})$ 就等于这个跳跃的大小，因此 $\mu$ 就不是一个连续测度。
+
+\eqref{1-3-Equation-3} 和 \eqref{1-3-Equation-4} 允许我们借助 $F_\mu$ 恢复 $\mu$ 在某些集合上的取值，不过下面的命题说明：事实上 {\normalfont\bfseries $\mu$ 在每个 $\RR$ 上的 Borel 集上的取值都由 $F_\mu$ 唯一决定}。
+
+\begin{proposition}
+    对于每一个有界、单调不减、右连续的函数 $F:\RR\to\RR$，且满足 $\lim_{x\to-\infty} F(x)=0$，都存在唯一的一个 $(\RR,\calB(\RR))$ 上的有限测度 $\mu$，使得 $F(x)=\mu((-\infty,x])$ 对 $\RR$ 上的每一个 $x$ 都成立。
+\end{proposition}
+
+\begin{proof}[Proof of Proposition 1.3.6]
+    令 $F$ 为满足题目要求的函数，我们首先证明存在性，先构造出一个满足要求的测度 $\mu$，首先定义一个函数 $\mu^*:\calP(\RR)\to[0,+\infty]$ 为
+    \[
+        \mu^*(A) = \inf \left\{ \sum_{n=1}^{\infty}\bigl(F(b_n)-F(a_n)\bigr) : A \subseteq \bigcup_{n=1}^{\infty}(a_n,b_n] \right\}.
+    \]
+    也就是说，这里对所有可以覆盖 $A$ 的半开区间序列 $\{(a_n,b_n]\}$ 遍历，取这些序列上求和的下确界。这样就很容易检验其是一个 $\RR$ 上的外测度。下面我们验证 $\mu^*((-\infty,x]) = F(x)$。手法还是证明两个方向的不等式：
+
+    首先可以验证 $\mu^*((-\infty,x]) \le F(x)$，这是因为 $(-\infty,x]$ 可以被区间序列 $\{(x-n,x-n+1]\}_{n=1}^{\infty}$ 覆盖，对于这个区间序列，我们有 $\sum_{n=1}^{\infty}(F(x-n+1)-F(x-n)) = F(x)$，下确界保证了 $\mu^*((-\infty,x]) \le F(x)$。对于反方向的不等式，令 $\{(a_n,b_n]\}$ 为一列覆盖 $(-\infty,x]$ 的半开区间，并取任意 $\varepsilon > 0$。由 $\lim_{t\to-\infty}F(t)=0$，我们可以取一个 $t < x$ 使得 $F(t) < \varepsilon$；再由 $F$ 的右连续性，对于每一个 $n$，我们可以取一个 $\delta_n > 0$，使得
+    \[
+        F(b_n+\delta_n) < F(b_n) + \varepsilon / 2^n.
+    \]
+    根据区间 $[t,x]$ 的紧性，每一个区间 $(a_n,b_n+\delta_n)$ 是开的，且 $[t,x] \subseteq \bigcup_{n=1}^{\infty}(a_n,b_n+\delta_n)$，以及 $\sum_n (F(b_n+\delta_n)-F(a_n)) \le \sum_n (F(b_n)-F(a_n)) + \varepsilon$。存在正整数 $N$ 使得 $[t,x] \subseteq \bigcup_{n=1}^N (a_n,b_n+\delta_n)$。因此 $(t,x]$ 可以表示为有限个两两不交区间 $(c_j,d_j]$ 的并，每一个 $(c_j,d_j]$ 都包含于某一个 $(a_n,b_n+\delta_n)$ 中。于是
+    \[
+        F(x)-F(t)
+        = \sum_j \bigl(F(d_j)-F(c_j)\bigr)
+        \le \sum_{n=1}^{\infty}\bigl(F(b_n+\delta_n)-F(a_n)\bigr)
+        \le \sum_{n=1}^{\infty}\bigl(F(b_n)-F(a_n)\bigr) + \varepsilon.
+    \]
+    根据 $F(t) < \varepsilon$，我们因此有
+    \[
+        F(x)-\varepsilon \le \sum_{n=1}^{\infty}(F(b_n)-F(a_n)) + F(t) \le \sum_{n=1}^{\infty}(F(b_n)-F(a_n)) + \varepsilon.
+    \]
+    由于 $\varepsilon$ 与覆盖序列 $\{(a_n,b_n]\}$ 都是任意的，不等式 $F(x)-\varepsilon \le \mu^*((-\infty,x])$ 成立，因此 $F(x) \le \mu^*((-\infty,x])$。
+
+    证明区间 $(-\infty,b]$ $\mu^*$-可测的过程是简单的，和前面的证明类似，这里略去不表，因此就可以得知，每一个 $\RR$ 的 Borel 集都是 $\mu^*$-可测的。
+
+    令 $\mu$ 为 $\mu^*$ 在 $\calB(\RR)$ 上的限制。由前述步骤与 Carath\'eodory 定理，$\mu$ 是一个测度，且满足 $\mu((-\infty,x]) = F(x)$ 对每个 $x$ 成立，由于 $F$ 有界，而 $\mu(\RR) = \lim_{n\to\infty}\mu((-\infty,n]) = \lim_{n\to\infty}F(n)$，故 $\mu$ 为有限测度。
+
+    最后验证 $\mu$ 的唯一性，令 $\mu$ 如上构造，设 $\nu$ 是另一个满足 $\nu((-\infty,x]) = F(x)$ 的测度，我们首先证明 $\nu(A) \le \mu(A)$ 对每一个 $\RR$ 上的 Borel 集 $A$ 都成立。若 $\{(a_n,b_n]\}$ 为满足 $A \subseteq \bigcup_n (a_n,b_n]$ 的半开区间序列，则由 $\nu$ 的可数次可加性可知
+    \[
+        \nu(A) \le \sum_n \nu((a_n,b_n]) = \sum_n \bigl(F(b_n)-F(a_n)\bigr).
+    \]
+    由于 $\mu(A)$ 被定义为上式右侧所有可能的和式的下确界，因此 $\nu(A) \le \mu(A)$。将这个不等式用于 $A$ 与 $A^c$，并使用 $\mu(\RR)=\nu(\RR)<+\infty$，就可以得知
+    \[
+        \nu(\RR) = \nu(A) + \nu(A^c) \le \mu(A) + \mu(A^c) = \mu(\RR).
+    \]
+    因此，$\nu(A)+\nu(A^c)=\mu(A)+\mu(A^c)$，从而不可能有 $\nu(A) < \mu(A)$，因此 $\nu(A)=\mu(A)$。由于 $A$ 是任意的 Borel 集，因此 $\nu=\mu$，唯一性得证。
+\end{proof}
+
+这一节完成的最重要的事情就是 {\normalfont\bfseries 给出了 Carath\'eodory 定理}，并且使用该定理 {\normalfont\bfseries 构造出了 Lebesgue 测度}。其方法是，使用半开矩形对 $\RR^d$ 上的集合进行覆盖，取这些覆盖的体积之和的下确界，得到一个外测度，然后使用 Carath\'eodory 定理得到一个测度空间，其测度就是 Lebesgue 测度。最后我们考虑 Lebesgue 可测的集合的范围，定理表明，$\RR^d$ 上的所有 Borel 集都是 Lebesgue 可测的。这就允许我们有一个相当大的测度空间，对我们需要使用的几乎所有的集合都可以讨论测度。
+
+\clearpage
+
+\subsection{Lebesgue Measure}\label{Section-1-4}
+
+本节包含了 $\RR^d$ 的 Lebesgue 测度的一些基本性质。如果需要希望快速了解关于 \ref{Section-2} 讲的函数和积分的内容，可以将注意力限制在 Proposition~\ref{Proposition-1-4-1}、Proposition~\ref{Proposition-1-4-3} 以及 Theorem~\ref{Theorem-1-4-1} 之上就可以，这三个结果分别表明 Lebesgue 测度的正则性、平移不变性以及非 Lebesgue 可测集的存在性。
+
+\begin{proposition}\label{Proposition-1-4-1}
+    令 $A$ 为 $\RR^d$ 的一个 Lebesgue 可测子集。则
+    \begin{itemize}
+        \item $\lambda(A) = \inf\{\lambda(U) : U \text{ is open and } A \subseteq U\}$；
+        \item $\lambda(A) = \sup\{\lambda(K) : K \text{ is compact and } K \subseteq A\}$。
+    \end{itemize}
+\end{proposition}
+
+简单来说，这个 Proposition 说明 Lebesgue 测度是 {\normalfont\bfseries 正则的 / regular}，我们在 \ref{Section-1-5} 与 \ref{Section-7} 会深入介绍正则性。
+
+\begin{proof}[Proof of Proposition 1.4.1]
+    注意到 $\lambda$ 的单调性可以保证
+    \begin{align*}
+        \lambda(A) & \le \inf\{\lambda(U) : U \text{ is open and } A \subseteq U\},    \\
+        \lambda(A) & \ge \sup\{\lambda(K) : K \text{ is compact and } K \subseteq A\}.
+    \end{align*}
+    因此我们只需要证明反向不等式成立就可以。
+
+    首先证明第一个反向不等式：如果 $\lambda(A)=+\infty$，那么所需不等式显然成立，所以我们可以假设 $\lambda(A)<+\infty$。取任意 $\varepsilon > 0$，由 Lebesgue 测度的定义，存在一个 $d$ 维开区间序列 $\{R_i\}$，这里这个开区间序列并未限定为互不相交，使得 $A \subseteq \bigcup_i R_i$ 且 $\sum_i \vol(R_i) < \lambda(A) + \varepsilon$。令 $U = \bigcup_i R_i$ 则 $U$ 为开集，$A \subseteq U$，且
+    \[
+        \lambda(U) \le \sum_i \lambda(R_i) = \sum_i \vol(R_i) < \lambda(A) + \varepsilon.
+    \]
+    由于 $\varepsilon$ 任意，所需要的反向不等式因此成立。
+
+    接下来证明第二个反向不等式：首先处理 $A$ 有界的情形，令 $C$ 为含有 $A$ 的有界闭集，并取任意的 $\varepsilon > 0$，利用第一部分的结论，可以选择一个包含 $C-A$ 的开集 $U$，使得
+    \[
+        \lambda(U) < \lambda(C-A) + \varepsilon.
+    \]
+    令 $K = C-U$。则 $K$ 是 $A$ 的一个有界闭集，因此 $K$ 也是一个紧集。此外，由于 $C \subseteq K \cup U$，因此
+    \[
+        \lambda(C) \le \lambda(K) + \lambda(U).
+    \]
+    且根据 $\lambda(C-A) = \lambda(K) = \lambda(C) - \lambda(A)$，我们可以得到
+    \[
+        \lambda(C) - \lambda(K)
+        \le \lambda(U)
+        < \lambda(C-A) + \varepsilon
+        = \lambda(C) - \lambda(A) + \varepsilon.
+    \]
+    因此，$\lambda(A) - \varepsilon < \lambda(K)$，因此，$A$ 有界时的不等式成立。
+
+    最后处理无界时候的情况，假设 $b$ 是任意一个小于 $\lambda(A)$ 的实数，我们下面构造出一个 $A$ 的紧子集 $K$ 使得 $b < \lambda(K)$。取一列递增的 $A$ 的有界可测子集 $\{A_j\}$，满足 $A = \bigcup_j A_j$，对于测度空间，我们可以知道 $\lambda(A)=\lim_j \lambda(A_j)$，所以我们可以选择一个 $j_0$ 使得 $\lambda(A_{j_0}) > b$。现在对于 $A_{j_0}$ 应用就在刚刚证明了的东西，我们可以给出一个 $A_{j_0}$ 的紧子集 $K$ 使得 $\lambda(K) > b$，因此 $K$ 也是 $A$ 的紧子集。由于 $b$ 是任意小于 $\lambda(A)$ 的数，因此所需不等式成立。
+\end{proof}
+
+我们下面考虑处理一些具有特定形式的半开立方体，首先证明下面引理：
+
+\begin{lemma}\label{Lemma-1-4-1}
+    每一个 $\RR^d$ 的开子集都可以表示成可数个两两不相交的半开立方体的并，每一个立方体都可以表示下述形式：
+    \begin{equation}\label{1-4-Equation-1}
+        \{(x_1,\dots,x_d) : j_i 2^{-k} \le x_i < (j_i+1)2^{-k},\ \text{for } i=1,\dots,d\},
+    \end{equation}
+    这里 $j_1,\dots,j_d$ 为若干整数，$k$ 为某个正整数。
+\end{lemma}
+
+\begin{proof}[Proof of Lemma 1.4.1]
+\end{proof}
+
+\begin{proposition}\label{Proposition-1-4-2}
+    Lebesgue 测度是 $(\RR^d,\calB(\RR^d))$ 上唯一一个可以将每一个 $d$ 维区间、甚至于任何一个形为 \eqref{1-4-Equation-1} 的半开立方体赋以其体积的测度。
+\end{proposition}
+
+\begin{proof}[Proof of Proposition 1.4.2]
+\end{proof}
+
+下面我们讨论 Lebesgue 测度的{\normalfont\bfseries 平移不变性}，对于 $\RR^d$ 的每个元素 $x$ 与子集 $A$，我们用 $A+x$ 表示集合
+\[
+    A+x = \{y \in \RR^d : y = a+x \text{ for some } a \in A\},
+\]
+这个集合称为 $A$ 在 $x$ 处的 {\normalfont\bfseries 平移 / translate}。
+
+\begin{proposition}\label{Proposition-1-4-3}
+    $\RR^d$ 上的 Lebesgue 外测度在平移下不变：若 $x \in \RR^d$ 且 $A \subset \RR^d$，则 $\lambda^*(A) = \lambda^*(A+x)$。此外，$B \subset \RR^d$ 是 Lebesgue 可测的，当且仅当 $B+x$ 是 Lebesgue 可测的。
+\end{proposition}
+
+这个命题是对 Lebesgue 外测度的平移不变性的描述，很容易知道，显然 Lebesgue 测度也是平移不变的。
+
+\begin{proof}[Proof of Proposition 1.4.3]
+\end{proof}
+
+下面是一个更一般的结论：
+
+\begin{proposition}\label{Proposition-1-4-4}
+    设 $\mu$ 是 $(\RR^d,\calB(\RR^d))$ 上的一个非零的满足平移不变性的测度，并且在 $\RR^d$ 上的有界 Borel 子集上有限。则存在一个常数 $c$，对每一个 $A \in \calB(\RR^d)$ 都有 $\mu(A) = c\lambda(A)$。
+\end{proposition}
+
+这个命题成立的前提是可测空间 $(\RR^d,\calB(\RR^d))$ 上的测度 $\mu$ 平移不变性的定义是有意义的，这就需要 $\RR^d$ 上的 Borel $\sigma$-代数必须是平移不变的，也就是若 $A \in \calB(\RR^d)$ 且 $x \in \RR^d$，则 $A+x \in \calB(\RR^d)$。要验证 $\calB(\RR^d)$ 的平移不变性，只需要注意 $\{A \subseteq \RR^d : A+x \in \calB(\RR^d)\}$ 是一个包含开集的 $\sigma$-代数，因此包含 $\calB(\RR^d)$。
+
+\begin{proof}[Proof of Proposition 1.4.4]
+\end{proof}
+
+\begin{example}[Cantor Set / Cantor 三分集]\label{Example-1-4-1}
+\end{example}
+
+\begin{proposition}\label{Proposition-1-4-5}
+    Cantor 集是一个紧集；它的基数为连续统，但其 Lebesgue 测度为零。
+\end{proposition}
+
+\begin{proof}[Proof of Proposition 1.4.5]
+\end{proof}
+
+\begin{example}[A Nonmeasurable Set]\label{Example-1-4-2}
+\end{example}
+
+\begin{theorem}\label{Theorem-1-4-1}
+\end{theorem}
+
+\begin{proof}[Proof of Theorem 1.4.1]
+\end{proof}
+
+\begin{proposition}\label{Proposition-1-4-6}
+\end{proposition}
+
+\begin{proof}[Proof of Proposition 1.4.6]
+\end{proof}
+
+\begin{proposition}\label{Proposition-1-4-7}
+\end{proposition}
+
+\begin{proof}[Proof of Proposition 1.4.7]
+\end{proof}
+
+\clearpage
+
+\stubsubsection[Section-1-5]{Completeness and Regularity}
+
+\clearpage
+
+\stubsubsection[Section-1-6]{Dynkin Classes}
+
+\clearpage
+
+\stubsection[Section-2]{Functions and Integrals}
+
+\stubsubsection[Section-2-1]{Measurable Functions}
+
+\stubsubsection{Properties That Hold Almost Everywhere}
+
+\stubsubsection{The Integral}
+
+\stubsubsection{Limit Theorems}
+
+\stubsubsection{The Riemann Integral}
+
+\stubsubsection{Measurable Functions Again, Complex-Valued Functions, and Image Measures}
+
+\stubsection{Convergence}
+
+\stubsubsection{Modes of Convergence}
+
+\stubsubsection{Normed Spaces}
+
+\stubsubsection{\texorpdfstring{Definition of $\calL_p$ and $\calL_p$}{Definition of Lp and Lp}}
+
+\stubsubsection{\texorpdfstring{Properties of $\calL_p$ and $\calL_p$}{Properties of Lp and Lp}}
+
+\stubsubsection{Dual Spaces}
+
+\stubsection{Signed and Complex Measures}
+
+\stubsubsection{Signed and Complex Measures}
+
+\stubsubsection{Absolute Continuity}
+
+\stubsubsection{Singularity}
+
+\stubsubsection{Functions of Finite Variation}
+
+\stubsubsection{\texorpdfstring{The Duals of the $\calL_p$ Spaces}{The Duals of the Lp Spaces}}
+
+\stubsection{Product Measures}
+
+\stubsubsection{Constructions}
+
+\stubsubsection{Fubini's Theorem}
+
+\stubsubsection{Applications}
+
+\stubsection{Differentiation}
+
+\stubsubsection{\texorpdfstring{Change of Variable in $\mathbb{R}^d$}{Change of Variable in R\^{}d}}
+
+\stubsubsection{Differentiation of Measures}
+
+\stubsubsection{Differentiation of Functions}
+
+\stubsection[Section-7]{Measures on Locally Compact Spaces}
+
+\stubsubsection{Locally Compact Spaces}
+
+\stubsubsection{The Riesz Representation Theorem}
+
+\stubsubsection{Signed and Complex Measures; Duality}
+
+\stubsubsection{Additional Properties of Regular Measures}
+
+\stubsubsection{\texorpdfstring{The $\mu^*$-Measurable Sets and the Dual of $L^1$}{The mu*-Measurable Sets and the Dual of L1}}
+
+\stubsubsection{Products of Locally Compact Spaces}
+
+\stubsubsection{The Daniell--Stone Integral}
+
+\stubsection{Polish Spaces and Analytic Sets}
+
+\stubsubsection{Polish Spaces}
+
+\stubsubsection{Analytic Sets}
+
+\stubsubsection{The Separation Theorem and Its Consequences}
+
+\stubsubsection{The Measurability of Analytic Sets}
+
+\stubsubsection{Cross Sections}
+
+\stubsubsection{Standard, Analytic, Lusin, and Souslin Spaces}
+
+\stubsection{Haar Measure}
+
+\stubsubsection{Topological Groups}
+
+\stubsubsection{The Existence and Uniqueness of Haar Measure}
+
+\stubsubsection{Properties of Haar Measure}
+
+\stubsubsection{\texorpdfstring{The Algebras $L^1(G)$ and $M(G)$}{The Algebras L1(G) and M(G)}}
+
+\end{document}

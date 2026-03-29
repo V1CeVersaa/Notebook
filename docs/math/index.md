@@ -8,12 +8,12 @@
 
 ### 网页版笔记
 
-- [ ] [Probability Basis](./Probability%20Basis/index.md)
+- [ ] [Probability Basis](./prob_basis/index.md)
     - 我在上「概率论（H）」这门课的时候做的笔记，主要参考李贤平的教材
-- [ ] [Foundations of Optimization](Optimization/1%20Introduction.md)
-- [x] [Discrete Mathematics](Discrete%20Mathematics/index.md)
+- [ ] [Foundations of Optimization](opt/index.md)
+- [x] [Discrete Mathematics](discrete/index.md)
 
-### 手写/Typst 笔记
+### 手写/$\LaTeX$ 笔记
 
 <div class="card file-block" markdown="1">
 <div class="file-icon"><img src="/assets/images/pdf.svg" style="height: 3em;"></div>
@@ -57,7 +57,7 @@
 <div class="file-title"> <font color="#1A41AC">测度论</font> Measure Theory </div>
 <div class="file-meta">? KB / ? P / Working </div>
 </div>
-<a class="down-button" target="_blank" href="/Math/Measure Theory.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+<a class="down-button" target="_blank" href="/Math/measure_theory.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
 </div>
 
 <div class="card file-block" markdown="1">
@@ -66,7 +66,7 @@
 <div class="file-title"> <font color="#1A41AC">实分析</font> Real Analysis </div>
 <div class="file-meta">? KB / ? P / Working </div>
 </div>
-<a class="down-button" target="_blank" href="/Math/Real Analysis.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+<a class="down-button" target="_blank" href="/Math/real_analysis.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
 </div>
 
 <div class="card file-block" markdown="1">
@@ -75,7 +75,7 @@
 <div class="file-title"> <font color="#1A41AC">高等概率论</font> Advanced Probability </div>
 <div class="file-meta">? KB / ? P / Working </div>
 </div>
-<a class="down-button" target="_blank" href="/Math/Advanced Probability.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+<a class="down-button" target="_blank" href="/Math/advanced_probability.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
 </div>
 
 
