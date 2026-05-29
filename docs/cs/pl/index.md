@@ -11,5 +11,7 @@
 - [ ] [Programming Language: Go](./go/index.md)
 - [ ] [Programming Language: Rust](./rust/index.md)
 - [ ] [Programming Language: Python](./python/index.md)
+- [ ] [Programming Language: JavaScript](./js/index.md)
+- [ ] [Programming Language: TypeScript](./ts/index.md)
 - [ ] [Programming Language: OCaml](./ocaml/index.md)
 - [ ] [Programming Language: Swift](./swift/index.md)

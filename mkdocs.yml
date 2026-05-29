@@ -89,6 +89,26 @@ nav:
                       - 第五部分：元编程: cs/pl/python/5_metaprogramming.md
                       - Python 新版本特性: cs/pl/python/6_news.md
                       - 妙妙小工具: cs/pl/python/7_tools.md
+                - JavaScript:
+                      - cs/pl/js/index.md
+                      - Language Core: cs/pl/js/1-language-core.md
+                      - Objects and Data: cs/pl/js/2-objects-and-data.md
+                      - Functions Runtime: cs/pl/js/3-functions-runtime.md
+                      - Object Model: cs/pl/js/4-object-model.md
+                      - Errors and Async: cs/pl/js/5-errors-and-async.md
+                      - Generators and Iteration: cs/pl/js/6-generators-iteration.md
+                      - Modules: cs/pl/js/7-modules.md
+                      - Miscellaneous Runtime: cs/pl/js/8-miscellaneous-runtime.md
+                      - Toolchain: cs/pl/js/9-toolchain.md
+                - TypeScript:
+                      - cs/pl/ts/index.md
+                      - Type Checker and Everyday Types: cs/pl/ts/1-type-checker-and-everyday-types.md
+                      - Narrowing Functions and Object Types: cs/pl/ts/2-narrowing-functions-and-object-types.md
+                      - Generics and Type Manipulation: cs/pl/ts/3-generics-and-type-manipulation.md
+                      - Modules tsconfig and Build Boundaries: cs/pl/ts/4-modules-tsconfig-and-build-boundaries.md
+                      - Runtime Boundaries and Validation: cs/pl/ts/5-runtime-boundaries-and-validation.md
+                      - Modern Syntax and Erasable TypeScript: cs/pl/ts/6-modern-syntax-and-erasable-typescript.md
+                      - Project Architecture and Library Authoring: cs/pl/ts/7-project-architecture-and-library-authoring.md
                 - Rust:
                       - cs/pl/rust/index.md
                       - 1 Basic Syntax: cs/pl/rust/1_basic.md
@@ -150,7 +170,6 @@ nav:
                 - cs/web/index.md
                 - CSS: cs/web/css.md
                 - HTML: cs/web/html.md
-                - Javascript: cs/web/js.md
                 - Vue.js: cs/web/vue.md
                 - YAML: cs/web/yaml.md
                 - TOML: cs/web/toml.md

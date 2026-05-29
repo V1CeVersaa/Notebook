@@ -22,6 +22,8 @@
 - [ ] [Programming Language: C](./pl/c/index.md)
 - [ ] [Programming Language: C++](./pl/cpp/index.md)
 - [ ] [Programming Language: Python](./pl/python/index.md)
+- [x] [Programming Language: JavaScript](./pl/js/index.md)
+- [x] [Programming Language: TypeScript](./pl/ts/index.md)
 - [ ] [Programming Language: Rust](./pl/rust/index.md)
 - [ ] [Programming Language: OCaml](./pl/ocaml/index.md)
 - [ ] [Programming Language: Swift](./pl/swift/index.md)
@@ -73,7 +75,6 @@
 
 - [ ] [Web: CSS](./web/css.md)
 - [ ] [Web: HTML](./web/html.md)
-- [ ] [Web: JavaScript](./web/js.md)
 - [ ] [Web: Vue.js](./web/vue.md)
 - [x] [Web: YAML](./web/yaml.md)
 - [ ] [Web: TOML](./web/toml.md)
