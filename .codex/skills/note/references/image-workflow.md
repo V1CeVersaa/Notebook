@@ -1,13 +1,13 @@
 # Image Workflow Reference
 
-This reference covers the full pipeline for acquiring, processing, converting, and inserting images into notebook notes. It is the operational companion to the brief image guidance in `SKILL.md` and `notebook-style.md`.
+Read this reference when the task needs image acquisition or changes. It covers source extraction, processing, conversion, insertion, and final inspection. Overall task completion is defined in [SKILL.md](../SKILL.md), and formatting in [notebook-style.md](notebook-style.md).
 
 ## Pipeline Overview
 
-Every image passes through four stages before appearing in a note:
+For source figures, use the operations that are needed; reuse already suitable assets:
 
 1. **Acquire** — obtain a raw image from a PDF or locate an already-extracted file
-2. **Process** — crop and rotate to eliminate waste; nothing more
+2. **Process** — frame the relevant content while preserving labels and evidence
 3. **Convert** — produce a `.webp` file at the right quality
 4. **Insert** — choose a width, name the file correctly, and embed the HTML tag
 
@@ -17,29 +17,23 @@ Every image passes through four stages before appearing in a note:
 
 ### Extract pages from a PDF
 
-Use `ffmpeg` to render PDF pages to high-resolution PNG. Extract only the pages that will be used, not the whole document.
+`ffmpeg` cannot decode PDFs — do not try `ffmpeg -i source.pdf`. Render pages with `fitz` (PyMuPDF) in a suitable environment, or use Poppler as shown below. The Python example uses the existing `MISC` environment. Extract only the pages that will be used, not the whole document.
 
 ```bash
-# Single page (page 5, one-indexed in ffmpeg's -ss)
-ffmpeg -i source.pdf -vf "scale=3000:-1" -vframes 1 -ss 4 raw-page.png
-
-# A range of pages — then pick what you need
-ffmpeg -i source.pdf -vf "scale=3000:-1" frames/page%03d.png
+conda run --no-capture-output -n MISC python - <<'EOF'
+import fitz
+doc = fitz.open("source.pdf")
+mat = fitz.Matrix(3, 3)   # 3× zoom ≈ 216 dpi — enough to crop without artefacts
+for pno in [4, 11, 12]:   # zero-indexed pages to extract
+    pix = doc[pno].get_pixmap(matrix=mat)
+    pix.save(f"raw-page-{pno + 1}.png")
+EOF
 ```
 
-Resolution `scale=3000:-1` keeps width at 3000 px and preserves aspect ratio — enough to crop without visible interpolation artefacts in the final webp.
-
-If `ffmpeg` does not handle the specific PDF cleanly, fall back to a Python script inside the `MISC` conda environment using `fitz` (PyMuPDF):
+If poppler is available, `pdftoppm` is a shell-only alternative for page ranges (`-f`/`-l` are one-indexed):
 
 ```bash
-conda run -n MISC python - <<'EOF'
-import fitz, sys
-doc = fitz.open("source.pdf")
-page = doc[4]          # zero-indexed
-mat = fitz.Matrix(3, 3)   # 3× zoom ≈ 216 dpi
-pix = page.get_pixmap(matrix=mat)
-pix.save("raw-page.png")
-EOF
+pdftoppm -png -r 200 -f 5 -l 5 source.pdf raw-page
 ```
 
 ### Locate an already-extracted image
@@ -50,7 +44,7 @@ If the source material already has image files (JPEG, PNG, TIFF), use them direc
 
 ## Stage 2: Process
 
-The only allowed operations are **crop** and **rotate**. The goal is a tight, unambiguous frame: no slide decorations, no irrelevant whitespace, no partial adjacent diagrams, and no missing parts of the relevant content.
+For source figures, use **crop** and **rotate** to obtain a readable frame. Preserve axes, labels, legends, and subfigures needed to interpret the content; do not alter plotted data or remove qualifications. Resizing and format conversion must preserve legibility.
 
 Prefer `ffmpeg` for both operations to stay in one tool.
 
@@ -153,9 +147,9 @@ Add `alt` text only when nearby files in the same series do so consistently. Whe
 
 ## Environment
 
-`ffmpeg` and `cwebp` are available in the system environment. Use them directly from the shell.
+Check whether `ffmpeg`, `cwebp`, and the needed PDF renderer are available before choosing commands. Use installed tools directly; do not assume another machine has the same environment.
 
-For Python-based steps (e.g. PyMuPDF page extraction), always run inside the `MISC` conda environment to avoid polluting the outer environment:
+For Python-based steps (e.g. PyMuPDF page extraction), prefer the existing `MISC` conda environment. If unavailable, use an already suitable isolated environment or the Poppler alternative; do not block solely on the environment name:
 
 ```bash
 conda run -n MISC python script.py
@@ -168,16 +162,14 @@ Do not `pip install` anything outside of `MISC`.
 
 ---
 
-## Image Density by Domain
+## Image Selection
 
-Images are not decoration — they replace prose that cannot convey spatial, structural, or sequential information as efficiently. The right count depends on the domain:
+Select images by explanatory value and source evidence, with no density quota. Architecture diagrams, training curves, and qualitative results may be central to a CV or RL note; symbolic derivations and code may already explain a math or PL topic. These are cues to check for omissions, not requirements to add or remove a certain number of images.
 
-| Domain | Typical density | Rationale |
-|--------|----------------|-----------|
-| CV, perceptual ML, RL environments | high (4–8 per ~1000 words) | architecture diagrams, training curves, qualitative results are irreplaceable |
-| Systems, compilers, algorithms | moderate (2–4 per ~1000 words) | data-structure diagrams, pipeline stages, assembly/IR comparisons add genuine value |
-| Math, optimization, probability | low–sparse (0–2 per ~1000 words) | derivations and definitions are primary; reserve images for geometric intuitions |
-| TCS, formal languages, logic | sparse (0–1 per ~1000 words) | reduction diagrams and automaton diagrams can help; symbolic content dominates |
-| PL, programming language notes | sparse (0–1 per ~1000 words) | code and AST snippets serve the same function |
+For each image, identify what the reader learns from it and where the prose uses it. Preserve figures needed to substantiate a reported result. Zero images is acceptable when the requested material is fully explained without them.
 
-The heuristic "two to three images per thousand words" is a rough baseline for a balanced note; weight it by domain. A CV lecture note with no images is almost certainly missing something; a probability theorem note with five images may be over-illustrated.
+## Final Inspection
+
+After insertion, open the final assets and verify that labels, axes, legends, and fine detail remain readable, the relevant content is complete, and the image supports the surrounding explanation. Check relative paths from the note; inspect the rendered page when displayed width or placement matters, using the verification guidance in `AGENTS.md` at the repository root.
+
+If a figure reveals a factual or structural error, revise the affected prose and recheck that portion. Resolve temporary figure comments before declaring the note complete. Report a missing necessary asset as incomplete work, not as a successful image stage.

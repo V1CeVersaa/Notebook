@@ -1,215 +1,74 @@
-# Human Voice Reference
+# Explanatory Voice Reference
 
-This reference captures the AI writing patterns most likely to appear in technical Chinese notebook notes and how to fix them. Apply it as a final pass before delivering any note. The goal is prose that sounds like a person who actually understands the material, not a language model summarizing a lecture.
+This guide applies to drafting and revising notebook prose. The goal is **coherent explanation, complete coverage of the requested knowledge, and a length suited to the material**. Apply it only to text added or changed in the current task. Mechanical edits need no voice review, and this guide does not authorize rewriting untouched paragraphs.
 
-This guide is adapted from the [humanizer skill](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) for the specific register of V1CeVersa's notebook: Chinese body text, technical domain, student-to-future-self voice.
+## Develop Reasoning the Reader Can Follow
 
----
+Start from what the reader already understands, explain the problem at hand, and introduce the concepts needed to address it. Near each definition, explain the symbols, constraints, and their meaning. As the mechanism unfolds, show how it addresses the earlier problem and under what conditions it works. Briefly refer back to familiar premises; expand new steps that are essential to understanding.
 
-## Core Principle
+Organize each paragraph around one main question, with genuine causal, deductive, or conditional relationships between sentences. A question left by one concept can introduce the next, but independent topics need no forced connection. Narrative comes from how the knowledge develops; it does not require inventing a history, failed attempts, or a discovery process.
 
-Good technical notes have a human behind them. Removing AI patterns is only half the job. Voiceless, sterile writing is just as obvious as pattern-matched slop. The notebook voice should reflect genuine understanding, not transcription.
+Use connected prose for explanations. Lists or tables suit algorithm steps, parallel conditions, interface references, and comparisons; headings distinguish actual conceptual levels. Do not fragment a complete argument into a sentence-by-sentence checklist or hide its steps merely to maintain long paragraphs.
 
-**Signs of soulless writing (even if technically clean):**
+## Balance Completeness and Brevity
 
-- Every sentence is the same length and cadence
-- No opinions, just neutral reporting
-- No acknowledgment of uncertainty or complexity
-- Reads like a translated Wikipedia stub or textbook introduction
-- Filler transitions glue paragraphs together without adding logic
+Judge completeness against the requested scope: do not drop conditions on definitions, mechanisms, essential derivation steps, or limits on conclusions to shorten the text. Every concept need not receive the same background, examples, counterexamples, evaluation, and summary. Allocate space according to where the reader is most likely to need help.
 
-**How to add voice:**
+Once an example explains the mechanism, additional examples that merely change the numbers are unnecessary. Remove repetition that adds no information, while retaining explanations that bridge reasoning steps. A key conclusion may deserve a brief restatement, especially after a long proof; judge it by whether it helps the reader understand or use the result, not by whether it ends a paragraph.
 
-- Have opinions. "Pre-norm 目前是铁律。唯一的例外是 OPT-350M，大概率是个失误。" is more useful than neutrally listing both options.
-- Vary rhythm. Short punchy sentences next to longer analytical ones. Not every sentence should be the same structure.
-- Acknowledge complexity. "这个设计在理论上优雅，但工程上难以实现" beats "该设计有一定局限性".
-- Use specific numbers and sources over vague claims. "Xiong 2020 发现 Post-norm 在初始化阶段梯度随层数增长而爆炸" beats "研究表明 Post-norm 存在训练不稳定的问题".
-- Occasional first-person or student-voice asides are fine when they clarify: `"记好这个 φ₂，后面还会用到"`, `"直白说就是……"`.
+Natural questions, transitions, and occasional conversational phrasing are welcome. Do not mandate particular connectors, a ratio of short sentences, paragraph lengths, or the author's habitual expressions. Explaining a definition requires no accompanying opinion. When evaluating a method, support the judgment with evidence and applicable conditions.
 
----
+## Preserve Facts During Voice Edits
 
-## Chinese AI Writing Patterns
+**Polishing must preserve facts, formulas, causal relationships, scope, and uncertainty.** Do not add numbers, complexity bounds, experimental results, citations, or claims of field-wide consensus merely to sound concrete. Explanatory additions must follow from premises already stated. When external facts are needed, verify them first and treat the addition as a content revision.
 
-### 1. Significance Inflation (意义拔高)
+If the original contains a technical error, verify and correct it explicitly rather than making it sound more certain. When a source reports only an observation, do not supply an unsupported cause; when results are absent, do not present speculation as evidence. Retain explicit uncertainty where support is insufficient.
 
-**Characters to watch:** 具有深远意义、意义重大、奠定了基础、起到了关键作用、推动了X的发展、标志着X的重要里程碑、体现了X的核心价值
+Nearby notes can demonstrate narrative rhythm and organization, but their technical claims still need checking against the sources used for the current task. The examples below illustrate explanatory techniques. They are neither fixed sentence templates nor factual sources for other notes. They remain in Chinese to demonstrate the language of the notebook artifacts.
 
-**Problem:** Chinese LLM output routinely inflates the importance of arbitrary facts with philosophical-sounding closing sentences.
+## Example: Give a Formal Definition Meaning
 
-**Before:**
-> ReLU 激活函数的提出具有深远意义，奠定了深度学习快速发展的基础，推动了整个领域的重大进步。
+This is a self-contained teaching example. All premises appear in the passage, and its numbers illustrate the definition rather than report experimental data.
 
-**After:**
-> ReLU 解决了 sigmoid 的梯度消失问题，让更深的网络训练变得可行。
+> 对整数 $a\leq b$，我们用 半开区间/half-open interval $[a,b)$ 表示满足 $a\leq i<b$ 的整数位置。区间非空时从左端点开始，右端点用来标记停止的位置，因此区间内共有 $b-a$ 个整数。例如，$[2,5)$ 包含 $2,3,4$，而 $[2,2)$ 为空。
+>
+> 这个表示也便于切分区间：取整数 $m$ 满足 $a\leq m\leq b$，可以把 $[a,b)$ 分成 $[a,m)$ 和 $[m,b)$。前一段在 $m$ 之前结束，后一段从 $m$ 开始、到 $b$ 之前结束；两段没有重叠，合起来仍是原来的区间。取 $m=a$ 或 $m=b$ 时，其中一段为空。
 
----
+The passage gives a definition, explains it through boundaries and examples, then derives a use. If the surrounding material needs only interval notation, the first paragraph is enough; include the second only when splitting intervals is relevant.
 
-### 2. Filler Transitions (无效过渡)
+## Example: Explain the Reasoning Between Formulas
 
-**Characters to watch:** 此外、另外、不仅如此、值得注意的是、需要指出的是、不难发现、综上所述、总体来看、由此可见、总而言之
+This example adapts the explanation of minimizing a local quadratic model in `docs/math/opt/3 Descent.md`, retaining only a derivation that can be checked within the passage. It is not a verbatim excerpt and does not carry over the original's claims about convergence of the iteration.
 
-**Problem:** These phrases glue paragraphs together without adding logic. They signal that the next sentence could be placed anywhere — it has no real connection to the previous one.
+> 给定可微函数 $f:\mathbb{R}^n\to\mathbb{R}$，在当前点 $x_0$ 处，一阶近似告诉我们函数沿各个方向如何变化。但如果梯度非零，单独最小化这个线性模型会沿下降方向无限走远。我们给位移加上一个二次惩罚，得到
+>
+> $$
+> q(x)=f(x_0)+\langle\nabla f(x_0),x-x_0\rangle+\frac{1}{2h}\lVert x-x_0\rVert^2,\qquad h>0.
+> $$
+>
+> $h$ 控制位移惩罚的强弱：$h$ 越小，离开 $x_0$ 的代价越高。这个二次模型严格凸，令梯度为零就能找到唯一极小点：
+>
+> $$
+> \nabla q(x)=\nabla f(x_0)+\frac{x-x_0}{h}=0
+> \quad\Longrightarrow\quad x_1=x_0-h\nabla f(x_0).
+> $$
+>
+> 这样得到了梯度更新的形式。不过，当前最小化的是 $q$；要保证这一步也降低原函数 $f$，还需要控制模型误差与步长，单凭这个推导不能得出下降或收敛结论。
 
-**Before:**
-> Attention 机制的核心是计算 Query 和 Key 的相似度。此外，Value 的加权求和得到输出。另外，Multi-head Attention 允许模型关注不同的子空间。
+The explanation connects why the quadratic term is needed, what the parameter controls, how to obtain the update, and what has actually been established. The final qualification adds information and should remain. There is no need to repeat the same explanation after each line of algebra.
 
-**After:**
-> Attention 的计算分三步：用 Query 和 Key 的点积算相似度，softmax 归一化，然后对 Value 加权求和。Multi-head 的意义在于允许模型同时关注不同子空间的信息。
+## Example: Connect an Explanation Without Inventing Evidence
 
----
+Assume the source provides only these facts: the system caches query results by key; a hit returns the cached value; a miss queries the data source and writes the result to the cache; updates to the data source do not automatically refresh the cache. The passage below only reorganizes these given facts.
 
-### 3. Superficial -ing Analyses (悬挂分词短语)
+> 系统先按键查找缓存。命中时直接返回缓存值；未命中时才查询数据源，并把结果写入缓存，供之后的查询使用。
+>
+> 这个流程还留下一个问题：数据源更新后，缓存不会自动刷新，后续查询可能继续读到旧值。因此，理解该系统时还需要检查它如何让缓存失效或更新；给定材料没有说明这一部分。
 
-**Problem:** AI appends present-participle phrases in Chinese form (`……，从而X`, `……，进而体现了Y`, `……，充分说明了Z`) as fake analytical depth. They add words without adding logic.
+The question in the second paragraph follows from the mechanism in the first. There is no need to invent a hit rate, latency improvement, or consistency guarantee, or to supply an invalidation scheme absent from the source. For a voice-only edit, mention missing information in an editorial comment when appropriate rather than forcing it into the notebook prose.
 
-**Before:**
-> Transformer 采用了 Self-Attention 机制，从而使模型能够捕捉长距离依赖关系，进而提升了序列建模的能力，充分体现了注意力机制的强大表达能力。
+## Review Before Delivery
 
-**After:**
-> Transformer 用 Self-Attention 替代 RNN 的核心原因是：RNN 只能串行处理序列，长距离依赖容易衰减；Self-Attention 直接建模任意两个位置之间的关系，且可以并行计算。
+Reread only the text written in this task: can the reader follow the concepts and derivations? Are the necessary knowledge and qualifications complete? Can any repetition be removed without harming understanding? Are added factual claims supported? Correct concrete problems; leave clear, natural sentences unchanged.
 
----
-
-### 4. Vague Attributions (无出处引用)
-
-**Characters to watch:** 研究表明、有研究发现、学界普遍认为、专家指出、相关文献显示、实验证明
-
-**Problem:** Claims attributed to unnamed research or experts are not useful. If the source is important, name it. If it is not, just state the claim directly.
-
-**Before:**
-> 研究表明，Batch Normalization 能够有效加速训练并提升模型稳定性。
-
-**After:**
-> Batch Normalization（Ioffe & Szegedy 2015）通过在每个 mini-batch 内归一化激活值，减少了内部协变量偏移，让更大的学习率成为可能。
-
----
-
-### 5. Formulaic "Summary" Endings (套路式结尾)
-
-**Characters to watch:** 综上所述、总结来说、本节介绍了……希望对读者有所帮助、……是X领域不可或缺的重要工具、相信随着研究的不断深入
-
-**Problem:** Closing paragraphs that summarize what was just said without adding anything, or make optimistic noises about the future.
-
-**Before:**
-> 综上所述，本节介绍了 Transformer 架构的核心组成部分，包括 Self-Attention、位置编码和 FFN。Transformer 是现代深度学习不可或缺的重要基础，相信随着研究的不断深入，其应用将更加广泛。
-
-**After:**
-> (就此结束；如果有值得说的后续，例如与下一节的连接、已知的局限性、或开放问题，直接说出来，不要用套话代替。)
-
----
-
-### 6. Meta-Commentary on the Note Itself (自指性说明)
-
-**Characters to watch:** 本节将介绍……、接下来我们将讨论……、下面将从X、Y、Z三个方面分析……、本文首先……然后……最后……
-
-**Problem:** Announcing what you are about to do instead of doing it. This is the Chinese equivalent of "let's dive in." It wastes space and signals the content was assembled rather than understood.
-
-**Before:**
-> 本节将从数学定义、几何意义和算法应用三个方面介绍凸函数的基本概念。
-
-**After:**
-> 凸函数的核心约束是弦在曲线上方：对任意 $x, y$ 和 $\lambda \in [0,1]$，有 $f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1-\lambda)f(y)$。
-
----
-
-### 7. Copula Avoidance (回避"是")
-
-**Characters to watch:** 起到了X的作用、扮演着X的角色、承担着X的功能、作为X存在、发挥着X的职责
-
-**Problem:** Using elaborate constructions instead of simple `是` or `有`.
-
-**Before:**
-> 残差连接在深度网络中起到了缓解梯度消失的重要作用，扮演着稳定训练过程的关键角色。
-
-**After:**
-> 残差连接的作用是在反向传播时提供梯度的直通路径，让 100 层以上的网络可以稳定训练。
-
----
-
-### 8. Rule of Three Overuse (强制三元结构)
-
-**Problem:** LLMs force ideas into groups of three to seem comprehensive.
-
-**Before:**
-> 该方法具有三个优点：一是计算效率高，二是内存占用低，三是易于实现。
-
-**After:**
-> 该方法的主要优势是计算效率：相比朴素实现，它把时间复杂度从 $O(n^2)$ 降到 $O(n \log n)$。内存开销也随之减少，不过实现上比朴素版本要复杂一些。
-
----
-
-### 9. Inline-Header Bullet Lists (带粗体标题的列表)
-
-**Problem:** Lists where every item starts with **bold header:** followed by a restatement of the header. This is a formatting tic, not structure.
-
-**Before:**
-> - **效率**：该算法的时间复杂度得到了显著提升，运行效率更高。
-> - **精度**：通过优化损失函数，模型精度有所提升。
-> - **稳定性**：改进的初始化策略使训练过程更加稳定。
-
-**After:**
-> 该改进主要体现在三点：时间复杂度从 $O(n^2)$ 降至 $O(n \log n)$；针对长尾分布优化了损失函数，top-1 精度提升 2.3%；换用 Xavier 初始化后训练曲线不再出现前期震荡。
-
----
-
-### 10. Excessive Hedging (过度不确定)
-
-**Characters to watch:** 或许可以认为、可能在某种程度上、不一定完全准确、在一定条件下也许
-
-**Problem:** Over-qualifying claims that the source material actually states clearly.
-
-**Before:**
-> 这或许在某种程度上可以说明，卷积操作可能具有一定的平移不变性。
-
-**After:**
-> 卷积的平移不变性来自权重共享：同一个滤波器在输入的每个位置独立应用，所以输入平移后输出也相应平移，不改变检测到的特征。
-
----
-
-### 11. Em Dash Overuse (破折号滥用)
-
-**Problem:** Em dashes (——) used where a comma, period, or parenthesis would be cleaner.
-
-**Before:**
-> Attention 机制——尤其是 Multi-head Attention——是 Transformer 的核心——也是它与 RNN 本质上不同的地方。
-
-**After:**
-> Attention 机制（尤其是 Multi-head Attention）是 Transformer 的核心，也是它与 RNN 本质上不同的地方。
-
----
-
-### 12. Promotional Language (宣传性语言)
-
-**Characters to watch:** 强大的、卓越的、优秀的、完美地、极大地提升了、革命性的、突破性的（用于普通技术细节时）
-
-**Problem:** Using advertising-copy vocabulary for technical description.
-
-**Before:**
-> GPT-3 拥有强大的语言生成能力，能够完美地完成各种自然语言处理任务，展现了大语言模型卓越的理解和推理能力。
-
-**After:**
-> GPT-3（175B 参数）在少样本场景下的表现首次接近了部分有监督基线，但在需要精确推理的任务上仍有明显差距。
-
----
-
-## Final Anti-AI Pass
-
-Before finishing any note, ask: *"What still makes this sound AI-generated?"*
-
-Common remaining tells in Chinese technical notes:
-- The rhythm is too uniform (every paragraph is 3–4 sentences, all roughly the same length)
-- No genuine opinion or judgment is visible, only neutral reporting
-- The closing paragraph summarizes what was just said
-- Transitions are logical connectors without logical content
-- Specific numbers are present but the reader cannot tell *why* they matter
-
-Fix these, then deliver.
-
----
-
-## What This Reference Does Not Replace
-
-This reference handles *voice and anti-pattern checks*. It does not override:
-- `notebook-style.md` for structural conventions (admonitions, anchors, math syntax, image format)
-- Local series conventions (match adjacent files first)
-- Domain explanation patterns (systems, theory, ML, math sequences from `notebook-style.md`)
+For formatting and terminology conventions, see [notebook-style.md](notebook-style.md); for domain coverage, see [domain-patterns.md](domain-patterns.md). Blockquotes here distinguish examples from guidance. When writing notes, follow the target series's normal body formatting.
