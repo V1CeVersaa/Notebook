@@ -1,6 +1,6 @@
 # Image Workflow Reference
 
-Read this reference when the task needs image acquisition or changes. It covers source extraction, processing, conversion, insertion, and final inspection. Overall task completion is defined in [SKILL.md](../SKILL.md), and formatting in [notebook-style.md](notebook-style.md).
+Read this reference when the task needs image acquisition or changes. It covers source extraction, processing, conversion, insertion, and final inspection. It is the single reference for image naming, placement, and width; overall task completion is defined in [SKILL.md](../SKILL.md), and other note formatting in [notebook-style.md](notebook-style.md).
 
 ## Pipeline Overview
 
@@ -166,7 +166,7 @@ Do not `pip install` anything outside of `MISC`.
 
 Select images by explanatory value and source evidence, with no density quota. Architecture diagrams, training curves, and qualitative results may be central to a CV or RL note; symbolic derivations and code may already explain a math or PL topic. These are cues to check for omissions, not requirements to add or remove a certain number of images.
 
-For each image, identify what the reader learns from it and where the prose uses it. Preserve figures needed to substantiate a reported result. Zero images is acceptable when the requested material is fully explained without them.
+For each image, identify what the reader learns from it and where the prose uses it. Preserve figures needed to substantiate a reported result. Zero images is acceptable when the requested material is fully explained without them. Do not fabricate source figures or empirical data.
 
 ## Final Inspection
 

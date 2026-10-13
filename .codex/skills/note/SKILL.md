@@ -23,11 +23,11 @@ Produce notes that explain the material coherently, cover the requested knowledg
 ## Read References as Needed
 
 - [notebook-style.md](references/notebook-style.md): formatting and file organization. Read the relevant sections when creating a note or changing its structure; use the target's conventions for a small patch.
-- [human-voice.md](references/human-voice.md): explanatory, connected Chinese prose. Read when drafting or substantially revising prose; consult examples when useful for calibration.
+- [human-voice.md](references/human-voice.md): explanatory, connected Chinese prose, common AI tells, and verbatim excerpts from the owner's notes for calibration. Read when drafting or substantially revising prose.
 - [domain-patterns.md](references/domain-patterns.md): coverage questions for a new note or substantive section. Read only the relevant domain. These are prompts for deciding what the material needs, not mandatory headings or a fixed order.
-- [image-workflow.md](references/image-workflow.md): read when acquiring or modifying images. Skip when the task needs no image work.
+- [image-workflow.md](references/image-workflow.md): read when acquiring, inserting, or modifying images. Skip when the task needs no image work.
 
-Local series conventions guide formatting, not factual correctness. The references refine the task within the scope set by the user and `AGENTS.md`.
+Local series conventions guide formatting, not factual correctness.
 
 ## Source and Coverage
 

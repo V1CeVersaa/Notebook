@@ -1,6 +1,6 @@
 # Notebook Style Guide
 
-This reference defines file organization and Markdown formatting for notebook artifacts. Read the sections needed for the current change. Existing series conventions take precedence over default templates, within the user's requested scope. Explanatory prose is covered in [human-voice.md](human-voice.md); coverage questions are in [domain-patterns.md](domain-patterns.md). These artifact conventions do not prescribe the assistant's chat style.
+This reference defines file organization and Markdown formatting for notebook artifacts. Read the sections needed for the current change. Existing series conventions take precedence over default templates. Explanatory prose is covered in [human-voice.md](human-voice.md); coverage questions are in [domain-patterns.md](domain-patterns.md). These artifact conventions do not prescribe the assistant's chat style.
 
 ## Repository Shape
 
@@ -78,6 +78,8 @@ For notes with outlines or durable internal links, prefer explicit heading ancho
 
 Point outline links at the explicit IDs. In book/course series, keep the scheme predictable within the series, such as `#chapter-7` for chapter-level headings and either descriptive subsection anchors like `#chapter-7-first-class` or compact numbered anchors like `#chapter-7-1`. If a note already has explicit anchors that work, preserve them unless the task is specifically an anchor normalization pass.
 
+When prose refers to another section by number, link the number to the target's explicit anchor instead of leaving it bare: `见 [2.4](#std-array)` within a file, `[STL I 4.1](./5_stl_1.md#iterator-categories)` across files. If the target heading has no explicit ID yet, add a descriptive English one such as `{ #sequential-containers }` in the same edit, after checking that no existing link relies on its generated anchor.
+
 ## Admonitions And Blocks
 
 Use MkDocs admonitions rather than Markdown blockquotes for callouts:
@@ -108,19 +110,13 @@ Long code can go under `???- Info "Code"` when it would interrupt the main expla
 
 ## Images
 
-Use this image form:
+Images use this form, with the path relative to the note:
 
 ```markdown
 <img class="center-picture" src="./assets/filename.webp" width=550 />
 ```
 
-Keep image paths relative to the note. Use width around `550` by default; ML notes with wide architecture diagrams or dense screenshots use `600`; narrow diagrams that need less horizontal space use `400`–`500`. Add `alt` text only if nearby files do so consistently; when used, name the concept the figure illustrates rather than describing layout.
-
-**Naming**: files go in `assets/` next to the note and follow `{index}-{number}[-{topic}].webp`, with hyphens as separators. The `index` is the lecture or chapter number (e.g. `15`) or a topic slug (e.g. `AVL`); `number` is the sequential count within that note starting at 1; `topic` is an optional short English slug added when it clarifies the subject (e.g. `15-2-attention.webp`). Large series may use numbered asset subdirectories (`assets_1/`, `assets_2/`) or named subdirectories (`assets/6 IR/`); match the local series convention.
-
-**Selection**: Include images that help explain the requested material or preserve necessary source evidence. No image count or density is required; zero images can be appropriate. Selection and final inspection are covered in [image-workflow.md](image-workflow.md).
-
-Do not fabricate source figures or empirical data. A `<!-- FIGURE: ... -->` comment can mark an asset still needed during drafting, but does not satisfy the final deliverable. Source extraction, processing, and insertion are covered in [image-workflow.md](image-workflow.md).
+File naming, asset directories, width, `alt` text, selection, and final inspection are defined in [image-workflow.md](image-workflow.md).
 
 ## Source Notes And References
 
@@ -131,6 +127,8 @@ Keep production metadata such as source file paths, slide origins, and extractio
 ```
 
 Do not put visible “generated from PPT” or placement commentary into the note body unless the user asks for that provenance to be visible.
+
+Notes that follow a textbook read as standalone explanations, so state the content directly instead of narrating the book. Write “`list` 和 `forward_list` 还提供了一组成员版本的算法”, not “书中 §10.6 为 list 补充了成员算法”; section and page references go in the source comment. When a correction to the source matters to the reader, phrase it as a caution about the rule itself. When asked to remove this framing from existing text, make the minimal rewrite that drops only the book framing.
 
 ## Definition Markers and Local Conventions
 

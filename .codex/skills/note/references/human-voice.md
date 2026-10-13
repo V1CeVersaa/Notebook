@@ -1,6 +1,6 @@
 # Explanatory Voice Reference
 
-This guide applies to drafting and revising notebook prose. The goal is **coherent explanation, complete coverage of the requested knowledge, and a length suited to the material**. Apply it only to text added or changed in the current task. Mechanical edits need no voice review, and this guide does not authorize rewriting untouched paragraphs.
+This guide applies to drafting and revising notebook prose. The goal is **coherent explanation, complete coverage of the requested knowledge, and a length suited to the material**. Apply it to prose added or changed in the current task.
 
 ## Develop Reasoning the Reader Can Follow
 
@@ -22,53 +22,82 @@ Natural questions, transitions, and occasional conversational phrasing are welco
 
 **Polishing must preserve facts, formulas, causal relationships, scope, and uncertainty.** Do not add numbers, complexity bounds, experimental results, citations, or claims of field-wide consensus merely to sound concrete. Explanatory additions must follow from premises already stated. When external facts are needed, verify them first and treat the addition as a content revision.
 
-If the original contains a technical error, verify and correct it explicitly rather than making it sound more certain. When a source reports only an observation, do not supply an unsupported cause; when results are absent, do not present speculation as evidence. Retain explicit uncertainty where support is insufficient.
+If the original contains a technical error, verify and correct it explicitly rather than making it sound more certain. When a source reports only an observation, do not supply an unsupported cause; when results are absent, do not present speculation as evidence. Retain explicit uncertainty where support is insufficient. For a voice-only edit, mention missing information in an editorial comment rather than forcing it into the notebook prose.
 
-Nearby notes can demonstrate narrative rhythm and organization, but their technical claims still need checking against the sources used for the current task. The examples below illustrate explanatory techniques. They are neither fixed sentence templates nor factual sources for other notes. They remain in Chinese to demonstrate the language of the notebook artifacts.
+Nearby notes can demonstrate narrative rhythm and organization, but their technical claims still need checking against the sources used for the current task.
 
-## Example: Give a Formal Definition Meaning
+## Common AI Tells
 
-This is a self-contained teaching example. All premises appear in the passage, and its numbers illustrate the definition rather than report experimental data.
+These patterns usually mean a sentence was assembled rather than reasoned. None of the phrases is banned. Flag one when it carries no logical relationship or information, then replace it with the actual relationship or delete it.
 
-> 对整数 $a\leq b$，我们用 半开区间/half-open interval $[a,b)$ 表示满足 $a\leq i<b$ 的整数位置。区间非空时从左端点开始，右端点用来标记停止的位置，因此区间内共有 $b-a$ 个整数。例如，$[2,5)$ 包含 $2,3,4$，而 $[2,2)$ 为空。
->
-> 这个表示也便于切分区间：取整数 $m$ 满足 $a\leq m\leq b$，可以把 $[a,b)$ 分成 $[a,m)$ 和 $[m,b)$。前一段在 $m$ 之前结束，后一段从 $m$ 开始、到 $b$ 之前结束；两段没有重叠，合起来仍是原来的区间。取 $m=a$ 或 $m=b$ 时，其中一段为空。
+- **Inflated significance**: 具有深远意义、奠定了基础、起到了关键作用、标志着……的里程碑. Say what the thing does.
+- **Empty transitions**: 此外、不仅如此、值得注意的是、需要指出的是、不难发现、由此可见, used where the next sentence has no stated relation to the previous one.
+- **Announcing instead of explaining**: 本节将介绍……、接下来我们将……、下面从 X、Y、Z 三个方面…… Start with the content itself.
+- **Avoiding 是**: 起到了……的作用、扮演着……的角色、承担着……的功能, where 是 or 有 says the same thing.
+- **Trailing clauses**: ……，从而……，进而体现了……，充分说明了……, chains that add claims without adding reasons.
+- **Formula endings**: 综上所述、总而言之 followed by a restatement, or 相信随着研究的不断深入…… End when the explanation ends, or on a real limitation or connection.
+- **Unsourced or promotional claims**: 研究表明、学界普遍认为、强大的、完美地、革命性的. Name the actual source or state the claim with its scope, and describe the technical property instead of praising it.
+- **Padded structure**: points forced into threes, or bullet lists whose bold labels the item text merely repeats.
+- **Narrating the book**: 书中 §x 讲了……; see Source Notes in [notebook-style.md](notebook-style.md).
 
-The passage gives a definition, explains it through boundaries and examples, then derives a use. If the surrounding material needs only interval notation, the first paragraph is enough; include the second only when splitting intervals is relevant.
+## Calibration Excerpts
 
-## Example: Explain the Reasoning Between Formulas
+The excerpts below are quoted verbatim from notes the owner wrote before this skill existed. Line numbers are as of 2026-10-13, and "……" marks a cut. They show the owner's register and the order in which an explanation unfolds. Calibrate against them rather than copying their phrases, and do not use them as factual sources for other notes.
 
-This example adapts the explanation of minimizing a local quadratic model in `docs/math/opt/3 Descent.md`, retaining only a derivation that can be checked within the passage. It is not a verbatim excerpt and does not carry over the original's claims about convergence of the iteration.
+### Motivation Before the Goal
 
-> 给定可微函数 $f:\mathbb{R}^n\to\mathbb{R}$，在当前点 $x_0$ 处，一阶近似告诉我们函数沿各个方向如何变化。但如果梯度非零，单独最小化这个线性模型会沿下降方向无限走远。我们给位移加上一个二次惩罚，得到
+From `docs/cs/compilers/10_register.md:13`:
+
+> 为什么要进行寄存器分配？原因在于程序使用无限多个临时的变量，抽象汇编也使用无限多个寄存器，但实际上真实的机器只有有限多个寄存器，就需要我们在保持程序语义不变的基础上，将临时值映射到寄存器上。同时也做一些性能的优化。
+
+The paragraph opens with the reader's question, answers it with the constraint that creates the problem (unlimited temporaries, finite registers), and only then states the task together with its invariant: program semantics must not change. The secondary purpose gets one short sentence instead of a list.
+
+### A Cost That Introduces the Next Concept
+
+From `docs/cs/compilers/2_parse.md:135`:
+
+> 问题在于复杂的回溯的代价太高，分析过程类似于 NFA，因此我们希望构建一个类似于 DFA 的分析方法。这样就产生了接受 LL(k) 文法的预测分析法/Predictive Parsing。其中 LL(k) 表示从左到右分析，最左推导，向前看 k 个 Token 来确定产生式。并且我们需要确定**文法加上什么限制可以保证没有回溯**。
+
+The cost of the previous method motivates the new one, and the NFA/DFA analogy names the idea in terms the reader already knows. The new term arrives with its bilingual pair and an expansion of its name. The paragraph ends on the question the next section answers, so the transition comes from the content rather than from a connective.
+
+### A Concrete Failure and Its Fixes
+
+From `docs/cs/compilers/6_IR.md:180`, right after the loop translation it discusses:
+
+> 这个问题在于对于 `hi` 为 `maxint` 的时候，`i + 1` 就会溢出，解决方法之一是将测试放在循环底部，在递增 `i` 之前检查 `i < hi`，而不是检查 `i <= hi`。另外一种方法是添加初始范围检查，检查 `lo <= hi`，如果初始条件不满足，就可以直接跳过整个循环。
+
+Instead of warning that the translation "may have boundary issues", the passage names the exact input that breaks it, and describes each fix by what it checks. 另外 introduces a genuine alternative here, so it carries meaning. The paragraph stops once the fixes are given.
+
+### Reasoning Between Formulas
+
+From `docs/math/opt/3 Descent.md:9-21`:
+
+> 我们尝试用一种“普遍”的推理推出这种方案：取定点 $x_0$，考虑函数 $f\in C^1(\mathbb{R}^n)$ 与其下面的近似：
 >
 > $$
-> q(x)=f(x_0)+\langle\nabla f(x_0),x-x_0\rangle+\frac{1}{2h}\lVert x-x_0\rVert^2,\qquad h>0.
+> \phi_2(x) = f(x_0) + \langle\nabla f(x_0),x-x_0\rangle + \dfrac{1}{2h}\lVert x-x_0\rVert^2
 > $$
 >
-> $h$ 控制位移惩罚的强弱：$h$ 越小，离开 $x_0$ 的代价越高。这个二次模型严格凸，令梯度为零就能找到唯一极小点：
+> 其中参数 $h>0$ 是一个正数，根据一阶最优性条件，该函数的无约束极小点 $x_1^*$ 满足：
 >
 > $$
-> \nabla q(x)=\nabla f(x_0)+\frac{x-x_0}{h}=0
-> \quad\Longrightarrow\quad x_1=x_0-h\nabla f(x_0).
+> \nabla\phi_2(x_1^*) = \nabla f(x_0)+\dfrac{1}{h}(x_1^*-x_0) = 0
 > $$
 >
-> 这样得到了梯度更新的形式。不过，当前最小化的是 $q$；要保证这一步也降低原函数 $f$，还需要控制模型误差与步长，单凭这个推导不能得出下降或收敛结论。
+> 所以就有 $x_1^* = x_0-h\nabla f(x_0)$，这就是我们梯度法的迭代方案。……
 
-The explanation connects why the quadratic term is needed, what the parameter controls, how to obtain the update, and what has actually been established. The final qualification adds information and should remain. There is no need to repeat the same explanation after each line of algebra.
+The first clause says what the derivation is for. Each formula is introduced with the condition it relies on (一阶最优性条件), and the result is tied back to the scheme stated just above. The source then turns to the upper-bound condition on $h$ and to convergence, which rely on the previous note, and closes with a forward reference in the same voice: 「记好这个 $\phi_2$，我们在拟牛顿法的比较中还会用到（虽然也就是提了一嘴）。」 A short aside like this is welcome when it tells the reader what is worth remembering.
 
-## Example: Connect an Explanation Without Inventing Evidence
+### Established Results Versus Conjecture
 
-Assume the source provides only these facts: the system caches query results by key; a hit returns the cached value; a miss queries the data source and writes the result to the cache; updates to the data source do not automatically refresh the cache. The passage below only reorganizes these given facts.
+From `docs/cs/computation/l_7.md:50`:
 
-> 系统先按键查找缓存。命中时直接返回缓存值；未命中时才查询数据源，并把结果写入缓存，供之后的查询使用。
->
-> 这个流程还留下一个问题：数据源更新后，缓存不会自动刷新，后续查询可能继续读到旧值。因此，理解该系统时还需要检查它如何让缓存失效或更新；给定材料没有说明这一部分。
+> 显然 $\mathbf{P} \subseteq \mathbf{BPP}$，因为确定性 TM 可以看作是 Probabilistic TM 的一个特例，即不使用随机比特串。$\mathbf{BPP} \subseteq \mathbf{EXP}$ 也比较显然，因为我们可以枚举所有可能的随机比特串，然后取多数结果作为最终结果，这样的时间复杂度是指数级的。但是至于 $\mathbf{P}$ 是不是严格包含于 $\mathbf{BPP}$，目前尚未有定论，但是大多猜测认为 $\mathbf{P} = \mathbf{BPP}$，也就是说随机化计算并没有增加计算能力，只是提高了计算效率而已，并且所有的多项式的随机算法都可以去随机，得到一个确定性的多项式算法。
 
-The question in the second paragraph follows from the mechanism in the first. There is no need to invent a hit rate, latency improvement, or consistency guarantee, or to supply an invalidation scheme absent from the source. For a voice-only edit, mention missing information in an editorial comment when appropriate rather than forcing it into the notebook prose.
+Each established inclusion comes with a one-clause reason. The open question is labelled as open (目前尚未有定论) and the majority view as a conjecture (大多猜测). What follows is framed as a consequence of that conjecture, not as a result. Treat gaps in a source the same way: when a result, mechanism, or condition is missing, say so instead of filling it in.
 
 ## Review Before Delivery
 
-Reread only the text written in this task: can the reader follow the concepts and derivations? Are the necessary knowledge and qualifications complete? Can any repetition be removed without harming understanding? Are added factual claims supported? Correct concrete problems; leave clear, natural sentences unchanged.
+Reread only the text written in this task: can the reader follow the concepts and derivations? Are the necessary knowledge and qualifications complete? Can any repetition be removed without harming understanding? Are added factual claims supported? Does a tell from the list above remain without a logical role? Correct concrete problems; leave clear, natural sentences unchanged.
 
-For formatting and terminology conventions, see [notebook-style.md](notebook-style.md); for domain coverage, see [domain-patterns.md](domain-patterns.md). Blockquotes here distinguish examples from guidance. When writing notes, follow the target series's normal body formatting.
+For formatting and terminology conventions, see [notebook-style.md](notebook-style.md); for domain coverage, see [domain-patterns.md](domain-patterns.md). Blockquotes here distinguish excerpts from guidance. When writing notes, follow the target series's normal body formatting.
