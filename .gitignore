@@ -1,7 +1,8 @@
 .cursor
 .idea
 .fleet
-.obsidian   
+.obsidian
+.claude/
 
 *.sh
 .DS_Store
@@ -12,3 +13,23 @@ site
 
 *.mdc
 .vercel
+
+# LaTeX build intermediates (same list as latex-workshop.latex.clean.fileTypes)
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.out
+*.xdv
+*.run.xml
+*.synctex.gz
+*.synctex.gz(busy)
+*.toc
