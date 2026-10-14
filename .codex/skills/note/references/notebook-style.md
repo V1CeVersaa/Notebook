@@ -12,9 +12,9 @@ A request for a new navigable topic includes its necessary index and minimal nav
 
 ## Language And Voice
 
-Body text is Chinese. Code identifiers, APIs, algorithm names, and standard English acronyms stay English. On first formal introduction of a technical concept, use a bilingual pair, such as `策略梯度/Policy Gradient` or `静态单赋值/Static Single Assignment/SSA`. A mention in the outline admonition does not count as the first formal introduction — give the pair again where the concept is actually defined in the body; after that, either language alone is fine depending on what reads more naturally. Everyday CS terms such as 缓存、寄存器、变量、函数 do not need forced English pairing.
+Body text is Chinese. Code identifiers, APIs, algorithm names, and standard English acronyms stay English. On first formal introduction of a technical concept, use a bilingual pair, such as `策略梯度/Policy Gradient` or `静态单赋值/Static Single Assignment/SSA`. A mention in the outline admonition does not count as the first formal introduction — give the pair again where the concept is actually defined in the body; after that, either language alone is fine depending on what reads more naturally. At the defining occurrence, follow the series on bolding. The Python notes bold the pair, as in `**列表推导式/List Comprehension**`. Everyday CS terms such as 缓存、寄存器、变量、函数 do not need forced English pairing.
 
-Write as a student explaining the material to a future self: connected explanations, complete coverage of the requested knowledge, and enough detail to follow the reasoning. Use [human-voice.md](human-voice.md) for writing decisions and examples.
+Write as a student explaining the material to a future self: connected explanations, complete coverage of the requested knowledge, and enough detail to follow the reasoning. Reader and Stance in [SKILL.md](../SKILL.md) decides what belongs in the body, a collapsible block, or a comment. Use [human-voice.md](human-voice.md) for writing decisions and examples.
 
 Do not let the note explain its own bookkeeping. Visible prose should not say things like “this directory only keeps the reading route”, “the following checkbox means completion”, “these details are placed in child notes”, or “read these in this order”. Orientation is useful only when it names the technical content itself: which primitive is introduced, what mechanism a section explains, and what boundary or failure mode the reader should remember.
 
@@ -64,9 +64,11 @@ Ordinary substantial notes should include an outline admonition after the H1 or 
     - [ ] 2. Planned Section
 ```
 
-The outline sentence should explain the note's conceptual arc, not merely list topics. Mark `[x]` only for sections that are actually written. A planned-but-unwritten section appears in the outline as an unchecked plain-text item (no link, since there is no heading yet); do not leave empty headings in the body as placeholders. Link the item once the section exists.
+The outline sentence names the one idea that ties the note together. It is neither a list of topics nor a reading sequence, so avoid sequencing words such as 依次讨论、在此基础上、首先……然后……. Mark `[x]` only for sections that are actually written. A planned-but-unwritten section appears in the outline as an unchecked plain-text item (no link, since there is no heading yet); do not leave empty headings in the body as placeholders. Link the item once the section exists.
 
 H2 conventions vary by series. Common patterns are `## 1. Section Name`, `## 十一、Python 风格对象`, and `## Lecture 7: ...`. Match adjacent files first. H3 sections are normally numbered within the parent, such as `### 1.1 ...`, unless the local series uses short unnumbered helper headings. Use H3 only when a section needs real internal structure.
+
+Headings name the topic with a noun phrase, often parallel nouns joined by 与、和 or 、, such as `### 4.1 str 与 bytes` or `### 6.3 共享调用与可变参数`. Do not write a sentence or a claim as a heading, such as `str 是 Unicode 码位序列，bytes 是整数序列`; state the claim in the section's first sentence instead. Outline entries repeat the heading text.
 
 For notes with outlines or durable internal links, prefer explicit heading anchors using the MkDocs `attr_list` syntax. This avoids fragile generated anchors for Chinese text, punctuation, repeated headings, or inline code:
 
@@ -104,7 +106,7 @@ Keep notation consistent with the target series. For explanatory commentary betw
 
 ## Code
 
-Use fenced code blocks with language tags: `py`, `cpp`, `rust`, `C`, `txt`, `bash`, etc. Inline language-specific highlighting appears in the repo, for example `` `#!cpp std::optional` `` and `` `#!py torch.no_grad()` ``. Use it when it improves readability and matches the local file.
+Use fenced code blocks with language tags: `py`, `cpp`, `rust`, `C`, `txt`, `bash`, etc. Inline language-specific highlighting appears in the repo, for example `` `#!cpp std::optional` `` and `` `#!py torch.no_grad()` ``. Use it when it improves readability and matches the local file. The Python series (`docs/cs/pl/python/`) applies it to every inline code span, in body text, headings, outline entries, and admonition titles alike: `` `#!python dict` ``. Printed reprs such as `<function …>` stay plain.
 
 Long code can go under `???- Info "Code"` when it would interrupt the main explanation. Keep code visible when it is the current object of study, and explain the lines needed to understand the mechanism.
 
@@ -120,7 +122,7 @@ File naming, asset directories, width, `alt` text, selection, and final inspecti
 
 ## Source Notes And References
 
-Keep production metadata such as source file paths, slide origins, and extraction notes in HTML comments. Keep attribution needed to interpret or check a technical claim visible near that claim, following local citation style. Hidden production metadata can use:
+Keep production metadata such as source file paths, slide origins, extraction notes, and verification notes (tested versions, documentation discrepancies, and the source's original claim when the note departs from it) in HTML comments. Keep attribution needed to interpret or check a technical claim visible near that claim, following local citation style. Hidden production metadata can use:
 
 ```markdown
 <!-- Source: ... -->

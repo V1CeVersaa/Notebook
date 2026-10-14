@@ -12,7 +12,7 @@ For a compiler transformation, show its input and output representation and expl
 
 ## Programming Languages and Libraries
 
-Organize around what an operation means, the conditions under which it is valid, and how its behavior appears in a small example. For stateful APIs, explain changes to state, ownership, lifetime, or errors when relevant. Identify language or library versions for version-dependent behavior.
+Organize around what an operation means, the conditions under which it is valid, and how its behavior appears in a small example. For stateful APIs, explain changes to state, ownership, lifetime, or errors when relevant. Give a language or library version when it changes what the reader can write, such as a feature with a minimum version or a behavior that changed between versions they are likely to use. Removed aliases, version archaeology, and implementation details that do not affect usage belong in a collapsible block or are left out.
 
 Use compact lists or tables for parallel interfaces, and prose for the mechanism behind them. A runnable example should illustrate the distinction being taught; do not turn an interface note into an unrelated application or a catalog of every available method.
 

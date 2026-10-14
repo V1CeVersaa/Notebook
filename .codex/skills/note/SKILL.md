@@ -10,6 +10,21 @@ description: >-
 
 Produce notes that explain the material coherently, cover the requested knowledge completely, and use no more space than the explanation needs. Accept source files, URLs, excerpts, and an optional target path. Follow the user's requested scope and deliverable; a source or `docs/` path alone does not authorize writing a note.
 
+## Reader and Stance
+
+These are the owner's study notes. Write as the owner: a student who has worked through the material and now explains it in their own words to their future self. That reader comes back months later knowing what the earlier notes in the series cover. They want to understand the mechanism and be able to use it. They are not auditing the source, tracking version history, or looking up a reference manual. Do not write as a translator of the source, a fact-checker, or a documentation maintainer.
+
+The stance decides where each piece of information goes:
+
+- **Body**: the problem, the concept, the mechanism, the conditions that change how the reader writes code or carries out an argument, and the example that makes the mechanism visible. A version number belongs here only when it changes what the reader can write, such as a feature that needs a minimum version or a default that changed.
+- **Collapsible block** (`???- Info`): exhaustive enumerations, edge cases, implementation details, and version history. These are things the reader may want later but does not need in order to follow the main explanation.
+- **HTML comment**: how a claim was checked. This covers tested versions and environments, documentation discrepancies, source pages, and, when the note departs from the source, the source's original claim and why. The corrected rule itself goes in the body.
+- **Omit**: details that neither help understanding nor change usage.
+
+Completeness and source fidelity mean the reader gets every idea they need, and none of them distorted. They do not mean that every qualification found in the source or produced by a verification pass appears in the body. When a review or audit comes before a revision, its findings decide what to fix. Its evidence and phrasing stay out of the prose.
+
+The register is written Chinese that stays easy to follow, neither chatty nor stiff. Target Register in [human-voice.md](references/human-voice.md) defines it and gives examples of both ways to miss it.
+
 ## Choose the Work Needed
 
 **Mechanical edits** — typos, links, and local formatting: read the affected passage and enough context to avoid changing its meaning. Check the changed text or link directly; do not load writing guides or inspect unrelated notes.
@@ -17,6 +32,13 @@ Produce notes that explain the material coherently, cover the requested knowledg
 **Content patches** — a definition, derivation, example, or section: read the affected section and follow its dependencies (symbols, assumptions, references, and subsequent uses). Read the whole note only when those dependencies require it. Match the target's existing conventions; inspect a nearby note only if the target leaves a convention unclear. Apply the writing guidance to new or modified prose, not to untouched paragraphs. Update an outline when section coverage changes. Do not add navigation or reorganize files unless needed for the requested deliverable.
 
 **New notes or substantial rewrites** — read the source within the requested coverage, identify its conceptual dependencies, and inspect representative nearby notes. Use the references below to plan and draft. Expanding a short outline entry is a patch; completing an entire stub follows this route. An existing file can take either route according to the user's request.
+
+**Revising existing notes** takes whichever route above fits its size, with five additions.
+- Text the owner wrote is kept, and only its errors are fixed. That covers both the oldest committed version and the owner's own in-place edits.
+- Do not re-add content the owner deleted. If a deletion looks accidental, restore it and say so. An example is a whole subsection or a cross-reference that vanished during an unrelated edit.
+- Before a substantial rewrite, diff the file against its committed and staged versions. This catches content that earlier rewrites dropped.
+- The user may name an earlier version as the register reference. Then keep its paragraphing and sentence register, and carry over the newer facts.
+- Report restored content, and every change to sentences the owner wrote, as a list the owner can veto.
 
 **Placement and navigation changes** — inspect the relevant `mkdocs.yml` subtree and local path conventions. A request for a new navigable topic includes the necessary index and minimal nav wiring; a single-note patch does not. Use the user's target when given. Ask only if unresolved placement would materially change the notebook's long-term structure; continue independent reading meanwhile.
 
@@ -33,7 +55,7 @@ Local series conventions guide formatting, not factual correctness.
 
 For a full chapter, lecture, or paper note, read the whole requested source unit, including relevant figures, captions, tables, assumptions, and limitations. For a targeted addition, read the relevant passages and their dependencies. Do not infer unread coverage from a title or abstract. If extraction is incomplete, identify the gap and recover the affected material before claiming complete coverage.
 
-Organize a learning note by conceptual dependencies while preserving all substantive content needed for the requested scope. Follow source order when the user requests faithful translation or sequential commentary. For slides, recover the connections between definitions, diagrams, and derivations; for articles, retain the argument and qualifications. Cut repeated exposition rather than necessary reasoning.
+Organize a learning note by conceptual dependencies while preserving all substantive content needed for the requested scope. Re-derive the source's points in the order the reader needs them, rather than translating its sentences or carrying over its rhetorical setups. Follow source order when the user requests faithful translation or sequential commentary. For slides, recover the connections between definitions, diagrams, and derivations; for articles, retain the argument and qualifications. Cut repeated exposition rather than necessary reasoning.
 
 Source fidelity is always required. Distinguish reported claims, explanatory derivations, and your own evaluations. Derive added explanations from stated premises or support them with sources. Do not invent missing empirical results, citations, causal explanations, or consensus. Keep assumptions and uncertainty close to the claims they qualify.
 
