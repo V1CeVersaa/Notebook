@@ -102,6 +102,7 @@ $$
     $$
     Q(\theta \mid \theta^{(t)}) = \mathbb{E}_{Z \mid X, \theta^{(t)}} [\ln P(X, Z \mid \theta)] = \displaystyle\sum_{Z} P(Z \mid X, \theta^{(t)}) \ln P(X, Z \mid \theta)
     $$
+
 - **M 步**：寻找参数最大化似然 $Q(\theta \mid \theta^{(t)})$，更新参数 $\theta^{(t+1)} = \arg\max_{\theta} Q(\theta \mid \theta^{(t)})$。
 
 ## 10. Demension Reduction

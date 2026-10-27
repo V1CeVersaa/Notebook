@@ -330,6 +330,7 @@
     $$
 
 6. （Mill's Inequality）证明：对于服从标准正态分布的随机变量 $\xi$，有
+
     $$
     \dfrac{1}{\sqrt{2\pi}} \cdot \left(\dfrac{1}{x} - \dfrac{1}{x^3}\right) e^{-x^2/2} < P(\xi > x) < \dfrac{1}{\sqrt{2\pi}} \cdot \dfrac{1}{x} e^{-x^2/2}
     $$

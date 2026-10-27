@@ -198,7 +198,7 @@ LL(1) 文法：该文法的任意两个产生式 $A \rightarrow \alpha \mid \bet
 预测分析表：
 
 - 行 $A$：对应一个非终结符；
-- 列 $a$：对应一个终结符或者输入结束符 $\$ $；
+- 列 $a$：对应一个终结符或者输入结束符 $\$$；
 - 表项 $\mathrm{M}[A, a]$：针对非终结符 $A$，下一个输入 Token 为 $a$ 的时候可选的产生式。
 
 构造预测分析表的算法如下：对文法 $G$ 的每个产生式 $A \rightarrow \gamma$，执行如下操作：
@@ -349,7 +349,7 @@ LR 分析的四种操作：
 
 LR 分析器基于状态来构造自动机进行 RHS 的识别。相对于一般的 NFA 添加的内容如下：
 
-- 起始 & 终结状态：在文法中添加新的开始符号 $S^{\prime}$，并且 $S^{\prime} \rightarrow S \$ $，$S$ 是文法的开始符号，$\$ $ 是输入结束符。
+- 起始 & 终结状态：在文法中添加新的开始符号 $S^{\prime}$，并且 $S^{\prime} \rightarrow S \$$，$S$ 是文法的开始符号，$\$$ 是输入结束符。
 - 状态迁移关系：
     - $X \rightarrow \cdot \alpha \beta$ 在接受输入 $\alpha$ 之后会变成 $X \rightarrow \alpha \cdot \beta$。
     - 如果存在产生式 $X \rightarrow \alpha Y \beta$，并且 $Y$ 是一个非终结符且有产生式 $Y \rightarrow \gamma$，则 $X \rightarrow \alpha \cdot Y \beta$ 可以转换到 $Y \rightarrow \cdot \gamma$。（这是因为希望看到由 $Y \beta$ 推导出的串，首先要看到 $Y$ 推导出的串，因此加上 $Y$ 各个产生式对应的项）

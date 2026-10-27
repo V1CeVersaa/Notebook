@@ -376,34 +376,46 @@
         显然 (i) 与 (1) 是等价的。
 
         若 $A_i \in \mathcal{F}, i=1, 2, \dots$, 两两互不相容，且  
+
         $$
         \sum_{i=1}^{\infty} A_i = \Omega
         $$
+
         则由 (2)(3) 可推出
+
         $$
         1 = P(\Omega) = P\left( \sum_{i=1}^{\infty} A_i \right) = \sum_{i=1}^{\infty} P(A_i)
         $$
+
         即 (ii) 成立。
 
         反之，当 (ii) 成立，则由 $\Omega = \Omega + \varnothing + \varnothing + \cdots$ 可得  
         $P(\varnothing) = 0$，因此 (2) 成立，再由  
         $\Omega = B + \overline{B} + \varnothing + \varnothing + \cdots$ 可得  
         $P(B) + P(\overline{B}) = 1$，若 $\forall A_i \in \mathcal{F}, i=1, 2, \dots$, 且两两互不相容，则
+
         $$
         \sum_{i=1}^{\infty} A_i + \overline{\sum_{i=1}^{\infty} A_i} = \Omega
         $$
+
         由 (ii) 可得  
+
         $$
         \sum_{i=1}^{\infty} P(A_i) + P\left( \overline{\sum_{i=1}^{\infty} A_i }\right) = 1
         $$
+
         加上前面的结论，得出
+
         $$
         P\left( \overline{\sum_{i=1}^{\infty} A_i} \right) + P\left( \sum_{i=1}^{\infty} A_i \right) = 1
         $$
+
         所以有
+
         $$
         P\left( \sum_{i=1}^{\infty} A_i \right) = \sum_{i=1}^{\infty} P(A_i)
         $$
+
         即可列可加性成立。
 
 11. 甲有 $n+2$ 枚硬币，乙有 $n$ 枚硬币，投掷后比较，求 $A=\{\text{甲正} > \text{乙正}\}$ 的概率。
