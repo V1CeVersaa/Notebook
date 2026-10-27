@@ -139,10 +139,6 @@ input#mkdocs-content-password {
     background-color: #161616;
 }
 
-.katex {
-    -webkit-text-stroke-width: 0.3px;
-}
-
 .reference ol {
     counter-reset: li;
 }
